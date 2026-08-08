@@ -280,13 +280,6 @@ PAGE = """
   <div style="text-align:center;"><img src="/static/logo_triple_a.jpg" alt="Triple A Seguros" style="max-width:160px; margin-bottom:6px;"></div>
   <h1>Agente de formularios — Seguros Triple A</h1>
 
-  {% if clave_configurada %}
-    <div class="ok">Clave de API configurada. Los datos se van a extraer de verdad.</div>
-  {% else %}
-    <div class="aviso">Todavía no configuraste tu clave de API -- por ahora los resultados van a usar datos de EJEMPLO.
-    <a href="/configurar">Configurarla acá</a>.</div>
-  {% endif %}
-
   <p>Elegí la aseguradora y el tipo de trámite, pegá el mensaje del cliente y/o subí archivos.
   Podés agregar varios archivos de a poco, sin perder los que ya elegiste.</p>
   <form method="post" action="/generar" enctype="multipart/form-data" id="form-generar">
