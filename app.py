@@ -188,10 +188,10 @@ LOGIN_PAGE = """
       <button type="submit">Entrar</button>
     </form>
   </div>
-  <div style="margin-top:24px;display:flex;align-items:center;justify-content:center;gap:10px;">
-    <span style="font-size:12.5px;color:rgba(255,255,255,.55);font-weight:500;">Desarrollado por</span>
-    <img src="/static/alas_logo.png" alt="Alas AI" style="height:32px;width:32px;object-fit:cover;border-radius:6px;">
-    <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.85);">Alas AI</span>
+  <div style="position:fixed;bottom:20px;right:24px;display:flex;align-items:center;gap:9px;">
+    <span style="font-size:12px;color:rgba(255,255,255,.5);font-weight:500;">Desarrollado por</span>
+    <img src="/static/alas_logo.png" alt="Alas AI" style="height:28px;width:28px;object-fit:cover;border-radius:6px;">
+    <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.75);">Alas AI</span>
   </div>
   <script>
     var campo = document.getElementById('clave-input');
