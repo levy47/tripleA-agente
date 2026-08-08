@@ -187,16 +187,11 @@ LOGIN_PAGE = """
              autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
       <button type="submit">Entrar</button>
     </form>
-    <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--linea);display:flex;align-items:center;justify-content:center;gap:9px;">
-      <span style="font-size:12.5px;color:var(--gris-suave);font-weight:500;">Desarrollado por</span>
-      <svg width="28" height="22" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="6" width="40" height="8" rx="4" fill="#4AAFE3" transform="rotate(-18 0 6)"/>
-        <rect x="6" y="16" width="36" height="7" rx="3.5" fill="#5BBCE8" transform="rotate(-18 6 16)"/>
-        <rect x="10" y="25" width="30" height="6" rx="3" fill="#6EC9ED" transform="rotate(-18 10 25)"/>
-        <ellipse cx="18" cy="36" rx="10" ry="5" fill="#F5A623" transform="rotate(-10 18 36)"/>
-      </svg>
-      <span style="font-size:13px;font-weight:800;color:var(--tinta);">Alas AI</span>
-    </div>
+  </div>
+  <div style="margin-top:24px;display:flex;align-items:center;justify-content:center;gap:10px;">
+    <span style="font-size:12.5px;color:rgba(255,255,255,.55);font-weight:500;">Desarrollado por</span>
+    <img src="/static/alas_logo.png" alt="Alas AI" style="height:32px;width:32px;object-fit:cover;border-radius:6px;">
+    <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.85);">Alas AI</span>
   </div>
   <script>
     var campo = document.getElementById('clave-input');
