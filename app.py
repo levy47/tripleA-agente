@@ -141,36 +141,59 @@ LOGIN_PAGE = """
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ingresar — Triple A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, sans-serif; max-width: 400px; margin: 100px auto; padding: 0 20px; color: #1a1a1a; }
-  input[type=password] { width: 100%; font-size: 15px; padding: 10px; box-sizing: border-box; margin-top: 10px; }
-  button { background: #0b6cb3; color: white; border: none; padding: 12px 22px; font-size: 15px;
-           border-radius: 6px; cursor: pointer; margin-top: 14px; width: 100%; }
-  .error { background: #fde8e8; border: 1px solid #e08a8a; padding: 10px 14px; border-radius: 6px; margin: 14px 0; font-size: 14px; }
+  :root{
+    --navy:#033860;--navy-osc:#02273F;--azul:#1B467B;--azul-claro:#4C8CB8;
+    --cielo-1:#D4EBF7;--cielo-2:#ADD1E6;--cielo-3:#97BFDA;
+    --tinta:#12253A;--gris:#51617A;--fondo:#F3F7FA;--linea:#DCE5EE;
+    --sombra:0 1px 3px rgba(3,56,96,.07),0 8px 26px rgba(3,56,96,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{min-height:100vh;background:linear-gradient(135deg,var(--navy) 0%,var(--azul) 60%,var(--azul-claro) 100%);
+       display:flex;align-items:center;justify-content:center;padding:20px;
+       font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .card{background:#fff;border-radius:18px;box-shadow:0 24px 64px rgba(2,20,35,.45);
+        width:100%;max-width:380px;padding:40px 38px 36px;text-align:center}
+  .logo{height:80px;width:auto;margin-bottom:22px}
+  h1{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;color:var(--navy);margin-bottom:6px}
+  .sub{font-size:13.5px;color:var(--gris);margin-bottom:26px}
+  input[type=password],input[type=text]{width:100%;padding:13px 15px;font:inherit;font-size:15px;
+    border:1.5px solid var(--linea);border-radius:11px;background:#FAFCFE;color:var(--tinta);
+    transition:border .15s;margin-bottom:12px}
+  input[type=password]:focus,input[type=text]:focus{outline:none;border-color:var(--azul-claro);background:#fff}
+  .honeytrp{position:absolute;left:-9999px}
+  button{width:100%;padding:14px;background:linear-gradient(120deg,var(--azul) 0%,var(--navy) 70%);
+         color:#fff;border:none;border-radius:12px;font:inherit;font-size:15.5px;font-weight:800;
+         cursor:pointer;box-shadow:0 10px 26px rgba(3,56,96,.35);transition:.15s}
+  button:hover{transform:translateY(-1px)}
+  .error{background:#FBEBEC;border:1px solid #EEC4C7;color:#8A1220;border-radius:10px;
+         padding:10px 14px;font-size:13.5px;font-weight:600;margin-bottom:14px}
 </style>
 </head>
 <body>
-  <div style="text-align:center;"><img src="/static/logo_triple_a.jpg" alt="Triple A Seguros" style="max-width:180px; margin-bottom:10px;"></div>
-  <h2>Triple A</h2>
-  <p>Ingresá la clave de acceso para continuar.</p>
-  {% if error %}<div class="error">Clave incorrecta.</div>{% endif %}
-  <form method="post" autocomplete="off">
-    <input type="text" style="position:absolute; left:-9999px;" tabindex="-1" aria-hidden="true">
-    <input type="password" name="clave" id="clave-input" placeholder="Clave de acceso"
-           autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
-    <button type="submit">Entrar</button>
-  </form>
+  <div class="card">
+    <img src="/static/logo_triple_a.jpg" alt="Triple A Seguros" class="logo">
+    <h1>Triple A</h1>
+    <p class="sub">Ingresá la clave de acceso para continuar</p>
+    {% if error %}<div class="error">Clave incorrecta. Intentá de nuevo.</div>{% endif %}
+    <form method="post" autocomplete="off">
+      <input type="text" class="honeytrp" tabindex="-1" aria-hidden="true">
+      <input type="password" name="clave" id="clave-input" placeholder="Clave de acceso"
+             autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
   <script>
     var campo = document.getElementById('clave-input');
     function limpiar() { campo.value = ''; }
-    limpiar();
-    setTimeout(limpiar, 100);
-    setTimeout(limpiar, 400);
-    campo.addEventListener('focus', function() {
-      if (campo.dataset.tocado !== '1') { campo.value = ''; }
-    });
-    campo.addEventListener('input', function() { campo.dataset.tocado = '1'; });
+    limpiar(); setTimeout(limpiar,100); setTimeout(limpiar,400);
+    campo.addEventListener('focus', function(){ if(campo.dataset.tocado!=='1') campo.value=''; });
+    campo.addEventListener('input', function(){ campo.dataset.tocado='1'; });
   </script>
 </body>
 </html>
@@ -245,162 +268,234 @@ PAGE = """
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Agente de Formularios Triple A</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agente de Formularios — Triple A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, sans-serif; color: #1a1a1a; margin: 0; padding: 0; }
-  h1 { font-size: 22px; }
-  textarea { width: 100%; height: 220px; font-size: 14px; padding: 10px; box-sizing: border-box; }
-  button { background: #0b6cb3; color: white; border: none; padding: 12px 22px; font-size: 15px;
-           border-radius: 6px; cursor: pointer; margin-top: 12px; }
-  button:hover { background: #095a94; }
-  .aviso { background: #fff6e0; border: 1px solid #e8c766; padding: 10px 14px; border-radius: 6px; margin: 14px 0; font-size: 14px; }
-  .ok { background: #e8f6ec; border: 1px solid #7bc79e; padding: 10px 14px; border-radius: 6px; margin: 14px 0; font-size: 14px; }
-  .error { background: #fde8e8; border: 1px solid #e08a8a; padding: 10px 14px; border-radius: 6px; margin: 14px 0; font-size: 13px; white-space: pre-wrap; }
-  .doc { border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin: 16px 0; }
-  .doc img { max-width: 100%; border: 1px solid #eee; margin-top: 8px; }
-  a.btn { display: inline-block; margin-top: 8px; text-decoration: none; color: #0b6cb3; font-weight: 600; }
-  .faltantes { color: #9a6700; font-size: 13px; }
-  .revision { background: #fdecec; border: 1px solid #e08a8a; color: #a12a2a; padding: 12px 16px; border-radius: 6px; margin: 14px 0; font-size: 14px; }
-  .revision ul { margin: 6px 0 0 0; padding-left: 20px; }
-  .revision li { margin-bottom: 4px; }
-  .revision b { color: #a12a2a; }
-  input[type=file] { margin-top: 6px; }
-  .o { text-align: center; color: #888; margin: 10px 0; font-size: 13px; }
+  :root{
+    --navy:#033860;--navy-osc:#02273F;--azul:#1B467B;--azul-claro:#4C8CB8;
+    --cielo-1:#D4EBF7;--cielo-2:#ADD1E6;--cielo-3:#97BFDA;
+    --tinta:#12253A;--gris:#51617A;--gris-suave:#8C9AAE;
+    --fondo:#F3F7FA;--blanco:#FFFFFF;--linea:#DCE5EE;
+    --ok:#0E8A4D;--ok-suave:#E7F5EE;--warn:#C77E1E;--warn-suave:#FCF3E4;
+    --sombra:0 1px 3px rgba(3,56,96,.07),0 8px 26px rgba(3,56,96,.08);
+    --radio:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--fondo);color:var(--tinta);font-family:'Archivo',system-ui,sans-serif;
+       font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+  /* nav */
+  .nav{background:var(--navy);padding:0 24px;display:flex;align-items:center;
+       box-shadow:0 2px 8px rgba(0,0,0,.25);position:sticky;top:0;z-index:50}
+  .nav-brand{color:#fff;font-weight:800;font-size:14px;padding:14px 24px 14px 0;white-space:nowrap;
+             font-family:'Oswald',sans-serif;letter-spacing:.04em;font-size:17px}
+  .nav a{color:rgba(255,255,255,.65);text-decoration:none;padding:14px 18px;font-size:14px;
+          font-weight:600;border-bottom:3px solid transparent;display:block;transition:.15s}
+  .nav a.act{color:#fff;border-bottom-color:var(--azul-claro)}
+  .nav a:hover{color:#fff}
+  .nav-space{flex:1}
+  .nav-out{color:rgba(255,255,255,.55)!important;font-size:13px!important;padding:10px 0!important;
+           border-bottom:none!important}
+
+  /* hero */
+  .hero{background:linear-gradient(105deg,var(--cielo-1) 0%,var(--cielo-2) 55%,var(--cielo-3) 100%);
+        position:relative;overflow:hidden}
+  .hero-in{max-width:860px;margin:0 auto;padding:30px 24px 36px;position:relative;z-index:1;
+           display:flex;align-items:center;gap:20px}
+  .hero-logo{height:60px;width:auto;flex:none}
+  .hero h1{font-family:'Oswald',sans-serif;font-size:clamp(22px,3.5vw,32px);font-weight:600;
+            color:var(--navy);line-height:1.2}
+  .hero p{font-size:14px;color:#234B74;margin-top:5px}
+
+  /* wrap */
+  .wrap{max-width:860px;margin:0 auto;padding:28px 24px 80px}
+
+  /* cards */
+  .card{background:var(--blanco);border-radius:var(--radio);box-shadow:var(--sombra);
+        margin-top:20px;overflow:hidden;border:1px solid var(--linea)}
+  .card-h{display:flex;align-items:center;gap:12px;padding:15px 22px;border-bottom:1px solid var(--linea)}
+  .card-h .num{width:30px;height:30px;border-radius:9px;background:var(--cielo-1);color:var(--navy);
+               display:grid;place-items:center;font-weight:800;font-size:14px;flex:none;border:1px solid var(--cielo-2)}
+  .card-h h2{font-size:15.5px;font-weight:700;color:var(--navy)}
+  .card-h .opt{font-size:11px;font-weight:700;color:var(--gris-suave);margin-left:auto;
+               text-transform:uppercase;letter-spacing:.1em}
+  .card-b{padding:20px 22px}
+
+  /* form elements */
+  label.lbl{display:block;font-size:13px;font-weight:700;color:var(--tinta);margin-bottom:7px}
+  select,textarea{width:100%;border:1.5px solid var(--linea);border-radius:11px;padding:12px 14px;
+                  font:inherit;font-size:14.5px;background:#FAFCFE;color:var(--tinta);
+                  transition:border .15s;appearance:none}
+  select{cursor:pointer}
+  select:focus,textarea:focus{outline:none;border-color:var(--azul-claro);background:#fff}
+  textarea{resize:vertical;min-height:140px}
+  .hint{font-size:12px;color:var(--gris-suave);margin-top:6px}
+  .sep{text-align:center;color:var(--gris-suave);margin:16px 0;font-size:13px;font-weight:600;
+       position:relative}
+  .sep::before,.sep::after{content:'';position:absolute;top:50%;width:42%;height:1px;
+                            background:var(--linea)}
+  .sep::before{left:0} .sep::after{right:0}
+
+  /* file inputs */
+  .file-wrap{margin-bottom:4px}
+  input[type=file]{font:inherit;font-size:13.5px;color:var(--gris);cursor:pointer;
+                   padding:9px 0;display:block}
+  .file-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:5px}
+  .file-list li{display:flex;align-items:center;justify-content:space-between;
+                background:var(--cielo-1);border-radius:8px;padding:6px 10px;font-size:13px;
+                color:var(--azul);font-weight:600}
+  .file-list li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px}
+  .file-list li button{background:#EEC4C7;color:#8A1220;border:none;border-radius:5px;
+                       width:20px;height:20px;cursor:pointer;font-size:13px;line-height:1;flex:none;
+                       display:grid;place-items:center}
+
+  /* main button */
+  .btn-gen{width:100%;padding:16px 28px;background:linear-gradient(120deg,var(--azul) 0%,var(--navy) 70%);
+           color:#fff;border:none;border-radius:12px;font:inherit;font-size:16px;font-weight:800;
+           cursor:pointer;box-shadow:0 10px 26px rgba(3,56,96,.35);transition:.15s;
+           display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px}
+  .btn-gen:hover:not(:disabled){transform:translateY(-1px)}
+  .btn-gen:disabled{background:#C3CEDA;box-shadow:none;cursor:not-allowed}
+
+  /* results */
+  .res-ok{background:var(--ok-suave);border:1px solid #A3D9BC;color:var(--ok);border-radius:11px;
+          padding:12px 16px;font-size:14px;font-weight:700;margin-top:20px}
+  .res-demo{background:var(--warn-suave);border:1px solid #F0DBB4;color:#7A5212;border-radius:11px;
+            padding:12px 16px;font-size:14px;margin-top:20px}
+  .doc-card{background:var(--blanco);border-radius:var(--radio);box-shadow:var(--sombra);
+            border:1px solid var(--linea);border-top:4px solid var(--navy);margin-top:16px;overflow:hidden}
+  .doc-card-h{padding:14px 20px;font-weight:700;color:var(--navy);font-size:15px;
+              border-bottom:1px solid var(--linea)}
+  .doc-card-b{padding:16px 20px}
+  .doc-card img{max-width:100%;border-radius:8px;border:1px solid var(--linea);display:block}
+  .dl-btn{display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+          background:linear-gradient(120deg,var(--azul) 0%,var(--navy) 70%);color:#fff;
+          text-decoration:none;font-weight:700;font-size:14px;padding:10px 18px;
+          border-radius:10px;box-shadow:0 6px 18px rgba(3,56,96,.3);transition:.15s}
+  .dl-btn:hover{transform:translateY(-1px)}
+
+  .errbox{background:#FBEBEC;border:1px solid #EEC4C7;color:#8A1220;border-radius:11px;
+          padding:14px 17px;font-size:14px;font-weight:600;margin-top:20px;white-space:pre-wrap}
+  .revision-card{background:#FBEBEC;border:1px solid #EEC4C7;border-radius:11px;
+                 padding:16px 20px;margin-top:16px}
+  .revision-card b{color:#8A1220;font-size:14px}
+  .revision-card ul{margin:8px 0 0;padding-left:20px;color:#8A1220;font-size:13.5px}
+  .revision-card li{margin-bottom:5px}
 </style>
 </head>
 <body>
-  <div style="background:#033860;padding:0 20px;display:flex;align-items:center;gap:0;font-family:-apple-system,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.25);">
-    <span style="color:#fff;font-weight:700;font-size:14px;padding:14px 20px 14px 0;white-space:nowrap;">Triple A Seguros</span>
-    <a href="/" style="color:#fff;text-decoration:none;padding:14px 20px;font-size:14px;border-bottom:3px solid #4C8CB8;display:block;">Formularios</a>
-    <a href="/refutador" style="color:rgba(255,255,255,.65);text-decoration:none;padding:14px 20px;font-size:14px;border-bottom:3px solid transparent;display:block;">Refutador de Reclamos</a>
-    <span style="flex:1;"></span>
-    <a href="/logout" style="color:rgba(255,255,255,.65);text-decoration:none;font-size:13px;">Cerrar sesión</a>
+
+<nav class="nav">
+  <span class="nav-brand">Triple A</span>
+  <a href="/" class="act">Formularios</a>
+  <a href="/refutador">Refutador de Reclamos</a>
+  <span class="nav-space"></span>
+  <a href="/logout" class="nav-out">Cerrar sesión</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <img src="/static/logo_triple_a.jpg" alt="Triple A Seguros" class="hero-logo">
+    <div>
+      <h1>Agente de Formularios</h1>
+      <p>Elegí el trámite, pegá el mensaje del cliente y generá los PDFs listos para firmar.</p>
+    </div>
   </div>
-  <div style="max-width:780px;margin:30px auto;padding:0 20px;">
-  <div style="text-align:center;"><img src="/static/logo_triple_a.jpg" alt="Triple A Seguros" style="max-width:160px; margin-bottom:6px;"></div>
-  <h1>Agente de formularios — Seguros Triple A</h1>
+</div>
 
-  <p>Elegí la aseguradora y el tipo de trámite, pegá el mensaje del cliente y/o subí archivos.
-  Podés agregar varios archivos de a poco, sin perder los que ya elegiste.</p>
+<div class="wrap">
+
   <form method="post" action="/generar" enctype="multipart/form-data" id="form-generar">
-    <label for="aseguradora_producto" style="font-size:13px; font-weight:600;">Aseguradora / tipo de trámite</label><br>
-    <select name="aseguradora_producto" id="aseguradora_producto" required
-            style="width:100%; font-size:15px; padding:10px; box-sizing:border-box; margin:6px 0 16px;">
-      <option value="" disabled {% if not seleccion_previa %}selected{% endif %}>Elegir opción</option>
-      {% for grupo in grupos_opciones %}
-        <optgroup label="{{ grupo.nombre }}">
-          {% for op in grupo.opciones %}
-            <option value="{{ op.valor }}" {% if not op.disponible %}disabled{% endif %} {% if op.valor==seleccion_previa %}selected{% endif %}>
-              {{ op.etiqueta }}{% if not op.disponible %} (próximamente){% endif %}
-            </option>
+
+    <div class="card">
+      <div class="card-h"><div class="num">1</div><h2>Aseguradora y tipo de trámite</h2></div>
+      <div class="card-b">
+        <label class="lbl" for="aseguradora_producto">Seleccioná una opción</label>
+        <select name="aseguradora_producto" id="aseguradora_producto" required>
+          <option value="" disabled {% if not seleccion_previa %}selected{% endif %}>Elegir opción...</option>
+          {% for grupo in grupos_opciones %}
+            <optgroup label="{{ grupo.nombre }}">
+              {% for op in grupo.opciones %}
+                <option value="{{ op.valor }}" {% if not op.disponible %}disabled{% endif %} {% if op.valor==seleccion_previa %}selected{% endif %}>
+                  {{ op.etiqueta }}{% if not op.disponible %} (próximamente){% endif %}
+                </option>
+              {% endfor %}
+            </optgroup>
           {% endfor %}
-        </optgroup>
-      {% endfor %}
-    </select>
-    <textarea name="mensaje" placeholder="Ej: Nombre completo: Juan Perez...">{{ mensaje_previo }}</textarea>
-    <div class="o">— y/o —</div>
+        </select>
+      </div>
+    </div>
 
-    <label for="cedula_pasaporte" style="font-size:13px; font-weight:600;">Fotos de cédula o pasaporte</label><br>
-    <input type="file" name="cedula_pasaporte" id="cedula_pasaporte" accept="application/pdf,image/*" multiple>
-    <ul id="lista-cedula_pasaporte" style="list-style:none; padding:0; margin:6px 0 0; font-size:13px;"></ul>
+    <div class="card">
+      <div class="card-h"><div class="num">2</div><h2>Información del cliente</h2></div>
+      <div class="card-b">
+        <label class="lbl" for="mensaje">Mensaje o texto con los datos</label>
+        <textarea name="mensaje" id="mensaje" placeholder="Ej: Nombre completo: Juan Pérez, cédula: 8-123-456...">{{ mensaje_previo }}</textarea>
 
-    <br>
-    <label for="info_cliente" style="font-size:13px; font-weight:600;">Cuestionario / información del cliente</label><br>
-    <input type="file" name="info_cliente" id="info_cliente" accept="application/pdf,image/*" multiple>
-    <ul id="lista-info_cliente" style="list-style:none; padding:0; margin:6px 0 0; font-size:13px;"></ul>
+        <div class="sep">y/o adjuntá archivos</div>
 
-    <br><br>
-    <label for="tarjeta_foto" style="font-size:13px; font-weight:600;">Foto de la tarjeta de crédito (opcional, para el formulario de pago)</label><br>
-    <small style="color:#666;">Se usa una sola vez para leer los datos y se borra del servidor apenas se genera el PDF.</small><br>
-    <input type="file" name="tarjeta_foto" id="tarjeta_foto" accept="image/*">
-    <br><br>
-    <label for="vehiculo_doc" style="font-size:13px; font-weight:600;">Registro vehicular o proforma del vehículo (opcional, para solicitudes de auto)</label><br>
-    <input type="file" name="vehiculo_doc" id="vehiculo_doc" accept="application/pdf,image/*">
-    <br>
-    <button type="submit" id="btn-generar">Generar los formularios</button>
+        <div class="file-wrap">
+          <label class="lbl" for="cedula_pasaporte">Cédula o pasaporte</label>
+          <input type="file" name="cedula_pasaporte" id="cedula_pasaporte" accept="application/pdf,image/*" multiple>
+          <ul id="lista-cedula_pasaporte" class="file-list"></ul>
+        </div>
+
+        <div class="file-wrap" style="margin-top:16px">
+          <label class="lbl" for="info_cliente">Cuestionario / información adicional</label>
+          <input type="file" name="info_cliente" id="info_cliente" accept="application/pdf,image/*" multiple>
+          <ul id="lista-info_cliente" class="file-list"></ul>
+        </div>
+
+        <div class="file-wrap" style="margin-top:16px">
+          <label class="lbl" for="tarjeta_foto">Foto de tarjeta de crédito <span class="opt" style="font-size:11px;color:var(--gris-suave);font-weight:700;margin-left:6px;text-transform:uppercase;letter-spacing:.08em;">opcional</span></label>
+          <p class="hint">Se borra del servidor apenas se genera el PDF de pago.</p>
+          <input type="file" name="tarjeta_foto" id="tarjeta_foto" accept="image/*">
+        </div>
+
+        <div class="file-wrap" style="margin-top:16px">
+          <label class="lbl" for="vehiculo_doc">Registro vehicular o proforma <span class="opt" style="font-size:11px;color:var(--gris-suave);font-weight:700;margin-left:6px;text-transform:uppercase;letter-spacing:.08em;">opcional</span></label>
+          <input type="file" name="vehiculo_doc" id="vehiculo_doc" accept="application/pdf,image/*">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-gen" id="btn-generar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Generar formularios
+    </button>
   </form>
 
-  <script>
-    document.getElementById('form-generar').addEventListener('submit', function () {
-      var btn = document.getElementById('btn-generar');
-      btn.disabled = true;
-      btn.textContent = 'Generando... esto puede tardar un minuto';
-    });
-  </script>
-
-  <script>
-    function activarAcumulador(inputId, listaId) {
-      var input = document.getElementById(inputId);
-      var lista = document.getElementById(listaId);
-      var archivos = [];
-
-      function refrescar() {
-        var dt = new DataTransfer();
-        archivos.forEach(function (f) { dt.items.add(f); });
-        input.files = dt.files;
-
-        lista.innerHTML = '';
-        archivos.forEach(function (f, idx) {
-          var li = document.createElement('li');
-          li.style.cssText = 'display:flex; align-items:center; justify-content:space-between; ' +
-            'background:#f4f6f8; border-radius:5px; padding:5px 8px; margin-bottom:4px;';
-          var nombre = document.createElement('span');
-          nombre.textContent = f.name;
-          nombre.style.cssText = 'overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:8px;';
-          var quitar = document.createElement('button');
-          quitar.type = 'button';
-          quitar.textContent = '×';
-          quitar.title = 'Quitar este archivo';
-          quitar.style.cssText = 'background:#e08a8a; color:white; border:none; border-radius:4px; ' +
-            'width:22px; height:22px; cursor:pointer; font-size:14px; line-height:1; flex-shrink:0;';
-          quitar.addEventListener('click', function () {
-            archivos.splice(idx, 1);
-            refrescar();
-          });
-          li.appendChild(nombre);
-          li.appendChild(quitar);
-          lista.appendChild(li);
-        });
-      }
-
-      input.addEventListener('change', function () {
-        Array.prototype.forEach.call(input.files, function (f) {
-          archivos.push(f);
-        });
-        refrescar();
-      });
-    }
-
-    activarAcumulador('cedula_pasaporte', 'lista-cedula_pasaporte');
-    activarAcumulador('info_cliente', 'lista-info_cliente');
-  </script>
-
   {% if error %}
-    <div class="error"><b>Ocurrio un error:</b>\n{{ error }}</div>
+    <div class="errbox"><b>Ocurrió un error:</b><br>{{ error }}</div>
   {% endif %}
 
   {% if resultado %}
     {% if usando_demo %}
-      <div class="aviso">
-        No encontre una ANTHROPIC_API_KEY configurada, asi que esto se generó con datos de EJEMPLO
-        para que veas cómo se ve el resultado final. Cuando configuren su clave, este mismo botón
-        va a extraer los datos reales del mensaje de arriba.
+      <div class="res-demo">
+        <b>Modo demo:</b> no se encontró una API key configurada. Estos formularios se generaron con datos de ejemplo.
       </div>
     {% else %}
-      <div class="ok">Datos extraídos y formularios generados.</div>
+      <div class="res-ok">Datos extraídos y formularios generados correctamente.</div>
     {% endif %}
 
     {% for doc in resultado %}
-      <div class="doc">
-        <b>{{ doc.titulo }}</b><br>
-        <img src="/preview/{{ run_id }}/{{ doc.preview }}">
-        <br>
-        <a class="btn" href="/descargar/{{ run_id }}/{{ doc.pdf }}">Descargar PDF completo</a>
+      <div class="doc-card">
+        <div class="doc-card-h">{{ doc.titulo }}</div>
+        <div class="doc-card-b">
+          <img src="/preview/{{ run_id }}/{{ doc.preview }}" alt="Vista previa">
+          <a class="dl-btn" href="/descargar/{{ run_id }}/{{ doc.pdf }}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PDF
+          </a>
+        </div>
       </div>
     {% endfor %}
 
     {% if revision %}
-      <div class="revision">
+      <div class="revision-card">
         <b>Falta completar / confirmar con el cliente:</b>
         <ul>
           {% if revision.ambiguo_principal %}<li>Quién es el Asegurado Principal / titular — no quedó claro en el documento.</li>{% endif %}
@@ -408,15 +503,46 @@ PAGE = """
           {% if revision.falta_pep %}<li>Persona Expuesta Políticamente (PEP) — no fue preguntado en el documento de origen.</li>{% endif %}
           {% for c in revision.campos_faltantes %}<li>{{ c }}</li>{% endfor %}
         </ul>
-        {% if revision.notas %}<p><b>Notas:</b> {{ revision.notas }}</p>{% endif %}
+        {% if revision.notas %}<p style="margin-top:8px;font-size:13.5px;color:#8A1220"><b>Notas:</b> {{ revision.notas }}</p>{% endif %}
       </div>
     {% endif %}
-
-    {% if campos_faltantes %}
-      <div class="faltantes">Campos que el mensaje no mencionaba: {{ campos_faltantes }}</div>
-    {% endif %}
   {% endif %}
-  </div>
+
+</div>
+
+<script>
+  document.getElementById('form-generar').addEventListener('submit', function () {
+    var btn = document.getElementById('btn-generar');
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Generando... puede tardar un minuto';
+  });
+
+  function activarAcumulador(inputId, listaId) {
+    var input = document.getElementById(inputId);
+    var lista = document.getElementById(listaId);
+    var archivos = [];
+    function refrescar() {
+      var dt = new DataTransfer();
+      archivos.forEach(function(f){ dt.items.add(f); });
+      input.files = dt.files;
+      lista.innerHTML = '';
+      archivos.forEach(function(f, idx){
+        var li = document.createElement('li');
+        var sp = document.createElement('span'); sp.textContent = f.name;
+        var btn = document.createElement('button'); btn.type='button'; btn.textContent='×';
+        btn.addEventListener('click', function(){ archivos.splice(idx,1); refrescar(); });
+        li.appendChild(sp); li.appendChild(btn); lista.appendChild(li);
+      });
+    }
+    input.addEventListener('change', function(){
+      Array.prototype.forEach.call(input.files, function(f){ archivos.push(f); });
+      refrescar();
+    });
+  }
+  activarAcumulador('cedula_pasaporte','lista-cedula_pasaporte');
+  activarAcumulador('info_cliente','lista-info_cliente');
+</script>
+
 </body>
 </html>
 """
