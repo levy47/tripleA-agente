@@ -141,7 +141,7 @@ LOGIN_PAGE = """
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Ingresar — Agente de Formularios Triple A</title>
+<title>Ingresar — Triple A</title>
 <style>
   body { font-family: -apple-system, sans-serif; max-width: 400px; margin: 100px auto; padding: 0 20px; color: #1a1a1a; }
   input[type=password] { width: 100%; font-size: 15px; padding: 10px; box-sizing: border-box; margin-top: 10px; }
@@ -152,7 +152,7 @@ LOGIN_PAGE = """
 </head>
 <body>
   <div style="text-align:center;"><img src="/static/logo_triple_a.jpg" alt="Triple A Seguros" style="max-width:180px; margin-bottom:10px;"></div>
-  <h2>Agente de formularios — Seguros Triple A</h2>
+  <h2>Triple A</h2>
   <p>Ingresá la clave de acceso para continuar.</p>
   {% if error %}<div class="error">Clave incorrecta.</div>{% endif %}
   <form method="post" autocomplete="off">
