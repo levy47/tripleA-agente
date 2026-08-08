@@ -1,0 +1,1274 @@
+{
+  "template": "aseguradoras/worldwide_medical/salud/templates/solicitud_suscripcion.pdf",
+  "fields": {
+    "fill_1": {
+      "data_key": "nombre_completo",
+      "type": "text",
+      "nota": "Nombre Afiliado Principal (aviso importante, pagina 1). Reusa nombre_completo del cliente (schema_cliente.json)."
+    },
+    "fill_2": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma Afiliado Principal (aviso importante) - firma manuscrita, no se autocompleta"
+    },
+    "En Panamá a los": {
+      "data_key": "aviso_dia",
+      "type": "text",
+      "nota": "dia(s) del mes, en la frase 'En Panama, a los ___ dia(s) del mes de ___ del año ___'"
+    },
+    "día s del mes de": {
+      "data_key": "aviso_mes_texto",
+      "type": "text",
+      "nota": "nombre del mes en la frase de fecha del aviso"
+    },
+    "undefined": {
+      "data_key": "aviso_anio",
+      "type": "text",
+      "nota": "año en la frase de fecha del aviso (el PDF nombro este campo 'undefined')"
+    },
+    "Check Box256.0.0": {
+      "data_key": "tipo_solicitud",
+      "type": "checkbox_group",
+      "value": "poliza_nueva",
+      "on_state": "/Yes"
+    },
+    "Check Box256.0.1": {
+      "data_key": "tipo_solicitud",
+      "type": "checkbox_group",
+      "value": "adicion_dependiente",
+      "on_state": "/Yes"
+    },
+    "Check Box256.1.0": {
+      "data_key": "tipo_solicitud",
+      "type": "checkbox_group",
+      "value": "rehabilitacion",
+      "on_state": "/Yes"
+    },
+    "Check Box256.1.1": {
+      "data_key": "tipo_solicitud",
+      "type": "checkbox_group",
+      "value": "cambio_plan",
+      "on_state": "/Yes"
+    },
+    "Check Box255.0.0": {
+      "data_key": "plan_seleccionado",
+      "type": "checkbox_group",
+      "value": "optimum_plus",
+      "on_state": "/Yes"
+    },
+    "Check Box255.1.0": {
+      "data_key": "plan_seleccionado",
+      "type": "checkbox_group",
+      "value": "optimum",
+      "on_state": "/Yes"
+    },
+    "Check Box255.2.0": {
+      "data_key": "plan_seleccionado",
+      "type": "checkbox_group",
+      "value": "security",
+      "on_state": "/Yes"
+    },
+    "Check Box255.3.0": {
+      "data_key": "plan_seleccionado",
+      "type": "checkbox_group",
+      "value": "essence",
+      "on_state": "/Yes"
+    },
+    "Check Box255.4.0": {
+      "data_key": "plan_seleccionado",
+      "type": "checkbox_group",
+      "value": "exclusive_int",
+      "on_state": "/Yes"
+    },
+    "Check Box255.0.1": {
+      "data_key": "deducible_seleccionado",
+      "type": "checkbox_group",
+      "value": "opcion_I",
+      "on_state": "/Yes"
+    },
+    "Check Box255.1.1": {
+      "data_key": "deducible_seleccionado",
+      "type": "checkbox_group",
+      "value": "opcion_II",
+      "on_state": "/Yes"
+    },
+    "Check Box255.2.1": {
+      "data_key": "deducible_seleccionado",
+      "type": "checkbox_group",
+      "value": "opcion_III",
+      "on_state": "/Yes"
+    },
+    "Check Box255.3.1": {
+      "data_key": "deducible_seleccionado",
+      "type": "checkbox_group",
+      "value": "opcion_IV",
+      "on_state": "/Yes"
+    },
+    "Check Box255.4.1": {
+      "data_key": "deducible_seleccionado",
+      "type": "checkbox_group",
+      "value": "otro",
+      "on_state": "/Yes"
+    },
+    "Text260": {
+      "data_key": "deducible_otro_texto",
+      "type": "text",
+      "nota": "Texto libre cuando deducible_seleccionado = 'otro'"
+    },
+    "Check Box257": {
+      "data_key": "forma_pago",
+      "type": "checkbox_group",
+      "value": "anual",
+      "on_state": "/Yes"
+    },
+    "Check Box258": {
+      "data_key": "forma_pago",
+      "type": "checkbox_group",
+      "value": "semestral",
+      "on_state": "/Yes"
+    },
+    "Text259": {
+      "data_key": "forma_pago_otra_texto",
+      "type": "text",
+      "nota": "Texto libre cuando forma_pago no es anual/semestral (opcion 'Otra')"
+    },
+    "Check Box261.0": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "contratante",
+      "on_state": "/Yes"
+    },
+    "Check Box261.1": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "asegurado",
+      "on_state": "/Yes"
+    },
+    "Check Box261.2": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "corredor",
+      "on_state": "/Yes"
+    },
+    "Check Box261.3": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "pagador",
+      "on_state": "/Yes"
+    },
+    "Check Box261.4": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "cia_seguros",
+      "on_state": "/Yes"
+    },
+    "Check Box261.5": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "beneficiario",
+      "on_state": "/Yes"
+    },
+    "Text264": {
+      "data_key": "contratante_primer_nombre",
+      "type": "text"
+    },
+    "Text265": {
+      "data_key": "contratante_segundo_nombre",
+      "type": "text"
+    },
+    "Text268": {
+      "data_key": "contratante_apellidos",
+      "type": "text"
+    },
+    "Date269_af_date": {
+      "data_key": "contratante_fecha_nacimiento",
+      "type": "date",
+      "format": "ddmmaaaa"
+    },
+    "Check Box270": {
+      "data_key": "contratante_sexo",
+      "type": "checkbox_group",
+      "value": "f",
+      "on_state": "/Yes"
+    },
+    "Check Box271": {
+      "data_key": "contratante_sexo",
+      "type": "checkbox_group",
+      "value": "m",
+      "on_state": "/Yes"
+    },
+    "Text266": {
+      "data_key": "contratante_nacionalidad",
+      "type": "text"
+    },
+    "Text273": {
+      "data_key": "contratante_cedula_pasaporte",
+      "type": "text"
+    },
+    "Text272": {
+      "data_key": "contratante_edad",
+      "type": "text"
+    },
+    "Check Box262.0": {
+      "data_key": "contratante_estado_civil",
+      "type": "checkbox_group",
+      "value": "soltero",
+      "on_state": "/Yes"
+    },
+    "Check Box262.1": {
+      "data_key": "contratante_estado_civil",
+      "type": "checkbox_group",
+      "value": "casado",
+      "on_state": "/Yes"
+    },
+    "Check Box262.2": {
+      "data_key": "contratante_estado_civil",
+      "type": "checkbox_group",
+      "value": "divorciado",
+      "on_state": "/Yes"
+    },
+    "Check Box262.3": {
+      "data_key": "contratante_estado_civil",
+      "type": "checkbox_group",
+      "value": "viudo",
+      "on_state": "/Yes"
+    },
+    "Check Box263": {
+      "data_key": "contratante_estado_civil",
+      "type": "checkbox_group",
+      "value": "unido",
+      "on_state": "/Yes"
+    },
+    "Text267": {
+      "data_key": "contratante_pais_nacimiento",
+      "type": "text"
+    },
+    "Text275": {
+      "data_key": "contratante_pais_residencia",
+      "type": "text"
+    },
+    "Text276": {
+      "data_key": "contratante_direccion_residencial",
+      "type": "text"
+    },
+    "Text280": {
+      "data_key": "contratante_tel_residencia",
+      "type": "text"
+    },
+    "Text278": {
+      "data_key": "contratante_tel_celular",
+      "type": "text"
+    },
+    "Text277": {
+      "data_key": "contratante_tel_oficina",
+      "type": "text"
+    },
+    "Text284": {
+      "data_key": "contratante_fax",
+      "type": "text"
+    },
+    "Text282": {
+      "data_key": "contratante_correo_personal",
+      "type": "text"
+    },
+    "Text285": {
+      "data_key": "contratante_profesion",
+      "type": "text"
+    },
+    "Text281": {
+      "data_key": "contratante_empresa_donde_labora",
+      "type": "text"
+    },
+    "Text274": {
+      "data_key": "contratante_ocupacion_cargo",
+      "type": "text"
+    },
+    "Text283": {
+      "data_key": "contratante_pais_tributa",
+      "type": "text"
+    },
+    "Text287": {
+      "data_key": "contratante_direccion_laboral",
+      "type": "text"
+    },
+    "Text286": {
+      "data_key": "contratante_actividad_economica_empresa",
+      "type": "text"
+    },
+    "Check Box288": {
+      "data_key": "contratante_empresa_propia",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box289": {
+      "data_key": "contratante_empresa_propia",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text293": {
+      "data_key": "contratante_email_empresa",
+      "type": "text"
+    },
+    "Check Box290.0": {
+      "data_key": "contratante_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "jubilado",
+      "on_state": "/Yes"
+    },
+    "Check Box290.1": {
+      "data_key": "contratante_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "asalariado",
+      "on_state": "/Yes"
+    },
+    "Check Box290.2": {
+      "data_key": "contratante_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "independiente",
+      "on_state": "/Yes"
+    },
+    "Check Box291": {
+      "data_key": "contratante_es_pagador",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box292": {
+      "data_key": "contratante_es_pagador",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text295": {
+      "data_key": "contratante_pagador_nombre",
+      "type": "text",
+      "nota": "Si contratante_es_pagador = 'no': nombre del pagador"
+    },
+    "Text294": {
+      "data_key": "contratante_pagador_pais_tributa",
+      "type": "text",
+      "nota": "Pais(es) donde el pagador tributa (si el pagador no es el contratante)"
+    },
+    "Text296": {
+      "data_key": "asegurado_primer_nombre",
+      "type": "text"
+    },
+    "Text297": {
+      "data_key": "asegurado_segundo_nombre",
+      "type": "text"
+    },
+    "Text300": {
+      "data_key": "asegurado_apellidos",
+      "type": "text"
+    },
+    "Date306_af_date": {
+      "data_key": "fecha_nacimiento",
+      "type": "date",
+      "format": "ddmmaaaa",
+      "nota": "Reusa fecha_nacimiento del cliente (schema_cliente.json)"
+    },
+    "Check Box307": {
+      "data_key": "asegurado_sexo",
+      "type": "checkbox_group",
+      "value": "f",
+      "on_state": "/Yes"
+    },
+    "Check Box308": {
+      "data_key": "asegurado_sexo",
+      "type": "checkbox_group",
+      "value": "m",
+      "on_state": "/Yes"
+    },
+    "Text299": {
+      "data_key": "asegurado_nacionalidad",
+      "type": "text"
+    },
+    "Text298": {
+      "data_key": "cedula_o_pasaporte",
+      "type": "text",
+      "nota": "Reusa cedula_o_pasaporte del cliente"
+    },
+    "Text305.0": {
+      "data_key": "asegurado_edad",
+      "type": "text"
+    },
+    "Text305.1": {
+      "data_key": "peso",
+      "type": "text",
+      "nota": "Reusa peso del cliente (schema_cliente.json)"
+    },
+    "Text305.2": {
+      "data_key": "estatura",
+      "type": "text",
+      "nota": "Reusa estatura del cliente (schema_cliente.json)"
+    },
+    "Check Box304.0": {
+      "data_key": "estado_civil",
+      "type": "checkbox_group",
+      "value": "soltero",
+      "on_state": "/Yes"
+    },
+    "Check Box304.1": {
+      "data_key": "estado_civil",
+      "type": "checkbox_group",
+      "value": "casado",
+      "on_state": "/Yes"
+    },
+    "Check Box304.2": {
+      "data_key": "estado_civil",
+      "type": "checkbox_group",
+      "value": "divorciado",
+      "on_state": "/Yes"
+    },
+    "Check Box304.3": {
+      "data_key": "estado_civil",
+      "type": "checkbox_group",
+      "value": "viudo",
+      "on_state": "/Yes"
+    },
+    "Check Box304.4": {
+      "data_key": "estado_civil",
+      "type": "checkbox_group",
+      "value": "unido",
+      "on_state": "/Yes"
+    },
+    "Text301": {
+      "data_key": "asegurado_pais_nacimiento",
+      "type": "text"
+    },
+    "Text302": {
+      "data_key": "asegurado_pais_residencia",
+      "type": "text"
+    },
+    "Text303": {
+      "data_key": "direccion_residencial",
+      "type": "text",
+      "nota": "Reusa direccion_residencial del cliente"
+    },
+    "Text313": {
+      "data_key": "telefono_residencia",
+      "type": "text",
+      "nota": "Reusa telefono_residencia del cliente"
+    },
+    "Text311": {
+      "data_key": "telefono_celular",
+      "type": "text",
+      "nota": "Reusa telefono_celular del cliente"
+    },
+    "Text312": {
+      "data_key": "asegurado_tel_oficina",
+      "type": "text"
+    },
+    "Text314": {
+      "data_key": "asegurado_fax",
+      "type": "text"
+    },
+    "Text310": {
+      "data_key": "correo_personal",
+      "type": "text",
+      "nota": "Reusa correo_personal del cliente"
+    },
+    "Text315": {
+      "data_key": "profesion",
+      "type": "text",
+      "nota": "Reusa profesion del cliente"
+    },
+    "Text317": {
+      "data_key": "empresa_donde_labora",
+      "type": "text",
+      "nota": "Reusa empresa_donde_labora del cliente"
+    },
+    "Text316": {
+      "data_key": "ocupacion",
+      "type": "text",
+      "nota": "Reusa ocupacion del cliente (Ocupacion/Cargo)"
+    },
+    "Text309": {
+      "data_key": "direccion_laboral",
+      "type": "text",
+      "nota": "Reusa direccion_laboral del cliente"
+    },
+    "Text321": {
+      "data_key": "asegurado_actividad_economica_empresa",
+      "type": "text"
+    },
+    "Check Box318.0": {
+      "data_key": "asegurado_empresa_propia",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box318.1": {
+      "data_key": "asegurado_empresa_propia",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text319": {
+      "data_key": "asegurado_email_empresa",
+      "type": "text"
+    },
+    "Check Box320.0": {
+      "data_key": "asegurado_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "jubilado",
+      "on_state": "/Yes"
+    },
+    "Check Box320.1": {
+      "data_key": "asegurado_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "asalariado",
+      "on_state": "/Yes"
+    },
+    "Check Box320.2": {
+      "data_key": "asegurado_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "independiente",
+      "on_state": "/Yes"
+    },
+    "Text322": {
+      "data_key": "pais_donde_tributa",
+      "type": "text",
+      "nota": "Reusa pais_donde_tributa del cliente. OJO: el PDF imprime literalmente 'pais(es) donde el pagador tributa' en esta seccion del Asegurado Principal (posible copy-paste del template original); se interpreta como el pais de tributacion del Asegurado.",
+      "revisar": true
+    },
+    "Text323": {
+      "data_key": "asegurado_actividad_independiente_detalle",
+      "type": "text"
+    },
+    "Check Box325": {
+      "data_key": "pep_contratante",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box326": {
+      "data_key": "pep_contratante",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box327": {
+      "data_key": "pep_titular",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box328": {
+      "data_key": "pep_titular",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text324": {
+      "data_key": "pep_detalle",
+      "type": "text",
+      "nota": "Caja de texto (2 lineas) para detallar cargo/tiempo en el cargo (si PEP) o nombre+cargo+tipo de relacion (si familiar/colaborador PEP)"
+    },
+    "Check Box329.0.0": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "menos_10mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.0.1": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "10mil_30mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.0.2": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "30mil_50mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.0.3": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "mas_50mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.1.0": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "menos_10mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.1.1": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "10mil_30mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.1.2": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "30mil_50mil",
+      "on_state": "/Yes"
+    },
+    "Check Box329.1.3": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "mas_50mil",
+      "on_state": "/Yes"
+    },
+    "de Identidad": {
+      "data_key": "dependientes_tabla_texto",
+      "type": "text",
+      "nota": "Campo unico que cubre TODA la tabla de Dependientes (pagina 4): Nombres y Apellidos, Documento de Identidad, Nacionalidad, Fecha de Nacimiento, Sexo, Peso, Estatura, Ocupacion, Parentesco. El PDF NO tiene celdas individuales por dependiente/columna; hay que formatear como texto libre (una linea por dependiente, separando campos con ' | ').",
+      "revisar": true
+    },
+    "Check Box336": {
+      "data_key": "hijos_19_24_estudiantes_tiempo_completo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box337": {
+      "data_key": "hijos_19_24_estudiantes_tiempo_completo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text330": {
+      "data_key": "hijo1_nombre",
+      "type": "text"
+    },
+    "Text332": {
+      "data_key": "hijo1_universidad_nombre",
+      "type": "text"
+    },
+    "Text334": {
+      "data_key": "hijo1_universidad_telefono",
+      "type": "text"
+    },
+    "Text331": {
+      "data_key": "hijo2_nombre",
+      "type": "text"
+    },
+    "Text333": {
+      "data_key": "hijo2_universidad_nombre",
+      "type": "text"
+    },
+    "Text335": {
+      "data_key": "hijo2_universidad_telefono",
+      "type": "text"
+    },
+    "Check Box338.0.0": {
+      "data_key": "medico_seccionA_1_columna_musculoesqueletico",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.0.1": {
+      "data_key": "medico_seccionA_1_columna_musculoesqueletico",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.1.0": {
+      "data_key": "medico_seccionA_2_cerebro_vascular",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.1.1": {
+      "data_key": "medico_seccionA_2_cerebro_vascular",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.2.0": {
+      "data_key": "medico_seccionA_3_neurologico_psiquiatrico",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.2.1": {
+      "data_key": "medico_seccionA_3_neurologico_psiquiatrico",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.3.0": {
+      "data_key": "medico_seccionA_4_vista_oido",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.3.1": {
+      "data_key": "medico_seccionA_4_vista_oido",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.4.0": {
+      "data_key": "medico_seccionA_5_cardiovascular",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.4.1": {
+      "data_key": "medico_seccionA_5_cardiovascular",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.5.0": {
+      "data_key": "medico_seccionA_6_respiratorio",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.5.1": {
+      "data_key": "medico_seccionA_6_respiratorio",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.6.0": {
+      "data_key": "medico_seccionA_7_digestivo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.6.1": {
+      "data_key": "medico_seccionA_7_digestivo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box338.7.0": {
+      "data_key": "medico_seccionA_8_urinario",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box338.7.1": {
+      "data_key": "medico_seccionA_8_urinario",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box341.0.0": {
+      "data_key": "medico_seccionA_9_reproductivo_masculino",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box341.0.1": {
+      "data_key": "medico_seccionA_9_reproductivo_masculino",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box341.1.0": {
+      "data_key": "medico_seccionA_10_sangre",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box341.1.1": {
+      "data_key": "medico_seccionA_10_sangre",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box341.2.0": {
+      "data_key": "medico_seccionA_11_endocrino_diabetes",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box341.2.1": {
+      "data_key": "medico_seccionA_11_endocrino_diabetes",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box341.3.0": {
+      "data_key": "medico_seccionA_12_cancer_tumor",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box341.3.1": {
+      "data_key": "medico_seccionA_12_cancer_tumor",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text339": {
+      "data_key": "medico_seccionA_12_detalle",
+      "type": "text",
+      "nota": "Detalle (cuadro inferior) de la pregunta 12 de Seccion A: cancer/tumor/quimioterapia/radioterapia"
+    },
+    "Check Box343.0.0": {
+      "data_key": "medico_seccionA_13_protesis_amputacion",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box343.0.1": {
+      "data_key": "medico_seccionA_13_protesis_amputacion",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box343.1.0": {
+      "data_key": "medico_seccionA_14_deformidad_congenita",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box343.1.1": {
+      "data_key": "medico_seccionA_14_deformidad_congenita",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box343.2.0": {
+      "data_key": "medico_seccionA_15_transfusion_sangre",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box343.2.1": {
+      "data_key": "medico_seccionA_15_transfusion_sangre",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text340": {
+      "data_key": "medico_seccionA_15_detalle",
+      "type": "text",
+      "nota": "Detalle de la pregunta 15 de Seccion A (por que recibio transfusion de sangre)"
+    },
+    "Check Box344.0.0": {
+      "data_key": "medico_seccionA_16_sustancias_alcohol",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box344.0.1": {
+      "data_key": "medico_seccionA_16_sustancias_alcohol",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box344.1.0": {
+      "data_key": "medico_seccionA_17_fuma_tabaco",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box344.1.1": {
+      "data_key": "medico_seccionA_17_fuma_tabaco",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text342": {
+      "data_key": "medico_seccionA_17_detalle",
+      "type": "text",
+      "nota": "Detalle de la pregunta 17 de Seccion A: cantidad de cigarrillos/dia y tiempo fumando"
+    },
+    "Check Box345.0.0": {
+      "data_key": "medico_seccionA_18_ets",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box345.0.1": {
+      "data_key": "medico_seccionA_18_ets",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box345.1.0": {
+      "data_key": "medico_seccionA_19_otra_enfermedad_no_mencionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box345.1.1": {
+      "data_key": "medico_seccionA_19_otra_enfermedad_no_mencionada",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box345.2.0": {
+      "data_key": "medico_seccionA_20_deporte_riesgo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box345.2.1": {
+      "data_key": "medico_seccionA_20_deporte_riesgo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text346": {
+      "data_key": "medico_seccionA_20_detalle",
+      "type": "text",
+      "nota": "Descripcion del deporte/disciplina de alto impacto o riesgo (pregunta 20 de Seccion A)"
+    },
+    "Check Box345.3.0": {
+      "data_key": "medico_seccionA_21_embarazo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box345.3.1": {
+      "data_key": "medico_seccionA_21_embarazo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text347": {
+      "data_key": "medico_seccionA_21_semanas_embarazo",
+      "type": "text",
+      "nota": "Semanas de embarazo (pregunta 21 de Seccion A, si aplica)"
+    },
+    "Check Box345.4.0": {
+      "data_key": "medico_seccionA_22_reproductivo_femenino",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box345.4.1": {
+      "data_key": "medico_seccionA_22_reproductivo_femenino",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box348.0.0": {
+      "data_key": "medico_seccionB_1_consulta_medica_no_mencionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box348.0.1": {
+      "data_key": "medico_seccionB_1_consulta_medica_no_mencionada",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box348.1.0": {
+      "data_key": "medico_seccionB_2_alteracion_salud_no_mencionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box348.1.1": {
+      "data_key": "medico_seccionB_2_alteracion_salud_no_mencionada",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box348.2.0": {
+      "data_key": "medico_seccionB_3_examen_fisico_estudios",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box348.2.1": {
+      "data_key": "medico_seccionB_3_examen_fisico_estudios",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text349": {
+      "data_key": "medico_seccionB_3_detalle",
+      "type": "text",
+      "nota": "Detalle de la pregunta 3 de Seccion B (examen fisico, estudios diagnosticos o pruebas especializadas)"
+    },
+    "y duración": {
+      "data_key": "historial_medico_detalle_tabla",
+      "type": "text",
+      "nota": "Campo unico que cubre TODA la tabla de detalle medico (pagina 6): Nombre del Paciente | Padecimientos y Fecha | Tratamiento y duracion | Nombre y direccion del proveedor medico o centro de atencion. No hay celdas individuales; usar texto libre, una linea por condicion declarada.",
+      "revisar": true
+    },
+    "Check Box352.0.0": {
+      "data_key": "medico_seccionB_4_antecedentes_familiares",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box352.0.1": {
+      "data_key": "medico_seccionB_4_antecedentes_familiares",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box352.1.0": {
+      "data_key": "medico_seccionB_5_seguro_declinado_aplazado",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box352.1.1": {
+      "data_key": "medico_seccionB_5_seguro_declinado_aplazado",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text351": {
+      "data_key": "medico_seccionB_5_detalle",
+      "type": "text",
+      "nota": "Detalle de la pregunta 5 de Seccion B (por que razon declino/aplazo/recargo/limito la compañia de seguros)"
+    },
+    "Check Box353.0": {
+      "data_key": "tiene_seguro_gastos_medicos_previo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box353.1": {
+      "data_key": "tiene_seguro_gastos_medicos_previo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text354": {
+      "data_key": "seguro_previo_nombre_compania",
+      "type": "text"
+    },
+    "Text355": {
+      "data_key": "seguro_previo_numero_poliza",
+      "type": "text"
+    },
+    "Text350.0": {
+      "data_key": "seguro_previo_nombre_asegurado",
+      "type": "text"
+    },
+    "Text350.1": {
+      "data_key": "seguro_previo_compania_aseguradora",
+      "type": "text"
+    },
+    "Text350.2": {
+      "data_key": "seguro_previo_tipo_poliza",
+      "type": "text"
+    },
+    "Date361_af_date": {
+      "data_key": "seguro_previo_fecha_emision",
+      "type": "date",
+      "format": "ddmmaaaa",
+      "nota": "Fecha en que se emitio la poliza previa"
+    },
+    "Check Box356": {
+      "data_key": "seguro_previo_vigente_actualidad",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box357": {
+      "data_key": "seguro_previo_vigente_actualidad",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box358": {
+      "data_key": "seguro_previo_tuvo_reclamacion",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box359": {
+      "data_key": "seguro_previo_tuvo_reclamacion",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text360": {
+      "data_key": "seguro_previo_reclamacion_detalle",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1": {
+      "data_key": "beneficiario_primario_1_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_2": {
+      "data_key": "beneficiario_primario_1_fecha_nacimiento",
+      "type": "text"
+    },
+    "Text363": {
+      "data_key": "beneficiario_primario_1_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_4": {
+      "data_key": "beneficiario_primario_1_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_5": {
+      "data_key": "beneficiario_primario_1_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_6": {
+      "data_key": "beneficiario_primario_1_parentesco",
+      "type": "text"
+    },
+    "Text362.0": {
+      "data_key": "beneficiario_primario_1_porcentaje",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2": {
+      "data_key": "beneficiario_primario_2_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_2": {
+      "data_key": "beneficiario_primario_2_fecha_nacimiento",
+      "type": "text"
+    },
+    "Text364": {
+      "data_key": "beneficiario_primario_2_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_3": {
+      "data_key": "beneficiario_primario_2_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_4": {
+      "data_key": "beneficiario_primario_2_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_5": {
+      "data_key": "beneficiario_primario_2_parentesco",
+      "type": "text"
+    },
+    "Text362.1": {
+      "data_key": "beneficiario_primario_2_porcentaje",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3": {
+      "data_key": "beneficiario_primario_3_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_2": {
+      "data_key": "beneficiario_primario_3_fecha_nacimiento",
+      "type": "text"
+    },
+    "Text365": {
+      "data_key": "beneficiario_primario_3_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_3": {
+      "data_key": "beneficiario_primario_3_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_4": {
+      "data_key": "beneficiario_primario_3_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_5": {
+      "data_key": "beneficiario_primario_3_parentesco",
+      "type": "text"
+    },
+    "Text362.2": {
+      "data_key": "beneficiario_primario_3_porcentaje",
+      "type": "text"
+    },
+    "Text368": {
+      "data_key": "beneficiario_primario_menor_edad_nombre",
+      "type": "text"
+    },
+    "Text367": {
+      "data_key": "beneficiario_primario_menor_edad_parentesco",
+      "type": "text"
+    },
+    "Text366": {
+      "data_key": "beneficiario_primario_menor_edad_cedula",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_7": {
+      "data_key": "beneficiario_contingente_1_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_8": {
+      "data_key": "beneficiario_contingente_1_fecha_nacimiento",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_9": {
+      "data_key": "beneficiario_contingente_1_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_10": {
+      "data_key": "beneficiario_contingente_1_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_11": {
+      "data_key": "beneficiario_contingente_1_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_12": {
+      "data_key": "beneficiario_contingente_1_parentesco",
+      "type": "text"
+    },
+    "Text369": {
+      "data_key": "beneficiario_contingente_1_porcentaje",
+      "type": "text"
+    },
+    "Text374": {
+      "data_key": "beneficiario_contingente_menor_edad_nombre",
+      "type": "text"
+    },
+    "Text375": {
+      "data_key": "beneficiario_contingente_menor_edad_parentesco",
+      "type": "text"
+    },
+    "Text376": {
+      "data_key": "beneficiario_contingente_menor_edad_cedula",
+      "type": "text"
+    },
+    "Text370": {
+      "data_key": "comentarios_adicionales_1",
+      "type": "text"
+    },
+    "Text371": {
+      "data_key": "comentarios_adicionales_2",
+      "type": "text"
+    },
+    "Text372": {
+      "data_key": "comentarios_adicionales_3",
+      "type": "text"
+    },
+    "Text373": {
+      "data_key": "comentarios_adicionales_4",
+      "type": "text"
+    },
+    "Text377": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Espacio en blanco antes de las firmas (pagina 8) - sin etiqueta clara, no se autocompleta"
+    },
+    "Text378": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma del Contratante - firma manuscrita, no se autocompleta"
+    },
+    "Text379": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma del Asegurado Titular (si no fuera el contratante) - firma manuscrita, no se autocompleta"
+    },
+    "Date381_af_date": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Fecha de firma del Contratante - se completa junto a la firma, no se autocompleta"
+    },
+    "Date382_af_date": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Fecha de firma del Asegurado Titular - se completa junto a la firma, no se autocompleta"
+    },
+    "Date383_af_date": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Fecha de firma del Corredor de Seguros - se completa junto a la firma, no se autocompleta"
+    }
+  }
+}

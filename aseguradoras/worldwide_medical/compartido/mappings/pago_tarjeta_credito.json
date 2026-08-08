@@ -1,0 +1,32 @@
+{
+  "template": "aseguradoras/worldwide_medical/compartido/templates/pago_tarjeta_credito.pdf",
+  "fields": {
+    "Fecha140_af_date": {"data_key": "fecha_formulario", "type": "date", "format": "mmaaaa"},
+    "Check Box137": {"data_key": "tarjeta_tipo", "type": "checkbox_group", "value": "american_express"},
+    "Check Box138": {"data_key": "tarjeta_tipo", "type": "checkbox_group", "value": "visa"},
+    "Check Box139": {"data_key": "tarjeta_tipo", "type": "checkbox_group", "value": "mastercard"},
+    "Text141": {"data_key": "tarjetahabiente_nombre_completo", "type": "text"},
+    "Text700": {"data_key": "banco_emisor", "type": "text"},
+    "Text142": {"data_key": "numero_tarjeta", "type": "text"},
+    "Text143": {"data_key": "tarjeta_fecha_exp_mmaa", "type": "text"},
+    "Text145": {"data_key": "tarjeta_codigo_seguridad", "type": "text"},
+    "Text149": {"data_key": null, "type": "manual", "note": "division de la prima en 3 casilleros, sin logica clara -- se deja manual, el valor completo va en Text150"},
+    "Text150": {"data_key": "poliza_1_prima", "type": "text"},
+    "Text151": {"data_key": null, "type": "manual", "note": "ver Text149"},
+    "Text152": {"data_key": "nombre_completo", "type": "text"},
+    "Text153": {"data_key": "poliza_1_numero_poliza", "type": "text"},
+    "Text154": {"data_key": "poliza_1_numero_factura", "type": "text"},
+    "Text155": {"data_key": "poliza_1_nombre_asegurado", "type": "text"},
+    "Text156": {"data_key": "poliza_1_numero_certificado", "type": "text"},
+    "Check Box146": {"data_key": "forma_pago", "type": "checkbox_group", "value": "anual"},
+    "Check Box147": {"data_key": "forma_pago", "type": "checkbox_group", "value": "semestral"},
+    "Check Box148": {"data_key": "forma_pago", "type": "checkbox_group", "value": "trimestral"},
+    "Check Box1": {"data_key": "forma_pago", "type": "checkbox_group", "value": "mensual"},
+    "Text1": {"data_key": "cobro_correo_1", "type": "text"},
+    "Text2": {"data_key": "cobro_telefono_celular", "type": "text"},
+    "Text157": {"data_key": null, "type": "manual", "note": "observaciones, sin data_key generico -- lo completa el corredor si hace falta"},
+    "Text160": {"data_key": "tarjetahabiente_nombre", "type": "text"},
+    "Text161": {"data_key": "tarjetahabiente_apellido", "type": "text"},
+    "Firma": {"data_key": null, "type": "manual", "note": "firma manuscrita, no se autocompleta"}
+  }
+}

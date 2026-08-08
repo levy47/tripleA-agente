@@ -1,0 +1,1179 @@
+{
+  "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud de Seguro de Vida' de WorldWide Medical) que NO forman parte del intake estandar de WhatsApp en schema_cliente.json. Se documentan aqui con su tipo y descripcion. Los data_keys ya existentes en schema_cliente.json (nombre_completo, fecha_nacimiento, cedula_o_pasaporte, peso, estatura, direccion_residencial, telefono_residencia, telefono_celular, correo_personal, estado_civil, empresa_donde_labora, direccion_laboral, ingreso_anual_aproximado, medico_cabecera_nombre, nombre_corredor) se REUSAN directamente en solicitud_vida.json y no se repiten aqui.",
+  "nota_general_reporte_agente": "Todos los data_keys con prefijo 'agente_' corresponden a la pagina 9 ('Reporte del agente') y son datos OPERATIVOS que completa el corredor/agente, NO el cliente. La firma manuscrita del agente se mapea como 'manual' (no tiene data_key).",
+  "nota_general_estructura_tablas": "Varias tablas del PDF (Beneficiarios Primarios, Beneficiarios Contingentes, Coberturas previas/a reemplazar, Detalle de historial medico) muestran mas lineas visuales en el formulario impreso de las que realmente tienen campos AcroForm editables. Se documentan solo las filas con campos reales (ver sufijos _1_, _2_, _3_ segun corresponda); si el cliente declara mas beneficiarios o condiciones de las que caben, hay que resumir/priorizar o adjuntar hoja aparte, igual que en el formulario de Salud.",
+  "campos": {
+    "agente_conoce_amigo_anios": {
+      "tipo": "string",
+      "descripcion": "Anios que lo conoce, si agente_conoce_asegurado_tipo = 'amigo'."
+    },
+    "agente_conoce_amigo_nivel": {
+      "tipo": "enum",
+      "descripcion": "Nivel de conocimiento, si agente_conoce_asegurado_tipo = 'amigo'.",
+      "valores": [
+        "bien",
+        "poco"
+      ]
+    },
+    "agente_conoce_asegurado_parentesco": {
+      "tipo": "string",
+      "descripcion": "Parentesco, si agente_conoce_asegurado_tipo = 'familia'."
+    },
+    "agente_conoce_asegurado_tipo": {
+      "tipo": "enum",
+      "descripcion": "Como conoce el agente al Propuesto Asegurado.",
+      "valores": [
+        "familia",
+        "amigo",
+        "cliente",
+        "recien_conocido"
+      ]
+    },
+    "agente_conoce_cliente_anios": {
+      "tipo": "string",
+      "descripcion": "Anios que es cliente, si agente_conoce_asegurado_tipo = 'cliente'."
+    },
+    "agente_conoce_recien_como": {
+      "tipo": "string",
+      "descripcion": "Como lo acaba de conocer, si agente_conoce_asegurado_tipo = 'recien_conocido'."
+    },
+    "agente_conyuge_nombre_y_seguros": {
+      "tipo": "string",
+      "descripcion": "Si el Propuesto Asegurado es casado: nombre del conyuge y cuantos seguros tiene el conyuge."
+    },
+    "agente_fecha_firma": {
+      "tipo": "date",
+      "descripcion": "Fecha en que el agente firma el reporte."
+    },
+    "agente_id_emitido_por": {
+      "tipo": "string",
+      "descripcion": "Entidad/pais que emitio el documento de identificacion."
+    },
+    "agente_id_fecha_emision": {
+      "tipo": "date",
+      "descripcion": "Fecha de emision del documento de identificacion."
+    },
+    "agente_id_fecha_expiracion": {
+      "tipo": "date",
+      "descripcion": "Fecha de expiracion del documento de identificacion."
+    },
+    "agente_ingreso_devengado": {
+      "tipo": "string",
+      "descripcion": "Ingreso Devengado del Propuesto Asegurado."
+    },
+    "agente_ingreso_no_devengado": {
+      "tipo": "string",
+      "descripcion": "Ingreso No Devengado del Propuesto Asegurado."
+    },
+    "agente_lugar_firma": {
+      "tipo": "string",
+      "descripcion": "Lugar (Ciudad y pais) donde el agente firma el reporte."
+    },
+    "agente_obtuvo_respuestas_personalmente": {
+      "tipo": "enum",
+      "descripcion": "Si el agente obtuvo las respuestas personalmente del Propuesto Asegurado.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "agente_ocupacion_ultimos_5_anios": {
+      "tipo": "string",
+      "descripcion": "Ocupacion del Propuesto Asegurado en los ultimos 5 anios."
+    },
+    "agente_proposito_seguro": {
+      "tipo": "string",
+      "descripcion": "Cual es el proposito de este seguro, segun el agente."
+    },
+    "agente_seguros_padres_hermanos_menor21": {
+      "tipo": "string",
+      "descripcion": "Si el Propuesto Asegurado es menor de 21 anios: cuantos seguros tiene cada uno de los padres y cada hermano/hermana."
+    },
+    "agente_tipo_id": {
+      "tipo": "string",
+      "descripcion": "Tipo de documento de identificacion con foto que el propietario mostro al agente."
+    },
+    "agente_valor_neto_patrimonio": {
+      "tipo": "string",
+      "descripcion": "Valor Neto aproximado de Patrimonio del Propuesto Asegurado."
+    },
+    "arrestado_drogas": {
+      "tipo": "enum",
+      "descripcion": "e. Si ha sido arrestado por uso/posesion/venta/distribucion o acto delictivo relacionado con drogas/sustancias.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "arrestado_drogas_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle del arresto, si arrestado_drogas = 'si'."
+    },
+    "asegurado_actividad_economica_empresa": {
+      "tipo": "string",
+      "descripcion": "Actividad economica de la empresa donde labora el Asegurado."
+    },
+    "asegurado_actividad_independiente_detalle": {
+      "tipo": "string",
+      "descripcion": "De ser independiente, actividad a la que se dedica el Asegurado."
+    },
+    "asegurado_anios_empleo": {
+      "tipo": "string",
+      "descripcion": "Anios de empleo del Asegurado en la compania actual."
+    },
+    "asegurado_apellidos": {
+      "tipo": "string",
+      "descripcion": "Primer y segundo apellido / apellido de casada del Propuesto Asegurado."
+    },
+    "asegurado_deberes": {
+      "tipo": "string",
+      "descripcion": "Deberes / funciones del Asegurado en su empleo (favor de dar detalles)."
+    },
+    "asegurado_direccion_casa_no": {
+      "tipo": "string",
+      "descripcion": "Linea 3 de la direccion de residencia del Asegurado (Casa/Apto./Edificio)."
+    },
+    "asegurado_direccion_linea2": {
+      "tipo": "string",
+      "descripcion": "Linea 2 de la direccion de residencia del Asegurado (Provincia/Distrito/Corregimiento/Urbanizacion/Calle)."
+    },
+    "asegurado_edad": {
+      "tipo": "string",
+      "descripcion": "Edad del Propuesto Asegurado."
+    },
+    "asegurado_ingreso_anual_moneda": {
+      "tipo": "string",
+      "descripcion": "Moneda del ingreso anual declarado (ej. USD)."
+    },
+    "asegurado_ingreso_anual_monto": {
+      "tipo": "string",
+      "descripcion": "Monto de ingreso anual del Propuesto Asegurado (seccion 'Informacion del Propuesto Asegurado', pagina 1) - distinto de los rangos/checkboxes de 'Perfil Financiero' (ver ingreso_anual_aproximado)."
+    },
+    "asegurado_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Nacionalidad(es) del Propuesto Asegurado."
+    },
+    "asegurado_ocupacion_profesion": {
+      "tipo": "string",
+      "descripcion": "Ocupacion y Profesion del Asegurado en un solo campo (el PDF no los separa como en el formulario de Salud). Sugerido: concatenar ocupacion + profesion, ej. 'Contador - Gerente Financiero'."
+    },
+    "asegurado_pais_nacimiento": {
+      "tipo": "string",
+      "descripcion": "Pais de nacimiento del Propuesto Asegurado."
+    },
+    "asegurado_pais_residencia": {
+      "tipo": "string",
+      "descripcion": "Pais de residencia del Propuesto Asegurado."
+    },
+    "asegurado_primer_nombre": {
+      "tipo": "string",
+      "descripcion": "Primer nombre del Propuesto Asegurado."
+    },
+    "asegurado_segundo_nombre": {
+      "tipo": "string",
+      "descripcion": "Segundo nombre del Propuesto Asegurado."
+    },
+    "asegurado_sexo": {
+      "tipo": "enum",
+      "descripcion": "Sexo del Propuesto Asegurado.",
+      "valores": [
+        "f",
+        "m"
+      ]
+    },
+    "asegurado_tel_oficina": {
+      "tipo": "string",
+      "descripcion": "Telefono de oficina del Propuesto Asegurado."
+    },
+    "asegurado_tipo_ocupacion": {
+      "tipo": "enum",
+      "descripcion": "Tipo de ocupacion del Asegurado.",
+      "valores": [
+        "asalariado",
+        "independiente",
+        "jubilado"
+      ]
+    },
+    "beneficiario_contingente_1_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Documento de Identidad."
+    },
+    "beneficiario_contingente_1_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Nacionalidad."
+    },
+    "beneficiario_contingente_1_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Nombres y Apellidos."
+    },
+    "beneficiario_contingente_1_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Ocupacion."
+    },
+    "beneficiario_contingente_1_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Parentesco con el Asegurado."
+    },
+    "beneficiario_contingente_1_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Porcentaje (%) del beneficio asignado."
+    },
+    "beneficiario_contingente_menor_edad_cedula": {
+      "tipo": "string",
+      "descripcion": "Cedula/Pasaporte de esa persona."
+    },
+    "beneficiario_contingente_menor_edad_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre de la persona a quien se entregara el beneficio si algun Beneficiario Contingente es menor de edad al fallecimiento del Asegurado."
+    },
+    "beneficiario_contingente_menor_edad_parentesco": {
+      "tipo": "string",
+      "descripcion": "Parentesco de esa persona con el Asegurado."
+    },
+    "beneficiario_primario_1_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Documento de Identidad."
+    },
+    "beneficiario_primario_1_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Nacionalidad."
+    },
+    "beneficiario_primario_1_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Nombres y Apellidos."
+    },
+    "beneficiario_primario_1_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Ocupacion."
+    },
+    "beneficiario_primario_1_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Parentesco con el Asegurado."
+    },
+    "beneficiario_primario_1_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Porcentaje (%) del beneficio asignado."
+    },
+    "beneficiario_primario_2_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Documento de Identidad."
+    },
+    "beneficiario_primario_2_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Nacionalidad."
+    },
+    "beneficiario_primario_2_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Nombres y Apellidos."
+    },
+    "beneficiario_primario_2_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Ocupacion."
+    },
+    "beneficiario_primario_2_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Parentesco con el Asegurado."
+    },
+    "beneficiario_primario_2_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Porcentaje (%) del beneficio asignado."
+    },
+    "beneficiario_primario_3_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Documento de Identidad."
+    },
+    "beneficiario_primario_3_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Nacionalidad."
+    },
+    "beneficiario_primario_3_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Nombres y Apellidos."
+    },
+    "beneficiario_primario_3_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Ocupacion."
+    },
+    "beneficiario_primario_3_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Parentesco con el Asegurado."
+    },
+    "beneficiario_primario_3_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Porcentaje (%) del beneficio asignado."
+    },
+    "beneficiario_primario_menor_edad_cedula": {
+      "tipo": "string",
+      "descripcion": "Cedula/Pasaporte de esa persona."
+    },
+    "beneficiario_primario_menor_edad_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre de la persona a quien se entregara el beneficio si algun Beneficiario Primario es menor de edad al fallecimiento del Asegurado."
+    },
+    "beneficiario_primario_menor_edad_parentesco": {
+      "tipo": "string",
+      "descripcion": "Parentesco de esa persona con el Asegurado."
+    },
+    "beneficios_incapacidad_solicitados": {
+      "tipo": "enum",
+      "descripcion": "4. Si alguna vez ha solicitado o recibido beneficios por incapacidad.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "cambio_peso_12meses": {
+      "tipo": "enum",
+      "descripcion": "7. Si ha tenido algun cambio de peso durante los ultimos 12 meses.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "cambio_peso_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle del cambio de peso (cuanto, por que)."
+    },
+    "cambio_peso_tipo": {
+      "tipo": "enum",
+      "descripcion": "Tipo de cambio de peso (si cambio_peso_12meses = 'si').",
+      "valores": [
+        "aumento",
+        "perdida"
+      ]
+    },
+    "cesion_bancaria_contacto": {
+      "tipo": "string",
+      "descripcion": "Contacto del banco, en caso de Cesion Bancaria."
+    },
+    "cesion_bancaria_producto": {
+      "tipo": "string",
+      "descripcion": "Producto Bancario, en caso de Cesion Bancaria."
+    },
+    "cesion_bancaria_suma_cedida": {
+      "tipo": "string",
+      "descripcion": "Suma cedida, en caso de Cesion Bancaria."
+    },
+    "cobertura_enfermedad_grave_prima": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Beneficio por enfermedad grave' - Prima ($)."
+    },
+    "cobertura_enfermedad_grave_suma_asegurada": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Beneficio por enfermedad grave' - Suma Asegurada ($)."
+    },
+    "cobertura_enfermedades_graves_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle de la cobertura de enfermedades graves, si tiene_cobertura_enfermedades_graves = 'si'."
+    },
+    "cobertura_muerte_accidental_prima": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Beneficio por muerte accidental' - Prima ($)."
+    },
+    "cobertura_muerte_accidental_suma_asegurada": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Beneficio por muerte accidental' - Suma Asegurada ($)."
+    },
+    "cobertura_previa_1_cantidad_adb": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 1 - Cantidad ADB (Accidental Death Benefit)."
+    },
+    "cobertura_previa_1_direccion": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 1 - Direccion de la compania."
+    },
+    "cobertura_previa_1_fecha_solicitud": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 1 - Fecha de Solicitud."
+    },
+    "cobertura_previa_1_monto_seguro": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 1 - Monto del seguro."
+    },
+    "cobertura_previa_1_no_poliza": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 1 - No. de Poliza."
+    },
+    "cobertura_previa_1_nombre_compania": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 1 - Nombre de la compania."
+    },
+    "cobertura_previa_2_cantidad_adb": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 2 - Cantidad ADB."
+    },
+    "cobertura_previa_2_direccion": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 2 - Direccion de la compania."
+    },
+    "cobertura_previa_2_fecha_solicitud": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 2 - Fecha de Solicitud."
+    },
+    "cobertura_previa_2_monto_seguro": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 2 - Monto del seguro."
+    },
+    "cobertura_previa_2_no_poliza": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 2 - No. de Poliza."
+    },
+    "cobertura_previa_2_nombre_compania": {
+      "tipo": "string",
+      "descripcion": "Cobertura existente/pendiente 2 - Nombre de la compania."
+    },
+    "cobertura_supervivencia_prima": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Supervivencia' - Prima ($)."
+    },
+    "cobertura_supervivencia_suma_asegurada": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Supervivencia' - Suma Asegurada ($)."
+    },
+    "cobertura_vida_basica_prima": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Vida Basica' - Prima ($)."
+    },
+    "cobertura_vida_basica_suma_asegurada": {
+      "tipo": "string",
+      "descripcion": "Cobertura 'Vida Basica' - Suma Asegurada ($)."
+    },
+    "consume_alcohol": {
+      "tipo": "enum",
+      "descripcion": "b. Si consume bebidas alcoholicas.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "consume_alcohol_detalle": {
+      "tipo": "string",
+      "descripcion": "Cantidad que toma y con que frecuencia, si consume_alcohol = 'si'."
+    },
+    "contratante_actividad_economica_empresa": {
+      "tipo": "string",
+      "descripcion": "Actividad economica de la empresa del Contratante."
+    },
+    "contratante_apellidos": {
+      "tipo": "string",
+      "descripcion": "Primer y segundo apellido / apellido de casada del Contratante."
+    },
+    "contratante_cedula_pasaporte": {
+      "tipo": "string",
+      "descripcion": "Cedula o pasaporte del Contratante."
+    },
+    "contratante_ciudad": {
+      "tipo": "string",
+      "descripcion": "Ciudad de la empresa del Contratante."
+    },
+    "contratante_correo_personal": {
+      "tipo": "string",
+      "descripcion": "Correo electronico del Contratante."
+    },
+    "contratante_direccion_laboral": {
+      "tipo": "string",
+      "descripcion": "Direccion laboral (empresa) del Contratante."
+    },
+    "contratante_direccion_residencial": {
+      "tipo": "string",
+      "descripcion": "Direccion de residencia del Contratante (linea 1; continua en pagina 2)."
+    },
+    "contratante_empresa_donde_labora": {
+      "tipo": "string",
+      "descripcion": "Empresa donde labora el Contratante."
+    },
+    "contratante_fax": {
+      "tipo": "string",
+      "descripcion": "Fax del Contratante."
+    },
+    "contratante_fecha_nacimiento": {
+      "tipo": "date",
+      "descripcion": "Fecha de nacimiento del Contratante."
+    },
+    "contratante_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Nacionalidad(es) del Contratante."
+    },
+    "contratante_ocupacion_cargo": {
+      "tipo": "string",
+      "descripcion": "Ocupacion/Cargo del Contratante."
+    },
+    "contratante_pais": {
+      "tipo": "string",
+      "descripcion": "Pais de la empresa del Contratante."
+    },
+    "contratante_pais_nacimiento": {
+      "tipo": "string",
+      "descripcion": "Pais de nacimiento del Contratante."
+    },
+    "contratante_pais_residencia": {
+      "tipo": "string",
+      "descripcion": "Pais de residencia del Contratante."
+    },
+    "contratante_pais_tributa": {
+      "tipo": "string",
+      "descripcion": "Pais(es) donde el Contratante tributa por sus ingresos."
+    },
+    "contratante_parentesco_con_asegurado": {
+      "tipo": "string",
+      "descripcion": "Parentesco del Contratante con el Asegurado."
+    },
+    "contratante_primer_nombre": {
+      "tipo": "string",
+      "descripcion": "Primer nombre del Contratante (solo si es distinto del Asegurado Principal)."
+    },
+    "contratante_proposito_seguro": {
+      "tipo": "string",
+      "descripcion": "Proposito del seguro, segun el Contratante."
+    },
+    "contratante_segundo_nombre": {
+      "tipo": "string",
+      "descripcion": "Segundo nombre del Contratante."
+    },
+    "contratante_sexo": {
+      "tipo": "enum",
+      "descripcion": "Sexo del Contratante.",
+      "valores": [
+        "f",
+        "m"
+      ]
+    },
+    "contratante_tel_celular": {
+      "tipo": "string",
+      "descripcion": "Telefono celular del Contratante."
+    },
+    "contratante_tel_oficina": {
+      "tipo": "string",
+      "descripcion": "Telefono de oficina del Contratante."
+    },
+    "contratante_tel_residencia": {
+      "tipo": "string",
+      "descripcion": "Telefono de residencia del Contratante."
+    },
+    "deportes_riesgo_actividades": {
+      "tipo": "enum",
+      "descripcion": "5.b. Si ha participado en actividades de riesgo (scooter, motocicleta, deportes submarinos, buceo SCUBA, paracaidismo, bungee jumping, para-kiting, skydiving, escalada, etc.).",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "deportes_riesgo_detalle": {
+      "tipo": "string",
+      "descripcion": "Cual actividad de riesgo, si deportes_riesgo_actividades = 'si'. Nota: adjuntar cuestionario suplementario segun el PDF."
+    },
+    "estandar_nicotina": {
+      "tipo": "enum",
+      "descripcion": "Si aplica el estandar de Nicotina (tarifa para no fumador/fumador).",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "forma_pago_prima": {
+      "tipo": "enum",
+      "descripcion": "Forma de pago de la prima.",
+      "valores": [
+        "anual",
+        "semestral",
+        "trimestral",
+        "mensual",
+        "cheque",
+        "tc"
+      ]
+    },
+    "fuma_o_uso_tabaco_24_meses": {
+      "tipo": "enum",
+      "descripcion": "1.a. Si ha fumado cigarrillos/cigarros/pipas o utilizado productos de tabaco o nicotina en los ultimos 24 meses.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "historial_detalle_1_duracion": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - Duracion."
+    },
+    "historial_detalle_1_enfermedad_sintoma": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - Nombre Enfermedad/Sintoma/Herida/etc."
+    },
+    "historial_detalle_1_fecha": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - Fecha."
+    },
+    "historial_detalle_1_hospital_nombre_direccion": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - Nombre y direccion del Hospital."
+    },
+    "historial_detalle_1_pregunta_no": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - No. de Pregunta (ej. '1a', '6', '8b')."
+    },
+    "historial_detalle_1_resultados": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - Resultados."
+    },
+    "historial_detalle_1_tratamiento_medicamento": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 1 - Tratamiento/Medicamento."
+    },
+    "historial_detalle_2_duracion": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - Duracion."
+    },
+    "historial_detalle_2_enfermedad_sintoma": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - Nombre Enfermedad/Sintoma/Herida/etc."
+    },
+    "historial_detalle_2_fecha": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - Fecha."
+    },
+    "historial_detalle_2_hospital_nombre_direccion": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - Nombre y direccion del Hospital."
+    },
+    "historial_detalle_2_pregunta_no": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - No. de Pregunta."
+    },
+    "historial_detalle_2_resultados": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - Resultados."
+    },
+    "historial_detalle_2_tratamiento_medicamento": {
+      "tipo": "string",
+      "descripcion": "10. Detalle de respuesta afirmativa, fila 2 - Tratamiento/Medicamento."
+    },
+    "ingreso_anual_otras_actividades": {
+      "tipo": "enum",
+      "descripcion": "Ingresos anuales por actividades distintas a la principal (Perfil Financiero, pagina 3).",
+      "valores": [
+        "menos_10mil",
+        "10mil_30mil",
+        "30mil_50mil",
+        "mas_50mil"
+      ]
+    },
+    "intencion_reemplazar_cobertura": {
+      "tipo": "enum",
+      "descripcion": "1.b. Si el Propuesto Asegurado tiene la intencion de remplazar, descontinuar o cambiar alguna cobertura existente.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "licencia_conducir_detalle": {
+      "tipo": "string",
+      "descripcion": "Quien, cuando, numero de licencia, estado que la expidio y detalles, si licencia_conducir_suspendida_revocada = 'si'."
+    },
+    "licencia_conducir_suspendida_revocada": {
+      "tipo": "enum",
+      "descripcion": "f. Si se le ha suspendido/revocado la licencia de conducir, o tiene convicciones/accidentes de transito relevantes.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1a_corazon": {
+      "tipo": "enum",
+      "descripcion": "1.a. Dolor en el pecho, palpitaciones, hipertension, fiebre reumatica, soplo cardiaco, ataque cardiaco, aneurismas u otra enfermedad del corazon o vasos sanguineos.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1b_respiratorio": {
+      "tipo": "enum",
+      "descripcion": "1.b. Ahogos, ronquera, tos persistente, esputos de sangre, bronquitis, pleuresia, asma, enfisema, tuberculosis u otros trastornos respiratorios cronicos.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1c_neurologico": {
+      "tipo": "enum",
+      "descripcion": "1.c. Mareos, desmayos, epilepsia, convulsiones, dolor de cabeza, afeccion del habla, paralisis, apoplejia, trastorno mental o nervioso.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1d_digestivo": {
+      "tipo": "enum",
+      "descripcion": "1.d. Ictericia, hemorragia intestinal, ulcera, hernia, apendicitis, colitis, diverticulitis, hemorroides, indigestion recurrente u otro desorden del estomago/intestino/higado, hepatitis B o C, vesicula biliar.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1e_endocrino": {
+      "tipo": "enum",
+      "descripcion": "1.e. Diabetes, tiroides u otro trastorno endocrino.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1f_musculoesqueletico": {
+      "tipo": "enum",
+      "descripcion": "1.f. Neuritis, ciatica, reumatismo, artritis, gota o desorden de musculos/huesos, incluso columna vertebral, espalda y articulaciones.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1g_piel_ganglios_tumor": {
+      "tipo": "enum",
+      "descripcion": "1.g. Enfermedad de la piel, ganglios linfaticos, quiste, tumor, cancer, sudores nocturnos, fatiga o fiebre sin explicacion.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1h_renal_reproductivo": {
+      "tipo": "enum",
+      "descripcion": "1.h. Albumina, azucar, sangre o pus en la orina, enfermedades venereas, calculos renales u otros trastornos renales, de la vejiga, prostata u organos reproductivos.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1i_ojos_oidos_garganta": {
+      "tipo": "enum",
+      "descripcion": "1.i. Cualquier problema de los ojos, oidos, nariz o garganta.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1j_alergias_sangre": {
+      "tipo": "enum",
+      "descripcion": "1.j. Alergias, anemia u otro desorden sanguineo.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_1k_deformidad_congenita": {
+      "tipo": "enum",
+      "descripcion": "1.k. Alguna deformidad, enfermedad o defecto congenito.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_2l_examen_medico_reciente": {
+      "tipo": "enum",
+      "descripcion": "2.l. (ultimos 10 anios) Examen medico, consulta, enfermedad, lesion o procedimientos medicos ambulatorios o intrahospitalarios.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_2m_hospitalizacion": {
+      "tipo": "enum",
+      "descripcion": "2.m. Ha sido paciente en un hospital, clinica, sanatorio u otra institucion medica.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_2n_ecg_radiografia": {
+      "tipo": "enum",
+      "descripcion": "2.n. Se ha hecho un electrocardiograma, radiografia u otras pruebas especializadas.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_2o_prueba_pendiente": {
+      "tipo": "enum",
+      "descripcion": "2.o. Se le aconsejo alguna prueba diagnostica, hospitalizacion o cirugia que no se ha llevado a cabo.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_3_medicamento_tratamiento_12meses": {
+      "tipo": "enum",
+      "descripcion": "3. Si ha tomado en los ultimos 12 meses algun medicamento prescrito, o ha recibido tratamiento que haya excedido 14 dias.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_4_tratamiento_proximos_6meses": {
+      "tipo": "enum",
+      "descripcion": "4. Si tiene provisto obtener tratamiento y opinion medica en los proximos 6 meses.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_5_vih_sida": {
+      "tipo": "enum",
+      "descripcion": "5. Si ha tenido resultados positivos de VIH o ha sido diagnosticado con SIDA o condicion derivada de dicha infeccion.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_6_historial_familiar_muerte60_diabetes50": {
+      "tipo": "enum",
+      "descripcion": "6. Si existe historial de muertes por enfermedad coronaria, embolia, cancer o enfermedad renal de un padre o hermano natural antes de los 60 anios, o diagnostico de diabetes antes de los 50 anios.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_8_aplica_mujer": {
+      "tipo": "enum",
+      "descripcion": "8. 'Para mujer solamente' - checkbox Si/No junto al titulo de la seccion, ademas de las preguntas 8.a y 8.b que tienen sus propios Si/No. AMBIGUO (ver 'revisar' en el mapping): posiblemente es una pregunta de compuerta. Revisar con WorldWide Medical antes de asumir su significado exacto.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_8a_trastorno_menstrual_embarazo_senos": {
+      "tipo": "enum",
+      "descripcion": "8.a. (Solo mujer) Trastorno en la menstruacion, en el embarazo, en los organos reproductivos o en los senos.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_8b_embarazada": {
+      "tipo": "enum",
+      "descripcion": "8.b. (Solo mujer) Si esta embarazada.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_8b_semanas_embarazo": {
+      "tipo": "string",
+      "descripcion": "Semanas de embarazo, si medico_8b_embarazada = 'si'."
+    },
+    "medicos_consultados_recientemente": {
+      "tipo": "string",
+      "descripcion": "9. Nombres y direcciones de los medicos consultados recientemente por cualquier razon (linea 1 de 2)."
+    },
+    "origen_fondos_pago_poliza": {
+      "tipo": "string",
+      "descripcion": "Origen de los fondos para el pago de la poliza."
+    },
+    "pagador_actividad_economica_empresa": {
+      "tipo": "string",
+      "descripcion": "Actividad economica de la empresa del Pagador."
+    },
+    "pagador_apellidos": {
+      "tipo": "string",
+      "descripcion": "Primer y segundo apellido / apellido de casada del Pagador."
+    },
+    "pagador_cedula_pasaporte": {
+      "tipo": "string",
+      "descripcion": "Cedula o pasaporte del Pagador."
+    },
+    "pagador_ciudad": {
+      "tipo": "string",
+      "descripcion": "Ciudad de la empresa del Pagador."
+    },
+    "pagador_correo_personal": {
+      "tipo": "string",
+      "descripcion": "Correo electronico del Pagador."
+    },
+    "pagador_direccion_laboral": {
+      "tipo": "string",
+      "descripcion": "Direccion laboral (empresa) del Pagador."
+    },
+    "pagador_direccion_residencial": {
+      "tipo": "string",
+      "descripcion": "Direccion de residencia del Pagador."
+    },
+    "pagador_empresa_donde_labora": {
+      "tipo": "string",
+      "descripcion": "Empresa donde labora el Pagador."
+    },
+    "pagador_estado_civil": {
+      "tipo": "string",
+      "descripcion": "Estado civil del Pagador (campo de texto libre en este formulario, no checkboxes)."
+    },
+    "pagador_fax": {
+      "tipo": "string",
+      "descripcion": "Fax del Pagador."
+    },
+    "pagador_fecha_nacimiento": {
+      "tipo": "date",
+      "descripcion": "Fecha de nacimiento del Pagador."
+    },
+    "pagador_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Nacionalidad(es) del Pagador."
+    },
+    "pagador_ocupacion_cargo": {
+      "tipo": "string",
+      "descripcion": "Ocupacion/Cargo del Pagador."
+    },
+    "pagador_pais": {
+      "tipo": "string",
+      "descripcion": "Pais de la empresa del Pagador."
+    },
+    "pagador_pais_residencia": {
+      "tipo": "string",
+      "descripcion": "Pais de residencia del Pagador."
+    },
+    "pagador_pais_tributa": {
+      "tipo": "string",
+      "descripcion": "Pais(es) donde el Pagador tributa por sus ingresos."
+    },
+    "pagador_parentesco_con_asegurado": {
+      "tipo": "string",
+      "descripcion": "Parentesco o relacion del Pagador con el Asegurado."
+    },
+    "pagador_primer_nombre": {
+      "tipo": "string",
+      "descripcion": "Primer nombre del Pagador (solo si es distinto del Contratante)."
+    },
+    "pagador_proposito_seguro": {
+      "tipo": "string",
+      "descripcion": "Proposito del seguro, segun el Pagador."
+    },
+    "pagador_segundo_nombre": {
+      "tipo": "string",
+      "descripcion": "Segundo nombre del Pagador."
+    },
+    "pagador_sexo": {
+      "tipo": "enum",
+      "descripcion": "Sexo del Pagador.",
+      "valores": [
+        "f",
+        "m"
+      ]
+    },
+    "pagador_tel_celular": {
+      "tipo": "string",
+      "descripcion": "Telefono celular del Pagador."
+    },
+    "pagador_tel_oficina": {
+      "tipo": "string",
+      "descripcion": "Telefono de oficina del Pagador."
+    },
+    "pagador_tel_residencia": {
+      "tipo": "string",
+      "descripcion": "Telefono de residencia del Pagador."
+    },
+    "pep_asegurado": {
+      "tipo": "enum",
+      "descripcion": "Si el Asegurado es Persona Politicamente Expuesta (PEP), tiene familiar PEP o colaborador estrecho PEP.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "pep_contratante": {
+      "tipo": "enum",
+      "descripcion": "Si el Contratante es Persona Politicamente Expuesta (PEP), tiene familiar PEP o colaborador estrecho PEP.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "pep_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la declaracion PEP (cargo y tiempo en el cargo si es PEP, o nombre/cargo/tipo de relacion si es familiar o colaborador de un PEP). Campo unico de 2 lineas para Asegurado, Contratante y Pagador."
+    },
+    "pep_pagador": {
+      "tipo": "enum",
+      "descripcion": "Si el Pagador es Persona Politicamente Expuesta (PEP), tiene familiar PEP o colaborador estrecho PEP.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "persona_completa_formulario": {
+      "tipo": "enum",
+      "descripcion": "Quien completa el formulario (pagina 1).",
+      "valores": [
+        "contratante",
+        "asegurado",
+        "corredor",
+        "pagador",
+        "cia_seguros",
+        "beneficiario"
+      ]
+    },
+    "piensa_viajar_fuera_pais": {
+      "tipo": "enum",
+      "descripcion": "c. Si piensa viajar fuera de su pais.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "piensa_viajar_fuera_pais_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle del viaje, si piensa_viajar_fuera_pais = 'si'."
+    },
+    "plan_anios": {
+      "tipo": "string",
+      "descripcion": "Anios de vigencia/termino del plan."
+    },
+    "prima_total": {
+      "tipo": "string",
+      "descripcion": "Prima Total ($), suma de todas las coberturas."
+    },
+    "reemplazo_cobertura_1_cantidad_adb": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 1 - Cantidad ADB."
+    },
+    "reemplazo_cobertura_1_direccion": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 1 - Direccion de la compania."
+    },
+    "reemplazo_cobertura_1_fecha_solicitud": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 1 - Fecha de Solicitud."
+    },
+    "reemplazo_cobertura_1_monto_seguro": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 1 - Monto del seguro."
+    },
+    "reemplazo_cobertura_1_no_poliza": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 1 - No. de Poliza."
+    },
+    "reemplazo_cobertura_1_nombre_compania": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 1 - Nombre de la compania."
+    },
+    "reemplazo_cobertura_2_cantidad_adb": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 2 - Cantidad ADB."
+    },
+    "reemplazo_cobertura_2_direccion": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 2 - Direccion de la compania."
+    },
+    "reemplazo_cobertura_2_fecha_solicitud": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 2 - Fecha de Solicitud."
+    },
+    "reemplazo_cobertura_2_monto_seguro": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 2 - Monto del seguro."
+    },
+    "reemplazo_cobertura_2_no_poliza": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 2 - No. de Poliza."
+    },
+    "reemplazo_cobertura_2_nombre_compania": {
+      "tipo": "string",
+      "descripcion": "Cobertura a reemplazar 2 - Nombre de la compania."
+    },
+    "seguro_calificado_pospuesto_negado_3anios": {
+      "tipo": "enum",
+      "descripcion": "2. Si en los ultimos 3 anios alguna persona propuesta para cobertura ha sido calificada, pospuesta o negada un seguro de vida o de salud.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "seguro_calificado_pospuesto_negado_detalle": {
+      "tipo": "string",
+      "descripcion": "Nombre(s) e informacion, si seguro_calificado_pospuesto_negado_3anios = 'si'."
+    },
+    "tabaco_tipo_cigarrillos": {
+      "tipo": "enum",
+      "descripcion": "Producto de tabaco/nicotina usado: Cigarrillos (checkbox independiente, se puede marcar junto con otros).",
+      "valores": [
+        "si"
+      ]
+    },
+    "tabaco_tipo_mastica_tabaco": {
+      "tipo": "enum",
+      "descripcion": "Producto de tabaco/nicotina usado: Mastica tabaco.",
+      "valores": [
+        "si"
+      ]
+    },
+    "tabaco_tipo_otro": {
+      "tipo": "enum",
+      "descripcion": "Producto de tabaco/nicotina usado: Otro (ver tabaco_tipo_otro_detalle).",
+      "valores": [
+        "si"
+      ]
+    },
+    "tabaco_tipo_otro_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle del producto de tabaco/nicotina cuando tabaco_tipo_otro = 'si'."
+    },
+    "tabaco_tipo_parche_chicle_nicotina": {
+      "tipo": "enum",
+      "descripcion": "Producto de tabaco/nicotina usado: Parche o chicle de Nicotina.",
+      "valores": [
+        "si"
+      ]
+    },
+    "tabaco_tipo_pipa": {
+      "tipo": "enum",
+      "descripcion": "Producto de tabaco/nicotina usado: Pipa.",
+      "valores": [
+        "si"
+      ]
+    },
+    "tabaco_tipo_tabaco": {
+      "tipo": "enum",
+      "descripcion": "Producto de tabaco/nicotina usado: Tabaco.",
+      "valores": [
+        "si"
+      ]
+    },
+    "tiene_cobertura_enfermedades_graves": {
+      "tipo": "enum",
+      "descripcion": "3. Si tiene cobertura de enfermedades graves (para detallarla).",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "tiene_cobertura_existente_o_solicitud_pendiente": {
+      "tipo": "enum",
+      "descripcion": "1.a. Si el Propuesto Asegurado tiene alguna cobertura de vida/anualidad existente, o alguna solicitud pendiente, con esta compania o cualquier otra.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "tipo_plan_vida": {
+      "tipo": "enum",
+      "descripcion": "Tipo de Plan de Vida seleccionado.",
+      "valores": [
+        "wwterm",
+        "ww_survivor",
+        "wwterm_value"
+      ]
+    },
+    "tratamiento_alcohol_cuando": {
+      "tipo": "string",
+      "descripcion": "Cuando recibio el tratamiento, si tratamiento_alcohol_organizacion = 'si'."
+    },
+    "tratamiento_alcohol_organizacion": {
+      "tipo": "enum",
+      "descripcion": "d. Si ha recibido tratamiento o se ha unido a una organizacion por motivo de dependencia o abuso del alcohol.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "volado_no_pasajero_comercial": {
+      "tipo": "enum",
+      "descripcion": "5.a. Si ha volado en otra capacidad que no sea la de pasajero en una aerolinea comercial.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    }
+  }
+}

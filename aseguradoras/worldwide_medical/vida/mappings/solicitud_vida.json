@@ -1,0 +1,1606 @@
+{
+  "template": "aseguradoras/worldwide_medical/vida/templates/solicitud_vida.pdf",
+  "fields": {
+    "Check Box1": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "contratante",
+      "on_state": "/Yes"
+    },
+    "Check Box2": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "asegurado",
+      "on_state": "/Yes"
+    },
+    "Check Box3": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "corredor",
+      "on_state": "/Yes"
+    },
+    "Check Box4": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "pagador",
+      "on_state": "/Yes"
+    },
+    "Check Box5": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "cia_seguros",
+      "on_state": "/Yes"
+    },
+    "Check Box6": {
+      "data_key": "persona_completa_formulario",
+      "type": "checkbox_group",
+      "value": "beneficiario",
+      "on_state": "/Yes"
+    },
+    "Primer Nombre": {
+      "data_key": "asegurado_primer_nombre",
+      "type": "text"
+    },
+    "Segundo Nombre": {
+      "data_key": "asegurado_segundo_nombre",
+      "type": "text"
+    },
+    "Apellidos": {
+      "data_key": "asegurado_apellidos",
+      "type": "text"
+    },
+    "Fecha": {
+      "data_key": "fecha_nacimiento",
+      "type": "date",
+      "format": "ddmmaaaa",
+      "nota": "Fecha de nacimiento del Asegurado Principal. Reusa fecha_nacimiento del cliente (schema_cliente.json)."
+    },
+    "Nacionalidad": {
+      "data_key": "asegurado_nacionalidad",
+      "type": "text"
+    },
+    "Check Box12": {
+      "data_key": "asegurado_sexo",
+      "type": "checkbox_group",
+      "value": "f",
+      "on_state": "/Yes"
+    },
+    "Check Box13": {
+      "data_key": "asegurado_sexo",
+      "type": "checkbox_group",
+      "value": "m",
+      "on_state": "/Yes"
+    },
+    "Estado Civil": {
+      "data_key": "estado_civil",
+      "type": "text",
+      "nota": "ADVERTENCIA: el PDF reutiliza el mismo campo AcroForm 'Estado Civil' para DOS casillas visualmente distintas en la pagina 1 (Estado Civil del Asegurado, arriba, y Estado Civil del Contratante, abajo) - es un defecto de diseno del formulario original (mismo objeto AcroForm con dos widgets). Al llenar este campo, pypdf escribira el mismo texto en AMBAS casillas. Se mapea aqui al estado_civil del Asegurado Principal (reusa 'estado_civil' de schema_cliente.json). Si el Contratante es distinto del Asegurado y tiene estado civil diferente, este PDF NO permite completarlos por separado; revisar y corregir a mano el PDF resultante antes de enviarlo, o reportar el defecto a WorldWide Medical.",
+      "revisar": true
+    },
+    "Cedula o Pasaporte": {
+      "data_key": "cedula_o_pasaporte",
+      "type": "text",
+      "nota": "Reusa cedula_o_pasaporte del cliente (schema_cliente.json)."
+    },
+    "Edad": {
+      "data_key": "asegurado_edad",
+      "type": "text"
+    },
+    "Peso": {
+      "data_key": "peso",
+      "type": "text",
+      "nota": "Reusa peso del cliente (schema_cliente.json)."
+    },
+    "Estatura": {
+      "data_key": "estatura",
+      "type": "text",
+      "nota": "Reusa estatura del cliente (schema_cliente.json)."
+    },
+    "Ingreso Anual": {
+      "data_key": "asegurado_ingreso_anual_monto",
+      "type": "text",
+      "nota": "Monto de ingreso anual del Asegurado Principal, en la seccion 'Informacion del Propuesto Asegurado' (distinto de los rangos/checkboxes de 'Perfil Financiero' en pagina 3)."
+    },
+    "Moneda": {
+      "data_key": "asegurado_ingreso_anual_moneda",
+      "type": "text"
+    },
+    "Paías de residencia": {
+      "data_key": "asegurado_pais_residencia",
+      "type": "text"
+    },
+    "País de nacimiento": {
+      "data_key": "asegurado_pais_nacimiento",
+      "type": "text"
+    },
+    "Dirección de residencia": {
+      "data_key": "direccion_residencial",
+      "type": "text",
+      "nota": "Linea 1 de la direccion de residencia del Asegurado Principal. Reusa direccion_residencial del cliente (schema_cliente.json)."
+    },
+    "Direccion": {
+      "data_key": "asegurado_direccion_linea2",
+      "type": "text",
+      "nota": "Linea 2 de direccion de residencia del Asegurado (Provincia/Distrito/Corregimiento/Urbanizacion/Calle)."
+    },
+    "Casa No": {
+      "data_key": "asegurado_direccion_casa_no",
+      "type": "text",
+      "nota": "Linea 3 de direccion de residencia del Asegurado (Casa/Apto./Edificio)."
+    },
+    "Tel. Residencia": {
+      "data_key": "telefono_residencia",
+      "type": "text",
+      "nota": "Reusa telefono_residencia del cliente (schema_cliente.json)."
+    },
+    "Celular": {
+      "data_key": "telefono_celular",
+      "type": "text",
+      "nota": "Reusa telefono_celular del cliente (schema_cliente.json)."
+    },
+    "Oficina": {
+      "data_key": "asegurado_tel_oficina",
+      "type": "text"
+    },
+    "Correo electrónico": {
+      "data_key": "correo_personal",
+      "type": "text",
+      "nota": "Reusa correo_personal del cliente (schema_cliente.json)."
+    },
+    "Nombre de la compañía": {
+      "data_key": "empresa_donde_labora",
+      "type": "text",
+      "nota": "Reusa empresa_donde_labora del cliente (schema_cliente.json)."
+    },
+    "Ocupación y profesión": {
+      "data_key": "asegurado_ocupacion_profesion",
+      "type": "text",
+      "nota": "Campo unico que combina Ocupacion y Profesion del Asegurado Principal (a diferencia del formulario de Salud, aqui NO estan separados). Sugerido: concatenar ocupacion + profesion del cliente, ej. 'Contador - Gerente Financiero'."
+    },
+    "Actividad ecónomica": {
+      "data_key": "asegurado_actividad_economica_empresa",
+      "type": "text"
+    },
+    "Años": {
+      "data_key": "asegurado_anios_empleo",
+      "type": "text"
+    },
+    "Deberes": {
+      "data_key": "asegurado_deberes",
+      "type": "text"
+    },
+    "Text33": {
+      "data_key": "direccion_laboral",
+      "type": "text",
+      "nota": "Direccion del empleador del Asegurado Principal. Reusa direccion_laboral del cliente (schema_cliente.json)."
+    },
+    "Check Box30": {
+      "data_key": "asegurado_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "asalariado",
+      "on_state": "/Yes"
+    },
+    "Check Box31": {
+      "data_key": "asegurado_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "independiente",
+      "on_state": "/Yes"
+    },
+    "Check Box32": {
+      "data_key": "asegurado_tipo_ocupacion",
+      "type": "checkbox_group",
+      "value": "jubilado",
+      "on_state": "/Yes"
+    },
+    "Actividad a la que se dedica": {
+      "data_key": "asegurado_actividad_independiente_detalle",
+      "type": "text"
+    },
+    "Primer Nombre #2": {
+      "data_key": "contratante_primer_nombre",
+      "type": "text"
+    },
+    "Segundo Nombre #2": {
+      "data_key": "contratante_segundo_nombre",
+      "type": "text"
+    },
+    "Apellidos #2": {
+      "data_key": "contratante_apellidos",
+      "type": "text"
+    },
+    "Fecha de Nacimiento #2": {
+      "data_key": "contratante_fecha_nacimiento",
+      "type": "date",
+      "format": "ddmmaaaa"
+    },
+    "Nacionalida/es": {
+      "data_key": "contratante_nacionalidad",
+      "type": "text"
+    },
+    "Check Box44": {
+      "data_key": "contratante_sexo",
+      "type": "checkbox_group",
+      "value": "f",
+      "on_state": "/Yes"
+    },
+    "Check Box45": {
+      "data_key": "contratante_sexo",
+      "type": "checkbox_group",
+      "value": "m",
+      "on_state": "/Yes"
+    },
+    "Cédula/Pasaporte": {
+      "data_key": "contratante_cedula_pasaporte",
+      "type": "text"
+    },
+    "País": {
+      "data_key": "contratante_pais_nacimiento",
+      "type": "text"
+    },
+    "País de la residencia": {
+      "data_key": "contratante_pais_residencia",
+      "type": "text"
+    },
+    "Dirección de la residencia": {
+      "data_key": "contratante_direccion_residencial",
+      "type": "text",
+      "nota": "Linea 1 de direccion de residencia del Contratante (continua en pagina 2 con lineas 2 y 3)."
+    },
+    "Text52": {
+      "data_key": "contratante_tel_residencia",
+      "type": "text"
+    },
+    "Text53": {
+      "data_key": "contratante_tel_celular",
+      "type": "text"
+    },
+    "Text54": {
+      "data_key": "contratante_tel_oficina",
+      "type": "text"
+    },
+    "Text55": {
+      "data_key": "contratante_fax",
+      "type": "text"
+    },
+    "Text56": {
+      "data_key": "contratante_correo_personal",
+      "type": "text"
+    },
+    "Text57": {
+      "data_key": "contratante_empresa_donde_labora",
+      "type": "text"
+    },
+    "Text58": {
+      "data_key": "contratante_ocupacion_cargo",
+      "type": "text"
+    },
+    "Text59": {
+      "data_key": "contratante_direccion_laboral",
+      "type": "text"
+    },
+    "Text65": {
+      "data_key": "contratante_actividad_economica_empresa",
+      "type": "text"
+    },
+    "Text64": {
+      "data_key": "contratante_ciudad",
+      "type": "text"
+    },
+    "Text63": {
+      "data_key": "contratante_pais",
+      "type": "text"
+    },
+    "Text62": {
+      "data_key": "contratante_parentesco_con_asegurado",
+      "type": "text"
+    },
+    "Text61": {
+      "data_key": "contratante_proposito_seguro",
+      "type": "text"
+    },
+    "Text60": {
+      "data_key": "contratante_pais_tributa",
+      "type": "text"
+    },
+    "Text66": {
+      "data_key": "pagador_primer_nombre",
+      "type": "text"
+    },
+    "Text67": {
+      "data_key": "pagador_segundo_nombre",
+      "type": "text"
+    },
+    "Text68": {
+      "data_key": "pagador_apellidos",
+      "type": "text"
+    },
+    "Date73_af_date": {
+      "data_key": "pagador_fecha_nacimiento",
+      "type": "date",
+      "format": "ddmmaaaa"
+    },
+    "Check Box71": {
+      "data_key": "pagador_sexo",
+      "type": "checkbox_group",
+      "value": "f",
+      "on_state": "/Yes"
+    },
+    "Check Box72": {
+      "data_key": "pagador_sexo",
+      "type": "checkbox_group",
+      "value": "m",
+      "on_state": "/Yes"
+    },
+    "Text69": {
+      "data_key": "pagador_nacionalidad",
+      "type": "text"
+    },
+    "Text70": {
+      "data_key": "pagador_cedula_pasaporte",
+      "type": "text"
+    },
+    "Text75": {
+      "data_key": "pagador_estado_civil",
+      "type": "text"
+    },
+    "Text76": {
+      "data_key": "pagador_pais_residencia",
+      "type": "text"
+    },
+    "Text74": {
+      "data_key": "pagador_direccion_residencial",
+      "type": "text"
+    },
+    "Text78": {
+      "data_key": "pagador_tel_residencia",
+      "type": "text"
+    },
+    "Text79": {
+      "data_key": "pagador_tel_celular",
+      "type": "text"
+    },
+    "Text80": {
+      "data_key": "pagador_tel_oficina",
+      "type": "text"
+    },
+    "Text83": {
+      "data_key": "pagador_fax",
+      "type": "text"
+    },
+    "Text81": {
+      "data_key": "pagador_correo_personal",
+      "type": "text"
+    },
+    "Text82": {
+      "data_key": "pagador_empresa_donde_labora",
+      "type": "text"
+    },
+    "Text85": {
+      "data_key": "pagador_ocupacion_cargo",
+      "type": "text"
+    },
+    "Text84": {
+      "data_key": "pagador_direccion_laboral",
+      "type": "text"
+    },
+    "Text86": {
+      "data_key": "pagador_actividad_economica_empresa",
+      "type": "text"
+    },
+    "Text87": {
+      "data_key": "pagador_ciudad",
+      "type": "text"
+    },
+    "Text88": {
+      "data_key": "pagador_pais",
+      "type": "text"
+    },
+    "Text89": {
+      "data_key": "pagador_parentesco_con_asegurado",
+      "type": "text"
+    },
+    "Text77": {
+      "data_key": "pagador_proposito_seguro",
+      "type": "text"
+    },
+    "Text90": {
+      "data_key": "pagador_pais_tributa",
+      "type": "text"
+    },
+    "Text91": {
+      "data_key": "pep_detalle",
+      "type": "text"
+    },
+    "Check Box92": {
+      "data_key": "pep_asegurado",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box93": {
+      "data_key": "pep_asegurado",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box94": {
+      "data_key": "pep_contratante",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box95": {
+      "data_key": "pep_contratante",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box96": {
+      "data_key": "pep_pagador",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box97": {
+      "data_key": "pep_pagador",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box98": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "menos_10mil",
+      "on_state": "/Yes"
+    },
+    "Check Box100": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "10mil_30mil",
+      "on_state": "/Yes"
+    },
+    "Check Box102": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "30mil_50mil",
+      "on_state": "/Yes"
+    },
+    "Check Box104": {
+      "data_key": "ingreso_anual_aproximado",
+      "type": "checkbox_group",
+      "value": "mas_50mil",
+      "on_state": "/Yes"
+    },
+    "Check Box99": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "menos_10mil",
+      "on_state": "/Yes"
+    },
+    "Check Box101": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "10mil_30mil",
+      "on_state": "/Yes"
+    },
+    "Check Box103": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "30mil_50mil",
+      "on_state": "/Yes"
+    },
+    "Check Box105": {
+      "data_key": "ingreso_anual_otras_actividades",
+      "type": "checkbox_group",
+      "value": "mas_50mil",
+      "on_state": "/Yes"
+    },
+    "Text106": {
+      "data_key": "origen_fondos_pago_poliza",
+      "type": "text"
+    },
+    "Check Box110": {
+      "data_key": "tipo_plan_vida",
+      "type": "checkbox_group",
+      "value": "wwterm",
+      "on_state": "/Yes"
+    },
+    "Check Box109": {
+      "data_key": "tipo_plan_vida",
+      "type": "checkbox_group",
+      "value": "ww_survivor",
+      "on_state": "/Yes"
+    },
+    "Check Box108": {
+      "data_key": "tipo_plan_vida",
+      "type": "checkbox_group",
+      "value": "wwterm_value",
+      "on_state": "/Yes"
+    },
+    "Text107": {
+      "data_key": "plan_anios",
+      "type": "text"
+    },
+    "Text111": {
+      "data_key": "cobertura_vida_basica_suma_asegurada",
+      "type": "text"
+    },
+    "Text115": {
+      "data_key": "cobertura_vida_basica_prima",
+      "type": "text"
+    },
+    "Text112": {
+      "data_key": "cobertura_supervivencia_suma_asegurada",
+      "type": "text"
+    },
+    "Text116": {
+      "data_key": "cobertura_supervivencia_prima",
+      "type": "text"
+    },
+    "Text113": {
+      "data_key": "cobertura_muerte_accidental_suma_asegurada",
+      "type": "text"
+    },
+    "Text117": {
+      "data_key": "cobertura_muerte_accidental_prima",
+      "type": "text"
+    },
+    "Text114": {
+      "data_key": "cobertura_enfermedad_grave_suma_asegurada",
+      "type": "text"
+    },
+    "Text118": {
+      "data_key": "cobertura_enfermedad_grave_prima",
+      "type": "text"
+    },
+    "Check Box119": {
+      "data_key": "estandar_nicotina",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box120": {
+      "data_key": "estandar_nicotina",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text121": {
+      "data_key": "prima_total",
+      "type": "text"
+    },
+    "Check Box122": {
+      "data_key": "forma_pago_prima",
+      "type": "checkbox_group",
+      "value": "anual",
+      "on_state": "/Yes"
+    },
+    "Check Box123": {
+      "data_key": "forma_pago_prima",
+      "type": "checkbox_group",
+      "value": "semestral",
+      "on_state": "/Yes"
+    },
+    "Check Box124": {
+      "data_key": "forma_pago_prima",
+      "type": "checkbox_group",
+      "value": "trimestral",
+      "on_state": "/Yes"
+    },
+    "Check Box125": {
+      "data_key": "forma_pago_prima",
+      "type": "checkbox_group",
+      "value": "mensual",
+      "on_state": "/Yes"
+    },
+    "Check Box126": {
+      "data_key": "forma_pago_prima",
+      "type": "checkbox_group",
+      "value": "cheque",
+      "on_state": "/Yes"
+    },
+    "Check Box127": {
+      "data_key": "forma_pago_prima",
+      "type": "checkbox_group",
+      "value": "tc",
+      "on_state": "/Yes"
+    },
+    "Text128": {
+      "data_key": "beneficiario_primario_1_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_2": {
+      "data_key": "beneficiario_primario_1_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_3": {
+      "data_key": "beneficiario_primario_1_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_4": {
+      "data_key": "beneficiario_primario_1_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_5": {
+      "data_key": "beneficiario_primario_1_parentesco",
+      "type": "text"
+    },
+    "Text130": {
+      "data_key": "beneficiario_primario_1_porcentaje",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow2": {
+      "data_key": "beneficiario_primario_2_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow2_2": {
+      "data_key": "beneficiario_primario_2_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow2_3": {
+      "data_key": "beneficiario_primario_2_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow2_4": {
+      "data_key": "beneficiario_primario_2_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow2_5": {
+      "data_key": "beneficiario_primario_2_parentesco",
+      "type": "text"
+    },
+    "Text131": {
+      "data_key": "beneficiario_primario_2_porcentaje",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow3": {
+      "data_key": "beneficiario_primario_3_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow3_2": {
+      "data_key": "beneficiario_primario_3_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow3_3": {
+      "data_key": "beneficiario_primario_3_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow3_4": {
+      "data_key": "beneficiario_primario_3_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow3_5": {
+      "data_key": "beneficiario_primario_3_parentesco",
+      "type": "text"
+    },
+    "Text132": {
+      "data_key": "beneficiario_primario_3_porcentaje",
+      "type": "text"
+    },
+    "Text133": {
+      "data_key": "beneficiario_primario_menor_edad_nombre",
+      "type": "text"
+    },
+    "Text134": {
+      "data_key": "beneficiario_primario_menor_edad_parentesco",
+      "type": "text"
+    },
+    "Text135": {
+      "data_key": "beneficiario_primario_menor_edad_cedula",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_6": {
+      "data_key": "beneficiario_contingente_1_nombre",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_7": {
+      "data_key": "beneficiario_contingente_1_documento_identidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_8": {
+      "data_key": "beneficiario_contingente_1_nacionalidad",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_9": {
+      "data_key": "beneficiario_contingente_1_ocupacion",
+      "type": "text"
+    },
+    "Nombres y Apellidos Documento de Identidad Nacionalidad Parentesco OcupaciónRow1_10": {
+      "data_key": "beneficiario_contingente_1_parentesco",
+      "type": "text"
+    },
+    "Text139": {
+      "data_key": "beneficiario_contingente_1_porcentaje",
+      "type": "text"
+    },
+    "Text136": {
+      "data_key": "beneficiario_contingente_menor_edad_nombre",
+      "type": "text"
+    },
+    "Text137": {
+      "data_key": "beneficiario_contingente_menor_edad_parentesco",
+      "type": "text"
+    },
+    "Text138": {
+      "data_key": "beneficiario_contingente_menor_edad_cedula",
+      "type": "text"
+    },
+    "Text142": {
+      "data_key": "cesion_bancaria_producto",
+      "type": "text"
+    },
+    "Text141": {
+      "data_key": "cesion_bancaria_suma_cedida",
+      "type": "text"
+    },
+    "Text140": {
+      "data_key": "cesion_bancaria_contacto",
+      "type": "text"
+    },
+    "Check Box253": {
+      "data_key": "tiene_cobertura_existente_o_solicitud_pendiente",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box254": {
+      "data_key": "tiene_cobertura_existente_o_solicitud_pendiente",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text143": {
+      "data_key": "cobertura_previa_1_nombre_compania",
+      "type": "text"
+    },
+    "Text145": {
+      "data_key": "cobertura_previa_1_monto_seguro",
+      "type": "text"
+    },
+    "Text147": {
+      "data_key": "cobertura_previa_1_direccion",
+      "type": "text"
+    },
+    "Text149": {
+      "data_key": "cobertura_previa_1_no_poliza",
+      "type": "text"
+    },
+    "Text151": {
+      "data_key": "cobertura_previa_1_cantidad_adb",
+      "type": "text"
+    },
+    "Text153": {
+      "data_key": "cobertura_previa_1_fecha_solicitud",
+      "type": "text"
+    },
+    "Text144": {
+      "data_key": "cobertura_previa_2_nombre_compania",
+      "type": "text"
+    },
+    "Text146": {
+      "data_key": "cobertura_previa_2_monto_seguro",
+      "type": "text"
+    },
+    "Text148": {
+      "data_key": "cobertura_previa_2_direccion",
+      "type": "text"
+    },
+    "Text150": {
+      "data_key": "cobertura_previa_2_no_poliza",
+      "type": "text"
+    },
+    "Text152": {
+      "data_key": "cobertura_previa_2_cantidad_adb",
+      "type": "text"
+    },
+    "Text154": {
+      "data_key": "cobertura_previa_2_fecha_solicitud",
+      "type": "text"
+    },
+    "Check Box155": {
+      "data_key": "intencion_reemplazar_cobertura",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box156": {
+      "data_key": "intencion_reemplazar_cobertura",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text157": {
+      "data_key": "reemplazo_cobertura_1_nombre_compania",
+      "type": "text"
+    },
+    "Text159": {
+      "data_key": "reemplazo_cobertura_1_monto_seguro",
+      "type": "text"
+    },
+    "Text161": {
+      "data_key": "reemplazo_cobertura_1_direccion",
+      "type": "text"
+    },
+    "Text163": {
+      "data_key": "reemplazo_cobertura_1_no_poliza",
+      "type": "text"
+    },
+    "Text165": {
+      "data_key": "reemplazo_cobertura_1_cantidad_adb",
+      "type": "text"
+    },
+    "Text167": {
+      "data_key": "reemplazo_cobertura_1_fecha_solicitud",
+      "type": "text"
+    },
+    "Text158": {
+      "data_key": "reemplazo_cobertura_2_nombre_compania",
+      "type": "text"
+    },
+    "Text160": {
+      "data_key": "reemplazo_cobertura_2_monto_seguro",
+      "type": "text"
+    },
+    "Text162": {
+      "data_key": "reemplazo_cobertura_2_direccion",
+      "type": "text"
+    },
+    "Text164": {
+      "data_key": "reemplazo_cobertura_2_no_poliza",
+      "type": "text"
+    },
+    "Text166": {
+      "data_key": "reemplazo_cobertura_2_cantidad_adb",
+      "type": "text"
+    },
+    "Text168": {
+      "data_key": "reemplazo_cobertura_2_fecha_solicitud",
+      "type": "text"
+    },
+    "Check Box169": {
+      "data_key": "fuma_o_uso_tabaco_24_meses",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box170": {
+      "data_key": "fuma_o_uso_tabaco_24_meses",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box175": {
+      "data_key": "tabaco_tipo_cigarrillos",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box173": {
+      "data_key": "tabaco_tipo_pipa",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box171": {
+      "data_key": "tabaco_tipo_parche_chicle_nicotina",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box176": {
+      "data_key": "tabaco_tipo_tabaco",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box174": {
+      "data_key": "tabaco_tipo_mastica_tabaco",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box172": {
+      "data_key": "tabaco_tipo_otro",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Text177": {
+      "data_key": "tabaco_tipo_otro_detalle",
+      "type": "text"
+    },
+    "Check Box180": {
+      "data_key": "consume_alcohol",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box181": {
+      "data_key": "consume_alcohol",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text179": {
+      "data_key": "consume_alcohol_detalle",
+      "type": "text"
+    },
+    "Check Box182": {
+      "data_key": "piensa_viajar_fuera_pais",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box183": {
+      "data_key": "piensa_viajar_fuera_pais",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text178": {
+      "data_key": "piensa_viajar_fuera_pais_detalle",
+      "type": "text"
+    },
+    "Check Box185": {
+      "data_key": "tratamiento_alcohol_organizacion",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box186": {
+      "data_key": "tratamiento_alcohol_organizacion",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text184": {
+      "data_key": "tratamiento_alcohol_cuando",
+      "type": "text"
+    },
+    "Check Box187": {
+      "data_key": "arrestado_drogas",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box188": {
+      "data_key": "arrestado_drogas",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text189": {
+      "data_key": "arrestado_drogas_detalle",
+      "type": "text"
+    },
+    "Check Box190": {
+      "data_key": "licencia_conducir_suspendida_revocada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box191": {
+      "data_key": "licencia_conducir_suspendida_revocada",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text192": {
+      "data_key": "licencia_conducir_detalle",
+      "type": "text"
+    },
+    "Check Box193": {
+      "data_key": "seguro_calificado_pospuesto_negado_3anios",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box194": {
+      "data_key": "seguro_calificado_pospuesto_negado_3anios",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text203": {
+      "data_key": "seguro_calificado_pospuesto_negado_detalle",
+      "type": "text"
+    },
+    "Check Box195": {
+      "data_key": "tiene_cobertura_enfermedades_graves",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box196": {
+      "data_key": "tiene_cobertura_enfermedades_graves",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text204": {
+      "data_key": "cobertura_enfermedades_graves_detalle",
+      "type": "text"
+    },
+    "Check Box197": {
+      "data_key": "beneficios_incapacidad_solicitados",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box198": {
+      "data_key": "beneficios_incapacidad_solicitados",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box199": {
+      "data_key": "volado_no_pasajero_comercial",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box200": {
+      "data_key": "volado_no_pasajero_comercial",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box202": {
+      "data_key": "deportes_riesgo_actividades",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box201": {
+      "data_key": "deportes_riesgo_actividades",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text205": {
+      "data_key": "deportes_riesgo_detalle",
+      "type": "text"
+    },
+    "Check Box206": {
+      "data_key": "medico_1a_corazon",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box207": {
+      "data_key": "medico_1a_corazon",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box208": {
+      "data_key": "medico_1b_respiratorio",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box209": {
+      "data_key": "medico_1b_respiratorio",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.0.0": {
+      "data_key": "medico_1c_neurologico",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.0.1": {
+      "data_key": "medico_1c_neurologico",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.1.0": {
+      "data_key": "medico_1d_digestivo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.1.1": {
+      "data_key": "medico_1d_digestivo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.2.0": {
+      "data_key": "medico_1e_endocrino",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.2.1": {
+      "data_key": "medico_1e_endocrino",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.3.0": {
+      "data_key": "medico_1f_musculoesqueletico",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.3.1": {
+      "data_key": "medico_1f_musculoesqueletico",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.4.0": {
+      "data_key": "medico_1g_piel_ganglios_tumor",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.4.1": {
+      "data_key": "medico_1g_piel_ganglios_tumor",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.5.0": {
+      "data_key": "medico_1h_renal_reproductivo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.5.1": {
+      "data_key": "medico_1h_renal_reproductivo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.6.0": {
+      "data_key": "medico_1i_ojos_oidos_garganta",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.6.1": {
+      "data_key": "medico_1i_ojos_oidos_garganta",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.7.0": {
+      "data_key": "medico_1j_alergias_sangre",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.7.1": {
+      "data_key": "medico_1j_alergias_sangre",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.8.0": {
+      "data_key": "medico_1k_deformidad_congenita",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.8.1": {
+      "data_key": "medico_1k_deformidad_congenita",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box210.9.0": {
+      "data_key": "medico_2l_examen_medico_reciente",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box210.9.1": {
+      "data_key": "medico_2l_examen_medico_reciente",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.0.0": {
+      "data_key": "medico_2m_hospitalizacion",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.0.1": {
+      "data_key": "medico_2m_hospitalizacion",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.1.0": {
+      "data_key": "medico_2n_ecg_radiografia",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.1.1": {
+      "data_key": "medico_2n_ecg_radiografia",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.2.0": {
+      "data_key": "medico_2o_prueba_pendiente",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.2.1": {
+      "data_key": "medico_2o_prueba_pendiente",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.3.0": {
+      "data_key": "medico_3_medicamento_tratamiento_12meses",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.3.1": {
+      "data_key": "medico_3_medicamento_tratamiento_12meses",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.4.0": {
+      "data_key": "medico_4_tratamiento_proximos_6meses",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.4.1": {
+      "data_key": "medico_4_tratamiento_proximos_6meses",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.5.0": {
+      "data_key": "medico_5_vih_sida",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.5.1": {
+      "data_key": "medico_5_vih_sida",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box211.7.0": {
+      "data_key": "medico_6_historial_familiar_muerte60_diabetes50",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box211.7.1": {
+      "data_key": "medico_6_historial_familiar_muerte60_diabetes50",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box212": {
+      "data_key": "cambio_peso_12meses",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box213": {
+      "data_key": "cambio_peso_12meses",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box214": {
+      "data_key": "cambio_peso_tipo",
+      "type": "checkbox_group",
+      "value": "aumento",
+      "on_state": "/Yes"
+    },
+    "Check Box215": {
+      "data_key": "cambio_peso_tipo",
+      "type": "checkbox_group",
+      "value": "perdida",
+      "on_state": "/Yes"
+    },
+    "Text216": {
+      "data_key": "cambio_peso_detalle",
+      "type": "text"
+    },
+    "Check Box217.0.0": {
+      "data_key": "medico_8_aplica_mujer",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes",
+      "nota": "AMBIGUO: la pregunta '8. Para mujer solamente.' tiene su propio par Si/No junto al titulo de seccion, ademas de las preguntas 8.a y 8.b que tienen sus propios Si/No. No queda claro si este primer par es una pregunta de compuerta ('es usted mujer / aplica esta seccion') o un defecto de diseno/copia del formulario. Revisar con WorldWide Medical antes de asumir su significado."
+    },
+    "Check Box217.0.1": {
+      "data_key": "medico_8_aplica_mujer",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box217.1.0": {
+      "data_key": "medico_8a_trastorno_menstrual_embarazo_senos",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box217.1.1": {
+      "data_key": "medico_8a_trastorno_menstrual_embarazo_senos",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Check Box217.2.0": {
+      "data_key": "medico_8b_embarazada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes"
+    },
+    "Check Box217.2.1": {
+      "data_key": "medico_8b_embarazada",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes"
+    },
+    "Text220": {
+      "data_key": "medico_8b_semanas_embarazo",
+      "type": "text"
+    },
+    "Text218": {
+      "data_key": "medicos_consultados_recientemente",
+      "type": "text"
+    },
+    "Text219": {
+      "data_key": "medico_cabecera_nombre",
+      "type": "text",
+      "nota": "Reusa medico_cabecera_nombre del cliente (schema_cliente.json). Segunda linea de la pregunta 9: medico de cabecera, si fuera diferente de los medicos consultados recientemente."
+    },
+    "Text221": {
+      "data_key": "historial_detalle_1_pregunta_no",
+      "type": "text"
+    },
+    "Text224": {
+      "data_key": "historial_detalle_1_enfermedad_sintoma",
+      "type": "text"
+    },
+    "Text228": {
+      "data_key": "historial_detalle_1_tratamiento_medicamento",
+      "type": "text"
+    },
+    "Text229": {
+      "data_key": "historial_detalle_1_hospital_nombre_direccion",
+      "type": "text"
+    },
+    "Text223": {
+      "data_key": "historial_detalle_1_fecha",
+      "type": "text"
+    },
+    "Text226": {
+      "data_key": "historial_detalle_1_duracion",
+      "type": "text"
+    },
+    "Text233": {
+      "data_key": "historial_detalle_1_resultados",
+      "type": "text"
+    },
+    "Text222": {
+      "data_key": "historial_detalle_2_pregunta_no",
+      "type": "text"
+    },
+    "Text230": {
+      "data_key": "historial_detalle_2_enfermedad_sintoma",
+      "type": "text"
+    },
+    "Text231": {
+      "data_key": "historial_detalle_2_tratamiento_medicamento",
+      "type": "text"
+    },
+    "Text232": {
+      "data_key": "historial_detalle_2_hospital_nombre_direccion",
+      "type": "text"
+    },
+    "Text225": {
+      "data_key": "historial_detalle_2_fecha",
+      "type": "text"
+    },
+    "Text227": {
+      "data_key": "historial_detalle_2_duracion",
+      "type": "text"
+    },
+    "Text234": {
+      "data_key": "historial_detalle_2_resultados",
+      "type": "text"
+    },
+    "Firmado en Ciudad y País Fecha": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Lugar (Ciudad y Pais) y fecha de firma - se completa a mano junto con la firma, no se autocompleta (instruccion explicita de la tarea)."
+    },
+    "Nombre del Asegurado si no fuera el Contratante": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Nombre del Asegurado Titular, solo si no fuera el Contratante - se completa junto a la firma, no se autocompleta."
+    },
+    "Firma del Asegurado si no fuera el Contratante": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del Asegurado Titular (si no fuera el Contratante) - no se autocompleta."
+    },
+    "Firma del contratante": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del Contratante - no se autocompleta. (El campo PDF se llama 'Firma del contratante' pero en la pagina renderizada aparece bajo el rotulo 'Nombre del contratante'; ver imagen pagina 8.)"
+    },
+    "Firma del Representante Legal": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del Representante Legal (si el Contratante es Persona Juridica) - no se autocompleta."
+    },
+    "Check Box239.0": {
+      "data_key": "agente_conoce_asegurado_tipo",
+      "type": "checkbox_group",
+      "value": "familia",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box239.1": {
+      "data_key": "agente_conoce_asegurado_tipo",
+      "type": "checkbox_group",
+      "value": "amigo",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box239.2": {
+      "data_key": "agente_conoce_asegurado_tipo",
+      "type": "checkbox_group",
+      "value": "cliente",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box239.3": {
+      "data_key": "agente_conoce_asegurado_tipo",
+      "type": "checkbox_group",
+      "value": "recien_conocido",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text237": {
+      "data_key": "agente_conoce_asegurado_parentesco",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box241": {
+      "data_key": "agente_conoce_amigo_nivel",
+      "type": "checkbox_group",
+      "value": "bien",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box240": {
+      "data_key": "agente_conoce_amigo_nivel",
+      "type": "checkbox_group",
+      "value": "poco",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text242": {
+      "data_key": "agente_conoce_amigo_anios",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text243": {
+      "data_key": "agente_conoce_cliente_anios",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text238": {
+      "data_key": "agente_conoce_recien_como",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text236.0": {
+      "data_key": "agente_proposito_seguro",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text236.1": {
+      "data_key": "agente_conyuge_nombre_y_seguros",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text236.2": {
+      "data_key": "agente_seguros_padres_hermanos_menor21",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text235.0": {
+      "data_key": "agente_valor_neto_patrimonio",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text235.1": {
+      "data_key": "agente_ingreso_devengado",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text235.2": {
+      "data_key": "agente_ingreso_no_devengado",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text235.3": {
+      "data_key": "agente_ocupacion_ultimos_5_anios",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box244": {
+      "data_key": "agente_obtuvo_respuestas_personalmente",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Check Box245": {
+      "data_key": "agente_obtuvo_respuestas_personalmente",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Yes",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text246": {
+      "data_key": "agente_tipo_id",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text247": {
+      "data_key": "agente_id_emitido_por",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Date248_af_date": {
+      "data_key": "agente_id_fecha_emision",
+      "type": "date",
+      "format": "ddmmaaaa",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Date249_af_date": {
+      "data_key": "agente_id_fecha_expiracion",
+      "type": "date",
+      "format": "ddmmaaaa",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text250": {
+      "data_key": "agente_lugar_firma",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Date252_af_date": {
+      "data_key": "agente_fecha_firma",
+      "type": "date",
+      "format": "ddmmaaaa",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp."
+    },
+    "Text251": {
+      "data_key": "nombre_corredor",
+      "type": "text",
+      "nota": "Dato operativo del CORREDOR/AGENTE (pagina 9, 'Reporte del agente') - no proviene del cliente ni del intake de WhatsApp. Reusa nombre_corredor (mismo data_key operativo usado en campos_operativos_no_provienen_del_cliente de schema_cliente.json)."
+    },
+    "Firma del agente": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del agente/corredor - no se autocompleta."
+    }
+  }
+}

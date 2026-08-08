@@ -1,0 +1,1953 @@
+{
+ "template": "aseguradoras/vumi/salud/templates/solicitud_salud.pdf",
+ "fields": {
+  "1": {
+   "data_key": "encabezado_tipo_solicitud",
+   "type": "text"
+  },
+  "TEXTO 2": {
+   "data_key": "contratante_apellidos",
+   "type": "text"
+  },
+  "TEXTO 3": {
+   "data_key": "contratante_nombres",
+   "type": "text"
+  },
+  "TEXTO 15": {
+   "data_key": "contratante_cedula_ruc",
+   "type": "text"
+  },
+  "TEXTO 17": {
+   "data_key": "contratante_pasaporte",
+   "type": "text"
+  },
+  "CR359": {
+   "data_key": "contratante_fnac_dia1",
+   "type": "text"
+  },
+  "CR358": {
+   "data_key": "contratante_fnac_dia2",
+   "type": "text"
+  },
+  "CR357": {
+   "data_key": "contratante_fnac_mes1",
+   "type": "text"
+  },
+  "CR356": {
+   "data_key": "contratante_fnac_mes2",
+   "type": "text"
+  },
+  "CR355": {
+   "data_key": "contratante_fnac_anio1",
+   "type": "text"
+  },
+  "CR354": {
+   "data_key": "contratante_fnac_anio2",
+   "type": "text"
+  },
+  "CR352": {
+   "data_key": "contratante_fnac_anio3",
+   "type": "text"
+  },
+  "CR159": {
+   "data_key": "contratante_fnac_anio4",
+   "type": "text"
+  },
+  "TEXTO 19": {
+   "data_key": "contratante_lugar_nacimiento",
+   "type": "text"
+  },
+  "TEXTO 18": {
+   "data_key": "contratante_provincia_nacimiento",
+   "type": "text"
+  },
+  "TEXTO 20": {
+   "data_key": "contratante_edad",
+   "type": "text"
+  },
+  "SEXO": {
+   "data_key": "contratante_sexo",
+   "type": "text"
+  },
+  "TEXTO 21": {
+   "data_key": "contratante_pais_residencia",
+   "type": "text"
+  },
+  "MARITAL STATUS": {
+   "data_key": "contratante_estado_civil",
+   "type": "text"
+  },
+  "TEXTO 22": {
+   "data_key": "contratante_nombre_empleador",
+   "type": "text"
+  },
+  "ACTIVIDAD": {
+   "data_key": "contratante_tipo_actividad",
+   "type": "text"
+  },
+  "TEXTO 24": {
+   "data_key": "contratante_ocupacion",
+   "type": "text"
+  },
+  "TEXTO 154": {
+   "data_key": "contratante_descripcion_funciones",
+   "type": "text"
+  },
+  "TEXTO 114": {
+   "data_key": "contratante_trabajo_provincia",
+   "type": "text"
+  },
+  "TEXTO 115": {
+   "data_key": "contratante_trabajo_distrito",
+   "type": "text"
+  },
+  "TEXTO 117": {
+   "data_key": "contratante_trabajo_corregimiento",
+   "type": "text"
+  },
+  "TEXTO 118": {
+   "data_key": "contratante_trabajo_urbanizacion",
+   "type": "text"
+  },
+  "TEXTO 119": {
+   "data_key": "contratante_trabajo_calle",
+   "type": "text"
+  },
+  "TEXTO 120": {
+   "data_key": "contratante_trabajo_via",
+   "type": "text"
+  },
+  "CASA, ETC 1": {
+   "data_key": "contratante_trabajo_tipo_inmueble",
+   "type": "text"
+  },
+  "TEXTO 10": {
+   "data_key": "contratante_trabajo_inmueble_nombre",
+   "type": "text"
+  },
+  "TEXTO 23": {
+   "data_key": "contratante_trabajo_piso",
+   "type": "text"
+  },
+  "TEXTO 25": {
+   "data_key": "contratante_trabajo_apartamento",
+   "type": "text"
+  },
+  "TEXTO 26": {
+   "data_key": "contratante_trabajo_oficina",
+   "type": "text"
+  },
+  "CR1056": {
+   "data_key": "contratante_trabajo_telefono_d1",
+   "type": "text"
+  },
+  "CR153": {
+   "data_key": "contratante_trabajo_telefono_d2",
+   "type": "text"
+  },
+  "CR152": {
+   "data_key": "contratante_trabajo_telefono_d3",
+   "type": "text"
+  },
+  "CR151": {
+   "data_key": "contratante_trabajo_telefono_d4",
+   "type": "text"
+  },
+  "CR150": {
+   "data_key": "contratante_trabajo_telefono_d5",
+   "type": "text"
+  },
+  "CR149": {
+   "data_key": "contratante_trabajo_telefono_d6",
+   "type": "text"
+  },
+  "CR148": {
+   "data_key": "contratante_trabajo_telefono_d7",
+   "type": "text"
+  },
+  "CR147": {
+   "data_key": "contratante_trabajo_telefono_d8",
+   "type": "text"
+  },
+  "CR146": {
+   "data_key": "contratante_trabajo_telefono_d9",
+   "type": "text"
+  },
+  "CR145": {
+   "data_key": "contratante_trabajo_telefono_d10",
+   "type": "text"
+  },
+  "CR1057": {
+   "data_key": "contratante_trabajo_celular_d1",
+   "type": "text"
+  },
+  "CR163": {
+   "data_key": "contratante_trabajo_celular_d2",
+   "type": "text"
+  },
+  "CR162": {
+   "data_key": "contratante_trabajo_celular_d3",
+   "type": "text"
+  },
+  "CR161": {
+   "data_key": "contratante_trabajo_celular_d4",
+   "type": "text"
+  },
+  "CR160": {
+   "data_key": "contratante_trabajo_celular_d5",
+   "type": "text"
+  },
+  "CR158": {
+   "data_key": "contratante_trabajo_celular_d6",
+   "type": "text"
+  },
+  "CR157": {
+   "data_key": "contratante_trabajo_celular_d7",
+   "type": "text"
+  },
+  "CR156": {
+   "data_key": "contratante_trabajo_celular_d8",
+   "type": "text"
+  },
+  "CR155": {
+   "data_key": "contratante_trabajo_celular_d9",
+   "type": "text"
+  },
+  "CR154": {
+   "data_key": "contratante_trabajo_celular_d10",
+   "type": "text"
+  },
+  "TEXTO 27": {
+   "data_key": "contratante_trabajo_apartado_postal",
+   "type": "text"
+  },
+  "TEXTO 28": {
+   "data_key": "contratante_trabajo_zona",
+   "type": "text"
+  },
+  "TEXTO 11": {
+   "data_key": "contratante_trabajo_email",
+   "type": "text"
+  },
+  "TEXTO 122": {
+   "data_key": "contratante_residencia_provincia",
+   "type": "text"
+  },
+  "TEXTO 124": {
+   "data_key": "contratante_residencia_distrito",
+   "type": "text"
+  },
+  "TEXTO 126": {
+   "data_key": "contratante_residencia_corregimiento",
+   "type": "text"
+  },
+  "TEXTO 123": {
+   "data_key": "contratante_residencia_urbanizacion",
+   "type": "text"
+  },
+  "TEXTO 125": {
+   "data_key": "contratante_residencia_calle",
+   "type": "text"
+  },
+  "TEXTO 133": {
+   "data_key": "contratante_residencia_via",
+   "type": "text"
+  },
+  "CASA, ETC 2": {
+   "data_key": "residencia_tipo_vivienda_compartido",
+   "type": "text"
+  },
+  "TEXTO 29": {
+   "data_key": "contratante_residencia_inmueble_nombre",
+   "type": "text"
+  },
+  "TEXTO 30": {
+   "data_key": "contratante_residencia_piso",
+   "type": "text"
+  },
+  "TEXTO 33": {
+   "data_key": "contratante_residencia_apartamento",
+   "type": "text"
+  },
+  "TEXTO 48": {
+   "data_key": "contratante_residencia_oficina",
+   "type": "text"
+  },
+  "CR1059": {
+   "data_key": "contratante_residencia_telefono_d1",
+   "type": "text"
+  },
+  "CR173": {
+   "data_key": "contratante_residencia_telefono_d2",
+   "type": "text"
+  },
+  "CR172": {
+   "data_key": "contratante_residencia_telefono_d3",
+   "type": "text"
+  },
+  "CR171": {
+   "data_key": "contratante_residencia_telefono_d4",
+   "type": "text"
+  },
+  "CR170": {
+   "data_key": "contratante_residencia_telefono_d5",
+   "type": "text"
+  },
+  "CR169": {
+   "data_key": "contratante_residencia_telefono_d6",
+   "type": "text"
+  },
+  "CR168": {
+   "data_key": "contratante_residencia_telefono_d7",
+   "type": "text"
+  },
+  "CR167": {
+   "data_key": "contratante_residencia_telefono_d8",
+   "type": "text"
+  },
+  "CR166": {
+   "data_key": "contratante_residencia_telefono_d9",
+   "type": "text"
+  },
+  "CR165": {
+   "data_key": "contratante_residencia_telefono_d10",
+   "type": "text"
+  },
+  "CR1062": {
+   "data_key": "contratante_residencia_celular_d1",
+   "type": "text"
+  },
+  "CR202": {
+   "data_key": "contratante_residencia_celular_d2",
+   "type": "text"
+  },
+  "CR181": {
+   "data_key": "contratante_residencia_celular_d3",
+   "type": "text"
+  },
+  "CR180": {
+   "data_key": "contratante_residencia_celular_d4",
+   "type": "text"
+  },
+  "CR179": {
+   "data_key": "contratante_residencia_celular_d5",
+   "type": "text"
+  },
+  "CR178": {
+   "data_key": "contratante_residencia_celular_d6",
+   "type": "text"
+  },
+  "CR177": {
+   "data_key": "contratante_residencia_celular_d7",
+   "type": "text"
+  },
+  "CR176": {
+   "data_key": "contratante_residencia_celular_d8",
+   "type": "text"
+  },
+  "CR175": {
+   "data_key": "contratante_residencia_celular_d9",
+   "type": "text"
+  },
+  "CR174": {
+   "data_key": "contratante_residencia_celular_d10",
+   "type": "text"
+  },
+  "TEXTO 31": {
+   "data_key": "contratante_residencia_apartado_postal",
+   "type": "text"
+  },
+  "TEXTO 32": {
+   "data_key": "contratante_residencia_zona",
+   "type": "text"
+  },
+  "TEXTO 13": {
+   "data_key": "contratante_residencia_email",
+   "type": "text"
+  },
+  "TEXTO 5": {
+   "data_key": "asegurado_apellidos",
+   "type": "text"
+  },
+  "TEXTO 4": {
+   "data_key": "asegurado_nombres",
+   "type": "text"
+  },
+  "TEXTO 16": {
+   "data_key": "asegurado_cedula_ruc",
+   "type": "text"
+  },
+  "TEXTO 34": {
+   "data_key": "asegurado_pasaporte",
+   "type": "text"
+  },
+  "CR365": {
+   "data_key": "asegurado_fnac_dia1",
+   "type": "text"
+  },
+  "CR364": {
+   "data_key": "asegurado_fnac_dia2",
+   "type": "text"
+  },
+  "CR363": {
+   "data_key": "asegurado_fnac_mes1",
+   "type": "text"
+  },
+  "CR362": {
+   "data_key": "asegurado_fnac_mes2",
+   "type": "text"
+  },
+  "CR361": {
+   "data_key": "asegurado_fnac_anio1",
+   "type": "text"
+  },
+  "CR360": {
+   "data_key": "asegurado_fnac_anio2",
+   "type": "text"
+  },
+  "CR353": {
+   "data_key": "asegurado_fnac_anio3",
+   "type": "text"
+  },
+  "CR182": {
+   "data_key": "asegurado_fnac_anio4",
+   "type": "text"
+  },
+  "TEXTO 37": {
+   "data_key": "asegurado_lugar_nacimiento",
+   "type": "text"
+  },
+  "TEXTO 35": {
+   "data_key": "asegurado_provincia_nacimiento",
+   "type": "text"
+  },
+  "TEXTO 36": {
+   "data_key": "asegurado_edad",
+   "type": "text"
+  },
+  "SEXO 2": {
+   "data_key": "asegurado_sexo",
+   "type": "text"
+  },
+  "TEXTO 38": {
+   "data_key": "asegurado_pais_residencia",
+   "type": "text"
+  },
+  "MARITAL STATUS 2": {
+   "data_key": "asegurado_estado_civil",
+   "type": "text"
+  },
+  "ACTIVIDAD 2": {
+   "data_key": "asegurado_tipo_actividad",
+   "type": "text"
+  },
+  "TEXTO 127": {
+   "data_key": "asegurado_residencia_provincia",
+   "type": "text"
+  },
+  "TEXTO 129": {
+   "data_key": "asegurado_residencia_distrito",
+   "type": "text"
+  },
+  "TEXTO 131": {
+   "data_key": "asegurado_residencia_corregimiento",
+   "type": "text"
+  },
+  "TEXTO 128": {
+   "data_key": "asegurado_residencia_urbanizacion",
+   "type": "text"
+  },
+  "TEXTO 130": {
+   "data_key": "asegurado_residencia_calle",
+   "type": "text"
+  },
+  "TEXTO 132": {
+   "data_key": "asegurado_residencia_via",
+   "type": "text"
+  },
+  "CASA, ETC 3": {
+   "data_key": "asegurado_residencia_tipo_edificio_local_cc",
+   "type": "text"
+  },
+  "TEXTO 44": {
+   "data_key": "asegurado_residencia_inmueble_nombre",
+   "type": "text"
+  },
+  "TEXTO 39": {
+   "data_key": "asegurado_residencia_piso",
+   "type": "text"
+  },
+  "TEXTO 42": {
+   "data_key": "asegurado_residencia_apartamento",
+   "type": "text"
+  },
+  "TEXTO 43": {
+   "data_key": "asegurado_residencia_oficina",
+   "type": "text"
+  },
+  "CR1060": {
+   "data_key": "asegurado_residencia_telefono_d1",
+   "type": "text"
+  },
+  "CR191": {
+   "data_key": "asegurado_residencia_telefono_d2",
+   "type": "text"
+  },
+  "CR190": {
+   "data_key": "asegurado_residencia_telefono_d3",
+   "type": "text"
+  },
+  "CR189": {
+   "data_key": "asegurado_residencia_telefono_d4",
+   "type": "text"
+  },
+  "CR188": {
+   "data_key": "asegurado_residencia_telefono_d5",
+   "type": "text"
+  },
+  "CR187": {
+   "data_key": "asegurado_residencia_telefono_d6",
+   "type": "text"
+  },
+  "CR186": {
+   "data_key": "asegurado_residencia_telefono_d7",
+   "type": "text"
+  },
+  "CR185": {
+   "data_key": "asegurado_residencia_telefono_d8",
+   "type": "text"
+  },
+  "CR184": {
+   "data_key": "asegurado_residencia_telefono_d9",
+   "type": "text"
+  },
+  "CR183": {
+   "data_key": "asegurado_residencia_telefono_d10",
+   "type": "text"
+  },
+  "CR1061": {
+   "data_key": "asegurado_residencia_celular_d1",
+   "type": "text"
+  },
+  "CR200": {
+   "data_key": "asegurado_residencia_celular_d2",
+   "type": "text"
+  },
+  "CR199": {
+   "data_key": "asegurado_residencia_celular_d3",
+   "type": "text"
+  },
+  "CR198": {
+   "data_key": "asegurado_residencia_celular_d4",
+   "type": "text"
+  },
+  "CR197": {
+   "data_key": "asegurado_residencia_celular_d5",
+   "type": "text"
+  },
+  "CR196": {
+   "data_key": "asegurado_residencia_celular_d6",
+   "type": "text"
+  },
+  "CR195": {
+   "data_key": "asegurado_residencia_celular_d7",
+   "type": "text"
+  },
+  "CR194": {
+   "data_key": "asegurado_residencia_celular_d8",
+   "type": "text"
+  },
+  "CR193": {
+   "data_key": "asegurado_residencia_celular_d9",
+   "type": "text"
+  },
+  "CR192": {
+   "data_key": "asegurado_residencia_celular_d10",
+   "type": "text"
+  },
+  "TEXTO 40": {
+   "data_key": "asegurado_residencia_apartado_postal",
+   "type": "text"
+  },
+  "TEXTO 41": {
+   "data_key": "asegurado_residencia_zona",
+   "type": "text"
+  },
+  "TEXTO 14": {
+   "data_key": "asegurado_residencia_email",
+   "type": "text"
+  },
+  "forma de pago": {
+   "data_key": "forma_pago",
+   "type": "text"
+  },
+  "frecuencia de pago": {
+   "data_key": "frecuencia_pago",
+   "type": "text"
+  },
+  "Campo de texto 38": {
+   "data_key": "familiar_t_nombre",
+   "type": "text"
+  },
+  "Campo de texto 30139": {
+   "data_key": "familiar_t_cedula",
+   "type": "text"
+  },
+  "Campo de texto 30137": {
+   "data_key": "familiar_t_fecha_nac",
+   "type": "text"
+  },
+  "Campo de texto 30141": {
+   "data_key": "familiar_t_sexo",
+   "type": "text"
+  },
+  "Campo de texto 30140": {
+   "data_key": "familiar_t_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 30138": {
+   "data_key": "familiar_t_estatura",
+   "type": "text"
+  },
+  "Campo de texto 30142": {
+   "data_key": "familiar_t_peso",
+   "type": "text"
+  },
+  "Campo de texto 37": {
+   "data_key": "familiar_1_nombre",
+   "type": "text"
+  },
+  "Campo de texto 39": {
+   "data_key": "familiar_1_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 42": {
+   "data_key": "familiar_1_cedula",
+   "type": "text"
+  },
+  "Campo de texto 40": {
+   "data_key": "familiar_1_fecha_nac",
+   "type": "text"
+  },
+  "Campo de texto 44": {
+   "data_key": "familiar_1_sexo",
+   "type": "text"
+  },
+  "Campo de texto 43": {
+   "data_key": "familiar_1_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 41": {
+   "data_key": "familiar_1_estatura",
+   "type": "text"
+  },
+  "Campo de texto 45": {
+   "data_key": "familiar_1_peso",
+   "type": "text"
+  },
+  "Campo de texto 30110": {
+   "data_key": "familiar_2_nombre",
+   "type": "text"
+  },
+  "Campo de texto 30116": {
+   "data_key": "familiar_2_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 30119": {
+   "data_key": "familiar_2_cedula",
+   "type": "text"
+  },
+  "Campo de texto 30117": {
+   "data_key": "familiar_2_fecha_nac",
+   "type": "text"
+  },
+  "Campo de texto 30121": {
+   "data_key": "familiar_2_sexo",
+   "type": "text"
+  },
+  "Campo de texto 30120": {
+   "data_key": "familiar_2_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 30118": {
+   "data_key": "familiar_2_estatura",
+   "type": "text"
+  },
+  "Campo de texto 30122": {
+   "data_key": "familiar_2_peso",
+   "type": "text"
+  },
+  "Campo de texto 30114": {
+   "data_key": "familiar_3_nombre",
+   "type": "text"
+  },
+  "Campo de texto 30123": {
+   "data_key": "familiar_3_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 30126": {
+   "data_key": "familiar_3_cedula",
+   "type": "text"
+  },
+  "Campo de texto 30124": {
+   "data_key": "familiar_3_fecha_nac",
+   "type": "text"
+  },
+  "Campo de texto 30128": {
+   "data_key": "familiar_3_sexo",
+   "type": "text"
+  },
+  "Campo de texto 30127": {
+   "data_key": "familiar_3_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 30125": {
+   "data_key": "familiar_3_estatura",
+   "type": "text"
+  },
+  "Campo de texto 30129": {
+   "data_key": "familiar_3_peso",
+   "type": "text"
+  },
+  "Campo de texto 30115": {
+   "data_key": "familiar_4_nombre",
+   "type": "text"
+  },
+  "Campo de texto 30130": {
+   "data_key": "familiar_4_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 30133": {
+   "data_key": "familiar_4_cedula",
+   "type": "text"
+  },
+  "Campo de texto 30131": {
+   "data_key": "familiar_4_fecha_nac",
+   "type": "text"
+  },
+  "Campo de texto 30135": {
+   "data_key": "familiar_4_sexo",
+   "type": "text"
+  },
+  "Campo de texto 30134": {
+   "data_key": "familiar_4_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 30132": {
+   "data_key": "familiar_4_estatura",
+   "type": "text"
+  },
+  "Campo de texto 30136": {
+   "data_key": "familiar_4_peso",
+   "type": "text"
+  },
+  "sino 1": {
+   "data_key": "hijos_estudiantes_si_no",
+   "type": "text"
+  },
+  "TEXTO 45": {
+   "data_key": "hijos_estudiantes_universidad",
+   "type": "text"
+  },
+  "A PREGUNTA": {
+   "data_key": "salud_estado_general_t",
+   "type": "text"
+  },
+  "A1 PREGUNTA": {
+   "data_key": "salud_estado_general_1",
+   "type": "text"
+  },
+  "A2 PREGUNTA": {
+   "data_key": "salud_estado_general_2",
+   "type": "text"
+  },
+  "A3 PREGUNTA": {
+   "data_key": "salud_estado_general_3",
+   "type": "text"
+  },
+  "A4 PREGUNTA": {
+   "data_key": "salud_estado_general_4",
+   "type": "text"
+  },
+  "A5 PREGUNTA": {
+   "data_key": "salud_estado_general_5",
+   "type": "text"
+  },
+  "A6 PREGUNTA": {
+   "data_key": "salud_estado_general_6",
+   "type": "text"
+  },
+  "B PREGUNTA": {
+   "data_key": "salud_variacion_peso_t",
+   "type": "text"
+  },
+  "B1 PREGUNTA": {
+   "data_key": "salud_variacion_peso_1",
+   "type": "text"
+  },
+  "B2 PREGUNTA": {
+   "data_key": "salud_variacion_peso_2",
+   "type": "text"
+  },
+  "B3 PREGUNTA": {
+   "data_key": "salud_variacion_peso_3",
+   "type": "text"
+  },
+  "B4 PREGUNTA": {
+   "data_key": "salud_variacion_peso_4",
+   "type": "text"
+  },
+  "B5 PREGUNTA": {
+   "data_key": "salud_variacion_peso_5",
+   "type": "text"
+  },
+  "B6 PREGUNTA": {
+   "data_key": "salud_variacion_peso_6",
+   "type": "text"
+  },
+  "C PREGUNTA": {
+   "data_key": "salud_chequeo_medico_t",
+   "type": "text"
+  },
+  "C1 PREGUNTA": {
+   "data_key": "salud_chequeo_medico_1",
+   "type": "text"
+  },
+  "C2 PREGUNTA": {
+   "data_key": "salud_chequeo_medico_2",
+   "type": "text"
+  },
+  "C3 PREGUNTA": {
+   "data_key": "salud_chequeo_medico_3",
+   "type": "text"
+  },
+  "C4 PREGUNTA": {
+   "data_key": "salud_chequeo_medico_4",
+   "type": "text"
+  },
+  "C5 PREGUNTA": {
+   "data_key": "salud_chequeo_medico_5",
+   "type": "text"
+  },
+  "C6 PREGUNTA": {
+   "data_key": "salud_chequeo_medico_6",
+   "type": "text"
+  },
+  "D PREGUNTA": {
+   "data_key": "salud_accidentes_t",
+   "type": "text"
+  },
+  "D1 PREGUNTA": {
+   "data_key": "salud_accidentes_1",
+   "type": "text"
+  },
+  "D2 PREGUNTA": {
+   "data_key": "salud_accidentes_2",
+   "type": "text"
+  },
+  "D3 PREGUNTA": {
+   "data_key": "salud_accidentes_3",
+   "type": "text"
+  },
+  "D4 PREGUNTA": {
+   "data_key": "salud_accidentes_4",
+   "type": "text"
+  },
+  "D5 PREGUNTA": {
+   "data_key": "salud_accidentes_5",
+   "type": "text"
+  },
+  "D6 PREGUNTA": {
+   "data_key": "salud_accidentes_6",
+   "type": "text"
+  },
+  "E PREGUNTA": {
+   "data_key": "salud_transfusion_t",
+   "type": "text"
+  },
+  "E1 PREGUNTA": {
+   "data_key": "salud_transfusion_1",
+   "type": "text"
+  },
+  "E2 PREGUNTA": {
+   "data_key": "salud_transfusion_2",
+   "type": "text"
+  },
+  "E3 PREGUNTA": {
+   "data_key": "salud_transfusion_3",
+   "type": "text"
+  },
+  "E4 PREGUNTA": {
+   "data_key": "salud_transfusion_4",
+   "type": "text"
+  },
+  "E5 PREGUNTA": {
+   "data_key": "salud_transfusion_5",
+   "type": "text"
+  },
+  "E6 PREGUNTA": {
+   "data_key": "salud_transfusion_6",
+   "type": "text"
+  },
+  "F PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_t",
+   "type": "text"
+  },
+  "F1 PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_1",
+   "type": "text"
+  },
+  "F2 PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_2",
+   "type": "text"
+  },
+  "F3 PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_3",
+   "type": "text"
+  },
+  "F4 PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_4",
+   "type": "text"
+  },
+  "F5 PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_5",
+   "type": "text"
+  },
+  "F6 PREGUNTA": {
+   "data_key": "salud_deporte_riesgo_6",
+   "type": "text"
+  },
+  "G PREGUNTA": {
+   "data_key": "salud_alcohol_t",
+   "type": "text"
+  },
+  "G1 PREGUNTA": {
+   "data_key": "salud_alcohol_1",
+   "type": "text"
+  },
+  "G2 PREGUNTA": {
+   "data_key": "salud_alcohol_2",
+   "type": "text"
+  },
+  "G3 PREGUNTA": {
+   "data_key": "salud_alcohol_3",
+   "type": "text"
+  },
+  "G4 PREGUNTA": {
+   "data_key": "salud_alcohol_4",
+   "type": "text"
+  },
+  "G5 PREGUNTA": {
+   "data_key": "salud_alcohol_5",
+   "type": "text"
+  },
+  "G6 PREGUNTA": {
+   "data_key": "salud_alcohol_6",
+   "type": "text"
+  },
+  "H PREGUNTA": {
+   "data_key": "salud_fuma_t",
+   "type": "text"
+  },
+  "H1 PREGUNTA": {
+   "data_key": "salud_fuma_1",
+   "type": "text"
+  },
+  "H2 PREGUNTA": {
+   "data_key": "salud_fuma_2",
+   "type": "text"
+  },
+  "H3 PREGUNTA": {
+   "data_key": "salud_fuma_3",
+   "type": "text"
+  },
+  "H4 PREGUNTA": {
+   "data_key": "salud_fuma_4",
+   "type": "text"
+  },
+  "H5 PREGUNTA": {
+   "data_key": "salud_fuma_5",
+   "type": "text"
+  },
+  "H6 PREGUNTA": {
+   "data_key": "salud_fuma_6",
+   "type": "text"
+  },
+  "I PREGUNTA": {
+   "data_key": "salud_embarazo_t",
+   "type": "text"
+  },
+  "IA PREGUNTA": {
+   "data_key": "salud_embarazo_1",
+   "type": "text"
+  },
+  "I2 PREGUNTA": {
+   "data_key": "salud_embarazo_2",
+   "type": "text"
+  },
+  "I3 PREGUNTA": {
+   "data_key": "salud_embarazo_3",
+   "type": "text"
+  },
+  "I4 PREGUNTA": {
+   "data_key": "salud_embarazo_4",
+   "type": "text"
+  },
+  "I5 PREGUNTA": {
+   "data_key": "salud_embarazo_5",
+   "type": "text"
+  },
+  "I6 PREGUNTA": {
+   "data_key": "salud_embarazo_6",
+   "type": "text"
+  },
+  "Text Field 18": {
+   "data_key": "salud_estado_general_detalle",
+   "type": "text"
+  },
+  "Text Field 19": {
+   "data_key": "salud_variacion_peso_detalle",
+   "type": "text"
+  },
+  "Text Field 20": {
+   "data_key": "salud_chequeo_medico_detalle",
+   "type": "text"
+  },
+  "Text Field 27": {
+   "data_key": "salud_accidentes_detalle",
+   "type": "text"
+  },
+  "Text Field 21": {
+   "data_key": "salud_transfusion_detalle",
+   "type": "text"
+  },
+  "Text Field 22": {
+   "data_key": "salud_deporte_riesgo_detalle",
+   "type": "text"
+  },
+  "Text Field 23": {
+   "data_key": "salud_alcohol_cantidad",
+   "type": "text"
+  },
+  "Text Field 24": {
+   "data_key": "salud_fuma_detalle",
+   "type": "text"
+  },
+  "Text Field 25": {
+   "data_key": "salud_embarazo_detalle",
+   "type": "text"
+  },
+  "Text Field 26": {
+   "data_key": "salud_embarazo_fecha_parto",
+   "type": "text"
+  },
+  "J PREGUNTA": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_t",
+   "type": "text"
+  },
+  "J1 PREGUNTA ": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_1",
+   "type": "text"
+  },
+  "J2 PREGUNTA": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_2",
+   "type": "text"
+  },
+  "J3 PREGUNTA": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_3",
+   "type": "text"
+  },
+  "J4 PREGUNTA": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_4",
+   "type": "text"
+  },
+  "J5 PREGUNTA": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_5",
+   "type": "text"
+  },
+  "J6 PREGUNTA": {
+   "data_key": "salud_piel_ojos_nariz_oidos_garganta_6",
+   "type": "text"
+  },
+  "K PREGUNTA": {
+   "data_key": "salud_respiratorias_t",
+   "type": "text"
+  },
+  "K1 PREGUNTA": {
+   "data_key": "salud_respiratorias_1",
+   "type": "text"
+  },
+  "K2 PREGUNTA": {
+   "data_key": "salud_respiratorias_2",
+   "type": "text"
+  },
+  "K3 PREGUNTA": {
+   "data_key": "salud_respiratorias_3",
+   "type": "text"
+  },
+  "K4 PREGUNTA": {
+   "data_key": "salud_respiratorias_4",
+   "type": "text"
+  },
+  "K5 PREGUNTA": {
+   "data_key": "salud_respiratorias_5",
+   "type": "text"
+  },
+  "K6 PREGUNTA ": {
+   "data_key": "salud_respiratorias_6",
+   "type": "text"
+  },
+  "L PREGUNTA": {
+   "data_key": "salud_cardiovasculares_t",
+   "type": "text"
+  },
+  "L1 PREGUNTA": {
+   "data_key": "salud_cardiovasculares_1",
+   "type": "text"
+  },
+  "L2 PREGUNTA": {
+   "data_key": "salud_cardiovasculares_2",
+   "type": "text"
+  },
+  "L3 PREGUNTA": {
+   "data_key": "salud_cardiovasculares_3",
+   "type": "text"
+  },
+  "L4 PREGUNTA": {
+   "data_key": "salud_cardiovasculares_4",
+   "type": "text"
+  },
+  "L5 PREGUNTA": {
+   "data_key": "salud_cardiovasculares_5",
+   "type": "text"
+  },
+  "L6 PREGUNTA": {
+   "data_key": "salud_cardiovasculares_6",
+   "type": "text"
+  },
+  "M PREGUNTA": {
+   "data_key": "salud_digestivas_t",
+   "type": "text"
+  },
+  "M1 PREGUNTA": {
+   "data_key": "salud_digestivas_1",
+   "type": "text"
+  },
+  "M2 PREGUNTA": {
+   "data_key": "salud_digestivas_2",
+   "type": "text"
+  },
+  "M3 PREGUNTA": {
+   "data_key": "salud_digestivas_3",
+   "type": "text"
+  },
+  "M4 PREGUNTA": {
+   "data_key": "salud_digestivas_4",
+   "type": "text"
+  },
+  "M5 PREGUNTA": {
+   "data_key": "salud_digestivas_5",
+   "type": "text"
+  },
+  "M6 PREGUNTA": {
+   "data_key": "salud_digestivas_6",
+   "type": "text"
+  },
+  "N PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_t",
+   "type": "text"
+  },
+  "N1 PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_1",
+   "type": "text"
+  },
+  "N2 PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_2",
+   "type": "text"
+  },
+  "N3 PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_3",
+   "type": "text"
+  },
+  "N4 PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_4",
+   "type": "text"
+  },
+  "N5 PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_5",
+   "type": "text"
+  },
+  "N6 PREGUNTA": {
+   "data_key": "salud_venereas_infecciosas_6",
+   "type": "text"
+  },
+  "O PREGUNTA ": {
+   "data_key": "salud_sida_hiv_t",
+   "type": "text"
+  },
+  "O1 PREGUNTA": {
+   "data_key": "salud_sida_hiv_1",
+   "type": "text"
+  },
+  "O2 PREGUNTA": {
+   "data_key": "salud_sida_hiv_2",
+   "type": "text"
+  },
+  "O3 PREGUNTA": {
+   "data_key": "salud_sida_hiv_3",
+   "type": "text"
+  },
+  "O4 PREGUNTA": {
+   "data_key": "salud_sida_hiv_4",
+   "type": "text"
+  },
+  "O5 PREGUNTA": {
+   "data_key": "salud_sida_hiv_5",
+   "type": "text"
+  },
+  "O6 PREGUNTA ": {
+   "data_key": "salud_sida_hiv_6",
+   "type": "text"
+  },
+  "P PREGUNTA": {
+   "data_key": "salud_renales_urinarias_t",
+   "type": "text"
+  },
+  "P1 PREGUNTA": {
+   "data_key": "salud_renales_urinarias_1",
+   "type": "text"
+  },
+  "P2 PREGUNTA": {
+   "data_key": "salud_renales_urinarias_2",
+   "type": "text"
+  },
+  "P3 PREGUNTA": {
+   "data_key": "salud_renales_urinarias_3",
+   "type": "text"
+  },
+  "P4 PREGUNTA": {
+   "data_key": "salud_renales_urinarias_4",
+   "type": "text"
+  },
+  "P5 PREGUNTA": {
+   "data_key": "salud_renales_urinarias_5",
+   "type": "text"
+  },
+  "P6 PREGUNTA": {
+   "data_key": "salud_renales_urinarias_6",
+   "type": "text"
+  },
+  "Q PREGUNTA": {
+   "data_key": "salud_endocrino_t",
+   "type": "text"
+  },
+  "Q1 PREGUNTA": {
+   "data_key": "salud_endocrino_1",
+   "type": "text"
+  },
+  "Q2 PREGUNTA": {
+   "data_key": "salud_endocrino_2",
+   "type": "text"
+  },
+  "Q3 PREGUNTA": {
+   "data_key": "salud_endocrino_3",
+   "type": "text"
+  },
+  "Q4 PREGUNTA": {
+   "data_key": "salud_endocrino_4",
+   "type": "text"
+  },
+  "Q5 PREGUNTA": {
+   "data_key": "salud_endocrino_5",
+   "type": "text"
+  },
+  "Q6 PREGUNTA": {
+   "data_key": "salud_endocrino_6",
+   "type": "text"
+  },
+  "R PREGUNTA": {
+   "data_key": "salud_osteomusculares_t",
+   "type": "text"
+  },
+  "R1 PREGUNTA": {
+   "data_key": "salud_osteomusculares_1",
+   "type": "text"
+  },
+  "R2 PREGUNTA": {
+   "data_key": "salud_osteomusculares_2",
+   "type": "text"
+  },
+  "R3 PREGUNTA": {
+   "data_key": "salud_osteomusculares_3",
+   "type": "text"
+  },
+  "R4 PREGUNTA": {
+   "data_key": "salud_osteomusculares_4",
+   "type": "text"
+  },
+  "R5 PREGUNTA": {
+   "data_key": "salud_osteomusculares_5",
+   "type": "text"
+  },
+  "R6 PREGUNTA": {
+   "data_key": "salud_osteomusculares_6",
+   "type": "text"
+  },
+  "S PREGUNTA": {
+   "data_key": "salud_nervioso_t",
+   "type": "text"
+  },
+  "S1 PREGUNTA": {
+   "data_key": "salud_nervioso_1",
+   "type": "text"
+  },
+  "S2 PREGUNTA": {
+   "data_key": "salud_nervioso_2",
+   "type": "text"
+  },
+  "S3 PREGUNTA": {
+   "data_key": "salud_nervioso_3",
+   "type": "text"
+  },
+  "S4 PREGUNTA": {
+   "data_key": "salud_nervioso_4",
+   "type": "text"
+  },
+  "S5 PREGUNTA": {
+   "data_key": "salud_nervioso_5",
+   "type": "text"
+  },
+  "S6 PREGUNTA ": {
+   "data_key": "salud_nervioso_6",
+   "type": "text"
+  },
+  "T PREGUNTA": {
+   "data_key": "salud_sangre_tumores_cancer_t",
+   "type": "text"
+  },
+  "T1 PREGUNTA": {
+   "data_key": "salud_sangre_tumores_cancer_1",
+   "type": "text"
+  },
+  "T2 PREGUNTA": {
+   "data_key": "salud_sangre_tumores_cancer_2",
+   "type": "text"
+  },
+  "T3 PREGUNTA": {
+   "data_key": "salud_sangre_tumores_cancer_3",
+   "type": "text"
+  },
+  "T4 PREGUNTA": {
+   "data_key": "salud_sangre_tumores_cancer_4",
+   "type": "text"
+  },
+  "T5 PREGUNTA": {
+   "data_key": "salud_sangre_tumores_cancer_5",
+   "type": "text"
+  },
+  "T6 PREGUNTA ": {
+   "data_key": "salud_sangre_tumores_cancer_6",
+   "type": "text"
+  },
+  "U PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_t",
+   "type": "text"
+  },
+  "U1 PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_1",
+   "type": "text"
+  },
+  "U2 PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_2",
+   "type": "text"
+  },
+  "U3 PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_3",
+   "type": "text"
+  },
+  "U4 PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_4",
+   "type": "text"
+  },
+  "U5 PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_5",
+   "type": "text"
+  },
+  "U6 PREGUNTA": {
+   "data_key": "salud_enfermedades_mujer_6",
+   "type": "text"
+  },
+  "V PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_t",
+   "type": "text"
+  },
+  "V1 PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_1",
+   "type": "text"
+  },
+  "V2 PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_2",
+   "type": "text"
+  },
+  "V3 PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_3",
+   "type": "text"
+  },
+  "V4 PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_4",
+   "type": "text"
+  },
+  "V5 PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_5",
+   "type": "text"
+  },
+  "V6 PREGUNTA": {
+   "data_key": "salud_defectos_fisicos_6",
+   "type": "text"
+  },
+  "W PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_t",
+   "type": "text"
+  },
+  "W1 PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_1",
+   "type": "text"
+  },
+  "W2 PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_2",
+   "type": "text"
+  },
+  "W3 PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_3",
+   "type": "text"
+  },
+  "W4 PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_4",
+   "type": "text"
+  },
+  "W5 PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_5",
+   "type": "text"
+  },
+  "W6 PREGUNTA": {
+   "data_key": "salud_otras_enfermedades_6",
+   "type": "text"
+  },
+  "TEXTO 46": {
+   "data_key": "salud_detalle_afirmativas",
+   "type": "text"
+  },
+  "sino 2": {
+   "data_key": "otros_seguros_mantiene_polizas",
+   "type": "text"
+  },
+  "Campo de texto 15": {
+   "data_key": "otros_seguros_t_compania",
+   "type": "text"
+  },
+  "Campo de texto 28": {
+   "data_key": "otros_seguros_t_poliza",
+   "type": "text"
+  },
+  "Campo de texto 3069": {
+   "data_key": "otros_seguros_t_plan",
+   "type": "text"
+  },
+  "Campo de texto 3067": {
+   "data_key": "otros_seguros_t_deducible",
+   "type": "text"
+  },
+  "VA1": {
+   "data_key": "otros_seguros_t_vigente_anulada",
+   "type": "text"
+  },
+  "Campo de texto 3072": {
+   "data_key": "otros_seguros_t_causa_anulacion",
+   "type": "text"
+  },
+  "Campo de texto 12": {
+   "data_key": "otros_seguros_1_compania",
+   "type": "text"
+  },
+  "Campo de texto 18": {
+   "data_key": "otros_seguros_1_poliza",
+   "type": "text"
+  },
+  "Campo de texto 24": {
+   "data_key": "otros_seguros_1_plan",
+   "type": "text"
+  },
+  "Campo de texto 21": {
+   "data_key": "otros_seguros_1_deducible",
+   "type": "text"
+  },
+  "VA2": {
+   "data_key": "otros_seguros_1_vigente_anulada",
+   "type": "text"
+  },
+  "Campo de texto 27": {
+   "data_key": "otros_seguros_1_causa_anulacion",
+   "type": "text"
+  },
+  "Campo de texto 3015": {
+   "data_key": "otros_seguros_2_compania",
+   "type": "text"
+  },
+  "Campo de texto 3046": {
+   "data_key": "otros_seguros_2_poliza",
+   "type": "text"
+  },
+  "Campo de texto 3049": {
+   "data_key": "otros_seguros_2_plan",
+   "type": "text"
+  },
+  "Campo de texto 3047": {
+   "data_key": "otros_seguros_2_deducible",
+   "type": "text"
+  },
+  "VA3": {
+   "data_key": "otros_seguros_2_vigente_anulada",
+   "type": "text"
+  },
+  "Campo de texto 3052": {
+   "data_key": "otros_seguros_2_causa_anulacion",
+   "type": "text"
+  },
+  "Campo de texto 3020": {
+   "data_key": "otros_seguros_3_compania",
+   "type": "text"
+  },
+  "Campo de texto 3053": {
+   "data_key": "otros_seguros_3_poliza",
+   "type": "text"
+  },
+  "Campo de texto 3056": {
+   "data_key": "otros_seguros_3_plan",
+   "type": "text"
+  },
+  "Campo de texto 3054": {
+   "data_key": "otros_seguros_3_deducible",
+   "type": "text"
+  },
+  "VA4": {
+   "data_key": "otros_seguros_3_vigente_anulada",
+   "type": "text"
+  },
+  "Campo de texto 3059": {
+   "data_key": "otros_seguros_3_causa_anulacion",
+   "type": "text"
+  },
+  "Campo de texto 3045": {
+   "data_key": "otros_seguros_4_compania",
+   "type": "text"
+  },
+  "Campo de texto 3060": {
+   "data_key": "otros_seguros_4_poliza",
+   "type": "text"
+  },
+  "Campo de texto 3063": {
+   "data_key": "otros_seguros_4_plan",
+   "type": "text"
+  },
+  "Campo de texto 3061": {
+   "data_key": "otros_seguros_4_deducible",
+   "type": "text"
+  },
+  "VA5": {
+   "data_key": "otros_seguros_4_vigente_anulada",
+   "type": "text"
+  },
+  "Campo de texto 3066": {
+   "data_key": "otros_seguros_4_causa_anulacion",
+   "type": "text"
+  },
+  "sino 3": {
+   "data_key": "otros_seguros_intencion_mantener",
+   "type": "text"
+  },
+  "sino 4": {
+   "data_key": "otros_seguros_solicitud_rechazada",
+   "type": "text"
+  },
+  "TEXTO 47": {
+   "data_key": "otros_seguros_solicitud_rechazada_explicar",
+   "type": "text"
+  },
+  "sino 5": {
+   "data_key": "otros_seguros_ha_reclamado",
+   "type": "text"
+  },
+  "Campo de texto 16": {
+   "data_key": "reclamacion_1_fecha",
+   "type": "text"
+  },
+  "Campo de texto 29": {
+   "data_key": "reclamacion_1_causa",
+   "type": "text"
+  },
+  "Campo de texto 3074": {
+   "data_key": "reclamacion_1_monto",
+   "type": "text"
+  },
+  "Campo de texto 3073": {
+   "data_key": "reclamacion_1_compania",
+   "type": "text"
+  },
+  "Campo de texto 13": {
+   "data_key": "reclamacion_2_fecha",
+   "type": "text"
+  },
+  "Campo de texto 19": {
+   "data_key": "reclamacion_2_causa",
+   "type": "text"
+  },
+  "Campo de texto 25": {
+   "data_key": "reclamacion_2_monto",
+   "type": "text"
+  },
+  "Campo de texto 22": {
+   "data_key": "reclamacion_2_compania",
+   "type": "text"
+  },
+  "Campo de texto 3048": {
+   "data_key": "reclamacion_3_fecha",
+   "type": "text"
+  },
+  "Campo de texto 3055": {
+   "data_key": "reclamacion_3_causa",
+   "type": "text"
+  },
+  "Campo de texto 3058": {
+   "data_key": "reclamacion_3_monto",
+   "type": "text"
+  },
+  "Campo de texto 3057": {
+   "data_key": "reclamacion_3_compania",
+   "type": "text"
+  },
+  "Campo de texto 3050": {
+   "data_key": "reclamacion_4_fecha",
+   "type": "text"
+  },
+  "Campo de texto 3062": {
+   "data_key": "reclamacion_4_causa",
+   "type": "text"
+  },
+  "Campo de texto 3065": {
+   "data_key": "reclamacion_4_monto",
+   "type": "text"
+  },
+  "Campo de texto 3064": {
+   "data_key": "reclamacion_4_compania",
+   "type": "text"
+  },
+  "Campo de texto 3051": {
+   "data_key": "reclamacion_5_fecha",
+   "type": "text"
+  },
+  "Campo de texto 3068": {
+   "data_key": "reclamacion_5_causa",
+   "type": "text"
+  },
+  "Campo de texto 3071": {
+   "data_key": "reclamacion_5_monto",
+   "type": "text"
+  },
+  "Campo de texto 3070": {
+   "data_key": "reclamacion_5_compania",
+   "type": "text"
+  },
+  "Campo de texto 17": {
+   "data_key": "reclamacion_6_fecha",
+   "type": "text"
+  },
+  "Campo de texto 30": {
+   "data_key": "reclamacion_6_causa",
+   "type": "text"
+  },
+  "Campo de texto 3088": {
+   "data_key": "reclamacion_6_monto",
+   "type": "text"
+  },
+  "Campo de texto 3087": {
+   "data_key": "reclamacion_6_compania",
+   "type": "text"
+  },
+  "Campo de texto 14": {
+   "data_key": "reclamacion_7_fecha",
+   "type": "text"
+  },
+  "Campo de texto 20": {
+   "data_key": "reclamacion_7_causa",
+   "type": "text"
+  },
+  "Campo de texto 26": {
+   "data_key": "reclamacion_7_monto",
+   "type": "text"
+  },
+  "Campo de texto 23": {
+   "data_key": "reclamacion_7_compania",
+   "type": "text"
+  },
+  "Campo de texto 3075": {
+   "data_key": "reclamacion_8_fecha",
+   "type": "text"
+  },
+  "Campo de texto 3078": {
+   "data_key": "reclamacion_8_causa",
+   "type": "text"
+  },
+  "Campo de texto 3080": {
+   "data_key": "reclamacion_8_monto",
+   "type": "text"
+  },
+  "Campo de texto 3079": {
+   "data_key": "reclamacion_8_compania",
+   "type": "text"
+  },
+  "Campo de texto 3076": {
+   "data_key": "reclamacion_9_fecha",
+   "type": "text"
+  },
+  "Campo de texto 3081": {
+   "data_key": "reclamacion_9_causa",
+   "type": "text"
+  },
+  "Campo de texto 3083": {
+   "data_key": "reclamacion_9_monto",
+   "type": "text"
+  },
+  "Campo de texto 3082": {
+   "data_key": "reclamacion_9_compania",
+   "type": "text"
+  },
+  "Campo de texto 3077": {
+   "data_key": "reclamacion_10_fecha",
+   "type": "text"
+  },
+  "Campo de texto 3084": {
+   "data_key": "reclamacion_10_causa",
+   "type": "text"
+  },
+  "Campo de texto 3086": {
+   "data_key": "reclamacion_10_monto",
+   "type": "text"
+  },
+  "Campo de texto 3085": {
+   "data_key": "reclamacion_10_compania",
+   "type": "text"
+  },
+  "CR372": {
+   "data_key": "cobertura_fecha_efectividad_dia1",
+   "type": "text"
+  },
+  "CR371": {
+   "data_key": "cobertura_fecha_efectividad_dia2",
+   "type": "text"
+  },
+  "CR370": {
+   "data_key": "cobertura_fecha_efectividad_mes1",
+   "type": "text"
+  },
+  "CR369": {
+   "data_key": "cobertura_fecha_efectividad_mes2",
+   "type": "text"
+  },
+  "CR368": {
+   "data_key": "cobertura_fecha_efectividad_anio1",
+   "type": "text"
+  },
+  "CR367": {
+   "data_key": "cobertura_fecha_efectividad_anio2",
+   "type": "text"
+  },
+  "CR366": {
+   "data_key": "cobertura_fecha_efectividad_anio3",
+   "type": "text"
+  },
+  "CR201": {
+   "data_key": "cobertura_fecha_efectividad_anio4",
+   "type": "text"
+  },
+  "PLAN": {
+   "data_key": "cobertura_plan",
+   "type": "text"
+  },
+  " ": {
+   "data_key": "cobertura_opcion",
+   "type": "text"
+  },
+  "Campo de texto 32": {
+   "data_key": "historial_esposo_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 36": {
+   "data_key": "historial_esposo_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 30102": {
+   "data_key": "historial_esposo_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 30101": {
+   "data_key": "historial_esposo_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 31": {
+   "data_key": "historial_madre_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 33": {
+   "data_key": "historial_madre_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 35": {
+   "data_key": "historial_madre_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 34": {
+   "data_key": "historial_madre_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 3089": {
+   "data_key": "historial_padre_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 3092": {
+   "data_key": "historial_padre_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 3094": {
+   "data_key": "historial_padre_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 3093": {
+   "data_key": "historial_padre_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 3090": {
+   "data_key": "historial_hermanos_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 3095": {
+   "data_key": "historial_hermanos_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 3097": {
+   "data_key": "historial_hermanos_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 3096": {
+   "data_key": "historial_hermanos_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 30103": {
+   "data_key": "historial_5_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 3091": {
+   "data_key": "historial_5_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 3098": {
+   "data_key": "historial_5_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 30100": {
+   "data_key": "historial_5_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 3099": {
+   "data_key": "historial_5_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 30105": {
+   "data_key": "historial_6_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 30104": {
+   "data_key": "historial_6_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 30106": {
+   "data_key": "historial_6_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 30108": {
+   "data_key": "historial_6_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 30107": {
+   "data_key": "historial_6_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 301011": {
+   "data_key": "historial_7_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 30109": {
+   "data_key": "historial_7_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 30111": {
+   "data_key": "historial_7_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 30113": {
+   "data_key": "historial_7_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 30112": {
+   "data_key": "historial_7_fecha_causa_muerte",
+   "type": "text"
+  },
+  "Campo de texto 301012": {
+   "data_key": "historial_8_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 301010": {
+   "data_key": "historial_8_edad_vive",
+   "type": "text"
+  },
+  "Campo de texto 301013": {
+   "data_key": "historial_8_estado_salud",
+   "type": "text"
+  },
+  "Campo de texto 301015": {
+   "data_key": "historial_8_edad_fallecio",
+   "type": "text"
+  },
+  "Campo de texto 301014": {
+   "data_key": "historial_8_fecha_causa_muerte",
+   "type": "text"
+  },
+  "TEXTO 116": {
+   "data_key": "solicitante_nombre_completo",
+   "type": "text"
+  },
+  "TEXTO 184": {
+   "data_key": "asegurado_nombre_si_distinto",
+   "type": "text"
+  },
+  "TEXTO 185": {
+   "data_key": "corredor_nombre",
+   "type": "text"
+  },
+  "TEXTO 186": {
+   "data_key": "corredor_licencia",
+   "type": "text"
+  },
+  "Campo de firma 14": {
+   "data_key": null,
+   "type": "manual"
+  },
+  "Campo de firma 15": {
+   "data_key": null,
+   "type": "manual"
+  },
+  "Campo de firma 16": {
+   "data_key": null,
+   "type": "manual"
+  }
+ }
+}

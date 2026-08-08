@@ -1,0 +1,155 @@
+{
+  "template": "aseguradoras/sura/devolucion_prima/templates/devolucion_prima.pdf",
+  "page_width": 612,
+  "page_height": 1008,
+  "font_size": 8,
+  "fields": [
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Fecha (____/____/____) al inicio del formulario - no hay data_key en el schema para esta fecha del formulario; la completa el corredor/cliente a mano"
+    },
+    {
+      "data_key": "ach_telefono",
+      "page": 1,
+      "x": 201,
+      "y": 801,
+      "type": "text",
+      "note": "Telefono - fila de casilleros individuales, se escribe como un solo string empezando en el primer casillero"
+    },
+    {
+      "data_key": "ach_tipo_cuenta",
+      "page": 1,
+      "type": "checkbox_mark",
+      "note": "Tipo de cuenta - casilleros grandes (glifos cuadrados vacios), se marca X dentro del casillero",
+      "options": {
+        "corriente": { "x": 172, "y": 737 },
+        "ahorro": { "x": 232, "y": 737 }
+      }
+    },
+    {
+      "data_key": "ach_numero_cuenta",
+      "page": 1,
+      "x": 332,
+      "y": 737,
+      "type": "text",
+      "note": "No. Cuenta - fila de casilleros individuales, texto simple empezando en el primer casillero"
+    },
+    {
+      "data_key": "ach_entidad_bancaria",
+      "page": 1,
+      "x": 120,
+      "y": 713.9,
+      "type": "text"
+    },
+    {
+      "data_key": "ach_titular_cuenta",
+      "page": 1,
+      "x": 133,
+      "y": 696.6,
+      "type": "text"
+    },
+    {
+      "data_key": "ach_cedula_o_ruc",
+      "page": 1,
+      "x": 110,
+      "y": 679.3,
+      "type": "text"
+    },
+    {
+      "data_key": "ach_correo",
+      "page": 1,
+      "x": 76,
+      "y": 662,
+      "type": "text"
+    },
+    {
+      "data_key": "ach_intl_titular_cuenta",
+      "page": 1,
+      "x": 133,
+      "y": 616.1,
+      "type": "text",
+      "note": "Seccion Transferencia Internacional - Titular de la cuenta"
+    },
+    {
+      "data_key": "ach_intl_direccion",
+      "page": 1,
+      "x": 193,
+      "y": 598.8,
+      "font_size": 7,
+      "type": "text",
+      "note": "Direccion (incluya Pais y Ciudad)"
+    },
+    {
+      "data_key": "ach_intl_banco_beneficiario",
+      "page": 1,
+      "x": 128,
+      "y": 581.6,
+      "type": "text"
+    },
+    {
+      "data_key": "ach_intl_numero_cuenta_iban",
+      "page": 1,
+      "x": 196,
+      "y": 564.3,
+      "font_size": 7,
+      "type": "text",
+      "note": "Numero de cuenta (IBAN/CLABE)"
+    },
+    {
+      "data_key": "ach_intl_swift",
+      "page": 1,
+      "x": 67,
+      "y": 540,
+      "type": "text",
+      "note": "Swift (transferencia internacional) - fila de casilleros, texto simple"
+    },
+    {
+      "data_key": "ach_intl_aba",
+      "page": 1,
+      "x": 67,
+      "y": 510.2,
+      "type": "text",
+      "note": "ABA (transferencia internacional) - fila de casilleros, texto simple"
+    },
+    {
+      "data_key": "ach_intl_banco_intermediario",
+      "page": 1,
+      "x": 183,
+      "y": 487.2,
+      "type": "text",
+      "note": "Banco intermediario (si aplica)"
+    },
+    {
+      "data_key": "ach_intl_banco_intermediario_swift",
+      "page": 1,
+      "x": 67,
+      "y": 463.2,
+      "type": "text",
+      "note": "Swift del banco intermediario - fila de casilleros, texto simple"
+    },
+    {
+      "data_key": "ach_intl_banco_intermediario_aba",
+      "page": 1,
+      "x": 67,
+      "y": 433.2,
+      "type": "text",
+      "note": "ABA del banco intermediario - fila de casilleros, texto simple"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Firma - manuscrita, no se autocompleta"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 134,
+      "y": 358.4,
+      "type": "text",
+      "note": "Cedula o Pasaporte (seccion de firma) - dato generico del cliente, redundante con Cedula o RUC de arriba"
+    }
+  ]
+}

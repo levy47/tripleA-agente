@@ -1,0 +1,3305 @@
+{
+ "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud de Seguro Medico' de Blue Cross Blue Shield Panama, suscrito por Cia. Internacional de Seguros S.A.) que no forman parte del intake estandar de WhatsApp en schema_cliente.json (mappings/schema_cliente.json). \n\nADVERTENCIA GENERAL SOBRE BOTONES DE RADIO (~135 grupos 'GroupN' + 1 checkbox 'Check Box136'): el PDF implementa CASI TODOS los pares/grupos Si/No (incluidas las 27 preguntas x 3 personas del Cuestionario de Salud = 81 grupos, mas ~54 grupos adicionales en otras secciones) como un UNICO campo AcroForm de tipo boton de radio con 2 (o mas) 'kids'/estados de exportacion, en vez de dos casillas independientes (como si hace, por ejemplo, la aseguradora Internacional de Seguros en su mapping de Vida). El helper de llenado src/fill_pdf.py (que NO se modifico) solo soporta, para type=checkbox_group, UN par (value, on_state) por entrada de mapping.json, y como los nombres de campo PDF son unicos (json no permite claves duplicadas), es IMPOSIBLE representar 'Si' y 'No' como dos entradas separadas para el mismo campo compartido. Usar checkbox_group de todas formas dejaria las respuestas 'No' invisibles (el campo quedaria en blanco/'/Off', indistinguible de 'no contestado'), lo cual es inaceptable en un cuestionario medico de suscripcion. Por eso, siguiendo el MISMO patron ya usado en este repositorio para casos identicos (ver 'asegurado_sexo' y 'porcentaje_incremento_vida_creciente' en aseguradoras/internacional_de_seguros/vida/mappings/schema_solicitud_extra.json), estos campos se mapearon con type='text' en mapping.json, y el VALOR que datos.json debe proveer es el ESTADO DE EXPORTACION LITERAL del PDF (ej. '/Opción1', '/Opción2'... tal como lo reporta pypdf; en varios casos estos textos se decodifican con un caracter no estandar por como el PDF codifica los nombres, visible como 'Opci髇1' en Python/JSON -- eso es CORRECTO y esperado, cópielo tal cual desde el campo 'valores_pdf_literales' de cada data_key abajo, no lo 'corrija'). Cada data_key de este tipo documenta abajo su 'valores_semanticos' (si/no, m/f, etc.) y el 'valores_pdf_literales' correspondiente (diccionario semantico -> string literal exacto a usar en datos.json). \n\nEl campo 'Check Box136' (Recargo, pagina 8) SI es un checkbox independiente real (un solo estado '/Sí', sin 'No' contrapuesto) y se documenta con checkbox_group normal. \n\nSeccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (pagina 8): se dejaron todas como type=manual (no se autocompletan) porque son datos que la aseguradora completa DESPUES de recibir y evaluar la solicitud (post-emision/suscripcion), no datos de intake del Prospecto/Contratante/Corredor. \n\nLa pagina 7 (firmas de declaracion) tenia un defecto en el PDF original: sus 40 campos AcroForm existian pero no estaban enlazados al arreglo /Annots de esa pagina, por lo que pypdf.PdfWriter.append() (usado por fill_pdf.py) los descartaba silenciosamente al clonar el documento, dejandolos imposibles de llenar sin importar el mapping.json. Se reparo el archivo aseguradoras/blue_cross_internacional_seguros/salud/templates/solicitud_seguro_medico.pdf agregando esas 40 widgets al /Annots de la pagina 7 (unico cambio hecho al PDF; se verifico visualmente que el resto de las 8 paginas no cambio en absoluto). \n\nDuplicados: se detectaron 7 campos AcroForm en la pagina 3 (antes de la reparacion) que son widgets 'huerfanos' superpuestos casi exactamente (offset menor a 1pt) encima de otros campos ya mapeados ('Quién 4', 'Nombre 2', 'Universidad 2', 'Estado 2', 'No PólizaSolicitud 2', 'Quién 5', 'Nombre 3'); se dejaron como type=manual para evitar texto duplicado/solapado visualmente.",
+ "campos": {
+  "prospecto_primer_apellido": {
+   "tipo": "string",
+   "descripcion": "Primer apellido del Prospecto Asegurado."
+  },
+  "prospecto_segundo_apellido": {
+   "tipo": "string",
+   "descripcion": "Segundo apellido del Prospecto Asegurado."
+  },
+  "prospecto_apellido_casada": {
+   "tipo": "string",
+   "descripcion": "Apellido de casada del Prospecto Asegurado (si aplica)."
+  },
+  "prospecto_primer_nombre": {
+   "tipo": "string",
+   "descripcion": "Primer nombre del Prospecto Asegurado."
+  },
+  "prospecto_segundo_nombre": {
+   "tipo": "string",
+   "descripcion": "Segundo nombre del Prospecto Asegurado."
+  },
+  "prospecto_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Cedula o pasaporte del Prospecto Asegurado."
+  },
+  "prospecto_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Dia de nacimiento del Prospecto. Formato: DD."
+  },
+  "prospecto_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Mes de nacimiento del Prospecto. Formato: MM."
+  },
+  "prospecto_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Anio de nacimiento del Prospecto (4 digitos). Formato: AAAA."
+  },
+  "prospecto_edad": {
+   "tipo": "string",
+   "descripcion": "Edad del Prospecto."
+  },
+  "prospecto_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Sexo del Prospecto: 'Sexo: M[] F[]'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group1') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "m",
+    "f"
+   ],
+   "valores_pdf_literales": {
+    "m": "/Opci髇1",
+    "f": "/Opci髇2"
+   }
+  },
+  "prospecto_extranjero": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Respuesta a 'Extranjero:' del Prospecto (orden impreso en el PDF: No primero, Si segundo). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group2') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "no",
+    "si"
+   ],
+   "valores_pdf_literales": {
+    "no": "/Opci髇1",
+    "si": "/Opci髇2"
+   }
+  },
+  "prospecto_pais_origen": {
+   "tipo": "string",
+   "descripcion": "Pais de Origen del Prospecto (si es extranjero)."
+  },
+  "prospecto_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Pais de Residencia del Prospecto."
+  },
+  "prospecto_nacionalidades": {
+   "tipo": "string",
+   "descripcion": "Nacionalidad(es) del Prospecto."
+  },
+  "prospecto_anios_residencia_panama": {
+   "tipo": "string",
+   "descripcion": "Anios de Residencia en Panama del Prospecto."
+  },
+  "prospecto_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estado Civil del Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group3') con 6 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "casado",
+    "divorciado",
+    "soltero",
+    "separado",
+    "unido",
+    "viudo"
+   ],
+   "valores_pdf_literales": {
+    "casado": "/Opci髇1",
+    "divorciado": "/Opci髇2",
+    "soltero": "/Opci髇3",
+    "separado": "/Opci髇4",
+    "unido": "/Opci髇5",
+    "viudo": "/Opci髇6"
+   }
+  },
+  "prospecto_estatura": {
+   "tipo": "string",
+   "descripcion": "Estatura del Prospecto (numero; unidad la indica prospecto_unidad_estatura)."
+  },
+  "prospecto_unidad_estatura": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Unidad de la estatura del Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group4') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "mts",
+    "pulg"
+   ],
+   "valores_pdf_literales": {
+    "mts": "/Opci髇1",
+    "pulg": "/Opci髇2"
+   }
+  },
+  "prospecto_peso": {
+   "tipo": "string",
+   "descripcion": "Peso del Prospecto (numero; unidad la indica prospecto_unidad_peso)."
+  },
+  "prospecto_unidad_peso": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Unidad del peso del Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group5') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "lbs",
+    "kgs"
+   ],
+   "valores_pdf_literales": {
+    "lbs": "/Opci髇1",
+    "kgs": "/Opci髇2"
+   }
+  },
+  "prospecto_empresa": {
+   "tipo": "string",
+   "descripcion": "Empresa donde trabaja el Prospecto."
+  },
+  "prospecto_no_empleado": {
+   "tipo": "string",
+   "descripcion": "Numero de empleado del Prospecto."
+  },
+  "prospecto_actividad_economica_empresa": {
+   "tipo": "string",
+   "descripcion": "Actividad economica de la empresa del Prospecto."
+  },
+  "prospecto_fecha_inicio_empleo_dia": {
+   "tipo": "string",
+   "descripcion": "Dia de inicio de empleo del Prospecto. Formato: DD."
+  },
+  "prospecto_fecha_inicio_empleo_mes": {
+   "tipo": "string",
+   "descripcion": "Mes de inicio de empleo del Prospecto. Formato: MM."
+  },
+  "prospecto_fecha_inicio_empleo_anio": {
+   "tipo": "string",
+   "descripcion": "Anio de inicio de empleo del Prospecto (2 digitos). Formato: AA."
+  },
+  "prospecto_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Ocupacion del Prospecto."
+  },
+  "prospecto_otras_ocupaciones": {
+   "tipo": "string",
+   "descripcion": "Otras ocupaciones del Prospecto."
+  },
+  "prospecto_profesion": {
+   "tipo": "string",
+   "descripcion": "Profesion del Prospecto."
+  },
+  "prospecto_descripcion_funciones": {
+   "tipo": "string",
+   "descripcion": "Descripcion de funciones del Prospecto."
+  },
+  "prospecto_oficina_provincia": {
+   "tipo": "string",
+   "descripcion": "Provincia de la direccion de OFICINA del Prospecto."
+  },
+  "prospecto_oficina_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Distrito / Corregimiento de la direccion de OFICINA del Prospecto."
+  },
+  "prospecto_oficina_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Urbanizacion de la direccion de OFICINA del Prospecto."
+  },
+  "prospecto_oficina_calle": {
+   "tipo": "string",
+   "descripcion": "Calle de la direccion de OFICINA del Prospecto."
+  },
+  "prospecto_oficina_edificio": {
+   "tipo": "string",
+   "descripcion": "Edificio de la direccion de OFICINA del Prospecto."
+  },
+  "prospecto_oficina_email": {
+   "tipo": "string",
+   "descripcion": "E-mail de OFICINA del Prospecto."
+  },
+  "prospecto_oficina_telefono": {
+   "tipo": "string",
+   "descripcion": "Telefono de OFICINA del Prospecto."
+  },
+  "prospecto_ingreso_anual_actual": {
+   "tipo": "string",
+   "descripcion": "Ingreso Anual Aproximado B/. de la Ocupacion Actual del Prospecto."
+  },
+  "prospecto_ingreso_anual_otras_ocupaciones": {
+   "tipo": "string",
+   "descripcion": "Ingreso Anual Aproximado B/. de Otras Ocupaciones del Prospecto."
+  },
+  "prospecto_pais_tributa_1": {
+   "tipo": "string",
+   "descripcion": "Pais(es) donde Tributa por sus Ingresos el Prospecto (1er pais listado)."
+  },
+  "prospecto_pais_tributa_2": {
+   "tipo": "string",
+   "descripcion": "Pais(es) donde Tributa por sus Ingresos el Prospecto (2do pais listado)."
+  },
+  "prospecto_pais_tributa_3": {
+   "tipo": "string",
+   "descripcion": "Pais(es) donde Tributa por sus Ingresos el Prospecto (3er pais listado)."
+  },
+  "prospecto_residencia_provincia": {
+   "tipo": "string",
+   "descripcion": "Provincia de la direccion RESIDENCIAL/personal del Prospecto."
+  },
+  "prospecto_residencia_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Distrito / Corregimiento de la direccion RESIDENCIAL del Prospecto."
+  },
+  "prospecto_residencia_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Urbanizacion de la direccion RESIDENCIAL del Prospecto."
+  },
+  "prospecto_residencia_calle": {
+   "tipo": "string",
+   "descripcion": "Calle de la direccion RESIDENCIAL del Prospecto."
+  },
+  "prospecto_residencia_edificio": {
+   "tipo": "string",
+   "descripcion": "Edificio de la direccion RESIDENCIAL del Prospecto."
+  },
+  "prospecto_residencia_apto_casa": {
+   "tipo": "string",
+   "descripcion": "Apto./Casa No. de la direccion RESIDENCIAL del Prospecto."
+  },
+  "prospecto_residencia_telefono": {
+   "tipo": "string",
+   "descripcion": "Telefono Residencial del Prospecto."
+  },
+  "prospecto_celular": {
+   "tipo": "string",
+   "descripcion": "Celular del Prospecto."
+  },
+  "prospecto_email_personal": {
+   "tipo": "string",
+   "descripcion": "E-mail Personal del Prospecto."
+  },
+  "dependiente_conyuge_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge de la tabla de Dependientes: Nombre."
+  },
+  "dependiente_conyuge_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: Cedula/Pasaporte."
+  },
+  "dependiente_conyuge_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: Sexo M/F (texto libre, no checkbox)."
+  },
+  "dependiente_conyuge_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: dia de nacimiento. Formato: DD."
+  },
+  "dependiente_conyuge_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: mes de nacimiento. Formato: MM."
+  },
+  "dependiente_conyuge_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: anio de nacimiento. Formato: AA."
+  },
+  "dependiente_conyuge_edad": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: edad."
+  },
+  "dependiente_conyuge_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: estatura (unidad = dependientes_unidad_estatura, compartida por toda la tabla)."
+  },
+  "dependiente_conyuge_peso": {
+   "tipo": "string",
+   "descripcion": "Fila Conyuge: peso (unidad = dependientes_unidad_peso, compartida por toda la tabla)."
+  },
+  "dependiente_hijo1_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1 de la tabla de Dependientes: Nombre."
+  },
+  "dependiente_hijo1_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: Cedula/Pasaporte."
+  },
+  "dependiente_hijo1_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: Sexo M/F (texto libre)."
+  },
+  "dependiente_hijo1_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: dia de nacimiento. Formato: DD."
+  },
+  "dependiente_hijo1_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: mes de nacimiento. Formato: MM."
+  },
+  "dependiente_hijo1_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: anio de nacimiento. Formato: AA."
+  },
+  "dependiente_hijo1_edad": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: edad."
+  },
+  "dependiente_hijo1_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: estatura (unidad compartida, ver dependientes_unidad_estatura)."
+  },
+  "dependiente_hijo1_peso": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #1: peso (unidad compartida, ver dependientes_unidad_peso)."
+  },
+  "dependiente_hijo2_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2 de la tabla de Dependientes: Nombre."
+  },
+  "dependiente_hijo2_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: Cedula/Pasaporte."
+  },
+  "dependiente_hijo2_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: Sexo M/F (texto libre)."
+  },
+  "dependiente_hijo2_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: dia de nacimiento. Formato: DD."
+  },
+  "dependiente_hijo2_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: mes de nacimiento. Formato: MM."
+  },
+  "dependiente_hijo2_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: anio de nacimiento. Formato: AA."
+  },
+  "dependiente_hijo2_edad": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: edad."
+  },
+  "dependiente_hijo2_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: estatura (unidad compartida, ver dependientes_unidad_estatura)."
+  },
+  "dependiente_hijo2_peso": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #2: peso (unidad compartida, ver dependientes_unidad_peso)."
+  },
+  "dependiente_hijo3_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3 de la tabla de Dependientes: Nombre."
+  },
+  "dependiente_hijo3_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: Cedula/Pasaporte."
+  },
+  "dependiente_hijo3_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: Sexo M/F (texto libre)."
+  },
+  "dependiente_hijo3_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: dia de nacimiento. Formato: DD."
+  },
+  "dependiente_hijo3_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: mes de nacimiento. Formato: MM."
+  },
+  "dependiente_hijo3_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: anio de nacimiento. Formato: AA."
+  },
+  "dependiente_hijo3_edad": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: edad."
+  },
+  "dependiente_hijo3_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: estatura (unidad compartida, ver dependientes_unidad_estatura)."
+  },
+  "dependiente_hijo3_peso": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #3: peso (unidad compartida, ver dependientes_unidad_peso)."
+  },
+  "dependiente_hijo4_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4 de la tabla de Dependientes: Nombre."
+  },
+  "dependiente_hijo4_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: Cedula/Pasaporte."
+  },
+  "dependiente_hijo4_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: Sexo M/F (texto libre)."
+  },
+  "dependiente_hijo4_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: dia de nacimiento. Formato: DD."
+  },
+  "dependiente_hijo4_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: mes de nacimiento. Formato: MM."
+  },
+  "dependiente_hijo4_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: anio de nacimiento. Formato: AA."
+  },
+  "dependiente_hijo4_edad": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: edad."
+  },
+  "dependiente_hijo4_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: estatura (unidad compartida, ver dependientes_unidad_estatura)."
+  },
+  "dependiente_hijo4_peso": {
+   "tipo": "string",
+   "descripcion": "Fila Hijo/a #4: peso (unidad compartida, ver dependientes_unidad_peso)."
+  },
+  "dependientes_unidad_estatura": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Unidad de estatura compartida por TODA la tabla de Dependientes (encabezado de columna). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group6') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "mts",
+    "pulg"
+   ],
+   "valores_pdf_literales": {
+    "mts": "/Opci髇1",
+    "pulg": "/Opci髇2"
+   }
+  },
+  "dependientes_unidad_peso": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Unidad de peso compartida por TODA la tabla de Dependientes (encabezado de columna). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group7') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "lbs",
+    "kgs"
+   ],
+   "valores_pdf_literales": {
+    "lbs": "/Opci髇1",
+    "kgs": "/Opci髇2"
+   }
+  },
+  "conyuge_extranjero": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Respuesta a 'Extranjero:' del Conyuge (orden impreso: No primero, Si segundo). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group8') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "no",
+    "si"
+   ],
+   "valores_pdf_literales": {
+    "no": "/Opci髇1",
+    "si": "/Opci髇2"
+   }
+  },
+  "conyuge_pais_origen": {
+   "tipo": "string",
+   "descripcion": "Pais de Origen del Conyuge."
+  },
+  "conyuge_nacionalidades": {
+   "tipo": "string",
+   "descripcion": "Nacionalidad(es) del Conyuge."
+  },
+  "conyuge_anios_residencia_panama": {
+   "tipo": "string",
+   "descripcion": "Anios de Residencia en Panama del Conyuge (nombre de campo del PDF con la palabra 'residencia' truncada a 'redencia')."
+  },
+  "conyuge_empresa": {
+   "tipo": "string",
+   "descripcion": "Empresa donde trabaja el Conyuge."
+  },
+  "conyuge_anios_empleo": {
+   "tipo": "string",
+   "descripcion": "Anios en el Empleo del Conyuge."
+  },
+  "conyuge_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Ocupacion del Conyuge."
+  },
+  "conyuge_profesion": {
+   "tipo": "string",
+   "descripcion": "Profesion del Conyuge."
+  },
+  "conyuge_celular": {
+   "tipo": "string",
+   "descripcion": "Celular del Conyuge."
+  },
+  "conyuge_descripcion_funciones": {
+   "tipo": "string",
+   "descripcion": "Descripcion de Funciones del Conyuge."
+  },
+  "conyuge_email_oficina": {
+   "tipo": "string",
+   "descripcion": "E-mail de oficina del Conyuge."
+  },
+  "conyuge_email_personal": {
+   "tipo": "string",
+   "descripcion": "E-mail personal del Conyuge."
+  },
+  "conyuge_provincia": {
+   "tipo": "string",
+   "descripcion": "Provincia del Conyuge."
+  },
+  "conyuge_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Distrito / Corregimiento del Conyuge."
+  },
+  "medico_bc_1_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 1 del Cuestionario de Salud: Problemas cerebrovasculares, migranas o dolores de cabeza. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group9') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_1_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 1 del Cuestionario de Salud: Problemas cerebrovasculares, migranas o dolores de cabeza. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group10') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_1_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 1 del Cuestionario de Salud: Problemas cerebrovasculares, migranas o dolores de cabeza. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group11') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_2_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 2 del Cuestionario de Salud: Epilepsia, convulsiones, ataque, desmayo o perdida de conocimiento. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group12') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_2_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 2 del Cuestionario de Salud: Epilepsia, convulsiones, ataque, desmayo o perdida de conocimiento. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group13') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_2_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 2 del Cuestionario de Salud: Epilepsia, convulsiones, ataque, desmayo o perdida de conocimiento. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group14') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_3_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 3 del Cuestionario de Salud: Problemas en los oidos o mala audicion, vista, vision defectuosa, cataratas, desprendimiento de retina/cornea. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group15') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_3_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 3 del Cuestionario de Salud: Problemas en los oidos o mala audicion, vista, vision defectuosa, cataratas, desprendimiento de retina/cornea. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group16') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_3_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 3 del Cuestionario de Salud: Problemas en los oidos o mala audicion, vista, vision defectuosa, cataratas, desprendimiento de retina/cornea. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group17') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_4_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 4 del Cuestionario de Salud: Problemas del sistema respiratorio, tuberculosis, asma, enfisema o fiebre reumatica. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group18') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_4_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 4 del Cuestionario de Salud: Problemas del sistema respiratorio, tuberculosis, asma, enfisema o fiebre reumatica. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group19') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_4_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 4 del Cuestionario de Salud: Problemas del sistema respiratorio, tuberculosis, asma, enfisema o fiebre reumatica. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group20') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_5_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 5 del Cuestionario de Salud: Problemas del corazon (cardiovascular), circulatorio, dolores en el pecho, presion arterial, angina, flebitis. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group21') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_5_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 5 del Cuestionario de Salud: Problemas del corazon (cardiovascular), circulatorio, dolores en el pecho, presion arterial, angina, flebitis. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group22') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_5_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 5 del Cuestionario de Salud: Problemas del corazon (cardiovascular), circulatorio, dolores en el pecho, presion arterial, angina, flebitis. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group23') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_6_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 6 del Cuestionario de Salud: Problemas del sistema digestivo (estomago, esofago, intestinos, higado, vesicula, pancreas, colitis, hernia, diverticulitis, hemorroides, ulceras, hepatitis, sangrado). Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group24') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_6_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 6 del Cuestionario de Salud: Problemas del sistema digestivo (estomago, esofago, intestinos, higado, vesicula, pancreas, colitis, hernia, diverticulitis, hemorroides, ulceras, hepatitis, sangrado). Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group25') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_6_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 6 del Cuestionario de Salud: Problemas del sistema digestivo (estomago, esofago, intestinos, higado, vesicula, pancreas, colitis, hernia, diverticulitis, hemorroides, ulceras, hepatitis, sangrado). Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group26') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_7_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 7 del Cuestionario de Salud: Problemas en los rinones, vejiga, calculos renales, infeccion renal/urinaria, sangre en orina. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group27') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_7_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 7 del Cuestionario de Salud: Problemas en los rinones, vejiga, calculos renales, infeccion renal/urinaria, sangre en orina. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group28') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_7_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 7 del Cuestionario de Salud: Problemas en los rinones, vejiga, calculos renales, infeccion renal/urinaria, sangre en orina. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group29') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_8_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 8 del Cuestionario de Salud: Problemas en columna vertebral, dolores de espalda, esclerosis multiple o hernia discal. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group30') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_8_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 8 del Cuestionario de Salud: Problemas en columna vertebral, dolores de espalda, esclerosis multiple o hernia discal. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group31') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_8_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 8 del Cuestionario de Salud: Problemas en columna vertebral, dolores de espalda, esclerosis multiple o hernia discal. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group32') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_9_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 9 del Cuestionario de Salud: Enfermedades de las articulaciones, lupus, hinchazon, artritis, gota o reumatismo. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group33') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_9_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 9 del Cuestionario de Salud: Enfermedades de las articulaciones, lupus, hinchazon, artritis, gota o reumatismo. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group34') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_9_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 9 del Cuestionario de Salud: Enfermedades de las articulaciones, lupus, hinchazon, artritis, gota o reumatismo. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group35') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_10_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 10 del Cuestionario de Salud: Cancer, quistes, tumor, leucemia, problemas en la sangre, diabetes, anemia falciforme, hemorragias, hemofilia o anemia. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group36') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_10_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 10 del Cuestionario de Salud: Cancer, quistes, tumor, leucemia, problemas en la sangre, diabetes, anemia falciforme, hemorragias, hemofilia o anemia. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group37') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_10_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 10 del Cuestionario de Salud: Cancer, quistes, tumor, leucemia, problemas en la sangre, diabetes, anemia falciforme, hemorragias, hemofilia o anemia. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group38') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_11_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 11 del Cuestionario de Salud: Trastornos de la piel. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group39') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_11_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 11 del Cuestionario de Salud: Trastornos de la piel. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group40') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_11_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 11 del Cuestionario de Salud: Trastornos de la piel. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group41') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_12_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 12 del Cuestionario de Salud: Alteracion de la glandula tiroides (bocio, nodulos, hipo/hipertiroidismo). Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group42') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_12_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 12 del Cuestionario de Salud: Alteracion de la glandula tiroides (bocio, nodulos, hipo/hipertiroidismo). Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group43') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_12_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 12 del Cuestionario de Salud: Alteracion de la glandula tiroides (bocio, nodulos, hipo/hipertiroidismo). Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group44') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_13_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 13 del Cuestionario de Salud: Enfermedad, lesion o malformacion congenita, hereditaria, genetica o adquirida al nacimiento. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group45') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_13_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 13 del Cuestionario de Salud: Enfermedad, lesion o malformacion congenita, hereditaria, genetica o adquirida al nacimiento. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group46') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_13_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 13 del Cuestionario de Salud: Enfermedad, lesion o malformacion congenita, hereditaria, genetica o adquirida al nacimiento. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group47') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_14_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 14 del Cuestionario de Salud: Alteracion inmunologica diagnosticada. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group48') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_14_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 14 del Cuestionario de Salud: Alteracion inmunologica diagnosticada. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group49') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_14_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 14 del Cuestionario de Salud: Alteracion inmunologica diagnosticada. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group50') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_15_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 15 del Cuestionario de Salud: Algun tipo de alergia. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group51') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_15_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 15 del Cuestionario de Salud: Algun tipo de alergia. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group52') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_15_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 15 del Cuestionario de Salud: Algun tipo de alergia. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group53') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_16_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 16 del Cuestionario de Salud: Trastorno mental, ansiedad, depresion, trastorno deficit atencional. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group54') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_16_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 16 del Cuestionario de Salud: Trastorno mental, ansiedad, depresion, trastorno deficit atencional. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group55') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_16_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 16 del Cuestionario de Salud: Trastorno mental, ansiedad, depresion, trastorno deficit atencional. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group56') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_17_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 17 del Cuestionario de Salud: Enfermedades infectocontagiosas, toxoplasmosis, meningitis, herpes, dengue, chancro, sifilis, gonorrea, VPH, SIDA o transmision sexual. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group57') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_17_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 17 del Cuestionario de Salud: Enfermedades infectocontagiosas, toxoplasmosis, meningitis, herpes, dengue, chancro, sifilis, gonorrea, VPH, SIDA o transmision sexual. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group58') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_17_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 17 del Cuestionario de Salud: Enfermedades infectocontagiosas, toxoplasmosis, meningitis, herpes, dengue, chancro, sifilis, gonorrea, VPH, SIDA o transmision sexual. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group59') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_18_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 18 del Cuestionario de Salud: Consume droga o bebida alcoholica. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group60') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_18_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 18 del Cuestionario de Salud: Consume droga o bebida alcoholica. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group61') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_18_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 18 del Cuestionario de Salud: Consume droga o bebida alcoholica. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group62') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_19_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 19 del Cuestionario de Salud: Sancion o tratamiento por drogas/alcohol. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group63') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_19_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 19 del Cuestionario de Salud: Sancion o tratamiento por drogas/alcohol. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group64') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_19_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 19 del Cuestionario de Salud: Sancion o tratamiento por drogas/alcohol. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group65') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_20_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 20 del Cuestionario de Salud: Disminucion/aumento de peso en ultimos 12 meses. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group66') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_20_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 20 del Cuestionario de Salud: Disminucion/aumento de peso en ultimos 12 meses. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group67') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_20_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 20 del Cuestionario de Salud: Disminucion/aumento de peso en ultimos 12 meses. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group68') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_21_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 21 del Cuestionario de Salud: Medicamentos, vitaminas, anabolicos, hormonas u otros de uso regular, o tratamiento medico actual. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group69') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_21_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 21 del Cuestionario de Salud: Medicamentos, vitaminas, anabolicos, hormonas u otros de uso regular, o tratamiento medico actual. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group70') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_21_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 21 del Cuestionario de Salud: Medicamentos, vitaminas, anabolicos, hormonas u otros de uso regular, o tratamiento medico actual. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group71') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_22_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 22 del Cuestionario de Salud: Ha fumado alguna vez cigarrillo/cigarro/pipa/tabaco. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group72') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_22_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 22 del Cuestionario de Salud: Ha fumado alguna vez cigarrillo/cigarro/pipa/tabaco. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group73') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_22_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 22 del Cuestionario de Salud: Ha fumado alguna vez cigarrillo/cigarro/pipa/tabaco. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group74') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_23_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 23 del Cuestionario de Salud: Estudios con rayos x, colonoscopia, endoscopia, diagnostico de cancer, electrocardiograma. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group75') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_23_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 23 del Cuestionario de Salud: Estudios con rayos x, colonoscopia, endoscopia, diagnostico de cancer, electrocardiograma. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group76') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_23_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 23 del Cuestionario de Salud: Estudios con rayos x, colonoscopia, endoscopia, diagnostico de cancer, electrocardiograma. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group77') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_24_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 24 del Cuestionario de Salud: Cirugia y/o hospitalizacion por enfermedad/accidente/estetica/obesidad/transfusiones/tratamientos. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group78') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_24_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 24 del Cuestionario de Salud: Cirugia y/o hospitalizacion por enfermedad/accidente/estetica/obesidad/transfusiones/tratamientos. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group79') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_24_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 24 del Cuestionario de Salud: Cirugia y/o hospitalizacion por enfermedad/accidente/estetica/obesidad/transfusiones/tratamientos. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group80') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_25_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 25 del Cuestionario de Salud: Se le ha recomendado intervencion quirurgica/procedimiento/tratamiento futuro. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group81') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_25_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 25 del Cuestionario de Salud: Se le ha recomendado intervencion quirurgica/procedimiento/tratamiento futuro. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group82') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_25_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 25 del Cuestionario de Salud: Se le ha recomendado intervencion quirurgica/procedimiento/tratamiento futuro. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group83') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_26_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 26 del Cuestionario de Salud: Existe alguna enfermedad/padecimiento/accidente/desorden/discapacidad no mencionada. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group84') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_26_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 26 del Cuestionario de Salud: Existe alguna enfermedad/padecimiento/accidente/desorden/discapacidad no mencionada. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group85') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_26_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 26 del Cuestionario de Salud: Existe alguna enfermedad/padecimiento/accidente/desorden/discapacidad no mencionada. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group86') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_27_prospecto": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 27 del Cuestionario de Salud: Antecedentes familiares de cancer, diabetes, enfermedades del corazon o hipertension. Columna SI/NO - Prospecto. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group87') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_27_conyuge": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 27 del Cuestionario de Salud: Antecedentes familiares de cancer, diabetes, enfermedades del corazon o hipertension. Columna SI/NO - Conyuge. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group88') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_27_hijos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 27 del Cuestionario de Salud: Antecedentes familiares de cancer, diabetes, enfermedades del corazon o hipertension. Columna SI/NO - Hijos. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group89') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_15_detalle": {
+   "tipo": "string",
+   "descripcion": "Detalle ('Especifique:') de la Pregunta 15 (alergias)."
+  },
+  "medico_bc_18_detalle": {
+   "tipo": "string",
+   "descripcion": "Detalle de la Pregunta 18 ('especificar el tipo y la frecuencia')."
+  },
+  "medico_bc_19_detalle": {
+   "tipo": "string",
+   "descripcion": "Detalle de la Pregunta 19 ('Especificar:')."
+  },
+  "medico_bc_20_cuantas_libras": {
+   "tipo": "string",
+   "descripcion": "Pregunta 20: '¿Cuántas libras?'."
+  },
+  "medico_bc_20_por_que": {
+   "tipo": "string",
+   "descripcion": "Pregunta 20: '¿Por qué?'."
+  },
+  "medico_bc_21_detalle": {
+   "tipo": "string",
+   "descripcion": "Pregunta 21: detalle de medicamentos/vitaminas/anabolicos/hormonas/tratamiento medico actual ('Detallar:')."
+  },
+  "medico_bc_22_detalle": {
+   "tipo": "string",
+   "descripcion": "Pregunta 22: 'En caso afirmativo, dé detalles:' (tipo de tabaco, etc)."
+  },
+  "medico_bc_22_fecha": {
+   "tipo": "string",
+   "descripcion": "Pregunta 22: 'Fecha:' (fecha en que fumo por ultima vez o desde cuando fuma). Formato: texto libre."
+  },
+  "medico_bc_22_fuma_actual": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 22: '¿Fuma usted en la actualidad o ha fumado durante los últimos 12 meses?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group90') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_22_frecuencia_actual": {
+   "tipo": "string",
+   "descripcion": "Pregunta 22: '¿Con qué frecuencia?' (asociado a fuma actualmente)."
+  },
+  "medico_bc_22_nicotina_cual": {
+   "tipo": "string",
+   "descripcion": "Pregunta 22: '¿Utiliza otro producto que contenga nicotina? ¿Cuál?'."
+  },
+  "medico_bc_22_nicotina_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Pregunta 22: '¿Con qué frecuencia?' (asociado al otro producto con nicotina)."
+  },
+  "medico_bc_24_cuantas": {
+   "tipo": "string",
+   "descripcion": "Pregunta 24: '¿Cuántas?' (cirugias/hospitalizaciones)."
+  },
+  "medico_bc_24_por_que": {
+   "tipo": "string",
+   "descripcion": "Pregunta 24: '¿Por qué?'."
+  },
+  "antecedentes_familiares_1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Antecedentes familiares (Preg. 27), fila 1: Solicitante y/o Dependiente."
+  },
+  "antecedentes_familiares_1_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Familiar Afectado."
+  },
+  "antecedentes_familiares_1_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Enfermedad."
+  },
+  "antecedentes_familiares_1_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Edad de Manifestacion."
+  },
+  "antecedentes_familiares_1_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Estado Actual."
+  },
+  "antecedentes_familiares_2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Solicitante y/o Dependiente."
+  },
+  "antecedentes_familiares_2_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Familiar Afectado."
+  },
+  "antecedentes_familiares_2_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Enfermedad."
+  },
+  "antecedentes_familiares_2_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Edad de Manifestacion."
+  },
+  "antecedentes_familiares_2_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Estado Actual."
+  },
+  "antecedentes_familiares_3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Solicitante y/o Dependiente."
+  },
+  "antecedentes_familiares_3_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Familiar Afectado."
+  },
+  "antecedentes_familiares_3_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Enfermedad."
+  },
+  "antecedentes_familiares_3_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Edad de Manifestacion."
+  },
+  "antecedentes_familiares_3_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Estado Actual."
+  },
+  "antecedentes_familiares_4_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Solicitante y/o Dependiente."
+  },
+  "antecedentes_familiares_4_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Familiar Afectado."
+  },
+  "antecedentes_familiares_4_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Enfermedad."
+  },
+  "antecedentes_familiares_4_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Edad de Manifestacion."
+  },
+  "antecedentes_familiares_4_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Estado Actual."
+  },
+  "medico_bc_28_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 28 (SOLO HOMBRES, Prospecto Asegurado, Conyuge o Hijo Dependiente): '¿Ha tenido alteraciones en la próstata, varicocele, criptorquidea, torsión testicular u órganos reproductivos? o resultado de PSA (Antígeno Prostático Específico) elevado?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group91') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "medico_bc_28_medico": {
+   "tipo": "string",
+   "descripcion": "Pregunta 28: 'Médico:'."
+  },
+  "medico_bc_28_lugar_atencion": {
+   "tipo": "string",
+   "descripcion": "Pregunta 28: 'Lugar de atención:'."
+  },
+  "mujer_29_embarazada": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 29 (PARA MUJERES: Prospecto o Conyuge): '¿Está usted Embarazada?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group92') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_29_cuantos_meses": {
+   "tipo": "string",
+   "descripcion": "Pregunta 29: 'En caso afirmativo, ¿cuántos meses tiene?'."
+  },
+  "mujer_30_abortos": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 30: '¿Ha tenido abortos, partos prematuros o dificultad en sus partos?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group93') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_31_trastorno_ginecologico": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 31: '¿Sufre de algún trastorno o enfermedad ginecológica?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group94') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_32_tumor": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 32: '¿Ha tenido algún tumor, fibromas, quistes o enfermedad en:'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group95') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_32_tumor_ubicacion": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 32, detalle de ubicacion: a) Los pechos, b) Los ovarios, c) La matriz. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group98') con 3 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "pechos",
+    "ovarios",
+    "matriz"
+   ],
+   "valores_pdf_literales": {
+    "pechos": "/Opci髇1",
+    "ovarios": "/Opci髇2",
+    "matriz": "/Opci髇3"
+   }
+  },
+  "mujer_33_hemorragias": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 33: '¿Ha tenido hemorragias vaginales?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group96') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_34_periodos_regulares": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 34: '¿Son regulares sus períodos menstruales?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group97') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_34_fecha_ultima_menstruacion_dia": {
+   "tipo": "string",
+   "descripcion": "Fecha de la última menstruación: dia. Formato: DD."
+  },
+  "mujer_34_fecha_ultima_menstruacion_mes": {
+   "tipo": "string",
+   "descripcion": "Fecha de la última menstruación: mes. Formato: MM."
+  },
+  "mujer_34_fecha_ultima_menstruacion_anio": {
+   "tipo": "string",
+   "descripcion": "Fecha de la última menstruación: anio. Formato: AA."
+  },
+  "mujer_35_examen_especial": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 35: '¿Se le ha hecho algún examen de ultrasonido, mamografía o pruebas especiales?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group99') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "mujer_35_resultados": {
+   "tipo": "string",
+   "descripcion": "Pregunta 35: 'Resultados:'."
+  },
+  "mujer_35_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Pregunta 35: fecha del examen, dia. Formato: DD."
+  },
+  "mujer_35_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Pregunta 35: fecha del examen, mes. Formato: MM."
+  },
+  "mujer_35_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Pregunta 35: fecha del examen, anio. Formato: AA."
+  },
+  "mujer_36_nombre_ginecologo": {
+   "tipo": "string",
+   "descripcion": "Pregunta 36: 'Nombre de su Ginecólogo:'."
+  },
+  "mujer_36_ultima_visita_mes": {
+   "tipo": "string",
+   "descripcion": "Pregunta 36: 'Última Visita:' mes (el PDF solo provee mes/anio, sin dia). Formato: MM."
+  },
+  "mujer_36_ultima_visita_anio": {
+   "tipo": "string",
+   "descripcion": "Pregunta 36: 'Última Visita:' anio. Formato: AA."
+  },
+  "mujer_36_resultado_papanicolau": {
+   "tipo": "string",
+   "descripcion": "Pregunta 36: 'Resultado Papanicolau clasificación/estado:'."
+  },
+  "ninos_nombre_pediatra": {
+   "tipo": "string",
+   "descripcion": "PARA NIÑOS (Prospecto Asegurado o Dependientes), Pregunta 37: 'Nombre del Pediatra:'."
+  },
+  "ninos_fecha_ultima_visita_dia": {
+   "tipo": "string",
+   "descripcion": "Pregunta 37: 'Fecha de su Última Visita:' dia. Formato: DD."
+  },
+  "ninos_fecha_ultima_visita_mes": {
+   "tipo": "string",
+   "descripcion": "Pregunta 37: 'Fecha de su Última Visita:' mes. Formato: MM."
+  },
+  "ninos_fecha_ultima_visita_anio": {
+   "tipo": "string",
+   "descripcion": "Pregunta 37: 'Fecha de su Última Visita:' anio. Formato: AA."
+  },
+  "covid_1_sintomas": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "COVID-19 Pregunta 1: '¿Han presentado en los últimos 30 días síntomas generales...?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group100') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "covid_2_positivo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "COVID-19 Pregunta 2: '¿Han resultado positivo en cualquiera de las pruebas de COVID-19...?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group101') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "covid_2_1_recuperado": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "COVID-19 Pregunta 2.1: '¿En caso afirmativo, se han recuperado completamente y ha regresado a sus actividades normales?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group102') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "covid_3_hospitalizacion": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "COVID-19 Pregunta 3: '¿En algún momento requirió hospitalización en Sala, UCI o UCRE para observación o tratamiento de COVID-19?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group103') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "covid_3_1_secuela": {
+   "tipo": "string",
+   "descripcion": "COVID-19 Pregunta 3.1: '¿En caso afirmativo, indicar si ha quedado con alguna secuela del COVID-19?'."
+  },
+  "covid_4_vacuna": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "COVID-19 Pregunta 4: '¿Han recibido la vacuna contra COVID-19?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group104') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "detalle_afirmativas_1_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla 'SI HAN CONTESTADO SI...', fila 1: Número de Pregunta."
+  },
+  "detalle_afirmativas_1_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Nombre del Solicitante y/o Dependiente."
+  },
+  "detalle_afirmativas_1_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Fecha Última Atención, dia. Formato: DD."
+  },
+  "detalle_afirmativas_1_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Fecha Última Atención, mes. Formato: MM."
+  },
+  "detalle_afirmativas_1_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Fecha Última Atención, anio. Formato: AA."
+  },
+  "detalle_afirmativas_1_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Enfermedad."
+  },
+  "detalle_afirmativas_1_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Médico Tratante u Hospital."
+  },
+  "detalle_afirmativas_1_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Condición Actual (confirmar si fue operado u hospitalizado)."
+  },
+  "detalle_afirmativas_2_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Número de Pregunta."
+  },
+  "detalle_afirmativas_2_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Nombre del Solicitante y/o Dependiente."
+  },
+  "detalle_afirmativas_2_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Fecha Última Atención, dia. Formato: DD."
+  },
+  "detalle_afirmativas_2_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Fecha Última Atención, mes. Formato: MM."
+  },
+  "detalle_afirmativas_2_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Fecha Última Atención, anio. Formato: AA."
+  },
+  "detalle_afirmativas_2_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Enfermedad."
+  },
+  "detalle_afirmativas_2_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Médico Tratante u Hospital."
+  },
+  "detalle_afirmativas_2_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Condición Actual."
+  },
+  "detalle_afirmativas_3_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Número de Pregunta."
+  },
+  "detalle_afirmativas_3_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Nombre del Solicitante y/o Dependiente."
+  },
+  "detalle_afirmativas_3_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Fecha Última Atención, dia. Formato: DD."
+  },
+  "detalle_afirmativas_3_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Fecha Última Atención, mes. Formato: MM."
+  },
+  "detalle_afirmativas_3_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Fecha Última Atención, anio. Formato: AA."
+  },
+  "detalle_afirmativas_3_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Enfermedad."
+  },
+  "detalle_afirmativas_3_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Médico Tratante u Hospital."
+  },
+  "detalle_afirmativas_3_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Condición Actual."
+  },
+  "detalle_afirmativas_4_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Número de Pregunta."
+  },
+  "detalle_afirmativas_4_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Nombre del Solicitante y/o Dependiente."
+  },
+  "detalle_afirmativas_4_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Fecha Última Atención, dia. Formato: DD."
+  },
+  "detalle_afirmativas_4_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Fecha Última Atención, mes. Formato: MM."
+  },
+  "detalle_afirmativas_4_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Fecha Última Atención, anio. Formato: AA."
+  },
+  "detalle_afirmativas_4_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Enfermedad."
+  },
+  "detalle_afirmativas_4_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Médico Tratante u Hospital."
+  },
+  "detalle_afirmativas_4_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Condición Actual."
+  },
+  "estilo_vida_con_quien_reside": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 1: '¿Con quién reside el Prospecto Asegurada(o)?'."
+  },
+  "estilo_vida_pareja_nombre": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 1.2: nombre completo de la pareja (si casado/unido)."
+  },
+  "estilo_vida_pareja_edad_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 1.3: edad y ocupación de la pareja."
+  },
+  "estilo_vida_pareja_sin_seguro_motivo": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 1.4: '¿A qué se debe?' si la pareja no tiene seguro."
+  },
+  "estilo_vida_mascotas_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 1.5: '¿Tienen mascotas?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group105') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_mascotas_cuales": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 1.5: '¿Cuáles?'."
+  },
+  "estilo_vida_viajes_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 2: '¿Alguno ha viajado más de una vez cada 2 meses o vivido fuera de su país de residencia...?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group106') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_viajes_quien": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 2.1: '¿Quién?'."
+  },
+  "estilo_vida_viajes_fecha": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 2.1: 'Indicar fecha:'."
+  },
+  "estilo_vida_alimentacion_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 3: '¿Practican algún estilo de alimentación?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group107') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_alimentacion_cual": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 3: '¿Cuál?'."
+  },
+  "estilo_vida_alimentacion_quien": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 3: '¿Quién?'."
+  },
+  "estilo_vida_alimentacion_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 3: '¿Desde cuándo?'."
+  },
+  "estilo_vida_licencia_piloto_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 4: '¿Alguno tiene licencia de piloto?, ¿ha pilotado o piensa pilotear alguna aeronave o viaja en aviones que no sean de líneas aéreas comerciales autorizadas?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group108') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_deporte_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 5: '¿Practican algún deporte o actividades?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group109') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_deporte_quien": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 5: '¿Quién?'."
+  },
+  "estilo_vida_deporte_cuales": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 5: '¿Cuáles?'."
+  },
+  "estilo_vida_deporte_riesgo_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 6: '¿Participa o planea participar en carreras de automóviles, motocicletas, paracaidismo, buceo o cualquier otra actividad o deporte arriesgado?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group110') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_deporte_riesgo_detalle": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 6: 'Detalle:'."
+  },
+  "estilo_vida_condenado_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Estilo de Vida 7: '¿Ha sido condenado, procesado o investigado en cualquier país por alguna violación a la ley?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group111') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "estilo_vida_condenado_detalle": {
+   "tipo": "string",
+   "descripcion": "Estilo de Vida 7: 'Especificar:'."
+  },
+  "preg_adic_familiar_no_incluido_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Preguntas Adicionales 1: '¿Se dejó de incluir a algún familiar asegurable?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group112') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇2",
+    "no": "/Opci髇1"
+   }
+  },
+  "preg_adic_familiar_no_incluido_quien": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 1: 'Quién:'."
+  },
+  "preg_adic_reside_extranjero_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Preguntas Adicionales 2: '¿Alguno reside, estudia o está por salir por un periodo mayor a dos meses al extranjero?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group113') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇2",
+    "no": "/Opci髇1"
+   }
+  },
+  "preg_adic_reside_extranjero_nombre": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 2: 'Nombre:'."
+  },
+  "preg_adic_reside_extranjero_pais": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 2: 'Indique el País:'."
+  },
+  "preg_adic_reside_extranjero_estado": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 2: 'Estado:' (estado/provincia del extranjero)."
+  },
+  "preg_adic_reside_extranjero_universidad": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 2: 'Universidad:'."
+  },
+  "preg_adic_otro_seguro_no_poliza": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 3: '¿Tienen otro seguro de hospitalización o tienen pendiente alguna solicitud en trámite, en esta u otra compañía?' No. Póliza/Solicitud."
+  },
+  "preg_adic_otro_seguro_compania": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 3: 'Compañía:'."
+  },
+  "preg_adic_otro_seguro_quien": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 3: '¿Quién?'."
+  },
+  "preg_adic_rechazo_previo_nombre": {
+   "tipo": "string",
+   "descripcion": "Preguntas Adicionales 4: '¿Se le ha rechazado, pospuesto, recargado o modificado una Solicitud o póliza de Salud, Vida o Accidentes Personales en esta u otra compañía?' Nombre:."
+  },
+  "contratante_persona_juridica_nombre_razon_social": {
+   "tipo": "string",
+   "descripcion": "CONTRATANTE (solo si es diferente al Prospecto), Persona Juridica: Nombre / Razon Social."
+  },
+  "contratante_relacion_prospecto": {
+   "tipo": "string",
+   "descripcion": "Contratante: Relación con el Prospecto."
+  },
+  "contratante_primer_apellido": {
+   "tipo": "string",
+   "descripcion": "Contratante Persona Natural: Primer Apellido."
+  },
+  "contratante_segundo_apellido": {
+   "tipo": "string",
+   "descripcion": "Contratante: Segundo Apellido."
+  },
+  "contratante_apellido_casada": {
+   "tipo": "string",
+   "descripcion": "Contratante: Apellido de Casada."
+  },
+  "contratante_nombre": {
+   "tipo": "string",
+   "descripcion": "Contratante: Nombre (campo único, no se separa en primer/segundo nombre)."
+  },
+  "contratante_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Contratante: Cédula / Pasaporte."
+  },
+  "contratante_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Contratante: dia de nacimiento. Formato: DD."
+  },
+  "contratante_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Contratante: mes de nacimiento. Formato: MM."
+  },
+  "contratante_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Contratante: anio de nacimiento (4 digitos). Formato: AAAA."
+  },
+  "contratante_edad": {
+   "tipo": "string",
+   "descripcion": "Contratante: Edad."
+  },
+  "contratante_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Contratante: Sexo M/F. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group114') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "m",
+    "f"
+   ],
+   "valores_pdf_literales": {
+    "m": "/Opci髇1",
+    "f": "/Opci髇2"
+   }
+  },
+  "contratante_extranjero": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Contratante: '¿Extranjero?' (orden impreso: Si primero, No segundo -- distinto al orden usado para el Prospecto en la pagina 1). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group115') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "contratante_pais_origen": {
+   "tipo": "string",
+   "descripcion": "Contratante: País de Origen."
+  },
+  "contratante_anios_residencia_panama": {
+   "tipo": "string",
+   "descripcion": "Contratante: Años de Residencia en Panamá."
+  },
+  "contratante_nacionalidades": {
+   "tipo": "string",
+   "descripcion": "Contratante: Nacionalidad(es)."
+  },
+  "contratante_provincia": {
+   "tipo": "string",
+   "descripcion": "Contratante: Provincia (dirección residencial)."
+  },
+  "contratante_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Contratante: Distrito / Corregimiento (dirección residencial)."
+  },
+  "contratante_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Contratante: Urbanización (dirección residencial)."
+  },
+  "contratante_calle": {
+   "tipo": "string",
+   "descripcion": "Contratante: Calle (dirección residencial)."
+  },
+  "contratante_edificio": {
+   "tipo": "string",
+   "descripcion": "Contratante: Edificio (dirección residencial)."
+  },
+  "contratante_apto_casa": {
+   "tipo": "string",
+   "descripcion": "Contratante: Apto./Casa No."
+  },
+  "contratante_telefono_residencial": {
+   "tipo": "string",
+   "descripcion": "Contratante: Teléfono Residencial."
+  },
+  "contratante_celular": {
+   "tipo": "string",
+   "descripcion": "Contratante: Celular."
+  },
+  "contratante_email_personal": {
+   "tipo": "string",
+   "descripcion": "Contratante: E-mail Personal."
+  },
+  "contratante_zona": {
+   "tipo": "string",
+   "descripcion": "Contratante: Zona."
+  },
+  "contratante_empresa": {
+   "tipo": "string",
+   "descripcion": "Contratante: Empresa donde Trabaja."
+  },
+  "contratante_no_empleado": {
+   "tipo": "string",
+   "descripcion": "Contratante: No. Empleado."
+  },
+  "contratante_actividad_economica_empresa": {
+   "tipo": "string",
+   "descripcion": "Contratante: Actividad Económica de la Empresa."
+  },
+  "contratante_fecha_inicio_empleo_dia": {
+   "tipo": "string",
+   "descripcion": "Contratante: Fecha Inicio Empleo, dia. Formato: DD."
+  },
+  "contratante_fecha_inicio_empleo_mes": {
+   "tipo": "string",
+   "descripcion": "Contratante: Fecha Inicio Empleo, mes. Formato: MM."
+  },
+  "contratante_fecha_inicio_empleo_anio": {
+   "tipo": "string",
+   "descripcion": "Contratante: Fecha Inicio Empleo, anio. Formato: AA."
+  },
+  "contratante_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Contratante: Ocupación."
+  },
+  "contratante_otras_ocupaciones": {
+   "tipo": "string",
+   "descripcion": "Contratante: Otras Ocupaciones."
+  },
+  "contratante_profesion": {
+   "tipo": "string",
+   "descripcion": "Contratante: Profesión."
+  },
+  "contratante_descripcion_funciones": {
+   "tipo": "string",
+   "descripcion": "Contratante: Descripción de Funciones."
+  },
+  "contratante_oficina_provincia": {
+   "tipo": "string",
+   "descripcion": "Contratante: Provincia de OFICINA."
+  },
+  "contratante_oficina_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Contratante: Distrito / Corregimiento de OFICINA."
+  },
+  "contratante_oficina_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Contratante: Urbanización de OFICINA."
+  },
+  "contratante_oficina_calle": {
+   "tipo": "string",
+   "descripcion": "Contratante: Calle de OFICINA."
+  },
+  "contratante_oficina_edificio": {
+   "tipo": "string",
+   "descripcion": "Contratante: Edificio de OFICINA."
+  },
+  "contratante_oficina_email": {
+   "tipo": "string",
+   "descripcion": "Contratante: E-mail de OFICINA."
+  },
+  "contratante_oficina_telefono": {
+   "tipo": "string",
+   "descripcion": "Contratante: Teléfono de OFICINA."
+  },
+  "contratante_ingreso_anual_actual": {
+   "tipo": "string",
+   "descripcion": "Contratante: Ingreso Anual Aproximado - Ocupación Actual B/."
+  },
+  "contratante_ingreso_anual_otras_ocupaciones": {
+   "tipo": "string",
+   "descripcion": "Contratante: Ingreso Anual Aproximado - Otras Ocupaciones B/."
+  },
+  "contratante_pais_tributa_1": {
+   "tipo": "string",
+   "descripcion": "Contratante: País(es) donde Tributa por sus Ingresos (1er pais)."
+  },
+  "contratante_pais_tributa_2": {
+   "tipo": "string",
+   "descripcion": "Contratante: País(es) donde Tributa por sus Ingresos (2do pais)."
+  },
+  "contratante_pais_tributa_3": {
+   "tipo": "string",
+   "descripcion": "Contratante: País(es) donde Tributa por sus Ingresos (3er pais)."
+  },
+  "responsable_pago_persona_juridica_nombre_razon_social": {
+   "tipo": "string",
+   "descripcion": "RESPONSABLE DEL PAGO (solo si es diferente al Prospecto y/o Contratante), Persona Juridica: Nombre / Razon Social."
+  },
+  "responsable_pago_relacion_prospecto": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Relación con Prospecto."
+  },
+  "responsable_pago_primer_apellido": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago Persona Natural: Primer Apellido."
+  },
+  "responsable_pago_segundo_apellido": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Segundo Apellido."
+  },
+  "responsable_pago_apellido_casada": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Apellido de Casada."
+  },
+  "responsable_pago_nombre": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Nombre (campo único)."
+  },
+  "responsable_pago_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Cédula / Pasaporte."
+  },
+  "responsable_pago_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Fecha de Nacimiento (campo único combinado, a diferencia del Contratante que tiene dia/mes/año separados). Formato: dd/mm/aaaa (campo unico)."
+  },
+  "responsable_pago_edad": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Edad."
+  },
+  "responsable_pago_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Responsable del Pago: Sexo M/F. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group116') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "m",
+    "f"
+   ],
+   "valores_pdf_literales": {
+    "m": "/Opci髇1",
+    "f": "/Opci髇2"
+   }
+  },
+  "responsable_pago_extranjero": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Responsable del Pago: '¿Extranjero?' (orden impreso: Si primero, No segundo). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group117') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "responsable_pago_pais_origen": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: País de Origen."
+  },
+  "responsable_pago_anios_residencia_panama": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Años de Residencia en Panamá."
+  },
+  "responsable_pago_nacionalidades": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Nacionalidad(es)."
+  },
+  "responsable_pago_provincia": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Provincia (dirección residencial)."
+  },
+  "responsable_pago_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Distrito / Corregimiento (dirección residencial)."
+  },
+  "responsable_pago_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Urbanización (dirección residencial)."
+  },
+  "responsable_pago_calle": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Calle (dirección residencial)."
+  },
+  "responsable_pago_edificio": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Edificio (dirección residencial)."
+  },
+  "responsable_pago_apto_casa": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Apto./Casa No."
+  },
+  "responsable_pago_telefono_residencial": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Teléfono Residencial."
+  },
+  "responsable_pago_celular": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Celular."
+  },
+  "responsable_pago_email_personal": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: E-mail Personal."
+  },
+  "responsable_pago_zona": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Zona."
+  },
+  "responsable_pago_empresa": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Empresa donde Trabaja (campo correctamente posicionado, distinto de 'Empresa donde Trabaja 2')."
+  },
+  "responsable_pago_no_empleado": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: No. Empleado."
+  },
+  "responsable_pago_actividad_economica_empresa": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Actividad Económica de la Empresa."
+  },
+  "responsable_pago_fecha_inicio_empleo_dia": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Fecha Inicio Empleo, dia. Formato: DD."
+  },
+  "responsable_pago_fecha_inicio_empleo_mes": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Fecha Inicio Empleo, mes. Formato: MM."
+  },
+  "responsable_pago_fecha_inicio_empleo_anio": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Fecha Inicio Empleo, anio. Formato: AA."
+  },
+  "responsable_pago_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Ocupación."
+  },
+  "responsable_pago_otras_ocupaciones": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Otras Ocupaciones."
+  },
+  "responsable_pago_profesion": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Profesión."
+  },
+  "responsable_pago_descripcion_funciones": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Descripción de Funciones."
+  },
+  "responsable_pago_oficina_provincia": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Provincia de OFICINA."
+  },
+  "responsable_pago_oficina_distrito_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Distrito / Corregimiento de OFICINA."
+  },
+  "responsable_pago_oficina_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Urbanización de OFICINA."
+  },
+  "responsable_pago_oficina_calle": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Calle de OFICINA."
+  },
+  "responsable_pago_oficina_edificio": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Edificio de OFICINA."
+  },
+  "responsable_pago_oficina_email": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: E-mail de OFICINA."
+  },
+  "responsable_pago_oficina_telefono": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Teléfono de OFICINA."
+  },
+  "responsable_pago_ingreso_anual_actual": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Ingreso Anual Aproximado - Ocupación Actual B/."
+  },
+  "responsable_pago_ingreso_anual_otras_ocupaciones": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: Ingreso Anual Aproximado - Otras Ocupaciones B/."
+  },
+  "responsable_pago_pais_tributa_1": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: País(es) donde Tributa por sus Ingresos (1er pais)."
+  },
+  "responsable_pago_pais_tributa_2": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: País(es) donde Tributa por sus Ingresos (2do pais)."
+  },
+  "responsable_pago_pais_tributa_3": {
+   "tipo": "string",
+   "descripcion": "Responsable del Pago: País(es) donde Tributa por sus Ingresos (3er pais)."
+  },
+  "plan_tipo_poliza": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Plan Escogido: Tipo de Póliza. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group118') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "individual",
+    "colectiva"
+   ],
+   "valores_pdf_literales": {
+    "individual": "/Opci髇1",
+    "colectiva": "/Opci髇2"
+   }
+  },
+  "plan_no_poliza": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: Póliza No."
+  },
+  "plan_nombre": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: 'Plan:' (campo de texto libre junto a Póliza No.)."
+  },
+  "plan_tipo_seleccionado": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Plan Escogido: cual de los 3 tipos de plan se selecciono (MEDIRED / XTREME CARE / PLAN MÉDICO INTERNACIONAL). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group119') con 3 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "medired",
+    "xtreme_care",
+    "medico_internacional"
+   ],
+   "valores_pdf_literales": {
+    "medired": "/Opci髇1",
+    "xtreme_care": "/Opci髇2",
+    "medico_internacional": "/Opci髇3"
+   }
+  },
+  "plan_medired_detalle": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: texto libre junto a 'MEDIRED: PLAN'."
+  },
+  "plan_xtreme_care_detalle": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: texto libre junto a 'XTREME CARE: PLAN'."
+  },
+  "plan_xtreme_care_deducible": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: DEDUCIBLE B/. de Xtreme Care."
+  },
+  "plan_medico_internacional_detalle": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: texto libre junto a 'PLAN MÉDICO INTERNACIONAL: PLAN'. Para PMI III y Ultimate completar Anexo A."
+  },
+  "plan_medico_internacional_deducible": {
+   "tipo": "string",
+   "descripcion": "Plan Escogido: DEDUCIBLE B/. del Plan Médico Internacional."
+  },
+  "plan_endoso_premium_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Plan Escogido: 'ENDOSO PREMIUM: Sí/No' (aplica a Plan Médico Internacional). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group120') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "forma_pago": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "FORMA DE PAGO: Tarjeta de Crédito / Descuento Bancario por ACH / Voluntario-Corredor-Caja-Banca en Línea-Yappy / Empresa. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group121') con 4 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "tarjeta_credito",
+    "descuento_bancario_ach",
+    "voluntario_corredor_caja_banca_yappy",
+    "empresa"
+   ],
+   "valores_pdf_literales": {
+    "tarjeta_credito": "/Opci髇1",
+    "descuento_bancario_ach": "/Opci髇2",
+    "voluntario_corredor_caja_banca_yappy": "/Opci髇3",
+    "empresa": "/Opci髇4"
+   }
+  },
+  "frecuencia_pago": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "FRECUENCIA DE PAGO. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group122') con 4 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "mensual",
+    "semestral",
+    "trimestral",
+    "anual"
+   ],
+   "valores_pdf_literales": {
+    "mensual": "/Opci髇1",
+    "semestral": "/Opci髇2",
+    "trimestral": "/Opci髇3",
+    "anual": "/Opci髇4"
+   }
+  },
+  "prima_monto": {
+   "tipo": "string",
+   "descripcion": "Tabla Prima según Frecuencia de Pago: 'Prima B/.'."
+  },
+  "prima_impuesto_5": {
+   "tipo": "string",
+   "descripcion": "Tabla: 'Impuesto 5% B/.'."
+  },
+  "prima_total": {
+   "tipo": "string",
+   "descripcion": "Tabla: 'TOTAL B/.'."
+  },
+  "primas_superan_10000_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "'¿El total de las primas anuales que Usted Prospecto, Contratante o Responsable de Pago paga, son iguales o superan los B/.10,000.00?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group123') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "pago_tarjeta_pagador": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "AUTORIZACIÓN DE PAGO POR TARJETA DE CRÉDITO: 'Pagador:' Prospecto / Contratante / Responsable de Pago. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group124') con 3 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "prospecto",
+    "contratante",
+    "responsable_pago"
+   ],
+   "valores_pdf_literales": {
+    "prospecto": "/Opci髇1",
+    "contratante": "/Opci髇2",
+    "responsable_pago": "/Opci髇3"
+   }
+  },
+  "pago_tarjeta_banco": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'Banco:'."
+  },
+  "pago_tarjeta_tipo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Autorización de Pago por Tarjeta: 'Tipo:' Visa / Master Card / AMEX. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group125') con 3 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "visa",
+    "mastercard",
+    "amex"
+   ],
+   "valores_pdf_literales": {
+    "visa": "/Opci髇1",
+    "mastercard": "/Opci髇2",
+    "amex": "/Opci髇3"
+   }
+  },
+  "pago_tarjeta_numero": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'N° de tarjeta:'."
+  },
+  "pago_tarjeta_vencimiento_mes": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'Vencimiento:' mes. Formato: MM."
+  },
+  "pago_tarjeta_vencimiento_anio": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'Vencimiento:' anio. Formato: AA."
+  },
+  "pago_tarjeta_a_partir_de_mes": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'A partir de:' mes. Formato: MM."
+  },
+  "pago_tarjeta_a_partir_de_anio": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'A partir de:' anio. Formato: AA."
+  },
+  "pago_tarjeta_dia_cargo": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta: 'Día de cargo:'."
+  },
+  "pago_tarjeta_firma_cedula": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta, bloque de firma: 'Cédula' del Tarjetahabiente."
+  },
+  "pago_tarjeta_firma_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta, bloque de firma: Fecha, dia. Formato: DD."
+  },
+  "pago_tarjeta_firma_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta, bloque de firma: Fecha, mes. Formato: MM."
+  },
+  "pago_tarjeta_firma_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Autorización de Pago por Tarjeta, bloque de firma: Fecha, anio. Formato: AA."
+  },
+  "reembolso_beneficiario": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "AUTORIZACIÓN DE REEMBOLSO DE RECLAMO: 'Reembolso:' Prospecto / Contratante (caso de prospectos menores de edad). IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group126') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "prospecto",
+    "contratante"
+   ],
+   "valores_pdf_literales": {
+    "prospecto": "/Opci髇1",
+    "contratante": "/Opci髇2"
+   }
+  },
+  "reembolso_banco": {
+   "tipo": "string",
+   "descripcion": "Autorización de Reembolso de Reclamo: 'Banco:'."
+  },
+  "reembolso_tipo_cuenta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Autorización de Reembolso: 'Tipo de Cuenta:' Ahorro / Corriente. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group127') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "ahorro",
+    "corriente"
+   ],
+   "valores_pdf_literales": {
+    "ahorro": "/Opci髇1",
+    "corriente": "/Opci髇2"
+   }
+  },
+  "reembolso_nombre_cuenta": {
+   "tipo": "string",
+   "descripcion": "Autorización de Reembolso: 'Nombre de la Cuenta:'."
+  },
+  "reembolso_numero_cuenta": {
+   "tipo": "string",
+   "descripcion": "Autorización de Reembolso: 'N° de Cuenta:' (No colocar guiones)."
+  },
+  "pep_prospecto_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "PEP: '¿Es el Prospecto una persona políticamente expuesta?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group128') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "pep_prospecto_cargo": {
+   "tipo": "string",
+   "descripcion": "PEP Prospecto: 'Cargo actual o anterior:'."
+  },
+  "pep_contratante_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "PEP: '¿Es el Contratante una persona políticamente expuesta?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group129') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "pep_contratante_cargo": {
+   "tipo": "string",
+   "descripcion": "PEP Contratante: 'Cargo actual o anterior:'."
+  },
+  "pep_responsable_pago_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "PEP: '¿Es el Responsable de Pago una persona políticamente expuesta?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group130') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "pep_responsable_pago_cargo": {
+   "tipo": "string",
+   "descripcion": "PEP Responsable de Pago: 'Cargo actual o anterior:'."
+  },
+  "beneficiario_prospecto_1_nombre": {
+   "tipo": "string",
+   "descripcion": "Anexo A, Registro de Beneficiarios del Prospecto Asegurado, fila 1: Beneficiario."
+  },
+  "beneficiario_prospecto_1_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Parentesco."
+  },
+  "beneficiario_prospecto_1_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 1: % de participación."
+  },
+  "beneficiario_prospecto_2_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Beneficiario."
+  },
+  "beneficiario_prospecto_2_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Parentesco."
+  },
+  "beneficiario_prospecto_2_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 2: % de participación."
+  },
+  "beneficiario_prospecto_3_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Beneficiario."
+  },
+  "beneficiario_prospecto_3_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Parentesco."
+  },
+  "beneficiario_prospecto_3_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 3: % de participación."
+  },
+  "beneficiario_prospecto_4_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Beneficiario."
+  },
+  "beneficiario_prospecto_4_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Parentesco."
+  },
+  "beneficiario_prospecto_4_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 4: % de participación."
+  },
+  "beneficiario_prospecto_contingente": {
+   "tipo": "string",
+   "descripcion": "Beneficiario Contingente del Prospecto Asegurado."
+  },
+  "beneficiario_conyuge_1_nombre": {
+   "tipo": "string",
+   "descripcion": "Registro de Beneficiarios del Cónyuge Dependiente, fila 1: Beneficiario."
+  },
+  "beneficiario_conyuge_1_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 1: Parentesco."
+  },
+  "beneficiario_conyuge_1_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 1: % de participación."
+  },
+  "beneficiario_conyuge_2_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Beneficiario."
+  },
+  "beneficiario_conyuge_2_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 2: Parentesco."
+  },
+  "beneficiario_conyuge_2_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 2: % de participación."
+  },
+  "beneficiario_conyuge_3_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Beneficiario."
+  },
+  "beneficiario_conyuge_3_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 3: Parentesco."
+  },
+  "beneficiario_conyuge_3_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 3: % de participación."
+  },
+  "beneficiario_conyuge_4_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Beneficiario."
+  },
+  "beneficiario_conyuge_4_parentesco": {
+   "tipo": "string",
+   "descripcion": "Fila 4: Parentesco."
+  },
+  "beneficiario_conyuge_4_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Fila 4: % de participación."
+  },
+  "beneficiario_conyuge_contingente": {
+   "tipo": "string",
+   "descripcion": "Beneficiario Contingente del Cónyuge Dependiente."
+  },
+  "beneficiario_hijos_contingente": {
+   "tipo": "string",
+   "descripcion": "Hijos Dependientes: 'Beneficiario Contingente de los hijos:'."
+  },
+  "admin_menores_cedula": {
+   "tipo": "string",
+   "descripcion": "Administrador de Menores: cédula de identidad de la persona a quien se pagará el beneficio ('con cédula de identidad personal N°')."
+  },
+  "admin_menores_nombre": {
+   "tipo": "string",
+   "descripcion": "Administrador de Menores: nombre de la persona a quien se pagará el beneficio ('será pagado a')."
+  },
+  "admin_menores_nombre_alterno": {
+   "tipo": "string",
+   "descripcion": "Administrador de Menores: nombre de la persona alterna/suplente (', y en su defecto')."
+  },
+  "admin_menores_cedula_alterno": {
+   "tipo": "string",
+   "descripcion": "Administrador de Menores: cédula de identidad de la persona alterna/suplente."
+  },
+  "firma_anexoA_prospecto_nombre": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firmas: 'Nombre de Prospecto'."
+  },
+  "firma_anexoA_prospecto_cedula": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firmas: 'Cédula' del Prospecto."
+  },
+  "firma_anexoA_prospecto_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firma Prospecto: Fecha, dia. Formato: DD."
+  },
+  "firma_anexoA_prospecto_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firma Prospecto: Fecha, mes. Formato: MM."
+  },
+  "firma_anexoA_prospecto_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firma Prospecto: Fecha, anio. Formato: AA."
+  },
+  "firma_anexoA_conyuge_nombre": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firmas: 'Nombre de Cónyuge'."
+  },
+  "firma_anexoA_conyuge_cedula": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firmas: 'Cédula' del Cónyuge."
+  },
+  "firma_anexoA_conyuge_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firma Cónyuge: Fecha, dia. Formato: DD."
+  },
+  "firma_anexoA_conyuge_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firma Cónyuge: Fecha, mes. Formato: MM."
+  },
+  "firma_anexoA_conyuge_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Anexo A, firma Cónyuge: Fecha, anio. Formato: AA."
+  },
+  "firma_prospecto_nombre": {
+   "tipo": "string",
+   "descripcion": "Página 7 (Declaración), firma del Prospecto: 'Nombre de Prospecto'."
+  },
+  "firma_prospecto_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Prospecto: 'Cédula'."
+  },
+  "firma_prospecto_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Prospecto: Fecha, dia. Formato: DD."
+  },
+  "firma_prospecto_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Prospecto: Fecha, mes. Formato: MM."
+  },
+  "firma_prospecto_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Prospecto: Fecha, anio. Formato: AA."
+  },
+  "firma_conyuge_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Cónyuge: 'Nombre de Cónyuge'."
+  },
+  "firma_conyuge_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Cónyuge: 'Cédula'."
+  },
+  "firma_conyuge_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Cónyuge: Fecha, dia. Formato: DD."
+  },
+  "firma_conyuge_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Cónyuge: Fecha, mes. Formato: MM."
+  },
+  "firma_conyuge_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Cónyuge: Fecha, anio. Formato: AA."
+  },
+  "firma_dependiente1_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente mayor de edad (18 años) #1: 'Nombre de Dependiente'."
+  },
+  "firma_dependiente1_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #1: 'Cédula'."
+  },
+  "firma_dependiente1_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #1: Fecha, dia. Formato: DD."
+  },
+  "firma_dependiente1_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #1: Fecha, mes. Formato: MM."
+  },
+  "firma_dependiente1_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #1: Fecha, anio. Formato: AA."
+  },
+  "firma_dependiente2_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente mayor de edad #2: 'Nombre de Dependiente'."
+  },
+  "firma_dependiente2_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #2: 'Cédula'."
+  },
+  "firma_dependiente2_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #2: Fecha, dia. Formato: DD."
+  },
+  "firma_dependiente2_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #2: Fecha, mes. Formato: MM."
+  },
+  "firma_dependiente2_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #2: Fecha, anio. Formato: AA."
+  },
+  "firma_dependiente3_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente mayor de edad #3: 'Nombre de Dependiente'."
+  },
+  "firma_dependiente3_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #3: 'Cédula'."
+  },
+  "firma_dependiente3_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #3: Fecha, dia. Formato: DD."
+  },
+  "firma_dependiente3_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #3: Fecha, mes. Formato: MM."
+  },
+  "firma_dependiente3_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #3: Fecha, anio. Formato: AA."
+  },
+  "firma_dependiente4_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente mayor de edad #4: 'Nombre de Dependiente'."
+  },
+  "firma_dependiente4_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #4: 'Cédula'."
+  },
+  "firma_dependiente4_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #4: Fecha, dia. Formato: DD."
+  },
+  "firma_dependiente4_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #4: Fecha, mes. Formato: MM."
+  },
+  "firma_dependiente4_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Dependiente #4: Fecha, anio. Formato: AA."
+  },
+  "firma_contratante_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Contratante: 'Nombre de Contratante'."
+  },
+  "firma_contratante_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Contratante: 'Cédula'."
+  },
+  "firma_contratante_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Contratante: Fecha, dia. Formato: DD."
+  },
+  "firma_contratante_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Contratante: Fecha, mes. Formato: MM."
+  },
+  "firma_contratante_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Contratante: Fecha, anio. Formato: AA."
+  },
+  "firma_responsable_pago_nombre": {
+   "tipo": "string",
+   "descripcion": "Firma del Responsable de Pago: 'Nombre de Responsable de Pago'."
+  },
+  "firma_responsable_pago_cedula": {
+   "tipo": "string",
+   "descripcion": "Firma del Responsable de Pago: 'Cédula'."
+  },
+  "firma_responsable_pago_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Firma del Responsable de Pago: Fecha, dia. Formato: DD."
+  },
+  "firma_responsable_pago_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Firma del Responsable de Pago: Fecha, mes. Formato: MM."
+  },
+  "firma_responsable_pago_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Firma del Responsable de Pago: Fecha, anio. Formato: AA."
+  },
+  "agente_bc_conoce_prospecto_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Información del Corredor 1: '¿Conoce Usted al Prospecto y/o dependientes?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group131') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "agente_bc_conoce_prospecto_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor 1: '¿A quién y desde cuándo lo conoce?'."
+  },
+  "agente_bc_le_consta_firmaron_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Información del Corredor 2: '¿Le consta que el Prospecto y Dependientes mayores de 18 años completaron y firmaron esta solicitud?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group132') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "agente_bc_conoce_contradiccion_detalle": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor 3: '¿Conoce algún hecho o contradicción con las respuestas del Prospecto o Dependientes?'."
+  },
+  "agente_bc_rechazo_previo_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Información del Corredor 4: '¿Se le han rechazado, diferido, modificado o recargado alguna vez algún seguro de Vida, Accidentes Personales o Salud al Prospecto y/o sus dependientes?'. IMPORTANTE: este es un radio button de un solo campo AcroForm ('Group133') con 2 estados de exportacion literales (no 'si'/'no' planos). fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' (incluyendo la barra inicial '/' y cualquier caracter no estandar).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇1",
+    "no": "/Opci髇2"
+   }
+  },
+  "agente_bc_rechazo_previo_detalle": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor 4: 'En caso afirmativo especificar:'."
+  },
+  "agente_bc_nombre_razon_social": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: 'Nombre o Razón Social:' (letra imprenta)."
+  },
+  "agente_bc_telefono": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: 'Teléfono:'."
+  },
+  "agente_bc_email": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: 'E-mail:'."
+  },
+  "agente_bc_numero_licencia": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: 'Número de Licencia:'."
+  },
+  "agente_bc_fecha_dia": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: Fecha (junto a Firma del Corredor), dia. Formato: DD."
+  },
+  "agente_bc_fecha_mes": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: Fecha, mes. Formato: MM."
+  },
+  "agente_bc_fecha_anio": {
+   "tipo": "string",
+   "descripcion": "Información del Corredor: Fecha, anio. Formato: AA."
+  }
+ }
+}

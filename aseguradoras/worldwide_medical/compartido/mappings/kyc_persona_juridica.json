@@ -1,0 +1,702 @@
+{
+  "template": "aseguradoras/worldwide_medical/compartido/templates/kyc_persona_juridica.pdf",
+  "page_height": 792.0,
+  "page_width": 612.0,
+  "font_size": 9,
+  "fields": [
+    {
+      "data_key": "persona_que_completa",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "contratante": {
+          "x": 97.87,
+          "y": 670.45
+        },
+        "asegurado": {
+          "x": 168.76,
+          "y": 670.45
+        },
+        "corredor": {
+          "x": 236.26,
+          "y": 670.45
+        },
+        "pagador": {
+          "x": 310.26,
+          "y": 670.72
+        },
+        "cia_seguros": {
+          "x": 373.45,
+          "y": 670.72
+        },
+        "beneficiario": {
+          "x": 451.48,
+          "y": 670.72
+        }
+      }
+    },
+    {
+      "data_key": "razon_social",
+      "page": 1,
+      "x": 153.7,
+      "y": 616.8,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "razon_comercial",
+      "page": 1,
+      "x": 372.9,
+      "y": 616.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "ruc_empresa",
+      "page": 1,
+      "x": 256.7,
+      "y": 601.0,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_fisica_empresa",
+      "page": 1,
+      "x": 162.8,
+      "y": 585.5,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_constitucion",
+      "page": 1,
+      "x": 178.9,
+      "y": 559.4,
+      "type": "text"
+    },
+    {
+      "data_key": "fecha_constitucion",
+      "page": 1,
+      "x": 399.9,
+      "y": 558.9,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_donde_opera_empresa",
+      "page": 1,
+      "x": 177.4,
+      "y": 543.9,
+      "type": "text"
+    },
+    {
+      "data_key": "actividad_empresa",
+      "page": 1,
+      "x": 205.9,
+      "y": 529.0,
+      "type": "text"
+    },
+    {
+      "data_key": "telefono_empresa",
+      "page": 1,
+      "x": 139.4,
+      "y": 514.2,
+      "type": "text"
+    },
+    {
+      "data_key": "correo_empresa",
+      "page": 1,
+      "x": 351.6,
+      "y": 513.7,
+      "type": "text"
+    },
+    {
+      "data_key": "sitio_web_empresa",
+      "page": 1,
+      "x": 142.6,
+      "y": 497.7,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_tributa_empresa",
+      "page": 1,
+      "x": 294.7,
+      "y": 481.9,
+      "type": "text"
+    },
+    {
+      "data_key": "nit_empresa",
+      "page": 1,
+      "x": 267.7,
+      "y": 466.0,
+      "type": "text"
+    },
+    {
+      "data_key": "director_1_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 403.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_1_identificacion",
+      "page": 1,
+      "x": 183.7,
+      "y": 403.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_1_fecha_nacimiento",
+      "page": 1,
+      "x": 257.4,
+      "y": 403.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_1_direccion",
+      "page": 1,
+      "x": 324.1,
+      "y": 403.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_1_cargo",
+      "page": 1,
+      "x": 411.7,
+      "y": 403.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_1_nacionalidad",
+      "page": 1,
+      "x": 465.0,
+      "y": 403.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_2_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 388.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_2_identificacion",
+      "page": 1,
+      "x": 183.7,
+      "y": 388.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_2_fecha_nacimiento",
+      "page": 1,
+      "x": 257.4,
+      "y": 388.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_2_direccion",
+      "page": 1,
+      "x": 324.1,
+      "y": 388.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_2_cargo",
+      "page": 1,
+      "x": 411.7,
+      "y": 388.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_2_nacionalidad",
+      "page": 1,
+      "x": 465.0,
+      "y": 388.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_3_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 373.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_3_identificacion",
+      "page": 1,
+      "x": 183.7,
+      "y": 373.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_3_fecha_nacimiento",
+      "page": 1,
+      "x": 257.4,
+      "y": 373.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_3_direccion",
+      "page": 1,
+      "x": 324.1,
+      "y": 373.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_3_cargo",
+      "page": 1,
+      "x": 411.7,
+      "y": 373.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_3_nacionalidad",
+      "page": 1,
+      "x": 465.0,
+      "y": 373.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_4_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 357.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_4_identificacion",
+      "page": 1,
+      "x": 183.7,
+      "y": 357.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_4_fecha_nacimiento",
+      "page": 1,
+      "x": 257.4,
+      "y": 357.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_4_direccion",
+      "page": 1,
+      "x": 324.1,
+      "y": 357.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_4_cargo",
+      "page": 1,
+      "x": 411.7,
+      "y": 357.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "director_4_nacionalidad",
+      "page": 1,
+      "x": 465.0,
+      "y": 357.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_1_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 281.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_1_identificacion",
+      "page": 1,
+      "x": 210.5,
+      "y": 281.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_1_fecha_nacimiento",
+      "page": 1,
+      "x": 324.4,
+      "y": 281.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_1_porcentaje",
+      "page": 1,
+      "x": 412.6,
+      "y": 281.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_1_nacionalidad",
+      "page": 1,
+      "x": 459.6,
+      "y": 281.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_2_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 266.3,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_2_identificacion",
+      "page": 1,
+      "x": 210.5,
+      "y": 266.3,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_2_fecha_nacimiento",
+      "page": 1,
+      "x": 324.4,
+      "y": 266.3,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_2_porcentaje",
+      "page": 1,
+      "x": 412.6,
+      "y": 266.3,
+      "type": "text",
+      "font_size": 7,
+      "revisar": true,
+      "nota_revisar": "El PDF original (template) trae preimpreso un placeholder de porcentaje (\"0.0%\"/\"0.00%\") dentro de esta celda de la tabla de Accionistas (filas 2-4), aparentemente un defecto/artefacto del propio formulario. El valor real que se escriba aqui quedara superpuesto visualmente sobre ese texto preimpreso, ya que el overlay no puede borrar contenido del PDF base. No se pudo evitar sin modificar fill_pdf_overlay.py (fuera del alcance de esta tarea)."
+    },
+    {
+      "data_key": "accionista_2_nacionalidad",
+      "page": 1,
+      "x": 459.6,
+      "y": 266.3,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_3_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 251.1,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_3_identificacion",
+      "page": 1,
+      "x": 210.5,
+      "y": 251.1,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_3_fecha_nacimiento",
+      "page": 1,
+      "x": 324.4,
+      "y": 251.1,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_3_porcentaje",
+      "page": 1,
+      "x": 412.6,
+      "y": 251.1,
+      "type": "text",
+      "font_size": 7,
+      "revisar": true,
+      "nota_revisar": "El PDF original (template) trae preimpreso un placeholder de porcentaje (\"0.0%\"/\"0.00%\") dentro de esta celda de la tabla de Accionistas (filas 2-4), aparentemente un defecto/artefacto del propio formulario. El valor real que se escriba aqui quedara superpuesto visualmente sobre ese texto preimpreso, ya que el overlay no puede borrar contenido del PDF base. No se pudo evitar sin modificar fill_pdf_overlay.py (fuera del alcance de esta tarea)."
+    },
+    {
+      "data_key": "accionista_3_nacionalidad",
+      "page": 1,
+      "x": 459.6,
+      "y": 251.1,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_4_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 236.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_4_identificacion",
+      "page": 1,
+      "x": 210.5,
+      "y": 236.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_4_fecha_nacimiento",
+      "page": 1,
+      "x": 324.4,
+      "y": 236.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "accionista_4_porcentaje",
+      "page": 1,
+      "x": 412.6,
+      "y": 236.4,
+      "type": "text",
+      "font_size": 7,
+      "revisar": true,
+      "nota_revisar": "El PDF original (template) trae preimpreso un placeholder de porcentaje (\"0.0%\"/\"0.00%\") dentro de esta celda de la tabla de Accionistas (filas 2-4), aparentemente un defecto/artefacto del propio formulario. El valor real que se escriba aqui quedara superpuesto visualmente sobre ese texto preimpreso, ya que el overlay no puede borrar contenido del PDF base. No se pudo evitar sin modificar fill_pdf_overlay.py (fuera del alcance de esta tarea)."
+    },
+    {
+      "data_key": "accionista_4_nacionalidad",
+      "page": 1,
+      "x": 459.6,
+      "y": 236.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "representante_legal_nombre",
+      "page": 1,
+      "x": 96.6,
+      "y": 179.7,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "representante_legal_identificacion",
+      "page": 1,
+      "x": 210.6,
+      "y": 179.7,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "representante_legal_fecha_nacimiento",
+      "page": 1,
+      "x": 287.0,
+      "y": 179.7,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "representante_legal_direccion",
+      "page": 1,
+      "x": 363.2,
+      "y": 179.7,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "agente_residente_nombre",
+      "page": 1,
+      "x": 96.8,
+      "y": 122.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "agente_residente_direccion",
+      "page": 1,
+      "x": 305.6,
+      "y": 122.6,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "juridica_pep_titular",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": {
+          "x": 283.3,
+          "y": 658.6
+        },
+        "no": {
+          "x": 302.1,
+          "y": 658.6
+        }
+      }
+    },
+    {
+      "data_key": "juridica_pep_titular_cargo",
+      "page": 2,
+      "x": 190.3,
+      "y": 640.1,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_familiar",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": {
+          "x": 210.7,
+          "y": 627.5
+        },
+        "no": {
+          "x": 231.7,
+          "y": 627.5
+        }
+      }
+    },
+    {
+      "data_key": "juridica_pep_familiar_nombre",
+      "page": 2,
+      "x": 179.7,
+      "y": 608.8,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_familiar_cargo",
+      "page": 2,
+      "x": 366.6,
+      "y": 608.8,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_familiar_relacion",
+      "page": 2,
+      "x": 179.3,
+      "y": 593.6,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_colaborador",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": {
+          "x": 275.5,
+          "y": 580.4
+        },
+        "no": {
+          "x": 294.2,
+          "y": 580.4
+        }
+      }
+    },
+    {
+      "data_key": "juridica_pep_colaborador_nombre",
+      "page": 2,
+      "x": 179.7,
+      "y": 563.0,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_colaborador_cargo",
+      "page": 2,
+      "x": 366.6,
+      "y": 563.0,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_colaborador_relacion",
+      "page": 2,
+      "x": 179.3,
+      "y": 547.5,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_ingreso_anual",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "menos_50mil": {
+          "x": 98.42,
+          "y": 494.05
+        },
+        "50mil_250mil": {
+          "x": 206.12,
+          "y": 494.05
+        },
+        "250mil_500mil": {
+          "x": 310.44,
+          "y": 494.05
+        },
+        "500mil_3mio": {
+          "x": 414.85,
+          "y": 494.29
+        },
+        "3mio_5mio": {
+          "x": 98.24,
+          "y": 478.15
+        },
+        "5mio_10mio": {
+          "x": 206.12,
+          "y": 478.15
+        },
+        "mas_10mio": {
+          "x": 310.53,
+          "y": 478.15
+        }
+      }
+    },
+    {
+      "data_key": "juridica_otras_actividades_detalle",
+      "page": 2,
+      "x": 279.0,
+      "y": 453.6,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_otras_actividades_monto",
+      "page": 2,
+      "x": 413.3,
+      "y": 453.6,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_firma_nombre",
+      "page": 2,
+      "x": 91.48,
+      "y": 339.88,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "firma manuscrita, no se autocompleta",
+      "label": "Firma"
+    },
+    {
+      "data_key": "juridica_firma_fecha",
+      "page": 2,
+      "x": 450.96,
+      "y": 339.79,
+      "type": "text"
+    }
+  ]
+}

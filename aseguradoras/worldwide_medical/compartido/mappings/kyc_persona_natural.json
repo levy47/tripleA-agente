@@ -1,0 +1,366 @@
+{
+  "template": "aseguradoras/worldwide_medical/compartido/templates/kyc_persona_natural.pdf",
+  "page_height": 841.92,
+  "page_width": 595.32,
+  "font_size": 9,
+  "fields": [
+    {
+      "data_key": "persona_que_completa",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "contratante": {
+          "x": 78.1,
+          "y": 721.42
+        },
+        "asegurado": {
+          "x": 169.5,
+          "y": 721.42
+        },
+        "corredor": {
+          "x": 238.3,
+          "y": 721.42
+        },
+        "pagador": {
+          "x": 309.6,
+          "y": 721.42
+        },
+        "cia_seguros": {
+          "x": 374.8,
+          "y": 721.42
+        },
+        "beneficiario": {
+          "x": 464.0,
+          "y": 721.42
+        }
+      }
+    },
+    {
+      "data_key": "apellido_1",
+      "page": 1,
+      "x": 121.16,
+      "y": 674.92,
+      "type": "text"
+    },
+    {
+      "data_key": "apellido_2",
+      "page": 1,
+      "x": 216.08,
+      "y": 674.92,
+      "type": "text"
+    },
+    {
+      "data_key": "nombre_1",
+      "page": 1,
+      "x": 352.64,
+      "y": 674.92,
+      "type": "text"
+    },
+    {
+      "data_key": "nombre_2",
+      "page": 1,
+      "x": 441.56,
+      "y": 674.92,
+      "type": "text"
+    },
+    {
+      "data_key": "fecha_nacimiento",
+      "page": 1,
+      "type": "date_split",
+      "input_format": "dd/mm/aaaa",
+      "parts": {
+        "day": {
+          "x": 162.68,
+          "y": 645.92
+        },
+        "month": {
+          "x": 221.96,
+          "y": 645.92
+        },
+        "year": {
+          "x": 281.36,
+          "y": 645.92
+        }
+      }
+    },
+    {
+      "data_key": "pais_nacimiento",
+      "page": 1,
+      "x": 406.04,
+      "y": 645.92,
+      "type": "text"
+    },
+    {
+      "data_key": "nacionalidad",
+      "page": 1,
+      "x": 138.92,
+      "y": 617.92,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_residencia",
+      "page": 1,
+      "x": 328.76,
+      "y": 617.92,
+      "type": "text"
+    },
+    {
+      "data_key": "genero",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "F": {
+          "x": 472.7,
+          "y": 619.82
+        },
+        "M": {
+          "x": 496.7,
+          "y": 619.82
+        }
+      }
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 115.16,
+      "y": 600.92,
+      "type": "text"
+    },
+    {
+      "data_key": "pasaporte",
+      "page": 1,
+      "x": 346.76,
+      "y": 600.92,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_residencial",
+      "page": 1,
+      "x": 168.56,
+      "y": 583.92,
+      "type": "text"
+    },
+    {
+      "data_key": "telefono_celular",
+      "page": 1,
+      "x": 156.8,
+      "y": 554.92,
+      "type": "text"
+    },
+    {
+      "data_key": "telefono_residencia",
+      "page": 1,
+      "x": 242.24,
+      "y": 554.92,
+      "type": "text"
+    },
+    {
+      "data_key": "correo_personal",
+      "page": 1,
+      "x": 390.56,
+      "y": 554.92,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_donde_tributa",
+      "page": 1,
+      "x": 281.36,
+      "y": 526.32,
+      "type": "text"
+    },
+    {
+      "data_key": "numero_identificacion_tributario",
+      "page": 1,
+      "x": 221.96,
+      "y": 508.92,
+      "type": "text"
+    },
+    {
+      "data_key": "es_pep",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "si": {
+          "x": 276.2,
+          "y": 466.22
+        },
+        "no": {
+          "x": 295.9,
+          "y": 466.22
+        }
+      }
+    },
+    {
+      "data_key": "pep_cargo_actual",
+      "page": 1,
+      "x": 174.56,
+      "y": 447.92,
+      "type": "text"
+    },
+    {
+      "data_key": "es_familiar_pep",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "si": {
+          "x": 197.8,
+          "y": 432.52
+        },
+        "no": {
+          "x": 217.5,
+          "y": 432.52
+        }
+      }
+    },
+    {
+      "data_key": "familiar_pep_nombre",
+      "page": 1,
+      "x": 162.68,
+      "y": 413.92,
+      "type": "text"
+    },
+    {
+      "data_key": "familiar_pep_cargo",
+      "page": 1,
+      "x": 364.52,
+      "y": 413.92,
+      "type": "text"
+    },
+    {
+      "data_key": "familiar_pep_relacion",
+      "page": 1,
+      "x": 162.68,
+      "y": 396.92,
+      "type": "text"
+    },
+    {
+      "data_key": "es_colaborador_pep",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "si": {
+          "x": 272.2,
+          "y": 381.92
+        },
+        "no": {
+          "x": 291.8,
+          "y": 381.92
+        }
+      }
+    },
+    {
+      "data_key": "colaborador_pep_nombre",
+      "page": 1,
+      "x": 162.68,
+      "y": 363.42,
+      "type": "text"
+    },
+    {
+      "data_key": "colaborador_pep_cargo",
+      "page": 1,
+      "x": 364.52,
+      "y": 363.42,
+      "type": "text"
+    },
+    {
+      "data_key": "colaborador_pep_relacion",
+      "page": 1,
+      "x": 162.68,
+      "y": 346.42,
+      "type": "text"
+    },
+    {
+      "data_key": "ingreso_anual_aproximado",
+      "page": 1,
+      "type": "checkbox_mark",
+      "options": {
+        "menos_10mil": {
+          "x": 78.1,
+          "y": 286.82
+        },
+        "10mil_30mil": {
+          "x": 192.2,
+          "y": 286.82
+        },
+        "30mil_50mil": {
+          "x": 306.6,
+          "y": 286.82
+        },
+        "mas_50mil": {
+          "x": 420.9,
+          "y": 286.82
+        }
+      }
+    },
+    {
+      "data_key": "otras_ocupaciones_detalle",
+      "page": 1,
+      "x": 271.8,
+      "y": 275.12,
+      "type": "text"
+    },
+    {
+      "data_key": "otras_ocupaciones_monto",
+      "page": 1,
+      "x": 418.2,
+      "y": 275.12,
+      "type": "text"
+    },
+    {
+      "data_key": "profesion",
+      "page": 1,
+      "x": 154.0,
+      "y": 240.42,
+      "type": "text"
+    },
+    {
+      "data_key": "ocupacion",
+      "page": 1,
+      "x": 334.64,
+      "y": 240.42,
+      "type": "text"
+    },
+    {
+      "data_key": "empresa_donde_labora",
+      "page": 1,
+      "x": 174.56,
+      "y": 223.42,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_laboral",
+      "page": 1,
+      "x": 121.04,
+      "y": 206.42,
+      "type": "text"
+    },
+    {
+      "data_key": "ocupacion_descripcion_exacta",
+      "page": 1,
+      "x": 73.28,
+      "y": 160.92,
+      "type": "text"
+    },
+    {
+      "data_key": "nombre_completo",
+      "page": 2,
+      "x": 73.4,
+      "y": 621.42,
+      "type": "text"
+    },
+    {
+      "data_key": "firma_fecha",
+      "page": 2,
+      "x": 447.68,
+      "y": 621.42,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "firma manuscrita, no se autocompleta",
+      "label": "Firma"
+    }
+  ]
+}

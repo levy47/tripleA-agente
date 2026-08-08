@@ -1,0 +1,393 @@
+{
+  "template": "aseguradoras/optima/incendio/templates/solicitud_incendio.pdf",
+  "page_width": 612,
+  "page_height": 792,
+  "font_size": 8,
+  "fields": [
+    {
+      "data_key": "nombre_1",
+      "page": 1,
+      "x": 61.3,
+      "y": 622.0,
+      "type": "text",
+      "note": "I PARTE Persona Natural - Primer nombre"
+    },
+    {
+      "data_key": "nombre_2",
+      "page": 1,
+      "x": 156.9,
+      "y": 622.0,
+      "type": "text",
+      "note": "Segundo nombre"
+    },
+    {
+      "data_key": "apellido_1",
+      "page": 1,
+      "x": 259.8,
+      "y": 622.0,
+      "type": "text",
+      "note": "Apellido paterno"
+    },
+    {
+      "data_key": "apellido_2",
+      "page": 1,
+      "x": 365.9,
+      "y": 622.0,
+      "type": "text",
+      "note": "Apellido materno (en la practica casi siempre vacio)"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "x": 474.1,
+      "y": 622.0,
+      "type": "manual",
+      "note": "Apellido de casada - no hay data_key, lo completa el corredor a mano si aplica"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 64.7,
+      "y": 579.8,
+      "type": "text"
+    },
+    {
+      "data_key": "nacionalidad",
+      "page": 1,
+      "x": 192.2,
+      "y": 579.8,
+      "type": "text"
+    },
+    {
+      "data_key": "genero",
+      "page": 1,
+      "x": 302.9,
+      "y": 579.8,
+      "type": "text",
+      "note": "Sexo - no hay casillero impreso F/M en este PDF, se escribe la letra tal cual (F o M)"
+    },
+    {
+      "data_key": "pais_residencia",
+      "page": 1,
+      "x": 375.3,
+      "y": 579.8,
+      "type": "text"
+    },
+    {
+      "data_key": "estado_civil",
+      "page": 1,
+      "x": 502.5,
+      "y": 579.8,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_provincia",
+      "page": 1,
+      "x": 72.0,
+      "y": 501.0,
+      "type": "text",
+      "note": "Direccion Residencial del asegurado natural"
+    },
+    {
+      "data_key": "direccion_distrito",
+      "page": 1,
+      "x": 195.9,
+      "y": 501.0,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_corregimiento",
+      "page": 1,
+      "x": 318.2,
+      "y": 501.0,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_urbanizacion",
+      "page": 1,
+      "x": 444.6,
+      "y": 501.0,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "II PARTE Datos Generales Persona Juridica (Nombre empresa/RUC/Actividad/E-mail/Tel./Fax) - decision de alcance: queda en blanco, se completa a mano si el bien pertenece a una empresa"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Ubicacion de la Empresa (Provincia/Distrito/Corregimiento/Urbanizacion) - manual, idem persona juridica"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Datos del Representante Legal (3 filas) y Direccion Residencial del Representante Legal - manual, no se autocompleta"
+    },
+    {
+      "data_key": "incendio_tipo_poliza",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "III PARTE - TIPO DE POLIZA: no hay casillero impreso, se marca una X en el margen izquierdo de la fila de la opcion elegida",
+      "options": {
+        "fija": { "x": 30, "y": 617.4 },
+        "declarativa": { "x": 30, "y": 597.0 },
+        "edificio_construccion": { "x": 30, "y": 576.5 }
+      }
+    },
+    {
+      "data_key": "incendio_bien_cubierto",
+      "page": 2,
+      "x": 400,
+      "y": 638.0,
+      "type": "text",
+      "font_size": 8,
+      "note": "BIEN CUBIERTO - se escribe el valor tal cual (ej. 'Edificio', 'Contenido' o 'Edificio, Contenido') en el espacio en blanco a la derecha del encabezado, para no depender de que calce exacto con una sola casilla"
+    },
+    {
+      "data_key": "incendio_bien_cubierto_contenido_detalle",
+      "page": 2,
+      "x": 428,
+      "y": 597.0,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "incendio_vigencia_desde",
+      "page": 2,
+      "x": 75,
+      "y": 532.19,
+      "type": "text",
+      "font_size": 4,
+      "note": "Celda MUY angosta (columna 'Desde' de VIGENCIA, encajonada entre la etiqueta 'Desde' y la etiqueta 'Hasta') -- fuente reducida a 4pt, es el limite fisico de esa celda en este PDF"
+    },
+    {
+      "data_key": "incendio_vigencia_hasta",
+      "page": 2,
+      "x": 143,
+      "y": 532.19,
+      "type": "text",
+      "font_size": 6
+    },
+    {
+      "data_key": "incendio_acreedor_hipotecario",
+      "page": 2,
+      "x": 183.2,
+      "y": 532.19,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "incendio_suma_asegurada_edificio",
+      "page": 2,
+      "x": 277.5,
+      "y": 532.19,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "incendio_suma_asegurada_contenido",
+      "page": 2,
+      "x": 382.7,
+      "y": 532.19,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "incendio_ocupacion_edificio",
+      "page": 2,
+      "x": 499.2,
+      "y": 532.19,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "incendio_construccion_paredes",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "CONSTRUCCION DEL EDIFICIO - PAREDES (columna izquierda de la sub-tabla)",
+      "options": {
+        "concreto": { "x": 81.0, "y": 394.54 },
+        "metal": { "x": 81.0, "y": 373.68 },
+        "madera": { "x": 81.0, "y": 352.44 }
+      }
+    },
+    {
+      "data_key": "incendio_construccion_paredes_otro",
+      "page": 2,
+      "x": 118,
+      "y": 330.8,
+      "type": "text",
+      "font_size": 6
+    },
+    {
+      "data_key": "incendio_construccion_pisos",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "CONSTRUCCION DEL EDIFICIO - PISOS (columna central)",
+      "options": {
+        "concreto": { "x": 269.29, "y": 394.54 },
+        "metal": { "x": 269.29, "y": 373.68 },
+        "madera": { "x": 269.29, "y": 352.44 }
+      }
+    },
+    {
+      "data_key": "incendio_construccion_pisos_otro",
+      "page": 2,
+      "x": 307,
+      "y": 330.8,
+      "type": "text",
+      "font_size": 6
+    },
+    {
+      "data_key": "incendio_construccion_techo",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "CONSTRUCCION DEL EDIFICIO - TECHO (columna derecha)",
+      "options": {
+        "concreto": { "x": 459.4, "y": 394.54 },
+        "metal": { "x": 459.4, "y": 373.68 },
+        "madera": { "x": 459.4, "y": 352.44 }
+      }
+    },
+    {
+      "data_key": "incendio_construccion_techo_otro",
+      "page": 2,
+      "x": 497,
+      "y": 330.8,
+      "type": "text",
+      "font_size": 6
+    },
+    {
+      "data_key": "incendio_alarma_incendio",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "MEDIDAS DE SEGURIDAD - se marca X solo si el valor es 'si'",
+      "options": {
+        "si": { "x": 135.08, "y": 273.18 }
+      }
+    },
+    {
+      "data_key": "incendio_extintores",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": { "x": 271.96, "y": 273.18 }
+      }
+    },
+    {
+      "data_key": "incendio_rociadores",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": { "x": 416.72, "y": 273.18 }
+      }
+    },
+    {
+      "data_key": "incendio_detector_humo",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": { "x": 574.64, "y": 273.18 }
+      }
+    },
+    {
+      "data_key": "incendio_estacion_bomberos_cercana",
+      "page": 2,
+      "x": 198,
+      "y": 253.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "DIRECCION RESIDENCIAL DEL REPRESENTANTE LEGAL (Provincia/Distrito/Corregimiento/Urbanizacion) reaparece en esta pagina, intercalada dentro de la III PARTE -- es del representante legal, no del bien a asegurar, asi que queda manual igual que en pagina 1"
+    },
+    {
+      "data_key": "incendio_coberturas_detalle",
+      "page": 2,
+      "x": 34.3,
+      "y": 191.3,
+      "type": "text",
+      "font_size": 7,
+      "note": "COBERTURAS - primera linea en blanco de la tabla (hay 4 lineas en blanco disponibles, sin contar la de Lucro cesante)"
+    },
+    {
+      "data_key": "incendio_lucro_cesante_detalle",
+      "page": 2,
+      "x": 175,
+      "y": 114,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Columna Tasa / Prima anual / 5% / TOTAL de la tabla de COBERTURAS - las completa el corredor con la cotizacion real"
+    },
+    {
+      "data_key": "incendio_otros_seguros_mismos_bienes",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": { "x": 314.9, "y": 88.2 },
+        "no": { "x": 346.6, "y": 88.2 }
+      }
+    },
+    {
+      "data_key": "numero_tarjeta",
+      "page": 3,
+      "x": 100,
+      "y": 622.0,
+      "type": "text",
+      "note": "IV PARTE Forma de Pago - No. de tarjeta (reutiliza data_key compartido de la foto de tarjeta)"
+    },
+    {
+      "data_key": "tarjeta_tipo",
+      "page": 3,
+      "type": "checkbox_mark",
+      "options": {
+        "mastercard": { "x": 117.5, "y": 601.5 },
+        "visa": { "x": 173.9, "y": 601.5 }
+      }
+    },
+    {
+      "data_key": "tarjeta_exp_mes",
+      "page": 3,
+      "x": 127.9,
+      "y": 579.9,
+      "type": "text"
+    },
+    {
+      "data_key": "tarjeta_exp_anio",
+      "page": 3,
+      "x": 215.5,
+      "y": 579.9,
+      "type": "text"
+    },
+    {
+      "data_key": "incendio_frecuencia_pago",
+      "page": 3,
+      "type": "checkbox_mark",
+      "note": "FRECUENCIA DE PAGOS",
+      "options": {
+        "mensual": { "x": 160.5, "y": 538.2 },
+        "trimestral": { "x": 231.9, "y": 538.2 },
+        "semestral": { "x": 308.5, "y": 538.2 },
+        "anual": { "x": 386.4, "y": 538.2 }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 3,
+      "type": "manual",
+      "note": "Firma de autorizacion de descuento, Firma del solicitante, Fecha, Corredor de seguros - Lic. -- todo manuscrito/manual"
+    }
+  ]
+}

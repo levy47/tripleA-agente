@@ -1,0 +1,2366 @@
+{
+ "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud Combinada de Seguro Individual de Gastos Medicos y Seguro Individual de Accidentes Personales' de Pan-American Life Insurance de Panama, S.A. / PALIG) que no forman parte del intake estandar de WhatsApp. \n\nSOBRE LOS CHECKBOXES: a diferencia de Blue Cross (donde las preguntas Si/No comparten UN solo campo AcroForm de radio con 2+ estados de exportacion, obligando a un hack de type=text + 'estado de exportacion literal'), en este PDF de Pan-American Life CADA casilla visual (incluidas las 23 preguntas x 6 solicitantes = 276 pares Si/No = 552 casillas) es un campo AcroForm de checkbox INDEPENDIENTE, con un unico estado 'on' literal ('/Sí') y 'Off'. Esto permite usar el mecanismo NATIVO 'checkbox_group' de src/fill_pdf.py (no se modifico el script) de forma directa: dos entradas de mapping.json (una por casilla fisica Si y otra por la casilla fisica No) que comparten el mismo data_key con value='si'/'no' respectivamente y on_state='/Sí'; fill_pdf.py activa la casilla cuya 'value' coincide con el dato y deja '/Off' la otra, sin necesidad de escribir estados de exportacion crudos en datos.json. Por lo tanto NO se requirio el patron 'enum_radio_pdf' / 'valores_pdf_literales' de Blue Cross en este mapping. \n\nMismo patron aplicado a: tipo_solicitud (4 checkboxes independientes en el encabezado), sexo (M/F) de cada solicitante, todas las preguntas Si/No de las secciones II, III, VI, VII, VIII, IX, XI, XII, XIII, los productos/deducibles de la Seccion IV, el resultado Normal/Anormal de la Seccion VIII y el consumo Previo/Actual de la Seccion XIII. \n\nCAMPOS SIN ETIQUETA VISIBLE: Text469 (pagina 1, linea punteada junto a 'SOLICITANTE 1') y Text566-569 (pagina 3, fila de encabezado vacia sobre la tabla de Enfermedades Graves) no tienen ninguna etiqueta impresa que indique su proposito; se dejaron como type=manual (no autocompletados) y documentados individualmente mas abajo junto a cada campo de mapping.json (via 'nota'). \n\nFIRMAS Y BLOQUES DE DECLARACION (paginas 6-7): todos los campos de firma (7 campos /Sig: Signature643-647, Signature651-652), sus fechas y el 'Nombre del Propuesto Asegurado' de los 5 bloques de ratificacion se dejaron como type=manual por decision de diseno explicita de la tarea (deben firmarse fisicamente/digitalmente los mayores de 18 anos, no se autocompletan desde datos.json). \n\nEl campo 'Codigo de Agente' aparece 2 veces en el documento (Seccion XV y Seccion XVI); ambas instancias (Text649 y Text655) se mapearon al mismo data_key 'agente_codigo' para no duplicar el dato de entrada.",
+ "campos": {
+  "tipo_solicitud": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Tipo de solicitud (encabezado). Checkbox independiente 'Poliza nueva'. 4 checkboxes independientes (no radio compartido); se modelan como checkbox_group con el mismo data_key y 4 'value' distintos, ya que cada casilla es un campo AcroForm propio en el PDF (a diferencia del patron de Blue Cross).",
+   "valores_posibles": [
+    "nueva",
+    "adicion_dependientes",
+    "cambio_plan",
+    "rehabilitacion"
+   ]
+  },
+  "numero_poliza": {
+   "tipo": "string",
+   "descripcion": "Numero de Poliza (encabezado, solo aplica si Adicion de dependientes/Cambio de plan/Rehabilitacion)."
+  },
+  "principal_primer_nombre": {
+   "tipo": "string",
+   "descripcion": "Primer Nombre del Asegurado Principal (Solicitante 1)."
+  },
+  "principal_segundo_nombre": {
+   "tipo": "string",
+   "descripcion": "Segundo Nombre del Asegurado Principal."
+  },
+  "principal_primer_apellido": {
+   "tipo": "string",
+   "descripcion": "Primer Apellido del Asegurado Principal."
+  },
+  "principal_segundo_apellido": {
+   "tipo": "string",
+   "descripcion": "Segundo Apellido del Asegurado Principal."
+  },
+  "principal_apellido_casada": {
+   "tipo": "string",
+   "descripcion": "Apellido de Casada del Asegurado Principal."
+  },
+  "principal_peso": {
+   "tipo": "string",
+   "descripcion": "Peso (lbs) del Asegurado Principal."
+  },
+  "principal_estatura": {
+   "tipo": "string",
+   "descripcion": "Estatura (mts) del Asegurado Principal."
+  },
+  "principal_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Fecha de nacimiento del Asegurado Principal: Mes (formato impreso Mes/Dia/Ano)."
+  },
+  "principal_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Fecha de nacimiento del Asegurado Principal: Dia."
+  },
+  "principal_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Fecha de nacimiento del Asegurado Principal: Ano."
+  },
+  "principal_sexo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Sexo del Asegurado Principal: casilla M. Checkbox independiente (Off/Si), no radio compartido.",
+   "valores_posibles": [
+    "M",
+    "F"
+   ]
+  },
+  "principal_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Estado civil del Asegurado Principal: usar UNA letra segun leyenda impresa en el PDF: S=Soltero(a), C=Casado(a), D=Divorciado(a), V=Viudo(a), U=Union Libre (Union de Hecho).",
+   "valores_posibles": [
+    "S",
+    "C",
+    "D",
+    "V",
+    "U"
+   ]
+  },
+  "principal_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Ocupacion del Asegurado Principal."
+  },
+  "principal_descripcion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Descripcion exacta de la ocupacion del Asegurado Principal."
+  },
+  "principal_direccion_trabajo": {
+   "tipo": "string",
+   "descripcion": "Direccion de trabajo del Asegurado Principal."
+  },
+  "principal_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Nacionalidad del Asegurado Principal."
+  },
+  "principal_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Cedula / Pasaporte del Asegurado Principal."
+  },
+  "principal_correo_electronico": {
+   "tipo": "string",
+   "descripcion": "Correo electronico (personal) del Asegurado Principal."
+  },
+  "principal_correo_trabajo": {
+   "tipo": "string",
+   "descripcion": "Correo electronico del trabajo del Asegurado Principal."
+  },
+  "principal_telefono_trabajo": {
+   "tipo": "string",
+   "descripcion": "Telefono del trabajo del Asegurado Principal."
+  },
+  "principal_pep": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2: '¿Es usted o alguna de las personas nombradas en este documento, una Persona Expuesta Politicamente y/o Publicamente (PEP)?' Checkbox Check Box488=Si (value='si'), Check Box489=No (value='no').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "principal_pep_detalle": {
+   "tipo": "string",
+   "descripcion": "PEP - 'Favor indicar' (detalle si la respuesta a PEP fue Si)."
+  },
+  "principal_ingreso_anual": {
+   "tipo": "string",
+   "descripcion": "Informacion financiera: Ingreso Anual del Asegurado Principal."
+  },
+  "principal_lugar_tributa": {
+   "tipo": "string",
+   "descripcion": "Informacion financiera: Lugar o lugares donde tributa por sus ingresos."
+  },
+  "dir_residencial_direccion": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial (linea de direccion completa)."
+  },
+  "dir_residencial_ciudad": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial: Ciudad."
+  },
+  "dir_residencial_provincia": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial: Provincia."
+  },
+  "dir_residencial_apartado_postal": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial: Apartado postal."
+  },
+  "dir_residencial_pais": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial: Pais de Residencia."
+  },
+  "dir_residencial_tiempo_residencia": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial: Tiempo de Residencia."
+  },
+  "dir_postal_direccion": {
+   "tipo": "string",
+   "descripcion": "Direccion Postal (si es diferente a la anterior)."
+  },
+  "dir_postal_ciudad": {
+   "tipo": "string",
+   "descripcion": "Direccion Postal: Ciudad."
+  },
+  "dir_postal_provincia": {
+   "tipo": "string",
+   "descripcion": "Direccion Postal: Provincia."
+  },
+  "dir_postal_apartado_postal": {
+   "tipo": "string",
+   "descripcion": "Direccion Postal: Apartado postal."
+  },
+  "dir_postal_pais": {
+   "tipo": "string",
+   "descripcion": "Direccion Postal: Pais de Residencia."
+  },
+  "telefono_casa": {
+   "tipo": "string",
+   "descripcion": "Telefono de la casa."
+  },
+  "celular": {
+   "tipo": "string",
+   "descripcion": "Celular."
+  },
+  "fax": {
+   "tipo": "string",
+   "descripcion": "Fax."
+  },
+  "correo_personal": {
+   "tipo": "string",
+   "descripcion": "Correo Electronico Personal."
+  },
+  "correo_conyuge": {
+   "tipo": "string",
+   "descripcion": "Correo electronico del conyuge."
+  },
+  "demografica_residencia_legal_panama": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion II): '¿Tiene usted y todos los solicitantes una residencia legal y permanente en Panama?' Si=Check Box504, No=Check Box505.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "demografica_reside_eeuu_6meses": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion II): '¿Actualmente usted o algun solicitante reside legalmente en los Estados Unidos de America por un periodo de 6 meses o mas ininterrumpidos durante un periodo de 365 dias?' Si=Check Box506, No=Check Box507.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "demografica_paises_autorizado_residir": {
+   "tipo": "string",
+   "descripcion": "Pregunta 3 (Seccion II): '¿En que paises estan usted y todos los solicitantes del seguro autorizados a residir de forma legal, permanente o temporalmente?' (texto libre)."
+  },
+  "demografica_multiple_nacionalidad": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion II): '¿Usted o algun solicitante tiene multiple nacionalidad o pasaporte?' Si=Check Box509, No=Check Box510.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "demografica_multiple_nacionalidad_pais": {
+   "tipo": "string",
+   "descripcion": "Pregunta 4 (Seccion II): Pais (si la respuesta fue Si)."
+  },
+  "sol2_nombre_completo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Nombre y apellidos completos."
+  },
+  "sol2_correo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Correo electronico."
+  },
+  "sol2_peso": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Peso (lbs)."
+  },
+  "sol2_estatura": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Estatura (mts)."
+  },
+  "sol2_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Fecha de nacimiento - Mes."
+  },
+  "sol2_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Fecha de nacimiento - Dia."
+  },
+  "sol2_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Fecha de nacimiento - Ano."
+  },
+  "sol2_sexo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Solicitante 2: Sexo, casilla M.",
+   "valores_posibles": [
+    "M",
+    "F"
+   ]
+  },
+  "sol2_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Ocupacion."
+  },
+  "sol2_parentesco": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Parentesco con el Asegurado Principal."
+  },
+  "sol2_lugar_trabajo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Lugar de trabajo."
+  },
+  "sol2_descripcion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Descripcion exacta de la ocupacion."
+  },
+  "sol2_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Estado civil (S/C/D/V/U).",
+   "valores_posibles": [
+    "S",
+    "C",
+    "D",
+    "V",
+    "U"
+   ]
+  },
+  "sol2_cedula": {
+   "tipo": "string",
+   "descripcion": "Solicitante 2: Cedula."
+  },
+  "sol3_nombre_completo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Nombre y apellidos completos."
+  },
+  "sol3_correo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Correo electronico."
+  },
+  "sol3_parentesco": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Parentesco con el Asegurado Principal."
+  },
+  "sol3_peso": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Peso (lbs)."
+  },
+  "sol3_estatura": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Estatura (mts)."
+  },
+  "sol3_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Fecha de nacimiento - Mes."
+  },
+  "sol3_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Fecha de nacimiento - Dia."
+  },
+  "sol3_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Fecha de nacimiento - Ano."
+  },
+  "sol3_sexo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Solicitante 3: Sexo, casilla M.",
+   "valores_posibles": [
+    "M",
+    "F"
+   ]
+  },
+  "sol3_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Estado civil (S/C/D/V/U).",
+   "valores_posibles": [
+    "S",
+    "C",
+    "D",
+    "V",
+    "U"
+   ]
+  },
+  "sol3_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Ocupacion."
+  },
+  "sol3_cedula": {
+   "tipo": "string",
+   "descripcion": "Solicitante 3: Cedula."
+  },
+  "sol4_nombre_completo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Nombre y apellidos completos."
+  },
+  "sol4_correo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Correo electronico."
+  },
+  "sol4_parentesco": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Parentesco con el Asegurado Principal."
+  },
+  "sol4_peso": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Peso (lbs)."
+  },
+  "sol4_estatura": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Estatura (mts)."
+  },
+  "sol4_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Fecha de nacimiento - Mes."
+  },
+  "sol4_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Fecha de nacimiento - Dia."
+  },
+  "sol4_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Fecha de nacimiento - Ano."
+  },
+  "sol4_sexo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Solicitante 4: Sexo, casilla M.",
+   "valores_posibles": [
+    "M",
+    "F"
+   ]
+  },
+  "sol4_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Estado civil (S/C/D/V/U).",
+   "valores_posibles": [
+    "S",
+    "C",
+    "D",
+    "V",
+    "U"
+   ]
+  },
+  "sol4_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Ocupacion."
+  },
+  "sol4_cedula": {
+   "tipo": "string",
+   "descripcion": "Solicitante 4: Cedula."
+  },
+  "sol5_nombre_completo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Nombre y apellidos completos."
+  },
+  "sol5_correo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Correo electronico."
+  },
+  "sol5_parentesco": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Parentesco con el Asegurado Principal."
+  },
+  "sol5_peso": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Peso (lbs)."
+  },
+  "sol5_estatura": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Estatura (mts)."
+  },
+  "sol5_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Fecha de nacimiento - Mes."
+  },
+  "sol5_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Fecha de nacimiento - Dia."
+  },
+  "sol5_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Fecha de nacimiento - Ano."
+  },
+  "sol5_sexo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Solicitante 5: Sexo, casilla M.",
+   "valores_posibles": [
+    "M",
+    "F"
+   ]
+  },
+  "sol5_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Estado civil (S/C/D/V/U).",
+   "valores_posibles": [
+    "S",
+    "C",
+    "D",
+    "V",
+    "U"
+   ]
+  },
+  "sol5_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Ocupacion."
+  },
+  "sol5_cedula": {
+   "tipo": "string",
+   "descripcion": "Solicitante 5: Cedula."
+  },
+  "sol6_nombre_completo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Nombre y apellidos completos."
+  },
+  "sol6_correo": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Correo electronico."
+  },
+  "sol6_parentesco": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Parentesco con el Asegurado Principal."
+  },
+  "sol6_peso": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Peso (lbs)."
+  },
+  "sol6_estatura": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Estatura (mts)."
+  },
+  "sol6_fecha_nac_mes": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Fecha de nacimiento - Mes."
+  },
+  "sol6_fecha_nac_dia": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Fecha de nacimiento - Dia."
+  },
+  "sol6_fecha_nac_anio": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Fecha de nacimiento - Ano."
+  },
+  "sol6_sexo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Solicitante 6: Sexo, casilla M.",
+   "valores_posibles": [
+    "M",
+    "F"
+   ]
+  },
+  "sol6_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Estado civil (S/C/D/V/U).",
+   "valores_posibles": [
+    "S",
+    "C",
+    "D",
+    "V",
+    "U"
+   ]
+  },
+  "sol6_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Ocupacion."
+  },
+  "sol6_cedula": {
+   "tipo": "string",
+   "descripcion": "Solicitante 6: Cedula."
+  },
+  "deporte_profesional": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion III): '¿Alguno de los solicitantes practica algun deporte en forma profesional?' Si=Check Box540, No=Check Box541.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "deporte_profesional_nombre": {
+   "tipo": "string",
+   "descripcion": "Nombre del Solicitante que practica deporte profesional (si la respuesta fue Si)."
+  },
+  "deporte_profesional_cual": {
+   "tipo": "string",
+   "descripcion": "¿Que deporte practica? (si la respuesta fue Si)."
+  },
+  "imm_producto": {
+   "tipo": "enum_checkbox",
+   "descripcion": "1. IMM Private Client - producto seleccionado: 'Pan-American WorldAccess'. 4 checkboxes independientes de producto.",
+   "valores_posibles": [
+    "worldaccess",
+    "health_access",
+    "preferredaccess",
+    "health_access_plus"
+   ]
+  },
+  "imm_deducible": {
+   "tipo": "enum_checkbox",
+   "descripcion": "1. IMM Private Client - deducible: $1,000.",
+   "valores_posibles": [
+    "1000",
+    "2000",
+    "5000",
+    "10000",
+    "20000"
+   ]
+  },
+  "imm_fecha_efectividad": {
+   "tipo": "string",
+   "descripcion": "1. IMM Private Client - Fecha de efectividad que solicita para la cobertura."
+  },
+  "healthtrust_plan": {
+   "tipo": "enum_checkbox",
+   "descripcion": "2. HEALTH TRUST - Plan seleccionado: 'A- Plan Internacional'.",
+   "valores_posibles": [
+    "a_internacional",
+    "b_local"
+   ]
+  },
+  "healthtrust_deducible_internacional": {
+   "tipo": "enum_checkbox",
+   "descripcion": "2. HEALTH TRUST, A-Plan Internacional - deducible: 1,000/2,000.",
+   "valores_posibles": [
+    "1000_2000",
+    "2500_5000",
+    "5000_10000"
+   ]
+  },
+  "healthtrust_deducible_local": {
+   "tipo": "enum_checkbox",
+   "descripcion": "2. HEALTH TRUST, B-Plan Local - deducible: 350.",
+   "valores_posibles": [
+    "350",
+    "700",
+    "1200"
+   ]
+  },
+  "healthtrust_fecha_efectividad": {
+   "tipo": "string",
+   "descripcion": "2. HEALTH TRUST - Fecha de efectividad que solicita para la cobertura."
+  },
+  "graves_monto_diagnostico": {
+   "tipo": "enum_checkbox",
+   "descripcion": "3. Plan de Enfermedades Graves - Monto por diagnostico: $10,000.",
+   "valores_posibles": [
+    "10000",
+    "15000",
+    "25000",
+    "50000"
+   ]
+  },
+  "graves_a_quien_asegurar": {
+   "tipo": "enum_checkbox",
+   "descripcion": "3. Plan de Enfermedades Graves - A quien asegurar: 'Principal'.",
+   "valores_posibles": [
+    "principal",
+    "principal_conyuge"
+   ]
+  },
+  "beneficiario1_nombre": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 1: Nombre completo."
+  },
+  "beneficiario1_parentesco": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 1: Parentesco."
+  },
+  "beneficiario1_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 1: Porcentaje."
+  },
+  "beneficiario1_cedula": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 1: No. de Cedula o Identificacion."
+  },
+  "beneficiario2_nombre": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 2: Nombre completo."
+  },
+  "beneficiario2_parentesco": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 2: Parentesco."
+  },
+  "beneficiario2_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 2: Porcentaje."
+  },
+  "beneficiario2_cedula": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 2: No. de Cedula o Identificacion."
+  },
+  "beneficiario3_nombre": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 3: Nombre completo."
+  },
+  "beneficiario3_parentesco": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 3: Parentesco."
+  },
+  "beneficiario3_porcentaje": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 3: Porcentaje."
+  },
+  "beneficiario3_cedula": {
+   "tipo": "string",
+   "descripcion": "Beneficiario 3: No. de Cedula o Identificacion."
+  },
+  "otros_seguros_reemplaza": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion VI): '¿La cobertura solicitada reemplazara a otro seguro existente?' Si=Check Box579, No=Check Box580. En caso afirmativo, adjuntar copia del Certificado de Cobertura / Recibo del ultimo pago (documento adjunto, no es un data_key de este mapping).",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "otros_seguros_reemplaza_compania": {
+   "tipo": "string",
+   "descripcion": "Pregunta 1 (Seccion VI): Nombre de la Compania del seguro que se reemplaza."
+  },
+  "otros_seguros_reemplaza_producto_deducible": {
+   "tipo": "string",
+   "descripcion": "Pregunta 1 (Seccion VI): Producto y Deducible del seguro que se reemplaza."
+  },
+  "otros_seguros_reemplaza_no_poliza": {
+   "tipo": "string",
+   "descripcion": "Pregunta 1 (Seccion VI): Numero de Poliza del seguro que se reemplaza."
+  },
+  "otros_seguros_tendra_otro": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion VI): '¿Despues que comience la cobertura, usted o alguno de sus dependientes tendra otro seguro medico?' Si=Check Box581, No=Check Box582.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "otros_seguros_tendra_otro_compania": {
+   "tipo": "string",
+   "descripcion": "Pregunta 2 (Seccion VI): Nombre de la Compania del otro seguro medico."
+  },
+  "otros_seguros_tendra_otro_producto_deducible": {
+   "tipo": "string",
+   "descripcion": "Pregunta 2 (Seccion VI): Producto y Deducible del otro seguro medico."
+  },
+  "otros_seguros_tendra_otro_no_poliza": {
+   "tipo": "string",
+   "descripcion": "Pregunta 2 (Seccion VI): Numero de Poliza del otro seguro medico."
+  },
+  "otros_seguros_solicitud_negada": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion VI): '¿Alguna solicitud de seguro de gastos medicos, accidentes personales o vida ha sido negada, aceptada con restricciones o con una extraprima para alguno de los solicitantes?' Si=Check Box584, No=Check Box585.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "otros_seguros_solicitud_negada_explicar": {
+   "tipo": "string",
+   "descripcion": "Pregunta 3 (Seccion VI): explicacion (si la respuesta fue Si)."
+  },
+  "otros_seguros_asegurado_pal_antes": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion VI): '¿Usted o algun Solicitante han solicitado seguro o han sido asegurados por Pan-American Life de Panama?' Si=Check Box586, No=Check Box587.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "otros_seguros_pal_no_solicitud_poliza": {
+   "tipo": "string",
+   "descripcion": "Pregunta 4 (Seccion VI): Numero de Solicitud/Poliza previa con Pan-American Life."
+  },
+  "otros_seguros_pal_tipo_producto": {
+   "tipo": "string",
+   "descripcion": "Pregunta 4 (Seccion VI): Tipo de producto de la poliza previa con Pan-American Life."
+  },
+  "medico_cabecera_tiene": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta inicial (Seccion VII): '¿Alguno de los solicitantes tiene un medico de cabecera o medico tratante con quien se atiende regularmente?' Si=Check Box593, No=Check Box594.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_cabecera1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 1: Solicitante."
+  },
+  "medico_cabecera1_nombre": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 1: Nombre del Medico."
+  },
+  "medico_cabecera1_especialidad": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 1: Especialidad."
+  },
+  "medico_cabecera1_telefono": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 1: Telefono."
+  },
+  "medico_cabecera2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 2: Solicitante."
+  },
+  "medico_cabecera2_nombre": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 2: Nombre del Medico."
+  },
+  "medico_cabecera2_especialidad": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 2: Especialidad."
+  },
+  "medico_cabecera2_telefono": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 2: Telefono."
+  },
+  "medico_cabecera3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 3: Solicitante."
+  },
+  "medico_cabecera3_nombre": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 3: Nombre del Medico."
+  },
+  "medico_cabecera3_especialidad": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 3: Especialidad."
+  },
+  "medico_cabecera3_telefono": {
+   "tipo": "string",
+   "descripcion": "Medico de cabecera, fila 3: Telefono."
+  },
+  "examen_medico_tiene": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta inicial (Seccion VIII): '¿Alguno de los solicitantes ha tenido un examen pediatrico, ginecologico general o rutinario?' Si=Check Box595, No=Check Box596.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "examen1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 1: Solicitante."
+  },
+  "examen1_tipo": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 1: Tipo de examen."
+  },
+  "examen1_fecha": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 1: Fecha."
+  },
+  "examen1_resultado": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Examenes medicos, fila 1: Resultado = Normal.",
+   "valores_posibles": [
+    "normal",
+    "anormal"
+   ]
+  },
+  "examen1_resultado_explicar": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 1: explicacion si el resultado fue anormal (campo AcroForm con tooltip /TU='Normal Anormal')."
+  },
+  "examen2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 2: Solicitante."
+  },
+  "examen2_tipo": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 2: Tipo de examen."
+  },
+  "examen2_fecha": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 2: Fecha."
+  },
+  "examen2_resultado": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Examenes medicos, fila 2: Resultado = Normal.",
+   "valores_posibles": [
+    "normal",
+    "anormal"
+   ]
+  },
+  "examen2_resultado_explicar": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 2: explicacion si el resultado fue anormal (campo AcroForm con tooltip /TU='Normal Anormal')."
+  },
+  "examen3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 3: Solicitante."
+  },
+  "examen3_tipo": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 3: Tipo de examen."
+  },
+  "examen3_fecha": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 3: Fecha."
+  },
+  "examen3_resultado": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Examenes medicos, fila 3: Resultado = Normal.",
+   "valores_posibles": [
+    "normal",
+    "anormal"
+   ]
+  },
+  "examen3_resultado_explicar": {
+   "tipo": "string",
+   "descripcion": "Examenes medicos, fila 3: explicacion si el resultado fue anormal (campo AcroForm con tooltip /TU='Normal Anormal')."
+  },
+  "maternidad_embarazo_previo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta a (Seccion IX): '¿Alguna solicitante ha estado embarazada anteriormente?' Si=Check Box598, No=Check Box599.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "maternidad_embarazo_previo_nombre": {
+   "tipo": "string",
+   "descripcion": "Pregunta a (Seccion IX): Nombre del Solicitante (si la respuesta fue Si)."
+  },
+  "maternidad_cantidad_embarazos": {
+   "tipo": "string",
+   "descripcion": "Pregunta a (Seccion IX): numero de Embarazos."
+  },
+  "maternidad_parto_natural": {
+   "tipo": "string",
+   "descripcion": "Pregunta a (Seccion IX): numero de Partos naturales."
+  },
+  "maternidad_cesarea": {
+   "tipo": "string",
+   "descripcion": "Pregunta a (Seccion IX): numero de Cesareas."
+  },
+  "maternidad_abortos": {
+   "tipo": "string",
+   "descripcion": "Pregunta a (Seccion IX): numero de Abortos."
+  },
+  "maternidad_motivo_fechas_cesarea_abortos": {
+   "tipo": "string",
+   "descripcion": "Pregunta b (Seccion IX): motivos y fechas de Cesarea o Abortos."
+  },
+  "maternidad_embarazada_actualmente": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta c (Seccion IX): '¿Alguna solicitante se encuentra actualmente embarazada?' Si=Check Box605, No=Check Box606.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "maternidad_embarazada_actualmente_nombre": {
+   "tipo": "string",
+   "descripcion": "Pregunta c (Seccion IX): Nombre del Solicitante."
+  },
+  "maternidad_fecha_probable_parto": {
+   "tipo": "string",
+   "descripcion": "Pregunta c (Seccion IX): fecha probable de parto."
+  },
+  "maternidad_complicaciones": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta d (Seccion IX): '¿Alguna solicitante tiene antecedentes de complicaciones del embarazo como por ejemplo, partos prematuros, diabetes gestacional, preclampsia, complicaciones perinatales?' Si=Check Box610, No=Check Box611.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "maternidad_complicaciones_detalle": {
+   "tipo": "string",
+   "descripcion": "Pregunta d (Seccion IX): detalles (si la respuesta fue Si)."
+  },
+  "medico_preg1_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Infecciones' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1296'=Si / 'Check Box1297'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg1_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Infecciones' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1298'=Si / 'Check Box1299'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg1_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Infecciones' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1300'=Si / 'Check Box1301'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg1_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Infecciones' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1302'=Si / 'Check Box1303'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg1_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Infecciones' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1304'=Si / 'Check Box1305'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg1_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 1 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Infecciones' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1306'=Si / 'Check Box1307'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg2_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Desordenes de los ojos, oidos, nariz o garganta' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1308'=Si / 'Check Box1309'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg2_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Desordenes de los ojos, oidos, nariz o garganta' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1310'=Si / 'Check Box1311'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg2_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Desordenes de los ojos, oidos, nariz o garganta' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1312'=Si / 'Check Box1313'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg2_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Desordenes de los ojos, oidos, nariz o garganta' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1314'=Si / 'Check Box1315'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg2_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Desordenes de los ojos, oidos, nariz o garganta' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1316'=Si / 'Check Box1317'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg2_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 2 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Desordenes de los ojos, oidos, nariz o garganta' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1318'=Si / 'Check Box1319'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg3_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Depresion o desordenes psiquiatricos, convulsiones, migrana, paralisis u otros desordenes neurologicos' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1320'=Si / 'Check Box1321'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg3_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Depresion o desordenes psiquiatricos, convulsiones, migrana, paralisis u otros desordenes neurologicos' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1322'=Si / 'Check Box1323'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg3_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Depresion o desordenes psiquiatricos, convulsiones, migrana, paralisis u otros desordenes neurologicos' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1324'=Si / 'Check Box1325'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg3_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Depresion o desordenes psiquiatricos, convulsiones, migrana, paralisis u otros desordenes neurologicos' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1326'=Si / 'Check Box1327'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg3_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Depresion o desordenes psiquiatricos, convulsiones, migrana, paralisis u otros desordenes neurologicos' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1328'=Si / 'Check Box1329'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg3_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 3 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Depresion o desordenes psiquiatricos, convulsiones, migrana, paralisis u otros desordenes neurologicos' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1330'=Si / 'Check Box1331'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg4_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Alergias, asma, bronquitis, dificultad respiratoria, tos cronica, tuberculosis u otros signos o sintomas pulmonares o respiratorios' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1332'=Si / 'Check Box1333'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg4_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Alergias, asma, bronquitis, dificultad respiratoria, tos cronica, tuberculosis u otros signos o sintomas pulmonares o respiratorios' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1334'=Si / 'Check Box1335'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg4_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Alergias, asma, bronquitis, dificultad respiratoria, tos cronica, tuberculosis u otros signos o sintomas pulmonares o respiratorios' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1336'=Si / 'Check Box1337'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg4_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Alergias, asma, bronquitis, dificultad respiratoria, tos cronica, tuberculosis u otros signos o sintomas pulmonares o respiratorios' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1338'=Si / 'Check Box1339'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg4_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Alergias, asma, bronquitis, dificultad respiratoria, tos cronica, tuberculosis u otros signos o sintomas pulmonares o respiratorios' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1340'=Si / 'Check Box1341'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg4_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 4 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Alergias, asma, bronquitis, dificultad respiratoria, tos cronica, tuberculosis u otros signos o sintomas pulmonares o respiratorios' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1342'=Si / 'Check Box1343'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg5_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 5 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del corazon, arritmia, soplo, circulatorios, problemas de presion arterial, aneurisma, trombosis, venas varicosas, flebitis, fiebre reumatica o colesterol o trigliceridos elevados' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1344'=Si / 'Check Box1345'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg5_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 5 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del corazon, arritmia, soplo, circulatorios, problemas de presion arterial, aneurisma, trombosis, venas varicosas, flebitis, fiebre reumatica o colesterol o trigliceridos elevados' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1346'=Si / 'Check Box1347'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg5_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 5 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del corazon, arritmia, soplo, circulatorios, problemas de presion arterial, aneurisma, trombosis, venas varicosas, flebitis, fiebre reumatica o colesterol o trigliceridos elevados' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1348'=Si / 'Check Box1349'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg5_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 5 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del corazon, arritmia, soplo, circulatorios, problemas de presion arterial, aneurisma, trombosis, venas varicosas, flebitis, fiebre reumatica o colesterol o trigliceridos elevados' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1350'=Si / 'Check Box1351'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg5_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 5 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del corazon, arritmia, soplo, circulatorios, problemas de presion arterial, aneurisma, trombosis, venas varicosas, flebitis, fiebre reumatica o colesterol o trigliceridos elevados' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1352'=Si / 'Check Box1353'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg5_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 5 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del corazon, arritmia, soplo, circulatorios, problemas de presion arterial, aneurisma, trombosis, venas varicosas, flebitis, fiebre reumatica o colesterol o trigliceridos elevados' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1354'=Si / 'Check Box1355'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg6_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 6 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del esofago, estomago, intestinos o pancreas, hepatitis, colitis, polipos, diverticulos u otros sintomas o signos del higado, vesicula, recto, ano o sistema digestivo' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1356'=Si / 'Check Box1357'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg6_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 6 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del esofago, estomago, intestinos o pancreas, hepatitis, colitis, polipos, diverticulos u otros sintomas o signos del higado, vesicula, recto, ano o sistema digestivo' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1358'=Si / 'Check Box1359'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg6_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 6 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del esofago, estomago, intestinos o pancreas, hepatitis, colitis, polipos, diverticulos u otros sintomas o signos del higado, vesicula, recto, ano o sistema digestivo' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1360'=Si / 'Check Box1361'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg6_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 6 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del esofago, estomago, intestinos o pancreas, hepatitis, colitis, polipos, diverticulos u otros sintomas o signos del higado, vesicula, recto, ano o sistema digestivo' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1362'=Si / 'Check Box1363'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg6_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 6 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del esofago, estomago, intestinos o pancreas, hepatitis, colitis, polipos, diverticulos u otros sintomas o signos del higado, vesicula, recto, ano o sistema digestivo' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1364'=Si / 'Check Box1365'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg6_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 6 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos del esofago, estomago, intestinos o pancreas, hepatitis, colitis, polipos, diverticulos u otros sintomas o signos del higado, vesicula, recto, ano o sistema digestivo' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1366'=Si / 'Check Box1367'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg7_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 7 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los rinones o del tracto urinario, infeccion urinaria, pielonefritis, pus o sangre en la orina, cistitis, piedras, insuficiencia renal o cualquier otro trastorno del rinon, ureter, vejiga y/o uretra' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1368'=Si / 'Check Box1369'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg7_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 7 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los rinones o del tracto urinario, infeccion urinaria, pielonefritis, pus o sangre en la orina, cistitis, piedras, insuficiencia renal o cualquier otro trastorno del rinon, ureter, vejiga y/o uretra' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1370'=Si / 'Check Box1371'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg7_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 7 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los rinones o del tracto urinario, infeccion urinaria, pielonefritis, pus o sangre en la orina, cistitis, piedras, insuficiencia renal o cualquier otro trastorno del rinon, ureter, vejiga y/o uretra' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1372'=Si / 'Check Box1373'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg7_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 7 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los rinones o del tracto urinario, infeccion urinaria, pielonefritis, pus o sangre en la orina, cistitis, piedras, insuficiencia renal o cualquier otro trastorno del rinon, ureter, vejiga y/o uretra' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1374'=Si / 'Check Box1375'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg7_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 7 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los rinones o del tracto urinario, infeccion urinaria, pielonefritis, pus o sangre en la orina, cistitis, piedras, insuficiencia renal o cualquier otro trastorno del rinon, ureter, vejiga y/o uretra' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1376'=Si / 'Check Box1377'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg7_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 7 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los rinones o del tracto urinario, infeccion urinaria, pielonefritis, pus o sangre en la orina, cistitis, piedras, insuficiencia renal o cualquier otro trastorno del rinon, ureter, vejiga y/o uretra' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1378'=Si / 'Check Box1379'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg8_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 8 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la columna vertebral, espalda, ciatica, lumbalgia, escoliosis, cervicalgia, artritis, gota u otros sintomas o signos de los musculos, huesos o articulaciones. Indicar si presenta material de fijacion, tornillos, placa o protesis' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1382'=Si / 'Check Box1383'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg8_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 8 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la columna vertebral, espalda, ciatica, lumbalgia, escoliosis, cervicalgia, artritis, gota u otros sintomas o signos de los musculos, huesos o articulaciones. Indicar si presenta material de fijacion, tornillos, placa o protesis' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1384'=Si / 'Check Box1385'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg8_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 8 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la columna vertebral, espalda, ciatica, lumbalgia, escoliosis, cervicalgia, artritis, gota u otros sintomas o signos de los musculos, huesos o articulaciones. Indicar si presenta material de fijacion, tornillos, placa o protesis' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1386'=Si / 'Check Box1387'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg8_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 8 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la columna vertebral, espalda, ciatica, lumbalgia, escoliosis, cervicalgia, artritis, gota u otros sintomas o signos de los musculos, huesos o articulaciones. Indicar si presenta material de fijacion, tornillos, placa o protesis' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1388'=Si / 'Check Box1389'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg8_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 8 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la columna vertebral, espalda, ciatica, lumbalgia, escoliosis, cervicalgia, artritis, gota u otros sintomas o signos de los musculos, huesos o articulaciones. Indicar si presenta material de fijacion, tornillos, placa o protesis' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1390'=Si / 'Check Box1391'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg8_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 8 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la columna vertebral, espalda, ciatica, lumbalgia, escoliosis, cervicalgia, artritis, gota u otros sintomas o signos de los musculos, huesos o articulaciones. Indicar si presenta material de fijacion, tornillos, placa o protesis' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1392'=Si / 'Check Box1393'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg9_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 9 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Tumores benignos o cancer' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1394'=Si / 'Check Box1395'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg9_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 9 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Tumores benignos o cancer' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1396'=Si / 'Check Box1397'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg9_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 9 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Tumores benignos o cancer' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1398'=Si / 'Check Box1399'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg9_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 9 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Tumores benignos o cancer' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1400'=Si / 'Check Box1401'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg9_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 9 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Tumores benignos o cancer' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1402'=Si / 'Check Box1403'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg9_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 9 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Tumores benignos o cancer' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1404'=Si / 'Check Box1405'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg10_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 10 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Anemia, leucemia, linfoma, trastornos de sangrado o coagulacion, hemofilia, trombofilia, Von Willebrand u otros sintomas o signos de la sangre' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1406'=Si / 'Check Box1407'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg10_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 10 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Anemia, leucemia, linfoma, trastornos de sangrado o coagulacion, hemofilia, trombofilia, Von Willebrand u otros sintomas o signos de la sangre' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1408'=Si / 'Check Box1409'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg10_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 10 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Anemia, leucemia, linfoma, trastornos de sangrado o coagulacion, hemofilia, trombofilia, Von Willebrand u otros sintomas o signos de la sangre' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1410'=Si / 'Check Box1411'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg10_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 10 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Anemia, leucemia, linfoma, trastornos de sangrado o coagulacion, hemofilia, trombofilia, Von Willebrand u otros sintomas o signos de la sangre' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1412'=Si / 'Check Box1413'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg10_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 10 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Anemia, leucemia, linfoma, trastornos de sangrado o coagulacion, hemofilia, trombofilia, Von Willebrand u otros sintomas o signos de la sangre' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1414'=Si / 'Check Box1415'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg10_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 10 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Anemia, leucemia, linfoma, trastornos de sangrado o coagulacion, hemofilia, trombofilia, Von Willebrand u otros sintomas o signos de la sangre' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1416'=Si / 'Check Box1417'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg11_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 11 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Diabetes, azucar alta o baja, sindrome metabolico, sintomas o signos de tiroides, paratiroides, hipofisis, suprarrenales y otros signos o sintomas hormonales o endocrinologicos' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1418'=Si / 'Check Box1419'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg11_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 11 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Diabetes, azucar alta o baja, sindrome metabolico, sintomas o signos de tiroides, paratiroides, hipofisis, suprarrenales y otros signos o sintomas hormonales o endocrinologicos' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1420'=Si / 'Check Box1421'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg11_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 11 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Diabetes, azucar alta o baja, sindrome metabolico, sintomas o signos de tiroides, paratiroides, hipofisis, suprarrenales y otros signos o sintomas hormonales o endocrinologicos' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1422'=Si / 'Check Box1423'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg11_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 11 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Diabetes, azucar alta o baja, sindrome metabolico, sintomas o signos de tiroides, paratiroides, hipofisis, suprarrenales y otros signos o sintomas hormonales o endocrinologicos' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1424'=Si / 'Check Box1425'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg11_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 11 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Diabetes, azucar alta o baja, sindrome metabolico, sintomas o signos de tiroides, paratiroides, hipofisis, suprarrenales y otros signos o sintomas hormonales o endocrinologicos' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1426'=Si / 'Check Box1427'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg11_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 11 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Diabetes, azucar alta o baja, sindrome metabolico, sintomas o signos de tiroides, paratiroides, hipofisis, suprarrenales y otros signos o sintomas hormonales o endocrinologicos' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1428'=Si / 'Check Box1429'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg12_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 12 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la prostata, prostatitis, hiperplasia prostatica, dificultad urinaria, aumento de la frecuencia urinaria en la noche' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1430'=Si / 'Check Box1431'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg12_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 12 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la prostata, prostatitis, hiperplasia prostatica, dificultad urinaria, aumento de la frecuencia urinaria en la noche' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1432'=Si / 'Check Box1433'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg12_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 12 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la prostata, prostatitis, hiperplasia prostatica, dificultad urinaria, aumento de la frecuencia urinaria en la noche' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1434'=Si / 'Check Box1435'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg12_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 12 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la prostata, prostatitis, hiperplasia prostatica, dificultad urinaria, aumento de la frecuencia urinaria en la noche' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1436'=Si / 'Check Box1437'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg12_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 12 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la prostata, prostatitis, hiperplasia prostatica, dificultad urinaria, aumento de la frecuencia urinaria en la noche' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1438'=Si / 'Check Box1439'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg12_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 12 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de la prostata, prostatitis, hiperplasia prostatica, dificultad urinaria, aumento de la frecuencia urinaria en la noche' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1440'=Si / 'Check Box1441'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg13_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 13 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades de transmision sexual o algun sintoma o signo del aparato reproductivo incluyendo desordenes de los testiculos, varicocele, hidrocele' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1442'=Si / 'Check Box1443'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg13_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 13 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades de transmision sexual o algun sintoma o signo del aparato reproductivo incluyendo desordenes de los testiculos, varicocele, hidrocele' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1444'=Si / 'Check Box1445'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg13_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 13 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades de transmision sexual o algun sintoma o signo del aparato reproductivo incluyendo desordenes de los testiculos, varicocele, hidrocele' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1446'=Si / 'Check Box1447'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg13_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 13 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades de transmision sexual o algun sintoma o signo del aparato reproductivo incluyendo desordenes de los testiculos, varicocele, hidrocele' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1448'=Si / 'Check Box1449'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg13_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 13 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades de transmision sexual o algun sintoma o signo del aparato reproductivo incluyendo desordenes de los testiculos, varicocele, hidrocele' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1450'=Si / 'Check Box1451'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg13_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 13 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades de transmision sexual o algun sintoma o signo del aparato reproductivo incluyendo desordenes de los testiculos, varicocele, hidrocele' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1452'=Si / 'Check Box1453'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg14_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 14 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de las mamas incluyendo mama fibroquistica, calcificaciones, adenomas, quistes, nodulos, sintomas o signos de los ovarios, trompas o utero incluyendo miomas, quistes, ovarios poliquisticos, endometriosis, fibroma' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1454'=Si / 'Check Box1455'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg14_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 14 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de las mamas incluyendo mama fibroquistica, calcificaciones, adenomas, quistes, nodulos, sintomas o signos de los ovarios, trompas o utero incluyendo miomas, quistes, ovarios poliquisticos, endometriosis, fibroma' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1456'=Si / 'Check Box1457'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg14_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 14 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de las mamas incluyendo mama fibroquistica, calcificaciones, adenomas, quistes, nodulos, sintomas o signos de los ovarios, trompas o utero incluyendo miomas, quistes, ovarios poliquisticos, endometriosis, fibroma' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1458'=Si / 'Check Box1459'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg14_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 14 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de las mamas incluyendo mama fibroquistica, calcificaciones, adenomas, quistes, nodulos, sintomas o signos de los ovarios, trompas o utero incluyendo miomas, quistes, ovarios poliquisticos, endometriosis, fibroma' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1460'=Si / 'Check Box1461'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg14_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 14 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de las mamas incluyendo mama fibroquistica, calcificaciones, adenomas, quistes, nodulos, sintomas o signos de los ovarios, trompas o utero incluyendo miomas, quistes, ovarios poliquisticos, endometriosis, fibroma' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1462'=Si / 'Check Box1463'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg14_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 14 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de las mamas incluyendo mama fibroquistica, calcificaciones, adenomas, quistes, nodulos, sintomas o signos de los ovarios, trompas o utero incluyendo miomas, quistes, ovarios poliquisticos, endometriosis, fibroma' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1464'=Si / 'Check Box1465'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg15_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 15 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos o de la piel incluyendo psoriasis, vitiligo, queratosis actinica, carcinoma basocelular, escamoso, melanoma o lesiones benignas' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1466'=Si / 'Check Box1467'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg15_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 15 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos o de la piel incluyendo psoriasis, vitiligo, queratosis actinica, carcinoma basocelular, escamoso, melanoma o lesiones benignas' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1468'=Si / 'Check Box1469'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg15_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 15 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos o de la piel incluyendo psoriasis, vitiligo, queratosis actinica, carcinoma basocelular, escamoso, melanoma o lesiones benignas' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1470'=Si / 'Check Box1471'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg15_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 15 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos o de la piel incluyendo psoriasis, vitiligo, queratosis actinica, carcinoma basocelular, escamoso, melanoma o lesiones benignas' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1472'=Si / 'Check Box1473'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg15_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 15 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos o de la piel incluyendo psoriasis, vitiligo, queratosis actinica, carcinoma basocelular, escamoso, melanoma o lesiones benignas' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1474'=Si / 'Check Box1475'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg15_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 15 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos o de la piel incluyendo psoriasis, vitiligo, queratosis actinica, carcinoma basocelular, escamoso, melanoma o lesiones benignas' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1476'=Si / 'Check Box1477'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg16_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 16 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades congenitas, hereditarias, geneticas o autoinmune' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1478'=Si / 'Check Box1479'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg16_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 16 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades congenitas, hereditarias, geneticas o autoinmune' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1480'=Si / 'Check Box1481'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg16_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 16 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades congenitas, hereditarias, geneticas o autoinmune' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1482'=Si / 'Check Box1483'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg16_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 16 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades congenitas, hereditarias, geneticas o autoinmune' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1484'=Si / 'Check Box1485'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg16_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 16 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades congenitas, hereditarias, geneticas o autoinmune' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1486'=Si / 'Check Box1487'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg16_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 16 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Enfermedades congenitas, hereditarias, geneticas o autoinmune' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1488'=Si / 'Check Box1489'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg17_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 17 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: VIH o SIDA' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1490'=Si / 'Check Box1491'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg17_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 17 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: VIH o SIDA' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1492'=Si / 'Check Box1493'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg17_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 17 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: VIH o SIDA' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1494'=Si / 'Check Box1495'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg17_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 17 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: VIH o SIDA' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1496'=Si / 'Check Box1497'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg17_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 17 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: VIH o SIDA' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1498'=Si / 'Check Box1499'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg17_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 17 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: VIH o SIDA' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1500'=Si / 'Check Box1501'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg18_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 18 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Ha estado bajo observacion o seguimiento por algun especialista de la salud' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1502'=Si / 'Check Box1503'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg18_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 18 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Ha estado bajo observacion o seguimiento por algun especialista de la salud' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1504'=Si / 'Check Box1505'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg18_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 18 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Ha estado bajo observacion o seguimiento por algun especialista de la salud' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1506'=Si / 'Check Box1507'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg18_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 18 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Ha estado bajo observacion o seguimiento por algun especialista de la salud' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1508'=Si / 'Check Box1509'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg18_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 18 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Ha estado bajo observacion o seguimiento por algun especialista de la salud' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1510'=Si / 'Check Box1511'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg18_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 18 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Ha estado bajo observacion o seguimiento por algun especialista de la salud' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1512'=Si / 'Check Box1513'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg19_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 19 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los pies, juanetes, neuroma de morton, pies planos o alguna otra alteracion' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1514'=Si / 'Check Box1515'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg19_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 19 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los pies, juanetes, neuroma de morton, pies planos o alguna otra alteracion' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1516'=Si / 'Check Box1517'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg19_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 19 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los pies, juanetes, neuroma de morton, pies planos o alguna otra alteracion' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1518'=Si / 'Check Box1519'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg19_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 19 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los pies, juanetes, neuroma de morton, pies planos o alguna otra alteracion' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1520'=Si / 'Check Box1521'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg19_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 19 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los pies, juanetes, neuroma de morton, pies planos o alguna otra alteracion' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1522'=Si / 'Check Box1523'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg19_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 19 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Sintomas o signos de los pies, juanetes, neuroma de morton, pies planos o alguna otra alteracion' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1524'=Si / 'Check Box1525'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg20_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 20 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Cualquier otra enfermedad, sintoma, signos, lesion o accidente, hospitalizacion o cirugia ya sea realizada o pendiente de realizar y que no se menciono anteriormente' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1526'=Si / 'Check Box1527'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg20_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 20 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Cualquier otra enfermedad, sintoma, signos, lesion o accidente, hospitalizacion o cirugia ya sea realizada o pendiente de realizar y que no se menciono anteriormente' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1528'=Si / 'Check Box1529'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg20_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 20 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Cualquier otra enfermedad, sintoma, signos, lesion o accidente, hospitalizacion o cirugia ya sea realizada o pendiente de realizar y que no se menciono anteriormente' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1530'=Si / 'Check Box1531'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg20_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 20 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Cualquier otra enfermedad, sintoma, signos, lesion o accidente, hospitalizacion o cirugia ya sea realizada o pendiente de realizar y que no se menciono anteriormente' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1532'=Si / 'Check Box1533'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg20_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 20 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Cualquier otra enfermedad, sintoma, signos, lesion o accidente, hospitalizacion o cirugia ya sea realizada o pendiente de realizar y que no se menciono anteriormente' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1534'=Si / 'Check Box1535'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg20_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 20 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: Cualquier otra enfermedad, sintoma, signos, lesion o accidente, hospitalizacion o cirugia ya sea realizada o pendiente de realizar y que no se menciono anteriormente' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1536'=Si / 'Check Box1537'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg21_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 21 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha dado positivo a una prueba de COVID-19 o Alguna vez requirio o esta actualmente bajo tratamiento medico, ha sido admitido en un hospital para recibir tratamiento para COVID-19? En caso afirmativo, proporcione los detalles a continuacion, incluyendo la fecha del diagnostico de COVID, el tipo de tratamiento, incluso si se trato en el hogar o si se tomaron medicamentos y las fechas de cualquier tratamiento hospitalario o admision, asi como cualquier signo o sintoma presente actualmente' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1538'=Si / 'Check Box1539'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg21_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 21 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha dado positivo a una prueba de COVID-19 o Alguna vez requirio o esta actualmente bajo tratamiento medico, ha sido admitido en un hospital para recibir tratamiento para COVID-19? En caso afirmativo, proporcione los detalles a continuacion, incluyendo la fecha del diagnostico de COVID, el tipo de tratamiento, incluso si se trato en el hogar o si se tomaron medicamentos y las fechas de cualquier tratamiento hospitalario o admision, asi como cualquier signo o sintoma presente actualmente' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1540'=Si / 'Check Box1541'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg21_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 21 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha dado positivo a una prueba de COVID-19 o Alguna vez requirio o esta actualmente bajo tratamiento medico, ha sido admitido en un hospital para recibir tratamiento para COVID-19? En caso afirmativo, proporcione los detalles a continuacion, incluyendo la fecha del diagnostico de COVID, el tipo de tratamiento, incluso si se trato en el hogar o si se tomaron medicamentos y las fechas de cualquier tratamiento hospitalario o admision, asi como cualquier signo o sintoma presente actualmente' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1542'=Si / 'Check Box1543'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg21_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 21 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha dado positivo a una prueba de COVID-19 o Alguna vez requirio o esta actualmente bajo tratamiento medico, ha sido admitido en un hospital para recibir tratamiento para COVID-19? En caso afirmativo, proporcione los detalles a continuacion, incluyendo la fecha del diagnostico de COVID, el tipo de tratamiento, incluso si se trato en el hogar o si se tomaron medicamentos y las fechas de cualquier tratamiento hospitalario o admision, asi como cualquier signo o sintoma presente actualmente' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1544'=Si / 'Check Box1545'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg21_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 21 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha dado positivo a una prueba de COVID-19 o Alguna vez requirio o esta actualmente bajo tratamiento medico, ha sido admitido en un hospital para recibir tratamiento para COVID-19? En caso afirmativo, proporcione los detalles a continuacion, incluyendo la fecha del diagnostico de COVID, el tipo de tratamiento, incluso si se trato en el hogar o si se tomaron medicamentos y las fechas de cualquier tratamiento hospitalario o admision, asi como cualquier signo o sintoma presente actualmente' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1546'=Si / 'Check Box1547'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg21_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 21 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha dado positivo a una prueba de COVID-19 o Alguna vez requirio o esta actualmente bajo tratamiento medico, ha sido admitido en un hospital para recibir tratamiento para COVID-19? En caso afirmativo, proporcione los detalles a continuacion, incluyendo la fecha del diagnostico de COVID, el tipo de tratamiento, incluso si se trato en el hogar o si se tomaron medicamentos y las fechas de cualquier tratamiento hospitalario o admision, asi como cualquier signo o sintoma presente actualmente' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1548'=Si / 'Check Box1549'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg22_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 22 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante alguna vez ha presentado o actualmente presenta signos o sintomas posteriores a padecer de COVID, como, entre otros, problemas pulmonares (falta de aire), problemas respiratorios, etc.), problemas renales, hepaticos o cardiacos, cansancio o signos o sintomas neurologicos? En caso afirmativo, proporcione los detalles a continuacion' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1550'=Si / 'Check Box1551'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg22_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 22 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante alguna vez ha presentado o actualmente presenta signos o sintomas posteriores a padecer de COVID, como, entre otros, problemas pulmonares (falta de aire), problemas respiratorios, etc.), problemas renales, hepaticos o cardiacos, cansancio o signos o sintomas neurologicos? En caso afirmativo, proporcione los detalles a continuacion' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1552'=Si / 'Check Box1553'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg22_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 22 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante alguna vez ha presentado o actualmente presenta signos o sintomas posteriores a padecer de COVID, como, entre otros, problemas pulmonares (falta de aire), problemas respiratorios, etc.), problemas renales, hepaticos o cardiacos, cansancio o signos o sintomas neurologicos? En caso afirmativo, proporcione los detalles a continuacion' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1554'=Si / 'Check Box1555'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg22_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 22 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante alguna vez ha presentado o actualmente presenta signos o sintomas posteriores a padecer de COVID, como, entre otros, problemas pulmonares (falta de aire), problemas respiratorios, etc.), problemas renales, hepaticos o cardiacos, cansancio o signos o sintomas neurologicos? En caso afirmativo, proporcione los detalles a continuacion' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1556'=Si / 'Check Box1557'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg22_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 22 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante alguna vez ha presentado o actualmente presenta signos o sintomas posteriores a padecer de COVID, como, entre otros, problemas pulmonares (falta de aire), problemas respiratorios, etc.), problemas renales, hepaticos o cardiacos, cansancio o signos o sintomas neurologicos? En caso afirmativo, proporcione los detalles a continuacion' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1558'=Si / 'Check Box1559'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg22_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 22 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante alguna vez ha presentado o actualmente presenta signos o sintomas posteriores a padecer de COVID, como, entre otros, problemas pulmonares (falta de aire), problemas respiratorios, etc.), problemas renales, hepaticos o cardiacos, cansancio o signos o sintomas neurologicos? En caso afirmativo, proporcione los detalles a continuacion' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1560'=Si / 'Check Box1561'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg23_sol1": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 23 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha recibido el esquema completo de vacunacion para COVID-19? En caso afirmativo, proporcione los nombres de los vacunados fechas y detalles incluyendo cualquier reaccion que haya tenido a la vacuna a continuacion' -- Columna Solicitante 1 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1562'=Si / 'Check Box1563'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg23_sol2": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 23 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha recibido el esquema completo de vacunacion para COVID-19? En caso afirmativo, proporcione los nombres de los vacunados fechas y detalles incluyendo cualquier reaccion que haya tenido a la vacuna a continuacion' -- Columna Solicitante 2 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1564'=Si / 'Check Box1565'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg23_sol3": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 23 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha recibido el esquema completo de vacunacion para COVID-19? En caso afirmativo, proporcione los nombres de los vacunados fechas y detalles incluyendo cualquier reaccion que haya tenido a la vacuna a continuacion' -- Columna Solicitante 3 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1566'=Si / 'Check Box1567'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg23_sol4": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 23 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha recibido el esquema completo de vacunacion para COVID-19? En caso afirmativo, proporcione los nombres de los vacunados fechas y detalles incluyendo cualquier reaccion que haya tenido a la vacuna a continuacion' -- Columna Solicitante 4 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1568'=Si / 'Check Box1569'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg23_sol5": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 23 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha recibido el esquema completo de vacunacion para COVID-19? En caso afirmativo, proporcione los nombres de los vacunados fechas y detalles incluyendo cualquier reaccion que haya tenido a la vacuna a continuacion' -- Columna Solicitante 5 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1570'=Si / 'Check Box1571'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medico_preg23_sol6": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta 23 (Seccion X, Antecedentes Medicos Personales): '¿Alguno de los solicitantes alguna vez ha padecido o padece?: ¿Usted o algun solicitante ha recibido el esquema completo de vacunacion para COVID-19? En caso afirmativo, proporcione los nombres de los vacunados fechas y detalles incluyendo cualquier reaccion que haya tenido a la vacuna a continuacion' -- Columna Solicitante 6 (Si/No). Casillas AcroForm INDEPENDIENTES ('Check Box1572'=Si / 'Check Box1573'=No), no radio compartido: se mapean con checkbox_group estandar (2 entradas de mapping, mismo data_key, value='si'/'no', on_state='/Sí').",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "detalle1_pregunta_solicitante": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 1) de respuestas 'Si' en Seccion X: '# de Pregunta' y 'Solicitante' (un solo campo de texto libre, ej. '5 - Solicitante 1')."
+  },
+  "detalle1_condicion": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 1): Condicion."
+  },
+  "detalle1_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 1): Periodo Desde."
+  },
+  "detalle1_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 1): Periodo Hasta."
+  },
+  "detalle1_tratamiento_resultados": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 1): Tratamiento y resultados."
+  },
+  "detalle1_info_medico": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 1): Informacion del Medico."
+  },
+  "detalle2_pregunta_solicitante": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 2) de respuestas 'Si' en Seccion X: '# de Pregunta' y 'Solicitante' (un solo campo de texto libre, ej. '5 - Solicitante 1')."
+  },
+  "detalle2_condicion": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 2): Condicion."
+  },
+  "detalle2_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 2): Periodo Desde."
+  },
+  "detalle2_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 2): Periodo Hasta."
+  },
+  "detalle2_tratamiento_resultados": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 2): Tratamiento y resultados."
+  },
+  "detalle2_info_medico": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 2): Informacion del Medico."
+  },
+  "detalle3_pregunta_solicitante": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 3) de respuestas 'Si' en Seccion X: '# de Pregunta' y 'Solicitante' (un solo campo de texto libre, ej. '5 - Solicitante 1')."
+  },
+  "detalle3_condicion": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 3): Condicion."
+  },
+  "detalle3_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 3): Periodo Desde."
+  },
+  "detalle3_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 3): Periodo Hasta."
+  },
+  "detalle3_tratamiento_resultados": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 3): Tratamiento y resultados."
+  },
+  "detalle3_info_medico": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 3): Informacion del Medico."
+  },
+  "detalle4_pregunta_solicitante": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 4) de respuestas 'Si' en Seccion X: '# de Pregunta' y 'Solicitante' (un solo campo de texto libre, ej. '5 - Solicitante 1')."
+  },
+  "detalle4_condicion": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 4): Condicion."
+  },
+  "detalle4_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 4): Periodo Desde."
+  },
+  "detalle4_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 4): Periodo Hasta."
+  },
+  "detalle4_tratamiento_resultados": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 4): Tratamiento y resultados."
+  },
+  "detalle4_info_medico": {
+   "tipo": "string",
+   "descripcion": "Tabla de detalle (fila 4): Informacion del Medico."
+  },
+  "medicamentos_tiene": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta inicial (Seccion XI): '¿Alguno de los solicitantes esta tomando o le han indicado tomar un medicamento de forma continua o por un periodo prolongado?' Si=Check Box619, No=Check Box620.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "medicamento1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 1: Solicitante."
+  },
+  "medicamento1_nombre": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 1: Nombre del medicamento."
+  },
+  "medicamento1_motivo": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 1: Motivo."
+  },
+  "medicamento1_cantidad_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 1: Cantidad y frecuencia."
+  },
+  "medicamento1_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 1: Periodo Desde."
+  },
+  "medicamento1_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 1: Periodo Hasta."
+  },
+  "medicamento2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 2: Solicitante."
+  },
+  "medicamento2_nombre": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 2: Nombre del medicamento."
+  },
+  "medicamento2_motivo": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 2: Motivo."
+  },
+  "medicamento2_cantidad_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 2: Cantidad y frecuencia."
+  },
+  "medicamento2_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 2: Periodo Desde."
+  },
+  "medicamento2_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 2: Periodo Hasta."
+  },
+  "medicamento3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 3: Solicitante."
+  },
+  "medicamento3_nombre": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 3: Nombre del medicamento."
+  },
+  "medicamento3_motivo": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 3: Motivo."
+  },
+  "medicamento3_cantidad_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 3: Cantidad y frecuencia."
+  },
+  "medicamento3_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 3: Periodo Desde."
+  },
+  "medicamento3_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Medicamentos, fila 3: Periodo Hasta."
+  },
+  "historia_familiar_tiene": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta inicial (Seccion XII): '¿Alguno de los solicitantes tiene historia familiar de diabetes, hipertension, desordenes del corazon, cancer, enfermedad congenita o hereditaria o algun otro padecimiento no mencionado en esta solicitud?' Si=Check Box625, No=Check Box626.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "familiar1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 1: Solicitante."
+  },
+  "familiar1_familiar": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 1: Familiar."
+  },
+  "familiar1_desorden": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 1: Desorden."
+  },
+  "familiar2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 2: Solicitante."
+  },
+  "familiar2_familiar": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 2: Familiar."
+  },
+  "familiar2_desorden": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 2: Desorden."
+  },
+  "familiar3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 3: Solicitante."
+  },
+  "familiar3_familiar": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 3: Familiar."
+  },
+  "familiar3_desorden": {
+   "tipo": "string",
+   "descripcion": "Historia familiar, fila 3: Desorden."
+  },
+  "habitos_tiene": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Pregunta inicial (Seccion XIII): '¿Alguno de los solicitantes alguna vez ha fumado cigarrillos, consumido productos de nicotina, alcohol o drogas ilicitas?' Si=Check Box633, No=Check Box634.",
+   "valores_posibles": [
+    "si",
+    "no"
+   ]
+  },
+  "habito1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 1: Solicitante."
+  },
+  "habito1_tipo": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 1: Tipo."
+  },
+  "habito1_cantidad_dia": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 1: Cantidad por dia."
+  },
+  "habito1_consumo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Habitos, fila 1: Consumo = Previo.",
+   "valores_posibles": [
+    "previo",
+    "actual"
+   ]
+  },
+  "habito1_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 1: Periodo Desde."
+  },
+  "habito1_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 1: Periodo Hasta."
+  },
+  "habito2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 2: Solicitante."
+  },
+  "habito2_tipo": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 2: Tipo."
+  },
+  "habito2_cantidad_dia": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 2: Cantidad por dia."
+  },
+  "habito2_consumo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Habitos, fila 2: Consumo = Previo.",
+   "valores_posibles": [
+    "previo",
+    "actual"
+   ]
+  },
+  "habito2_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 2: Periodo Desde."
+  },
+  "habito2_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 2: Periodo Hasta."
+  },
+  "habito3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 3: Solicitante."
+  },
+  "habito3_tipo": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 3: Tipo."
+  },
+  "habito3_cantidad_dia": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 3: Cantidad por dia."
+  },
+  "habito3_consumo": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Habitos, fila 3: Consumo = Previo.",
+   "valores_posibles": [
+    "previo",
+    "actual"
+   ]
+  },
+  "habito3_periodo_desde": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 3: Periodo Desde."
+  },
+  "habito3_periodo_hasta": {
+   "tipo": "string",
+   "descripcion": "Habitos, fila 3: Periodo Hasta."
+  },
+  "agente_registro_sib": {
+   "tipo": "string",
+   "descripcion": "Numero de Registro de Intermediario en la SIB (Superintendencia de Seguros y Reaseguros de Panama)."
+  },
+  "agente_codigo": {
+   "tipo": "string",
+   "descripcion": "Codigo de Agente (aparece 2 veces en el documento: Seccion XV y Seccion XVI; ambos campos comparten el mismo data_key 'agente_codigo')."
+  },
+  "agente_nombre": {
+   "tipo": "string",
+   "descripcion": "Nombre del intermediario/corredor (Seccion XV)."
+  },
+  "agente_nombre_molde": {
+   "tipo": "string",
+   "descripcion": "Nombre del Agente en letra de molde (Seccion XVI)."
+  },
+  "agente_fecha_reconocimiento": {
+   "tipo": "string",
+   "descripcion": "Fecha (Mes/Dia/Ano) del Reconocimiento del Agente (Seccion XVI)."
+  }
+ }
+}

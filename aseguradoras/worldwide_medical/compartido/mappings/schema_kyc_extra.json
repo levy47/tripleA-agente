@@ -1,0 +1,53 @@
+{
+  "descripcion": "Data keys especificos del formulario 'Conozca a su Cliente - Persona Natural' (KYC) que no existen en schema_cliente.json. Mismo estilo/uso que ese archivo: se piden al cliente y se usan junto con mappings/kyc_persona_natural.json.",
+  "campos": {
+    "persona_que_completa": {"tipo": "enum", "valores": ["contratante", "asegurado", "corredor", "pagador", "cia_seguros", "beneficiario"], "nota": "quien completa el formulario KYC, checkbox unico"},
+
+    "apellido_1": {"tipo": "string", "nota": "primer apellido"},
+    "apellido_2": {"tipo": "string", "nota": "segundo apellido"},
+    "nombre_1": {"tipo": "string", "nota": "primer nombre"},
+    "nombre_2": {"tipo": "string", "nota": "segundo nombre"},
+
+    "pais_nacimiento": {"tipo": "string"},
+    "nacionalidad": {"tipo": "string"},
+    "pais_residencia": {"tipo": "string"},
+    "genero": {"tipo": "enum", "valores": ["F", "M"]},
+    "pasaporte": {"tipo": "string", "nota": "solo si distinto/adicional a cedula_o_pasaporte (schema_cliente); si el cliente solo tiene cedula, dejar vacio"},
+
+    "numero_identificacion_tributario": {"tipo": "string"},
+
+    "es_pep": {"tipo": "enum", "valores": ["si", "no"], "nota": "Persona Expuesta Politicamente"},
+    "pep_cargo_actual": {"tipo": "string", "nota": "cargo actual o anterior, solo si es_pep=si"},
+
+    "es_familiar_pep": {"tipo": "enum", "valores": ["si", "no"], "nota": "conyuge, padres, hermanos o hijos de un PEP"},
+    "familiar_pep_nombre": {"tipo": "string", "nota": "solo si es_familiar_pep=si"},
+    "familiar_pep_cargo": {"tipo": "string", "nota": "solo si es_familiar_pep=si"},
+    "familiar_pep_relacion": {"tipo": "string", "nota": "solo si es_familiar_pep=si"},
+
+    "es_colaborador_pep": {"tipo": "enum", "valores": ["si", "no"], "nota": "estrecho colaborador de un PEP"},
+    "colaborador_pep_nombre": {"tipo": "string", "nota": "solo si es_colaborador_pep=si"},
+    "colaborador_pep_cargo": {"tipo": "string", "nota": "solo si es_colaborador_pep=si"},
+    "colaborador_pep_relacion": {"tipo": "string", "nota": "solo si es_colaborador_pep=si"},
+
+    "otras_ocupaciones_monto": {"tipo": "string", "unidad": "USD/balboas", "nota": "monto $ de ingresos por otra actividad; el detalle de la actividad usa otras_ocupaciones_detalle de schema_cliente"},
+
+    "firma_fecha": {"tipo": "date", "formato": "dd/mm/aaaa", "nota": "fecha junto a la firma en la pagina 2, opcional"}
+  },
+  "campos_reusados_de_schema_cliente": [
+    "nombre_completo (se usa en la linea 'Nombre' de la firma, pagina 2)",
+    "fecha_nacimiento (se separa en dia/mes/anio automaticamente por fill_pdf_overlay.py, type=date_split)",
+    "cedula_o_pasaporte (va en el campo 'Cedula:')",
+    "direccion_residencial",
+    "telefono_celular",
+    "telefono_residencia",
+    "correo_personal",
+    "pais_donde_tributa",
+    "profesion",
+    "ocupacion",
+    "ingreso_anual_aproximado",
+    "empresa_donde_labora",
+    "direccion_laboral",
+    "ocupacion_descripcion_exacta (actividad independiente/comerciante)",
+    "otras_ocupaciones_detalle (detalle de otra actividad que genera ingresos)"
+  ]
+}

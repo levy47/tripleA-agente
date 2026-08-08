@@ -1,0 +1,16 @@
+# Secretos -- NUNCA subir esto a git
+.anthropic_api_key
+.access_password_hash
+.flask_secret_key
+
+# Datos de clientes generados durante pruebas -- contienen PII/datos medicos reales
+output/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS
+.DS_Store

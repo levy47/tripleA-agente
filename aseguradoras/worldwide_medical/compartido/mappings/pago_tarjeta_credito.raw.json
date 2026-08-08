@@ -1,0 +1,338 @@
+[
+  {
+    "field": "Firma",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      210.666,
+      68.0483,
+      398.706,
+      92.4651
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Check Box137",
+    "type": "/Btn",
+    "page": 1,
+    "rect": [
+      22.365,
+      618.293,
+      40.365,
+      636.293
+    ],
+    "label_guess": "Quiero pagar mis primas de seguro"
+  },
+  {
+    "field": "Check Box138",
+    "type": "/Btn",
+    "page": 1,
+    "rect": [
+      142.218,
+      618.293,
+      160.218,
+      636.293
+    ],
+    "label_guess": "de seguro primas mediante mis Express"
+  },
+  {
+    "field": "Check Box139",
+    "type": "/Btn",
+    "page": 1,
+    "rect": [
+      201.855,
+      618.293,
+      219.855,
+      636.293
+    ],
+    "label_guess": "mediante mi Visa seguro tarjeta de"
+  },
+  {
+    "field": "Fecha140_af_date",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      485.944,
+      667.982,
+      590.207,
+      684.192
+    ],
+    "label_guess": "Fecha: Tarjeta de Crédito Mediante Primas"
+  },
+  {
+    "field": "Text141",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      94.7401,
+      600.239,
+      588.088,
+      615.87
+    ],
+    "label_guess": "Tarjetahabiente Express American Visa Mastercard"
+  },
+  {
+    "field": "Text142",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      94.7401,
+      580.132,
+      286.428,
+      595.763
+    ],
+    "label_guess": "Tarjeta Tarjetahabiente de No."
+  },
+  {
+    "field": "Text143",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      369.187,
+      579.553,
+      419.02,
+      595.184
+    ],
+    "label_guess": "Exp. de Fecha Tarjeta de No."
+  },
+  {
+    "field": "Text144",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      320.551,
+      620.083,
+      587.509,
+      635.714
+    ],
+    "label_guess": "Otro crédito: de tarjeta mi mediante"
+  },
+  {
+    "field": "Text145",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      533.044,
+      579.553,
+      577.087,
+      595.184
+    ],
+    "label_guess": "Seguridad de Código a a m"
+  },
+  {
+    "field": "Check Box146",
+    "type": "/Btn",
+    "page": 1,
+    "rect": [
+      94.6711,
+      461.149,
+      112.671,
+      479.149
+    ],
+    "label_guess": "pago Asegurado de Forma"
+  },
+  {
+    "field": "Check Box147",
+    "type": "/Btn",
+    "page": 1,
+    "rect": [
+      154.887,
+      460.57,
+      172.887,
+      478.57
+    ],
+    "label_guess": "Anual Asegurado Certificado pago de Forma"
+  },
+  {
+    "field": "Check Box148",
+    "type": "/Btn",
+    "page": 1,
+    "rect": [
+      227.263,
+      459.991,
+      245.263,
+      477.991
+    ],
+    "label_guess": "Semestral Certificado Anual pago de Forma"
+  },
+  {
+    "field": "Text149",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      119.058,
+      540.084,
+      145.152,
+      555.715
+    ],
+    "label_guess": "US$ prima Banco la de Valor"
+  },
+  {
+    "field": "Text150",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      154.377,
+      540.084,
+      191.472,
+      555.715
+    ],
+    "label_guess": "- US$ Banco prima la de"
+  },
+  {
+    "field": "Text151",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      194.285,
+      540.084,
+      229.643,
+      555.715
+    ],
+    "label_guess": "- US$ prima la de Valor"
+  },
+  {
+    "field": "Text152",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      83.1601,
+      520.398,
+      586.351,
+      536.029
+    ],
+    "label_guess": "US$ prima Contratante la de Valor"
+  },
+  {
+    "field": "Text153",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      59.8965,
+      500.712,
+      287.482,
+      516.343
+    ],
+    "label_guess": "Póliza Contratante"
+  },
+  {
+    "field": "Text154",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      347.15,
+      500.079,
+      589.211,
+      515.71
+    ],
+    "label_guess": "Factura Póliza"
+  },
+  {
+    "field": "Text155",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      71.442,
+      480.482,
+      289.185,
+      496.113
+    ],
+    "label_guess": "Asegurado Póliza"
+  },
+  {
+    "field": "Text156",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      347.15,
+      480.393,
+      589.79,
+      496.024
+    ],
+    "label_guess": "Certificado Factura Asegurado"
+  },
+  {
+    "field": "Text157",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      24.2056,
+      354.38,
+      589.004,
+      409.214
+    ],
+    "label_guess": "Observaciones"
+  },
+  {
+    "field": "Text160",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      69.2641,
+      123.093,
+      299.745,
+      138.724
+    ],
+    "label_guess": "copia Nombre de Adjuntar documento de"
+  },
+  {
+    "field": "Text161",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      360.467,
+      122.514,
+      589.211,
+      138.145
+    ],
+    "label_guess": "Apellido Tarjetahabiente. del Nombre"
+  },
+  {
+    "field": "Text700",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      95.8296,
+      560.208,
+      285.119,
+      575.839
+    ],
+    "label_guess": "Tarjeta de No. Banco"
+  },
+  {
+    "field": "Fecha111_af_date",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      491.595,
+      456.147,
+      587.445,
+      475.134
+    ],
+    "label_guess": "mensual: descuento de Fecha Trimestral Semestral"
+  },
+  {
+    "field": "Text1",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      104.728,
+      436.853,
+      296.4,
+      452.944
+    ],
+    "label_guess": "electrónico Anual pago de Semestral Forma"
+  },
+  {
+    "field": "Text2",
+    "type": "/Tx",
+    "page": 1,
+    "rect": [
+      360.002,
+      436.853,
+      551.674,
+      452.944
+    ],
+    "label_guess": "Teléfono Fecha de descuento mensual: Trimestral"
+  }
+]

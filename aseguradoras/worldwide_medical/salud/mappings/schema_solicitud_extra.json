@@ -1,0 +1,778 @@
+{
+  "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud de Suscripcion Seguro de Gastos Medicos Mayores') que NO forman parte del intake estandar de WhatsApp en schema_cliente.json. Se documentan aqui con su tipo y descripcion.",
+  "campos": {
+    "aviso_dia": {
+      "tipo": "string",
+      "descripcion": "Dia del mes en que se firma el Aviso Importante (pagina 1), ej. '15'."
+    },
+    "aviso_mes_texto": {
+      "tipo": "string",
+      "descripcion": "Nombre del mes en que se firma el Aviso Importante (pagina 1), ej. 'julio'."
+    },
+    "aviso_anio": {
+      "tipo": "string",
+      "descripcion": "Año en que se firma el Aviso Importante (pagina 1), ej. '2026'."
+    },
+    "deducible_otro_texto": {
+      "tipo": "string",
+      "descripcion": "Descripcion del deducible cuando se marca 'Otro' en la tabla de Deducibles (pagina 2)."
+    },
+    "forma_pago_otra_texto": {
+      "tipo": "string",
+      "descripcion": "Detalle de la frecuencia de pago cuando se marca 'Otra' (pagina 2). OJO: este formulario NO tiene opcion 'trimestral' (a diferencia de pago_tarjeta_credito.json), solo Anual/Semestral/Otra."
+    },
+    "persona_completa_formulario": {
+      "tipo": "enum",
+      "descripcion": "Quien completa el formulario.",
+      "valores": [
+        "contratante",
+        "asegurado",
+        "corredor",
+        "pagador",
+        "cia_seguros",
+        "beneficiario"
+      ]
+    },
+    "contratante_primer_nombre": {
+      "tipo": "string",
+      "descripcion": "Primer nombre del Contratante (solo si el Contratante es distinto del Asegurado Principal)."
+    },
+    "contratante_segundo_nombre": {
+      "tipo": "string",
+      "descripcion": "Segundo nombre del Contratante."
+    },
+    "contratante_apellidos": {
+      "tipo": "string",
+      "descripcion": "Primer y segundo apellido / apellido de casada del Contratante."
+    },
+    "contratante_fecha_nacimiento": {
+      "tipo": "date",
+      "descripcion": "Fecha de nacimiento del Contratante, formato dd/mm/aaaa."
+    },
+    "contratante_sexo": {
+      "tipo": "enum",
+      "descripcion": "Sexo del Contratante.",
+      "valores": [
+        "f",
+        "m"
+      ]
+    },
+    "contratante_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Nacionalidad(es) del Contratante."
+    },
+    "contratante_cedula_pasaporte": {
+      "tipo": "string",
+      "descripcion": "Cedula o pasaporte del Contratante."
+    },
+    "contratante_edad": {
+      "tipo": "string",
+      "descripcion": "Edad del Contratante."
+    },
+    "contratante_estado_civil": {
+      "tipo": "enum",
+      "descripcion": "Estado civil del Contratante.",
+      "valores": [
+        "soltero",
+        "casado",
+        "divorciado",
+        "viudo",
+        "unido"
+      ]
+    },
+    "contratante_pais_nacimiento": {
+      "tipo": "string",
+      "descripcion": "Pais de nacimiento del Contratante."
+    },
+    "contratante_pais_residencia": {
+      "tipo": "string",
+      "descripcion": "Pais de residencia del Contratante."
+    },
+    "contratante_direccion_residencial": {
+      "tipo": "string",
+      "descripcion": "Direccion de residencia del Contratante (Provincia/Distrito/Corregimiento/Urbanizacion/Calle/Casa o Apto./Edificio)."
+    },
+    "contratante_tel_residencia": {
+      "tipo": "string",
+      "descripcion": "Telefono de residencia del Contratante."
+    },
+    "contratante_tel_celular": {
+      "tipo": "string",
+      "descripcion": "Telefono celular del Contratante."
+    },
+    "contratante_tel_oficina": {
+      "tipo": "string",
+      "descripcion": "Telefono de oficina del Contratante."
+    },
+    "contratante_fax": {
+      "tipo": "string",
+      "descripcion": "Fax del Contratante."
+    },
+    "contratante_correo_personal": {
+      "tipo": "string",
+      "descripcion": "Correo electronico personal del Contratante."
+    },
+    "contratante_pais_tributa": {
+      "tipo": "string",
+      "descripcion": "Pais(es) donde el Contratante tributa por sus ingresos."
+    },
+    "contratante_profesion": {
+      "tipo": "string",
+      "descripcion": "Profesion del Contratante."
+    },
+    "contratante_empresa_donde_labora": {
+      "tipo": "string",
+      "descripcion": "Empresa donde labora el Contratante."
+    },
+    "contratante_ocupacion_cargo": {
+      "tipo": "string",
+      "descripcion": "Ocupacion/Cargo del Contratante."
+    },
+    "contratante_direccion_laboral": {
+      "tipo": "string",
+      "descripcion": "Direccion laboral del Contratante."
+    },
+    "contratante_actividad_economica_empresa": {
+      "tipo": "string",
+      "descripcion": "Actividad economica de la empresa del Contratante."
+    },
+    "contratante_empresa_propia": {
+      "tipo": "enum",
+      "descripcion": "Si la empresa donde labora el Contratante es propia.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "contratante_email_empresa": {
+      "tipo": "string",
+      "descripcion": "Email de la empresa del Contratante."
+    },
+    "contratante_tipo_ocupacion": {
+      "tipo": "enum",
+      "descripcion": "Tipo de ocupacion del Contratante.",
+      "valores": [
+        "jubilado",
+        "asalariado",
+        "independiente"
+      ]
+    },
+    "contratante_es_pagador": {
+      "tipo": "enum",
+      "descripcion": "Si el Contratante es tambien el pagador de la poliza.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "contratante_pagador_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre del pagador, si el Contratante no es el pagador."
+    },
+    "contratante_pagador_pais_tributa": {
+      "tipo": "string",
+      "descripcion": "Pais(es) donde el pagador tributa por sus ingresos (si el pagador no es el Contratante)."
+    },
+    "asegurado_primer_nombre": {
+      "tipo": "string",
+      "descripcion": "Primer nombre del Asegurado Principal / Solicitante. Puede derivarse de nombre_completo si se requiere separar."
+    },
+    "asegurado_segundo_nombre": {
+      "tipo": "string",
+      "descripcion": "Segundo nombre del Asegurado Principal / Solicitante."
+    },
+    "asegurado_apellidos": {
+      "tipo": "string",
+      "descripcion": "Primer y segundo apellido / apellido de casada del Asegurado Principal."
+    },
+    "asegurado_sexo": {
+      "tipo": "enum",
+      "descripcion": "Sexo del Asegurado Principal.",
+      "valores": [
+        "f",
+        "m"
+      ]
+    },
+    "asegurado_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Nacionalidad(es) del Asegurado Principal."
+    },
+    "asegurado_edad": {
+      "tipo": "string",
+      "descripcion": "Edad del Asegurado Principal."
+    },
+    "asegurado_pais_nacimiento": {
+      "tipo": "string",
+      "descripcion": "Pais de nacimiento del Asegurado Principal."
+    },
+    "asegurado_pais_residencia": {
+      "tipo": "string",
+      "descripcion": "Pais de residencia del Asegurado Principal."
+    },
+    "asegurado_tel_oficina": {
+      "tipo": "string",
+      "descripcion": "Telefono de oficina del Asegurado Principal."
+    },
+    "asegurado_fax": {
+      "tipo": "string",
+      "descripcion": "Fax del Asegurado Principal."
+    },
+    "asegurado_actividad_economica_empresa": {
+      "tipo": "string",
+      "descripcion": "Actividad economica de la empresa del Asegurado Principal."
+    },
+    "asegurado_empresa_propia": {
+      "tipo": "enum",
+      "descripcion": "Si la empresa donde labora el Asegurado Principal es propia.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "asegurado_email_empresa": {
+      "tipo": "string",
+      "descripcion": "Email de la empresa del Asegurado Principal."
+    },
+    "asegurado_tipo_ocupacion": {
+      "tipo": "enum",
+      "descripcion": "Tipo de ocupacion del Asegurado Principal.",
+      "valores": [
+        "jubilado",
+        "asalariado",
+        "independiente"
+      ]
+    },
+    "asegurado_actividad_independiente_detalle": {
+      "tipo": "string",
+      "descripcion": "De ser independiente, actividad a la que se dedica el Asegurado Principal."
+    },
+    "pep_contratante": {
+      "tipo": "enum",
+      "descripcion": "Si el Contratante es Persona Politicamente Expuesta (PEP), tiene familiar PEP o colaborador estrecho PEP.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "pep_titular": {
+      "tipo": "enum",
+      "descripcion": "Si el Titular/Asegurado Principal es Persona Politicamente Expuesta (PEP), tiene familiar PEP o colaborador estrecho PEP.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "pep_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la declaracion PEP: cargo actual o anterior y tiempo en el cargo (si es PEP), o nombre, cargo y tipo de relacion (si es familiar/colaborador PEP)."
+    },
+    "ingreso_anual_otras_actividades": {
+      "tipo": "enum",
+      "descripcion": "Ingresos anuales por actividades distintas a la principal.",
+      "valores": [
+        "menos_10mil",
+        "10mil_30mil",
+        "30mil_50mil",
+        "mas_50mil"
+      ]
+    },
+    "dependientes_tabla_texto": {
+      "tipo": "string",
+      "descripcion": "Lista de dependientes en texto libre para la tabla de la pagina 4 (un solo campo PDF para toda la tabla). Formato sugerido por linea: 'Nombre Apellido | Cedula/Pasaporte | Nacionalidad | dd/mm/aaaa | Sexo | Peso | Estatura | Ocupacion | Parentesco'. Se recomienda construir este texto a partir de la lista beneficiarios/dependientes ya provista por el cliente."
+    },
+    "hijos_19_24_estudiantes_tiempo_completo": {
+      "tipo": "enum",
+      "descripcion": "Si los hijos dependientes de 19 a 24 años son estudiantes a tiempo completo.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "hijo1_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre del hijo 1 (19-24 años, estudiante a tiempo completo)."
+    },
+    "hijo1_universidad_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre de la universidad del hijo 1."
+    },
+    "hijo1_universidad_telefono": {
+      "tipo": "string",
+      "descripcion": "Numero de telefono de la universidad del hijo 1."
+    },
+    "hijo2_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre del hijo 2 (19-24 años, estudiante a tiempo completo)."
+    },
+    "hijo2_universidad_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre de la universidad del hijo 2."
+    },
+    "hijo2_universidad_telefono": {
+      "tipo": "string",
+      "descripcion": "Numero de telefono de la universidad del hijo 2."
+    },
+    "medico_seccionA_1_columna_musculoesqueletico": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 1: ¿Artritis, neuritis, reumatismo, osteoporosis, lumbago, hernia discal, escoliosis, u otros padecimientos de la columna vertebral u otros trastornos musculo esqueleticos?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_2_cerebro_vascular": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 2: ¿Embolia, trombosis, migraña, dolores de cabeza u otros padecimientos cerebro vasculares?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_3_neurologico_psiquiatrico": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 3: ¿Epilepsia, desmayos, mareos, crisis nerviosa, ansiedad, depresion, convulsiones u otros padecimientos del cerebro o sistema nervioso?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_4_vista_oido": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 4: ¿Vision defectuosa, glaucoma, cataratas, otitis, laberintitis, mala audicion u otros padecimientos de la vista y/o del oido?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_5_cardiovascular": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 5: ¿Presion arterial alta, problemas del corazon, soplos, valvulopatias, fiebre reumatica, angina, infarto, varices, flebitis, patologia cardiaca u otros padecimientos del Sistema Cardiovascular?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_6_respiratorio": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 6: ¿Tuberculosis, enfisema, bronquitis, rinitis, sinusitis, amigdalitis, asma, alergias u otros padecimientos del Sistema Respiratorio?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_7_digestivo": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 7: ¿Hernia hiatal, reflujo gastroesofagico, gastritis, ulceras, colitis, hepatitis, diverticulosis, hemorroides, problema de los intestinos, recto, higado, vesicula biliar, pancreas y otros padecimientos del Sistema Digestivo?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_8_urinario": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 8: ¿Calculos renales, nefritis, infecciones urinarias, sangre en la orina, padecimientos del riñon u otros padecimientos del Sistema Urinario?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_9_reproductivo_masculino": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 9: ¿Padecimientos de la prostata, testiculos, varicocele u otros padecimientos de los organos reproductivos masculinos?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_10_sangre": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 10: ¿Anemia, anemia falciforme, hemofilia, trastornos de la coagulacion u otros padecimientos sanguineos?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_11_endocrino_diabetes": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 11: ¿Diabetes, colesterol y/o trigliceridos altos, padecimientos de la tiroides, gota o trastornos endocrinos?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_12_cancer_tumor": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 12: ¿Cancer, tumor, quistes, crecimiento y/o inflamacion de ganglios linfaticos, leucemia? ¿Ha recibido quimioterapia, radioterapia o tratamiento alterno? Detalle en cuadro inferior.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_12_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la pregunta 12 de Seccion A (cancer, tumor, quimioterapia, radioterapia o tratamiento alterno)."
+    },
+    "medico_seccionA_13_protesis_amputacion": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 13: ¿Protesis, implantes, amputacion, secuelas de algun tipo de limitacion funcional?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_14_deformidad_congenita": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 14: ¿Alguna deformidad, enfermedad o defecto congenito, perdida del uso de la audicion, ojo(s) o algun miembro?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_15_transfusion_sangre": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 15: ¿Ha recibido transfusion de sangre? ¿Por que?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_15_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la pregunta 15 de Seccion A (motivo de la transfusion de sangre)."
+    },
+    "medico_seccionA_16_sustancias_alcohol": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 16: ¿Usa o ha usado sustancias psicoactivas o estimulantes? ¿Tiene o ha tenido alguna vez dependencia alcoholica?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_17_fuma_tabaco": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 17: ¿Fuma o ha fumado cigarrillos, cigarros, pipas o utilizado productos de tabaco o nicotina en cualquier forma? Especifique cantidad por dia y cuanto tiempo tiene o estuvo fumando.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_17_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la pregunta 17 de Seccion A (cantidad por dia y tiempo fumando/usando tabaco o nicotina)."
+    },
+    "medico_seccionA_18_ets": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 18: ¿Enfermedades de transmision sexual, gonorrea, sifilis, clamidia, infeccion por virus del papiloma humano, herpes u otras?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_19_otra_enfermedad_no_mencionada": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 19: ¿Ha tenido alguna enfermedad, padecimiento, signo, accidente o desorden fisiologico, que no se haya mencionado en este cuestionario?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_20_deporte_riesgo": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 20: ¿Practica en la actualidad alguna disciplina o deporte motorizado, de alto impacto o riesgo? Describa.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_20_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la pregunta 20 de Seccion A (disciplina o deporte motorizado, de alto impacto o riesgo)."
+    },
+    "medico_seccionA_21_embarazo": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 21: ¿Esta usted embarazada? Favor indicar semanas de embarazo. (Solo aplica a Asegurada/dependiente mujer)",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionA_21_semanas_embarazo": {
+      "tipo": "string",
+      "descripcion": "Semanas de embarazo, si la respuesta a la pregunta 21 de Seccion A es 'si'."
+    },
+    "medico_seccionA_22_reproductivo_femenino": {
+      "tipo": "enum",
+      "descripcion": "Seccion A, pregunta 22: ¿Abortos, dolor pelvico, endometriosis, tumores, quistes, cualquier tipo de masas, cervicitis, enfermedades de los senos, ovarios, trompas, trastornos menstruales, hemorragias menstruales, alteraciones menstruales o desordenes de los organos reproductivos?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionB_1_consulta_medica_no_mencionada": {
+      "tipo": "enum",
+      "descripcion": "Seccion B, pregunta 1: ¿Haya consultado a un medico para tratamiento medico o quirurgico, o para consejo de alguna otra enfermedad o alteracion de salud que no este mencionada en la Seccion A?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionB_2_alteracion_salud_no_mencionada": {
+      "tipo": "enum",
+      "descripcion": "Seccion B, pregunta 2: ¿Ha tenido o tiene alguna alteracion de buena salud que no haya sido mencionada en la Seccion A o en la primera pregunta de esta seccion?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionB_3_examen_fisico_estudios": {
+      "tipo": "enum",
+      "descripcion": "Seccion B, pregunta 3: ¿Haya tenido un examen fisico, estudios diagnosticos o pruebas especializadas? Especifique.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionB_3_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la pregunta 3 de Seccion B (que examen, estudio o prueba)."
+    },
+    "historial_medico_detalle_tabla": {
+      "tipo": "string",
+      "descripcion": "Detalle en texto libre de cualquier respuesta 'Si' en Seccion A o B (pagina 6, un solo campo PDF para toda la tabla). Formato sugerido por linea: 'Paciente | Padecimiento y fecha | Tratamiento y duracion | Nombre y direccion del proveedor medico'."
+    },
+    "medico_seccionB_4_antecedentes_familiares": {
+      "tipo": "enum",
+      "descripcion": "Seccion B, pregunta 4 (pagina 6): ¿Alguno de sus padres, hermanos o hermanas ha tenido tuberculosis, diabetes, cancer, presion arterial alta, enfermedad del corazon o riñon?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionB_5_seguro_declinado_aplazado": {
+      "tipo": "enum",
+      "descripcion": "Seccion B, pregunta 5 (pagina 6): ¿Alguna compañia de seguros le ha declinado, aplazado, recargado o limitado un seguro de vida, de accidente o de salud a usted o a alguno de los dependientes nombrados? En caso de contestar afirmativo ¿por que razon?",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "medico_seccionB_5_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle libre de la pregunta 5 de Seccion B (razon por la que una compañia de seguros declino, aplazo, recargo o limito un seguro)."
+    },
+    "tiene_seguro_gastos_medicos_previo": {
+      "tipo": "enum",
+      "descripcion": "¿Ha tenido o tiene Seguros de Gastos Medicos/Salud? (pagina 6)",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "seguro_previo_nombre_compania": {
+      "tipo": "string",
+      "descripcion": "Nombre de la compañia de seguros de gastos medicos previa/actual."
+    },
+    "seguro_previo_numero_poliza": {
+      "tipo": "string",
+      "descripcion": "Numero de poliza del seguro de gastos medicos previo/actual."
+    },
+    "seguro_previo_nombre_asegurado": {
+      "tipo": "string",
+      "descripcion": "Nombre del Asegurado en la poliza de gastos medicos previa."
+    },
+    "seguro_previo_compania_aseguradora": {
+      "tipo": "string",
+      "descripcion": "Compañia Aseguradora de la poliza de gastos medicos previa."
+    },
+    "seguro_previo_tipo_poliza": {
+      "tipo": "string",
+      "descripcion": "Tipo de Poliza de la poliza de gastos medicos previa."
+    },
+    "seguro_previo_fecha_emision": {
+      "tipo": "date",
+      "descripcion": "Fecha en que se emitio la poliza de gastos medicos previa, formato dd/mm/aaaa."
+    },
+    "seguro_previo_vigente_actualidad": {
+      "tipo": "enum",
+      "descripcion": "Si la poliza previa se encuentra vigente en la actualidad.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "seguro_previo_tuvo_reclamacion": {
+      "tipo": "enum",
+      "descripcion": "Si tuvo alguna reclamacion en la poliza previa.",
+      "valores": [
+        "si",
+        "no"
+      ]
+    },
+    "seguro_previo_reclamacion_detalle": {
+      "tipo": "string",
+      "descripcion": "Detalle de la reclamacion, si seguro_previo_tuvo_reclamacion = 'si'."
+    },
+    "beneficiario_primario_1_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 (beneficio de Vida) - Nombres y Apellidos."
+    },
+    "beneficiario_primario_1_fecha_nacimiento": {
+      "tipo": "date",
+      "descripcion": "Beneficiario Primario 1 - Fecha de Nacimiento, formato dd/mm/aaaa."
+    },
+    "beneficiario_primario_1_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Documento de Identidad."
+    },
+    "beneficiario_primario_1_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Nacionalidad."
+    },
+    "beneficiario_primario_1_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Ocupacion."
+    },
+    "beneficiario_primario_1_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Parentesco con el Asegurado."
+    },
+    "beneficiario_primario_1_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 1 - Porcentaje (%) del beneficio de Vida asignado."
+    },
+    "beneficiario_primario_2_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 (beneficio de Vida) - Nombres y Apellidos."
+    },
+    "beneficiario_primario_2_fecha_nacimiento": {
+      "tipo": "date",
+      "descripcion": "Beneficiario Primario 2 - Fecha de Nacimiento, formato dd/mm/aaaa."
+    },
+    "beneficiario_primario_2_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Documento de Identidad."
+    },
+    "beneficiario_primario_2_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Nacionalidad."
+    },
+    "beneficiario_primario_2_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Ocupacion."
+    },
+    "beneficiario_primario_2_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Parentesco con el Asegurado."
+    },
+    "beneficiario_primario_2_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 2 - Porcentaje (%) del beneficio de Vida asignado."
+    },
+    "beneficiario_primario_3_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 (beneficio de Vida) - Nombres y Apellidos."
+    },
+    "beneficiario_primario_3_fecha_nacimiento": {
+      "tipo": "date",
+      "descripcion": "Beneficiario Primario 3 - Fecha de Nacimiento, formato dd/mm/aaaa."
+    },
+    "beneficiario_primario_3_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Documento de Identidad."
+    },
+    "beneficiario_primario_3_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Nacionalidad."
+    },
+    "beneficiario_primario_3_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Ocupacion."
+    },
+    "beneficiario_primario_3_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Parentesco con el Asegurado."
+    },
+    "beneficiario_primario_3_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Primario 3 - Porcentaje (%) del beneficio de Vida asignado."
+    },
+    "beneficiarios_primarios": {
+      "tipo": "lista",
+      "descripcion": "Sección C. Beneficiarios Primarios del beneficio de Vida (pagina 7). El PDF solo tiene 3 filas con campos reales de formulario (aunque la tabla impresa muestra 5 lineas visuales). Representado como beneficiario_primario_1_*, beneficiario_primario_2_*, beneficiario_primario_3_* (nombre, fecha_nacimiento, documento_identidad, nacionalidad, ocupacion, parentesco, porcentaje).",
+      "max_filas_con_campo_pdf": 3
+    },
+    "beneficiario_primario_menor_edad_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre de la persona a quien se entregara el beneficio si algun Beneficiario Primario es menor de edad al fallecimiento del Asegurado."
+    },
+    "beneficiario_primario_menor_edad_parentesco": {
+      "tipo": "string",
+      "descripcion": "Parentesco de esa persona con el Asegurado."
+    },
+    "beneficiario_primario_menor_edad_cedula": {
+      "tipo": "string",
+      "descripcion": "Cedula/Pasaporte de esa persona."
+    },
+    "beneficiarios_contingentes": {
+      "tipo": "lista",
+      "descripcion": "Beneficiario(s) Contingente(s) del beneficio de Vida (pagina 7). El PDF solo tiene 1 fila con campos reales de formulario (aunque la tabla impresa muestra 3 lineas visuales). Representado como beneficiario_contingente_1_* (nombre, fecha_nacimiento, documento_identidad, nacionalidad, ocupacion, parentesco, porcentaje).",
+      "max_filas_con_campo_pdf": 1
+    },
+    "beneficiario_contingente_1_nombre": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Nombres y Apellidos."
+    },
+    "beneficiario_contingente_1_fecha_nacimiento": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Fecha de Nacimiento (dd/mm/aaaa)."
+    },
+    "beneficiario_contingente_1_documento_identidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Documento de Identidad."
+    },
+    "beneficiario_contingente_1_nacionalidad": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Nacionalidad."
+    },
+    "beneficiario_contingente_1_ocupacion": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Ocupacion."
+    },
+    "beneficiario_contingente_1_parentesco": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Parentesco con el Asegurado."
+    },
+    "beneficiario_contingente_1_porcentaje": {
+      "tipo": "string",
+      "descripcion": "Beneficiario Contingente 1 - Porcentaje (%) del beneficio de Vida asignado."
+    },
+    "beneficiario_contingente_menor_edad_nombre": {
+      "tipo": "string",
+      "descripcion": "Nombre de la persona a quien se entregara el beneficio si algun Beneficiario Contingente es menor de edad al fallecimiento del Asegurado."
+    },
+    "beneficiario_contingente_menor_edad_parentesco": {
+      "tipo": "string",
+      "descripcion": "Parentesco de esa persona con el Asegurado."
+    },
+    "beneficiario_contingente_menor_edad_cedula": {
+      "tipo": "string",
+      "descripcion": "Cedula/Pasaporte de esa persona."
+    },
+    "comentarios_adicionales_1": {
+      "tipo": "string",
+      "descripcion": "Comentarios adicionales, linea 1 (pagina 7)."
+    },
+    "comentarios_adicionales_2": {
+      "tipo": "string",
+      "descripcion": "Comentarios adicionales, linea 2 (pagina 7)."
+    },
+    "comentarios_adicionales_3": {
+      "tipo": "string",
+      "descripcion": "Comentarios adicionales, linea 3 (pagina 7)."
+    },
+    "comentarios_adicionales_4": {
+      "tipo": "string",
+      "descripcion": "Comentarios adicionales, linea 4 (pagina 7)."
+    }
+  }
+}

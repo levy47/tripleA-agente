@@ -1,0 +1,52 @@
+{
+  "descripcion": "Datos que hoy se piden al cliente por WhatsApp/email antes de llenar los formularios de WorldWide Medical.",
+  "campos": {
+    "nombre_completo": {"tipo": "string", "ejemplo": "Juan Carlos Perez Rodriguez"},
+    "fecha_nacimiento": {"tipo": "date", "formato": "dd/mm/aaaa"},
+    "cedula_o_pasaporte": {"tipo": "string"},
+    "copia_identidad_adjunta": {"tipo": "boolean", "nota": "el cliente debe enviar la foto/PDF por separado, no se transcribe"},
+    "peso": {"tipo": "string", "unidad": "lbs o kgs"},
+    "estatura": {"tipo": "string", "unidad": "pies o mts"},
+    "direccion_residencial": {"tipo": "string"},
+    "empresa_donde_labora": {"tipo": "string"},
+    "telefono_empresa": {"tipo": "string"},
+    "direccion_laboral": {"tipo": "string"},
+    "correo_personal": {"tipo": "string"},
+    "telefono_residencia": {"tipo": "string"},
+    "telefono_celular": {"tipo": "string"},
+    "estado_civil": {"tipo": "enum", "valores": ["soltero", "casado", "divorciado", "viudo", "unido"]},
+    "profesion": {"tipo": "string"},
+    "ocupacion": {"tipo": "string"},
+    "ocupacion_descripcion_exacta": {"tipo": "string"},
+    "tiene_otras_ocupaciones": {"tipo": "boolean"},
+    "otras_ocupaciones_detalle": {"tipo": "string"},
+    "ingreso_anual_aproximado": {"tipo": "enum", "valores": ["menos_10mil", "10mil_30mil", "30mil_50mil", "mas_50mil"]},
+    "pais_donde_tributa": {"tipo": "string"},
+    "beneficiarios": {
+      "tipo": "lista",
+      "item": {
+        "nombre": "string",
+        "cedula": "string",
+        "edad": "number",
+        "parentesco": "string"
+      }
+    },
+    "tiene_padecimiento_medico": {"tipo": "boolean"},
+    "padecimiento_detalle": {"tipo": "string", "nota": "incluye cirugias, medicamentos, duracion, medico tratante"},
+    "medico_cabecera_nombre": {"tipo": "string"}
+  },
+  "campos_operativos_no_provienen_del_cliente": {
+    "descripcion": "Estos los completa el corredor/broker, no el cliente",
+    "campos": {
+      "numero_poliza": "string",
+      "numero_certificado": "string",
+      "numero_factura": "string",
+      "plan_seleccionado": "enum: optimum_plus, optimum, security, essence, exclusive_int",
+      "deducible_seleccionado": "enum: opcion_I, opcion_II, opcion_III, opcion_IV, otro",
+      "forma_pago": "enum: anual, semestral, trimestral",
+      "tipo_solicitud": "enum: poliza_nueva, rehabilitacion, adicion_dependiente, cambio_plan",
+      "nombre_corredor": "string",
+      "datos_tarjeta_credito": "objeto separado, ver pago_tarjeta_credito - se recomienda no enviarlo por WhatsApp, capturarlo aparte por canal seguro"
+    }
+  }
+}

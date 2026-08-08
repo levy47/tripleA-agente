@@ -1,0 +1,2427 @@
+{
+ "template": "aseguradoras/blue_cross_internacional_seguros/salud/templates/solicitud_seguro_medico.pdf",
+ "fields": {
+  "Primer Apellido": {
+   "data_key": "prospecto_primer_apellido",
+   "type": "text"
+  },
+  "Segundo Apellido": {
+   "data_key": "prospecto_segundo_apellido",
+   "type": "text"
+  },
+  "Apellido de Casada": {
+   "data_key": "prospecto_apellido_casada",
+   "type": "text"
+  },
+  "Primer Nombre": {
+   "data_key": "prospecto_primer_nombre",
+   "type": "text"
+  },
+  "Segundo Nombre": {
+   "data_key": "prospecto_segundo_nombre",
+   "type": "text"
+  },
+  "Cedula / Pasaporte": {
+   "data_key": "prospecto_cedula_pasaporte",
+   "type": "text"
+  },
+  "DD Nac": {
+   "data_key": "prospecto_fecha_nac_dia",
+   "type": "text"
+  },
+  "MM": {
+   "data_key": "prospecto_fecha_nac_mes",
+   "type": "text"
+  },
+  "AAAA": {
+   "data_key": "prospecto_fecha_nac_anio",
+   "type": "text"
+  },
+  "Edad": {
+   "data_key": "prospecto_edad",
+   "type": "text"
+  },
+  "Group1": {
+   "data_key": "prospecto_sexo",
+   "type": "text"
+  },
+  "Group2": {
+   "data_key": "prospecto_extranjero",
+   "type": "text"
+  },
+  "Pais Origen": {
+   "data_key": "prospecto_pais_origen",
+   "type": "text"
+  },
+  "País de Residencia": {
+   "data_key": "prospecto_pais_residencia",
+   "type": "text"
+  },
+  "Nacionalidades": {
+   "data_key": "prospecto_nacionalidades",
+   "type": "text"
+  },
+  "Años Residencia en Panama": {
+   "data_key": "prospecto_anios_residencia_panama",
+   "type": "text"
+  },
+  "Group3": {
+   "data_key": "prospecto_estado_civil",
+   "type": "text"
+  },
+  "Estatura": {
+   "data_key": "prospecto_estatura",
+   "type": "text"
+  },
+  "Group4": {
+   "data_key": "prospecto_unidad_estatura",
+   "type": "text"
+  },
+  "Peso": {
+   "data_key": "prospecto_peso",
+   "type": "text"
+  },
+  "Group5": {
+   "data_key": "prospecto_unidad_peso",
+   "type": "text"
+  },
+  "Empresa donde Trabaja": {
+   "data_key": "prospecto_empresa",
+   "type": "text"
+  },
+  "No de Empleado": {
+   "data_key": "prospecto_no_empleado",
+   "type": "text"
+  },
+  "Actividad Económica de la Empresa": {
+   "data_key": "prospecto_actividad_economica_empresa",
+   "type": "text"
+  },
+  "DD inicio empleo": {
+   "data_key": "prospecto_fecha_inicio_empleo_dia",
+   "type": "text"
+  },
+  "MM inicio empleo": {
+   "data_key": "prospecto_fecha_inicio_empleo_mes",
+   "type": "text"
+  },
+  "AA inicio empleo": {
+   "data_key": "prospecto_fecha_inicio_empleo_anio",
+   "type": "text"
+  },
+  "Ocupación": {
+   "data_key": "prospecto_ocupacion",
+   "type": "text"
+  },
+  "Otras Ocupaciones": {
+   "data_key": "prospecto_otras_ocupaciones",
+   "type": "text"
+  },
+  "Profesión": {
+   "data_key": "prospecto_profesion",
+   "type": "text"
+  },
+  "Descripción de Funciones": {
+   "data_key": "prospecto_descripcion_funciones",
+   "type": "text"
+  },
+  "Provincia": {
+   "data_key": "prospecto_oficina_provincia",
+   "type": "text"
+  },
+  "Distrito  Corregimiento": {
+   "data_key": "prospecto_oficina_distrito_corregimiento",
+   "type": "text"
+  },
+  "Urbanización": {
+   "data_key": "prospecto_oficina_urbanizacion",
+   "type": "text"
+  },
+  "Calle": {
+   "data_key": "prospecto_oficina_calle",
+   "type": "text"
+  },
+  "Ediﬁcio": {
+   "data_key": "prospecto_oficina_edificio",
+   "type": "text"
+  },
+  "E-mail Oﬁcina": {
+   "data_key": "prospecto_oficina_email",
+   "type": "text"
+  },
+  "Telefono de Oficina": {
+   "data_key": "prospecto_oficina_telefono",
+   "type": "text"
+  },
+  "Ingreso Anual Aproximado  Ocupación Actual B": {
+   "data_key": "prospecto_ingreso_anual_actual",
+   "type": "text"
+  },
+  "Ingreso Anual Aproximado  Otras Ocupaciones B": {
+   "data_key": "prospecto_ingreso_anual_otras_ocupaciones",
+   "type": "text"
+  },
+  "Países donde Tributa por sus Ingresos 1": {
+   "data_key": "prospecto_pais_tributa_1",
+   "type": "text"
+  },
+  "Países donde Tributa por sus Ingresos 2": {
+   "data_key": "prospecto_pais_tributa_2",
+   "type": "text"
+  },
+  "Países donde Tributa por sus Ingresos 3": {
+   "data_key": "prospecto_pais_tributa_3",
+   "type": "text"
+  },
+  "Provincia_2": {
+   "data_key": "prospecto_residencia_provincia",
+   "type": "text"
+  },
+  "Distrito  Corregimiento_2": {
+   "data_key": "prospecto_residencia_distrito_corregimiento",
+   "type": "text"
+  },
+  "Urbanización_2": {
+   "data_key": "prospecto_residencia_urbanizacion",
+   "type": "text"
+  },
+  "Calle_2": {
+   "data_key": "prospecto_residencia_calle",
+   "type": "text"
+  },
+  "Edificio 2": {
+   "data_key": "prospecto_residencia_edificio",
+   "type": "text"
+  },
+  "Apto/Casa": {
+   "data_key": "prospecto_residencia_apto_casa",
+   "type": "text"
+  },
+  "Telefono Residencial 2": {
+   "data_key": "prospecto_residencia_telefono",
+   "type": "text"
+  },
+  "Celular": {
+   "data_key": "prospecto_celular",
+   "type": "text"
+  },
+  "Email Personal": {
+   "data_key": "prospecto_email_personal",
+   "type": "text"
+  },
+  "Nombre de los dependientes que ingresan en la PólizaCónyuge": {
+   "data_key": "dependiente_conyuge_nombre",
+   "type": "text"
+  },
+  "Cédula  PasaporteCónyuge": {
+   "data_key": "dependiente_conyuge_cedula_pasaporte",
+   "type": "text"
+  },
+  "Sexo MF Cónyuge": {
+   "data_key": "dependiente_conyuge_sexo",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Cónyuge": {
+   "data_key": "dependiente_conyuge_fecha_nac_dia",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Mes Cónyuge": {
+   "data_key": "dependiente_conyuge_fecha_nac_mes",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Año Cónyuge": {
+   "data_key": "dependiente_conyuge_fecha_nac_anio",
+   "type": "text"
+  },
+  "EdadCónyuge": {
+   "data_key": "dependiente_conyuge_edad",
+   "type": "text"
+  },
+  "Estatura pulg mts Cónyuge": {
+   "data_key": "dependiente_conyuge_estatura",
+   "type": "text"
+  },
+  "Peso Conyuge": {
+   "data_key": "dependiente_conyuge_peso",
+   "type": "text"
+  },
+  "Nombre de los dependientes que ingresan en la PólizaHijoa": {
+   "data_key": "dependiente_hijo1_nombre",
+   "type": "text"
+  },
+  "Cédula  PasaporteHijoa": {
+   "data_key": "dependiente_hijo1_cedula_pasaporte",
+   "type": "text"
+  },
+  "Sexo MFHijoa": {
+   "data_key": "dependiente_hijo1_sexo",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa": {
+   "data_key": "dependiente_hijo1_fecha_nac_dia",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_2": {
+   "data_key": "dependiente_hijo1_fecha_nac_mes",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_3": {
+   "data_key": "dependiente_hijo1_fecha_nac_anio",
+   "type": "text"
+  },
+  "EdadHijoa": {
+   "data_key": "dependiente_hijo1_edad",
+   "type": "text"
+  },
+  "Estatura pulg mtsHijoa": {
+   "data_key": "dependiente_hijo1_estatura",
+   "type": "text"
+  },
+  "Peso Hijo 1": {
+   "data_key": "dependiente_hijo1_peso",
+   "type": "text"
+  },
+  "Nombre de los dependientes que ingresan en la PólizaHijoa_2": {
+   "data_key": "dependiente_hijo2_nombre",
+   "type": "text"
+  },
+  "Cédula  PasaporteHijoa_2": {
+   "data_key": "dependiente_hijo2_cedula_pasaporte",
+   "type": "text"
+  },
+  "Sexo MFHijoa_2": {
+   "data_key": "dependiente_hijo2_sexo",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_4": {
+   "data_key": "dependiente_hijo2_fecha_nac_dia",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_5": {
+   "data_key": "dependiente_hijo2_fecha_nac_mes",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_6": {
+   "data_key": "dependiente_hijo2_fecha_nac_anio",
+   "type": "text"
+  },
+  "EdadHijoa_2": {
+   "data_key": "dependiente_hijo2_edad",
+   "type": "text"
+  },
+  "Estatura pulg mtsHijoa_2": {
+   "data_key": "dependiente_hijo2_estatura",
+   "type": "text"
+  },
+  "Peso Hijo 2": {
+   "data_key": "dependiente_hijo2_peso",
+   "type": "text"
+  },
+  "Nombre de los dependientes que ingresan en la PólizaHijoa_3": {
+   "data_key": "dependiente_hijo3_nombre",
+   "type": "text"
+  },
+  "Cédula  PasaporteHijoa_3": {
+   "data_key": "dependiente_hijo3_cedula_pasaporte",
+   "type": "text"
+  },
+  "Sexo MFHijoa_3": {
+   "data_key": "dependiente_hijo3_sexo",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_7": {
+   "data_key": "dependiente_hijo3_fecha_nac_dia",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_8": {
+   "data_key": "dependiente_hijo3_fecha_nac_mes",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_9": {
+   "data_key": "dependiente_hijo3_fecha_nac_anio",
+   "type": "text"
+  },
+  "EdadHijoa_3": {
+   "data_key": "dependiente_hijo3_edad",
+   "type": "text"
+  },
+  "Estatura pulg mtsHijoa_3": {
+   "data_key": "dependiente_hijo3_estatura",
+   "type": "text"
+  },
+  "Peso Hijo 3": {
+   "data_key": "dependiente_hijo3_peso",
+   "type": "text"
+  },
+  "Nombre de los dependientes que ingresan en la PólizaHijoa_4": {
+   "data_key": "dependiente_hijo4_nombre",
+   "type": "text"
+  },
+  "Cédula  PasaporteHijoa_4": {
+   "data_key": "dependiente_hijo4_cedula_pasaporte",
+   "type": "text"
+  },
+  "Sexo MFHijoa_4": {
+   "data_key": "dependiente_hijo4_sexo",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_10": {
+   "data_key": "dependiente_hijo4_fecha_nac_dia",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_11": {
+   "data_key": "dependiente_hijo4_fecha_nac_mes",
+   "type": "text"
+  },
+  "Fecha de Nacimiento Día Mes AñoHijoa_12": {
+   "data_key": "dependiente_hijo4_fecha_nac_anio",
+   "type": "text"
+  },
+  "EdadHijoa_4": {
+   "data_key": "dependiente_hijo4_edad",
+   "type": "text"
+  },
+  "Estatura pulg mtsHijoa_4": {
+   "data_key": "dependiente_hijo4_estatura",
+   "type": "text"
+  },
+  "Peso Hijo 4": {
+   "data_key": "dependiente_hijo4_peso",
+   "type": "text"
+  },
+  "Group6": {
+   "data_key": "dependientes_unidad_estatura",
+   "type": "text"
+  },
+  "Group7": {
+   "data_key": "dependientes_unidad_peso",
+   "type": "text"
+  },
+  "Group8": {
+   "data_key": "conyuge_extranjero",
+   "type": "text"
+  },
+  "INFORMACIÓN DEL CÓNYUGE SOLO SI APLICA PARA EL SEGURO": {
+   "data_key": "conyuge_pais_origen",
+   "type": "text",
+   "nota": "ADVERTENCIA: el nombre interno de este campo AcroForm es literalmente el titulo de la seccion ('INFORMACIÓN DEL CÓNYUGE SOLO SI APLICA PARA EL SEGURO'), un error de autoria del PDF (probablemente copiado de otro campo); por posicion (rect x=159.6 y=143.1, misma fila que 'Extranjero: No/Si') corresponde inequivocamente al campo de texto 'País de Origen:' del Conyuge.",
+   "revisar": true
+  },
+  "Nacionalidades_2": {
+   "data_key": "conyuge_nacionalidades",
+   "type": "text"
+  },
+  "Años de redencia en Panama": {
+   "data_key": "conyuge_anios_residencia_panama",
+   "type": "text"
+  },
+  "Empresa donde Trabaja_2": {
+   "data_key": "conyuge_empresa",
+   "type": "text"
+  },
+  "Años de empleo en Panama": {
+   "data_key": "conyuge_anios_empleo",
+   "type": "text"
+  },
+  "Ocupación_2": {
+   "data_key": "conyuge_ocupacion",
+   "type": "text"
+  },
+  "Profesión_2": {
+   "data_key": "conyuge_profesion",
+   "type": "text"
+  },
+  "Celular 2": {
+   "data_key": "conyuge_celular",
+   "type": "text"
+  },
+  "Descripción de Funciones_2": {
+   "data_key": "conyuge_descripcion_funciones",
+   "type": "text"
+  },
+  "fill_80": {
+   "data_key": "conyuge_email_oficina",
+   "type": "text"
+  },
+  "Email personal": {
+   "data_key": "conyuge_email_personal",
+   "type": "text"
+  },
+  "Provincia_3": {
+   "data_key": "conyuge_provincia",
+   "type": "text"
+  },
+  "Distrito  Corregimiento_3": {
+   "data_key": "conyuge_distrito_corregimiento",
+   "type": "text"
+  },
+  "Group9": {
+   "data_key": "medico_bc_1_prospecto",
+   "type": "text"
+  },
+  "Group10": {
+   "data_key": "medico_bc_1_conyuge",
+   "type": "text"
+  },
+  "Group11": {
+   "data_key": "medico_bc_1_hijos",
+   "type": "text"
+  },
+  "Group12": {
+   "data_key": "medico_bc_2_prospecto",
+   "type": "text"
+  },
+  "Group13": {
+   "data_key": "medico_bc_2_conyuge",
+   "type": "text"
+  },
+  "Group14": {
+   "data_key": "medico_bc_2_hijos",
+   "type": "text"
+  },
+  "Group15": {
+   "data_key": "medico_bc_3_prospecto",
+   "type": "text"
+  },
+  "Group16": {
+   "data_key": "medico_bc_3_conyuge",
+   "type": "text"
+  },
+  "Group17": {
+   "data_key": "medico_bc_3_hijos",
+   "type": "text"
+  },
+  "Group18": {
+   "data_key": "medico_bc_4_prospecto",
+   "type": "text"
+  },
+  "Group19": {
+   "data_key": "medico_bc_4_conyuge",
+   "type": "text"
+  },
+  "Group20": {
+   "data_key": "medico_bc_4_hijos",
+   "type": "text"
+  },
+  "Group21": {
+   "data_key": "medico_bc_5_prospecto",
+   "type": "text"
+  },
+  "Group22": {
+   "data_key": "medico_bc_5_conyuge",
+   "type": "text"
+  },
+  "Group23": {
+   "data_key": "medico_bc_5_hijos",
+   "type": "text"
+  },
+  "Group24": {
+   "data_key": "medico_bc_6_prospecto",
+   "type": "text"
+  },
+  "Group25": {
+   "data_key": "medico_bc_6_conyuge",
+   "type": "text"
+  },
+  "Group26": {
+   "data_key": "medico_bc_6_hijos",
+   "type": "text"
+  },
+  "Group27": {
+   "data_key": "medico_bc_7_prospecto",
+   "type": "text"
+  },
+  "Group28": {
+   "data_key": "medico_bc_7_conyuge",
+   "type": "text"
+  },
+  "Group29": {
+   "data_key": "medico_bc_7_hijos",
+   "type": "text"
+  },
+  "Group30": {
+   "data_key": "medico_bc_8_prospecto",
+   "type": "text"
+  },
+  "Group31": {
+   "data_key": "medico_bc_8_conyuge",
+   "type": "text"
+  },
+  "Group32": {
+   "data_key": "medico_bc_8_hijos",
+   "type": "text"
+  },
+  "Group33": {
+   "data_key": "medico_bc_9_prospecto",
+   "type": "text"
+  },
+  "Group34": {
+   "data_key": "medico_bc_9_conyuge",
+   "type": "text"
+  },
+  "Group35": {
+   "data_key": "medico_bc_9_hijos",
+   "type": "text"
+  },
+  "Group36": {
+   "data_key": "medico_bc_10_prospecto",
+   "type": "text"
+  },
+  "Group37": {
+   "data_key": "medico_bc_10_conyuge",
+   "type": "text"
+  },
+  "Group38": {
+   "data_key": "medico_bc_10_hijos",
+   "type": "text"
+  },
+  "Group39": {
+   "data_key": "medico_bc_11_prospecto",
+   "type": "text"
+  },
+  "Group40": {
+   "data_key": "medico_bc_11_conyuge",
+   "type": "text"
+  },
+  "Group41": {
+   "data_key": "medico_bc_11_hijos",
+   "type": "text"
+  },
+  "Group42": {
+   "data_key": "medico_bc_12_prospecto",
+   "type": "text"
+  },
+  "Group43": {
+   "data_key": "medico_bc_12_conyuge",
+   "type": "text"
+  },
+  "Group44": {
+   "data_key": "medico_bc_12_hijos",
+   "type": "text"
+  },
+  "Group45": {
+   "data_key": "medico_bc_13_prospecto",
+   "type": "text"
+  },
+  "Group46": {
+   "data_key": "medico_bc_13_conyuge",
+   "type": "text"
+  },
+  "Group47": {
+   "data_key": "medico_bc_13_hijos",
+   "type": "text"
+  },
+  "Group48": {
+   "data_key": "medico_bc_14_prospecto",
+   "type": "text"
+  },
+  "Group49": {
+   "data_key": "medico_bc_14_conyuge",
+   "type": "text"
+  },
+  "Group50": {
+   "data_key": "medico_bc_14_hijos",
+   "type": "text"
+  },
+  "Group51": {
+   "data_key": "medico_bc_15_prospecto",
+   "type": "text"
+  },
+  "Group52": {
+   "data_key": "medico_bc_15_conyuge",
+   "type": "text"
+  },
+  "Group53": {
+   "data_key": "medico_bc_15_hijos",
+   "type": "text"
+  },
+  "Group54": {
+   "data_key": "medico_bc_16_prospecto",
+   "type": "text"
+  },
+  "Group55": {
+   "data_key": "medico_bc_16_conyuge",
+   "type": "text"
+  },
+  "Group56": {
+   "data_key": "medico_bc_16_hijos",
+   "type": "text"
+  },
+  "Group57": {
+   "data_key": "medico_bc_17_prospecto",
+   "type": "text"
+  },
+  "Group58": {
+   "data_key": "medico_bc_17_conyuge",
+   "type": "text"
+  },
+  "Group59": {
+   "data_key": "medico_bc_17_hijos",
+   "type": "text"
+  },
+  "Group60": {
+   "data_key": "medico_bc_18_prospecto",
+   "type": "text"
+  },
+  "Group61": {
+   "data_key": "medico_bc_18_conyuge",
+   "type": "text"
+  },
+  "Group62": {
+   "data_key": "medico_bc_18_hijos",
+   "type": "text"
+  },
+  "Group63": {
+   "data_key": "medico_bc_19_prospecto",
+   "type": "text"
+  },
+  "Group64": {
+   "data_key": "medico_bc_19_conyuge",
+   "type": "text"
+  },
+  "Group65": {
+   "data_key": "medico_bc_19_hijos",
+   "type": "text"
+  },
+  "Group66": {
+   "data_key": "medico_bc_20_prospecto",
+   "type": "text"
+  },
+  "Group67": {
+   "data_key": "medico_bc_20_conyuge",
+   "type": "text"
+  },
+  "Group68": {
+   "data_key": "medico_bc_20_hijos",
+   "type": "text"
+  },
+  "Group69": {
+   "data_key": "medico_bc_21_prospecto",
+   "type": "text"
+  },
+  "Group70": {
+   "data_key": "medico_bc_21_conyuge",
+   "type": "text"
+  },
+  "Group71": {
+   "data_key": "medico_bc_21_hijos",
+   "type": "text"
+  },
+  "Group72": {
+   "data_key": "medico_bc_22_prospecto",
+   "type": "text"
+  },
+  "Group73": {
+   "data_key": "medico_bc_22_conyuge",
+   "type": "text"
+  },
+  "Group74": {
+   "data_key": "medico_bc_22_hijos",
+   "type": "text"
+  },
+  "Group75": {
+   "data_key": "medico_bc_23_prospecto",
+   "type": "text"
+  },
+  "Group76": {
+   "data_key": "medico_bc_23_conyuge",
+   "type": "text"
+  },
+  "Group77": {
+   "data_key": "medico_bc_23_hijos",
+   "type": "text"
+  },
+  "Group78": {
+   "data_key": "medico_bc_24_prospecto",
+   "type": "text"
+  },
+  "Group79": {
+   "data_key": "medico_bc_24_conyuge",
+   "type": "text"
+  },
+  "Group80": {
+   "data_key": "medico_bc_24_hijos",
+   "type": "text"
+  },
+  "Group81": {
+   "data_key": "medico_bc_25_prospecto",
+   "type": "text"
+  },
+  "Group82": {
+   "data_key": "medico_bc_25_conyuge",
+   "type": "text"
+  },
+  "Group83": {
+   "data_key": "medico_bc_25_hijos",
+   "type": "text"
+  },
+  "Group84": {
+   "data_key": "medico_bc_26_prospecto",
+   "type": "text"
+  },
+  "Group85": {
+   "data_key": "medico_bc_26_conyuge",
+   "type": "text"
+  },
+  "Group86": {
+   "data_key": "medico_bc_26_hijos",
+   "type": "text"
+  },
+  "Group87": {
+   "data_key": "medico_bc_27_prospecto",
+   "type": "text"
+  },
+  "Group88": {
+   "data_key": "medico_bc_27_conyuge",
+   "type": "text"
+  },
+  "Group89": {
+   "data_key": "medico_bc_27_hijos",
+   "type": "text"
+  },
+  "Sufre de algún tipo de alergia": {
+   "data_key": "medico_bc_15_detalle",
+   "type": "text"
+  },
+  "Consume algún tipo de droga o bebida alcohólica": {
+   "data_key": "medico_bc_18_detalle",
+   "type": "text"
+  },
+  "Por causa de droga sido sancionado": {
+   "data_key": "medico_bc_19_detalle",
+   "type": "text"
+  },
+  "Ha disminuido o aumentado de peso": {
+   "data_key": "medico_bc_20_cuantas_libras",
+   "type": "text"
+  },
+  "Por qué": {
+   "data_key": "medico_bc_20_por_que",
+   "type": "text"
+  },
+  "encuentra bajo tratamiento médico Detallar": {
+   "data_key": "medico_bc_21_detalle",
+   "type": "text"
+  },
+  "Ha fumado alguna vez": {
+   "data_key": "medico_bc_22_detalle",
+   "type": "text"
+  },
+  "Fecha ultima Fumada": {
+   "data_key": "medico_bc_22_fecha",
+   "type": "text"
+  },
+  "Group90": {
+   "data_key": "medico_bc_22_fuma_actual",
+   "type": "text"
+  },
+  "Con qué frecuencia": {
+   "data_key": "medico_bc_22_frecuencia_actual",
+   "type": "text"
+  },
+  "Utiliza otro producto que contenga nicotina  Cuál": {
+   "data_key": "medico_bc_22_nicotina_cual",
+   "type": "text"
+  },
+  "Con qué frecuencia_2": {
+   "data_key": "medico_bc_22_nicotina_frecuencia",
+   "type": "text"
+  },
+  "tratamientos u otros  Cuántas": {
+   "data_key": "medico_bc_24_cuantas",
+   "type": "text"
+  },
+  "Por qué_2": {
+   "data_key": "medico_bc_24_por_que",
+   "type": "text"
+  },
+  "SolicitanteRow1": {
+   "data_key": "antecedentes_familiares_1_solicitante",
+   "type": "text"
+  },
+  "Familiar AfectadoRow1": {
+   "data_key": "antecedentes_familiares_1_familiar_afectado",
+   "type": "text"
+  },
+  "EnfermedadRow1": {
+   "data_key": "antecedentes_familiares_1_enfermedad",
+   "type": "text"
+  },
+  "Edad de ManifestaciónRow1": {
+   "data_key": "antecedentes_familiares_1_edad_manifestacion",
+   "type": "text"
+  },
+  "Estado ActualRow1": {
+   "data_key": "antecedentes_familiares_1_estado_actual",
+   "type": "text"
+  },
+  "SolicitanteRow2": {
+   "data_key": "antecedentes_familiares_2_solicitante",
+   "type": "text"
+  },
+  "Familiar AfectadoRow2": {
+   "data_key": "antecedentes_familiares_2_familiar_afectado",
+   "type": "text"
+  },
+  "EnfermedadRow2": {
+   "data_key": "antecedentes_familiares_2_enfermedad",
+   "type": "text"
+  },
+  "Edad de ManifestaciónRow2": {
+   "data_key": "antecedentes_familiares_2_edad_manifestacion",
+   "type": "text"
+  },
+  "Estado ActualRow2": {
+   "data_key": "antecedentes_familiares_2_estado_actual",
+   "type": "text"
+  },
+  "SolicitanteRow3": {
+   "data_key": "antecedentes_familiares_3_solicitante",
+   "type": "text"
+  },
+  "Familiar AfectadoRow3": {
+   "data_key": "antecedentes_familiares_3_familiar_afectado",
+   "type": "text"
+  },
+  "EnfermedadRow3": {
+   "data_key": "antecedentes_familiares_3_enfermedad",
+   "type": "text"
+  },
+  "Edad de ManifestaciónRow3": {
+   "data_key": "antecedentes_familiares_3_edad_manifestacion",
+   "type": "text"
+  },
+  "Estado ActualRow3": {
+   "data_key": "antecedentes_familiares_3_estado_actual",
+   "type": "text"
+  },
+  "SolicitanteRow4": {
+   "data_key": "antecedentes_familiares_4_solicitante",
+   "type": "text"
+  },
+  "Familiar AfectadoRow4": {
+   "data_key": "antecedentes_familiares_4_familiar_afectado",
+   "type": "text"
+  },
+  "EnfermedadRow4": {
+   "data_key": "antecedentes_familiares_4_enfermedad",
+   "type": "text"
+  },
+  "Edad de ManifestaciónRow4": {
+   "data_key": "antecedentes_familiares_4_edad_manifestacion",
+   "type": "text"
+  },
+  "Estado ActualRow4": {
+   "data_key": "antecedentes_familiares_4_estado_actual",
+   "type": "text"
+  },
+  "Group91": {
+   "data_key": "medico_bc_28_respuesta",
+   "type": "text"
+  },
+  "Médico": {
+   "data_key": "medico_bc_28_medico",
+   "type": "text"
+  },
+  "Lugar de atención": {
+   "data_key": "medico_bc_28_lugar_atencion",
+   "type": "text"
+  },
+  "Group92": {
+   "data_key": "mujer_29_embarazada",
+   "type": "text"
+  },
+  "Meses de embarazo": {
+   "data_key": "mujer_29_cuantos_meses",
+   "type": "text"
+  },
+  "Group93": {
+   "data_key": "mujer_30_abortos",
+   "type": "text"
+  },
+  "Group94": {
+   "data_key": "mujer_31_trastorno_ginecologico",
+   "type": "text"
+  },
+  "Group95": {
+   "data_key": "mujer_32_tumor",
+   "type": "text"
+  },
+  "Group98": {
+   "data_key": "mujer_32_tumor_ubicacion",
+   "type": "text"
+  },
+  "Group96": {
+   "data_key": "mujer_33_hemorragias",
+   "type": "text"
+  },
+  "Group97": {
+   "data_key": "mujer_34_periodos_regulares",
+   "type": "text"
+  },
+  "DD 3": {
+   "data_key": "mujer_34_fecha_ultima_menstruacion_dia",
+   "type": "text"
+  },
+  "MM 3": {
+   "data_key": "mujer_34_fecha_ultima_menstruacion_mes",
+   "type": "text"
+  },
+  "AA 3": {
+   "data_key": "mujer_34_fecha_ultima_menstruacion_anio",
+   "type": "text"
+  },
+  "Group99": {
+   "data_key": "mujer_35_examen_especial",
+   "type": "text"
+  },
+  "Resultados": {
+   "data_key": "mujer_35_resultados",
+   "type": "text"
+  },
+  "DD 4": {
+   "data_key": "mujer_35_fecha_dia",
+   "type": "text"
+  },
+  "MM 4": {
+   "data_key": "mujer_35_fecha_mes",
+   "type": "text"
+  },
+  "AA 4": {
+   "data_key": "mujer_35_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de su Ginecólogo": {
+   "data_key": "mujer_36_nombre_ginecologo",
+   "type": "text"
+  },
+  "MM 5": {
+   "data_key": "mujer_36_ultima_visita_mes",
+   "type": "text"
+  },
+  "AA 5": {
+   "data_key": "mujer_36_ultima_visita_anio",
+   "type": "text"
+  },
+  "Resultado Papanicolau": {
+   "data_key": "mujer_36_resultado_papanicolau",
+   "type": "text"
+  },
+  "37Nombre del Pediatra": {
+   "data_key": "ninos_nombre_pediatra",
+   "type": "text"
+  },
+  "DD 6": {
+   "data_key": "ninos_fecha_ultima_visita_dia",
+   "type": "text"
+  },
+  "MM 6": {
+   "data_key": "ninos_fecha_ultima_visita_mes",
+   "type": "text"
+  },
+  "AA 6": {
+   "data_key": "ninos_fecha_ultima_visita_anio",
+   "type": "text"
+  },
+  "Group100": {
+   "data_key": "covid_1_sintomas",
+   "type": "text"
+  },
+  "Group101": {
+   "data_key": "covid_2_positivo",
+   "type": "text"
+  },
+  "Group102": {
+   "data_key": "covid_2_1_recuperado",
+   "type": "text"
+  },
+  "Group103": {
+   "data_key": "covid_3_hospitalizacion",
+   "type": "text"
+  },
+  "Secuela Covid": {
+   "data_key": "covid_3_1_secuela",
+   "type": "text"
+  },
+  "Group104": {
+   "data_key": "covid_4_vacuna",
+   "type": "text"
+  },
+  "Número de PreguntaRow1": {
+   "data_key": "detalle_afirmativas_1_numero_pregunta",
+   "type": "text"
+  },
+  "Nombre del Solicitante yo DependienteRow1": {
+   "data_key": "detalle_afirmativas_1_nombre_solicitante",
+   "type": "text"
+  },
+  "DD 7": {
+   "data_key": "detalle_afirmativas_1_fecha_dia",
+   "type": "text"
+  },
+  "MM 7": {
+   "data_key": "detalle_afirmativas_1_fecha_mes",
+   "type": "text"
+  },
+  "AA 7": {
+   "data_key": "detalle_afirmativas_1_fecha_anio",
+   "type": "text"
+  },
+  "Enfermedad": {
+   "data_key": "detalle_afirmativas_1_enfermedad",
+   "type": "text"
+  },
+  "Médico Tratante u Hospital": {
+   "data_key": "detalle_afirmativas_1_medico_hospital",
+   "type": "text"
+  },
+  "fill_30": {
+   "data_key": "detalle_afirmativas_1_condicion_actual",
+   "type": "text"
+  },
+  "Número de PreguntaRow2": {
+   "data_key": "detalle_afirmativas_2_numero_pregunta",
+   "type": "text"
+  },
+  "Nombre del Solicitante yo DependienteRow2": {
+   "data_key": "detalle_afirmativas_2_nombre_solicitante",
+   "type": "text"
+  },
+  "DD 8": {
+   "data_key": "detalle_afirmativas_2_fecha_dia",
+   "type": "text"
+  },
+  "MM 8": {
+   "data_key": "detalle_afirmativas_2_fecha_mes",
+   "type": "text"
+  },
+  "AA 8": {
+   "data_key": "detalle_afirmativas_2_fecha_anio",
+   "type": "text"
+  },
+  "Enfermedad_2": {
+   "data_key": "detalle_afirmativas_2_enfermedad",
+   "type": "text"
+  },
+  "Médico Tratante u Hospital_2": {
+   "data_key": "detalle_afirmativas_2_medico_hospital",
+   "type": "text"
+  },
+  "fill_35": {
+   "data_key": "detalle_afirmativas_2_condicion_actual",
+   "type": "text"
+  },
+  "Número de PreguntaRow3": {
+   "data_key": "detalle_afirmativas_3_numero_pregunta",
+   "type": "text"
+  },
+  "Nombre del Solicitante yo DependienteRow3": {
+   "data_key": "detalle_afirmativas_3_nombre_solicitante",
+   "type": "text"
+  },
+  "DD 9": {
+   "data_key": "detalle_afirmativas_3_fecha_dia",
+   "type": "text"
+  },
+  "MM 9": {
+   "data_key": "detalle_afirmativas_3_fecha_mes",
+   "type": "text"
+  },
+  "AA 9": {
+   "data_key": "detalle_afirmativas_3_fecha_anio",
+   "type": "text"
+  },
+  "Enfermedad_3": {
+   "data_key": "detalle_afirmativas_3_enfermedad",
+   "type": "text"
+  },
+  "Médico Tratante u Hospital_3": {
+   "data_key": "detalle_afirmativas_3_medico_hospital",
+   "type": "text"
+  },
+  "fill_40": {
+   "data_key": "detalle_afirmativas_3_condicion_actual",
+   "type": "text"
+  },
+  "Número de PreguntaRow4": {
+   "data_key": "detalle_afirmativas_4_numero_pregunta",
+   "type": "text"
+  },
+  "Nombre del Solicitante yo DependienteRow4": {
+   "data_key": "detalle_afirmativas_4_nombre_solicitante",
+   "type": "text"
+  },
+  "DD 10": {
+   "data_key": "detalle_afirmativas_4_fecha_dia",
+   "type": "text"
+  },
+  "MM 10": {
+   "data_key": "detalle_afirmativas_4_fecha_mes",
+   "type": "text"
+  },
+  "AA 10": {
+   "data_key": "detalle_afirmativas_4_fecha_anio",
+   "type": "text"
+  },
+  "Enfermedad_4": {
+   "data_key": "detalle_afirmativas_4_enfermedad",
+   "type": "text"
+  },
+  "Médico Tratante u Hospital_4": {
+   "data_key": "detalle_afirmativas_4_medico_hospital",
+   "type": "text"
+  },
+  "fill_45": {
+   "data_key": "detalle_afirmativas_4_condicion_actual",
+   "type": "text"
+  },
+  "Con quien reside Prospecto": {
+   "data_key": "estilo_vida_con_quien_reside",
+   "type": "text"
+  },
+  "Nombre de pareja": {
+   "data_key": "estilo_vida_pareja_nombre",
+   "type": "text"
+  },
+  "Qué edad y qué ocupación tiene su pareja": {
+   "data_key": "estilo_vida_pareja_edad_ocupacion",
+   "type": "text"
+  },
+  "Porque no tiene seguro pareja": {
+   "data_key": "estilo_vida_pareja_sin_seguro_motivo",
+   "type": "text"
+  },
+  "Group105": {
+   "data_key": "estilo_vida_mascotas_si_no",
+   "type": "text"
+  },
+  "Tienen mascotas Cuáles": {
+   "data_key": "estilo_vida_mascotas_cuales",
+   "type": "text"
+  },
+  "Group106": {
+   "data_key": "estilo_vida_viajes_si_no",
+   "type": "text"
+  },
+  "Quién_2": {
+   "data_key": "estilo_vida_viajes_quien",
+   "type": "text"
+  },
+  "Indicar fecha": {
+   "data_key": "estilo_vida_viajes_fecha",
+   "type": "text"
+  },
+  "Group107": {
+   "data_key": "estilo_vida_alimentacion_si_no",
+   "type": "text"
+  },
+  "Cuál": {
+   "data_key": "estilo_vida_alimentacion_cual",
+   "type": "text"
+  },
+  "Quién_3": {
+   "data_key": "estilo_vida_alimentacion_quien",
+   "type": "text"
+  },
+  "Desde cuándo": {
+   "data_key": "estilo_vida_alimentacion_desde_cuando",
+   "type": "text"
+  },
+  "Group108": {
+   "data_key": "estilo_vida_licencia_piloto_si_no",
+   "type": "text"
+  },
+  "Group109": {
+   "data_key": "estilo_vida_deporte_si_no",
+   "type": "text"
+  },
+  "Quién": {
+   "data_key": "estilo_vida_deporte_quien",
+   "type": "text"
+  },
+  "Cuáles": {
+   "data_key": "estilo_vida_deporte_cuales",
+   "type": "text"
+  },
+  "Group110": {
+   "data_key": "estilo_vida_deporte_riesgo_si_no",
+   "type": "text"
+  },
+  "Detalle": {
+   "data_key": "estilo_vida_deporte_riesgo_detalle",
+   "type": "text"
+  },
+  "Group111": {
+   "data_key": "estilo_vida_condenado_si_no",
+   "type": "text"
+  },
+  "undefined_61": {
+   "data_key": "estilo_vida_condenado_detalle",
+   "type": "text"
+  },
+  "Group112": {
+   "data_key": "preg_adic_familiar_no_incluido_si_no",
+   "type": "text"
+  },
+  "Quién_4": {
+   "data_key": "preg_adic_familiar_no_incluido_quien",
+   "type": "text"
+  },
+  "Group113": {
+   "data_key": "preg_adic_reside_extranjero_si_no",
+   "type": "text"
+  },
+  "Nombre": {
+   "data_key": "preg_adic_reside_extranjero_nombre",
+   "type": "text"
+  },
+  "Indique el País": {
+   "data_key": "preg_adic_reside_extranjero_pais",
+   "type": "text"
+  },
+  "Estado": {
+   "data_key": "preg_adic_reside_extranjero_estado",
+   "type": "text"
+  },
+  "Universidad": {
+   "data_key": "preg_adic_reside_extranjero_universidad",
+   "type": "text"
+  },
+  "No PólizaSolicitud": {
+   "data_key": "preg_adic_otro_seguro_no_poliza",
+   "type": "text"
+  },
+  "Compañía": {
+   "data_key": "preg_adic_otro_seguro_compania",
+   "type": "text"
+  },
+  "Quién_5": {
+   "data_key": "preg_adic_otro_seguro_quien",
+   "type": "text"
+  },
+  "Nombre_2": {
+   "data_key": "preg_adic_rechazo_previo_nombre",
+   "type": "text"
+  },
+  "Quién 4": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Campo AcroForm duplicado, superpuesto casi exactamente (offset <1pt) sobre 'Quién_4' (Preguntas Adicionales 1). Se deja sin llenar para evitar texto solapado/duplicado visualmente.",
+   "revisar": true
+  },
+  "Nombre 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Duplicado superpuesto sobre 'Nombre' (Preguntas Adicionales 2, campo 'Nombre:'). Se deja sin llenar.",
+   "revisar": true
+  },
+  "Universidad 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Duplicado superpuesto sobre 'Universidad' (Preguntas Adicionales 2). Se deja sin llenar.",
+   "revisar": true
+  },
+  "Estado 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Duplicado superpuesto sobre 'Estado' (Preguntas Adicionales 2). Se deja sin llenar.",
+   "revisar": true
+  },
+  "No PólizaSolicitud 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Duplicado superpuesto sobre 'No PólizaSolicitud' (Preguntas Adicionales 3). Se deja sin llenar.",
+   "revisar": true
+  },
+  "Quién 5": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Duplicado superpuesto sobre 'Quién_5' (Preguntas Adicionales 3). Se deja sin llenar.",
+   "revisar": true
+  },
+  "Nombre 3": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Duplicado superpuesto sobre 'Nombre_2' (Preguntas Adicionales 4). Se deja sin llenar.",
+   "revisar": true
+  },
+  "PERSONA JURÍDICA": {
+   "data_key": "contratante_persona_juridica_nombre_razon_social",
+   "type": "text"
+  },
+  "Relación con el Prospecto": {
+   "data_key": "contratante_relacion_prospecto",
+   "type": "text"
+  },
+  "Primer Apellido_2": {
+   "data_key": "contratante_primer_apellido",
+   "type": "text"
+  },
+  "Segundo Apellido_2": {
+   "data_key": "contratante_segundo_apellido",
+   "type": "text"
+  },
+  "Apellido de Casada_2": {
+   "data_key": "contratante_apellido_casada",
+   "type": "text"
+  },
+  "Nombre_3": {
+   "data_key": "contratante_nombre",
+   "type": "text"
+  },
+  "Pasaporte_2": {
+   "data_key": "contratante_cedula_pasaporte",
+   "type": "text"
+  },
+  "Fecha  Nacimiento dia": {
+   "data_key": "contratante_fecha_nac_dia",
+   "type": "text"
+  },
+  "Fecha  Nacimiento mes": {
+   "data_key": "contratante_fecha_nac_mes",
+   "type": "text"
+  },
+  "Fecha  Nacimiento año": {
+   "data_key": "contratante_fecha_nac_anio",
+   "type": "text"
+  },
+  "Edad_2": {
+   "data_key": "contratante_edad",
+   "type": "text"
+  },
+  "Group114": {
+   "data_key": "contratante_sexo",
+   "type": "text"
+  },
+  "Group115": {
+   "data_key": "contratante_extranjero",
+   "type": "text"
+  },
+  "País de Origen_3": {
+   "data_key": "contratante_pais_origen",
+   "type": "text"
+  },
+  "Años de  Residencia en Panamá_2": {
+   "data_key": "contratante_anios_residencia_panama",
+   "type": "text"
+  },
+  "Nacionalidades 1": {
+   "data_key": "contratante_nacionalidades",
+   "type": "text"
+  },
+  "Provincia 3": {
+   "data_key": "contratante_provincia",
+   "type": "text"
+  },
+  "Distrito 3": {
+   "data_key": "contratante_distrito_corregimiento",
+   "type": "text"
+  },
+  "Urbanizacion": {
+   "data_key": "contratante_urbanizacion",
+   "type": "text"
+  },
+  "Calle 2": {
+   "data_key": "contratante_calle",
+   "type": "text"
+  },
+  "Edificio": {
+   "data_key": "contratante_edificio",
+   "type": "text"
+  },
+  "Apto Casa No_2": {
+   "data_key": "contratante_apto_casa",
+   "type": "text"
+  },
+  "Teléfono Residencial_2": {
+   "data_key": "contratante_telefono_residencial",
+   "type": "text"
+  },
+  "Celular_3": {
+   "data_key": "contratante_celular",
+   "type": "text"
+  },
+  "Email Personal 2": {
+   "data_key": "contratante_email_personal",
+   "type": "text"
+  },
+  "Zona": {
+   "data_key": "contratante_zona",
+   "type": "text"
+  },
+  "Empresa donde Trabaja_3": {
+   "data_key": "contratante_empresa",
+   "type": "text"
+  },
+  "No Empleado_2": {
+   "data_key": "contratante_no_empleado",
+   "type": "text"
+  },
+  "Actividad Económica de la Empresa_2": {
+   "data_key": "contratante_actividad_economica_empresa",
+   "type": "text"
+  },
+  "Fecha Inicio Empleo_2": {
+   "data_key": "contratante_fecha_inicio_empleo_dia",
+   "type": "text"
+  },
+  "MM_5": {
+   "data_key": "contratante_fecha_inicio_empleo_mes",
+   "type": "text"
+  },
+  "AA_2": {
+   "data_key": "contratante_fecha_inicio_empleo_anio",
+   "type": "text"
+  },
+  "Ocupación_3": {
+   "data_key": "contratante_ocupacion",
+   "type": "text"
+  },
+  "Otras Ocupaciones_2": {
+   "data_key": "contratante_otras_ocupaciones",
+   "type": "text"
+  },
+  "Profesión_3": {
+   "data_key": "contratante_profesion",
+   "type": "text"
+  },
+  "Descripción de Funciones_3": {
+   "data_key": "contratante_descripcion_funciones",
+   "type": "text"
+  },
+  "Provincia_4": {
+   "data_key": "contratante_oficina_provincia",
+   "type": "text"
+  },
+  "Distrito  Corregimiento_4": {
+   "data_key": "contratante_oficina_distrito_corregimiento",
+   "type": "text"
+  },
+  "Urbanización_3": {
+   "data_key": "contratante_oficina_urbanizacion",
+   "type": "text"
+  },
+  "Calle_3": {
+   "data_key": "contratante_oficina_calle",
+   "type": "text"
+  },
+  "fill_24": {
+   "data_key": "contratante_oficina_edificio",
+   "type": "text"
+  },
+  "fill_25": {
+   "data_key": "contratante_oficina_email",
+   "type": "text"
+  },
+  "comb_15": {
+   "data_key": "contratante_oficina_telefono",
+   "type": "text"
+  },
+  "Ingreso Anual Aproximado  Ocupación Actual B_2": {
+   "data_key": "contratante_ingreso_anual_actual",
+   "type": "text"
+  },
+  "Ingreso Anual Aproximado  Otras Ocupaciones B_2": {
+   "data_key": "contratante_ingreso_anual_otras_ocupaciones",
+   "type": "text"
+  },
+  "Países donde Tributa por sus Ingresos_2": {
+   "data_key": "contratante_pais_tributa_1",
+   "type": "text"
+  },
+  "undefined_65": {
+   "data_key": "contratante_pais_tributa_2",
+   "type": "text"
+  },
+  "undefined_66": {
+   "data_key": "contratante_pais_tributa_3",
+   "type": "text"
+  },
+  "PERSONA JURÍDICA_2": {
+   "data_key": "responsable_pago_persona_juridica_nombre_razon_social",
+   "type": "text"
+  },
+  "Relación con Prospecto": {
+   "data_key": "responsable_pago_relacion_prospecto",
+   "type": "text"
+  },
+  "Primer Apellido_3": {
+   "data_key": "responsable_pago_primer_apellido",
+   "type": "text"
+  },
+  "Segundo Apellido_3": {
+   "data_key": "responsable_pago_segundo_apellido",
+   "type": "text"
+  },
+  "Apellido de Casada_3": {
+   "data_key": "responsable_pago_apellido_casada",
+   "type": "text"
+  },
+  "Nombre_4": {
+   "data_key": "responsable_pago_nombre",
+   "type": "text"
+  },
+  "Pasaporte_3": {
+   "data_key": "responsable_pago_cedula_pasaporte",
+   "type": "text"
+  },
+  "Fecha  Nac_2": {
+   "data_key": "responsable_pago_fecha_nacimiento",
+   "type": "text"
+  },
+  "Edad_3": {
+   "data_key": "responsable_pago_edad",
+   "type": "text"
+  },
+  "Group116": {
+   "data_key": "responsable_pago_sexo",
+   "type": "text"
+  },
+  "Group117": {
+   "data_key": "responsable_pago_extranjero",
+   "type": "text"
+  },
+  "País de Origen_4": {
+   "data_key": "responsable_pago_pais_origen",
+   "type": "text"
+  },
+  "Años de  Residencia en Panamá_3": {
+   "data_key": "responsable_pago_anios_residencia_panama",
+   "type": "text"
+  },
+  "Nacionalidades 2": {
+   "data_key": "responsable_pago_nacionalidades",
+   "type": "text"
+  },
+  "Provincia 4": {
+   "data_key": "responsable_pago_provincia",
+   "type": "text"
+  },
+  "Distrito Corregimiento": {
+   "data_key": "responsable_pago_distrito_corregimiento",
+   "type": "text"
+  },
+  "Urbanizacion 5": {
+   "data_key": "responsable_pago_urbanizacion",
+   "type": "text"
+  },
+  "Calle 5": {
+   "data_key": "responsable_pago_calle",
+   "type": "text"
+  },
+  "Edificio 5": {
+   "data_key": "responsable_pago_edificio",
+   "type": "text"
+  },
+  "Apto  Casa No": {
+   "data_key": "responsable_pago_apto_casa",
+   "type": "text"
+  },
+  "Teléfono Residencial_3": {
+   "data_key": "responsable_pago_telefono_residencial",
+   "type": "text"
+  },
+  "Celular_4": {
+   "data_key": "responsable_pago_celular",
+   "type": "text"
+  },
+  "Empresa donde Trabaja 2": {
+   "data_key": "responsable_pago_email_personal",
+   "type": "text",
+   "nota": "ADVERTENCIA: el campo AcroForm se llama internamente 'Empresa donde Trabaja 2' (y su /TU tambien dice 'Empresa donde Trabaja', error de copiado del autor del PDF), pero por posicion (rect y=186, misma fila que 'Zona_2' y justo debajo de Teléfono Residencial/Celular, y ENCIMA de la fila 'Empresa donde Trabaja_4') corresponde inequivocamente al campo 'E-mail Personal:' del Responsable del Pago. Verificado visualmente.",
+   "revisar": true
+  },
+  "Zona_2": {
+   "data_key": "responsable_pago_zona",
+   "type": "text"
+  },
+  "Empresa donde Trabaja_4": {
+   "data_key": "responsable_pago_empresa",
+   "type": "text"
+  },
+  "No Empleado_3": {
+   "data_key": "responsable_pago_no_empleado",
+   "type": "text"
+  },
+  "Actividad Económica de la Empresa_3": {
+   "data_key": "responsable_pago_actividad_economica_empresa",
+   "type": "text"
+  },
+  "Fecha Inicio Empleo_3": {
+   "data_key": "responsable_pago_fecha_inicio_empleo_dia",
+   "type": "text"
+  },
+  "MM_6": {
+   "data_key": "responsable_pago_fecha_inicio_empleo_mes",
+   "type": "text"
+  },
+  "AA_3": {
+   "data_key": "responsable_pago_fecha_inicio_empleo_anio",
+   "type": "text"
+  },
+  "Ocupación_4": {
+   "data_key": "responsable_pago_ocupacion",
+   "type": "text"
+  },
+  "Otras Ocupaciones_3": {
+   "data_key": "responsable_pago_otras_ocupaciones",
+   "type": "text"
+  },
+  "Profesión_4": {
+   "data_key": "responsable_pago_profesion",
+   "type": "text"
+  },
+  "Descripción de Funciones_4": {
+   "data_key": "responsable_pago_descripcion_funciones",
+   "type": "text"
+  },
+  "Provincia_5": {
+   "data_key": "responsable_pago_oficina_provincia",
+   "type": "text"
+  },
+  "Distrito  Corregimiento_5": {
+   "data_key": "responsable_pago_oficina_distrito_corregimiento",
+   "type": "text"
+  },
+  "Urbanización_4": {
+   "data_key": "responsable_pago_oficina_urbanizacion",
+   "type": "text"
+  },
+  "Calle_4": {
+   "data_key": "responsable_pago_oficina_calle",
+   "type": "text"
+  },
+  "fill_45_2": {
+   "data_key": "responsable_pago_oficina_edificio",
+   "type": "text"
+  },
+  "fill_46": {
+   "data_key": "responsable_pago_oficina_email",
+   "type": "text"
+  },
+  "comb_30": {
+   "data_key": "responsable_pago_oficina_telefono",
+   "type": "text"
+  },
+  "Ingreso Anual Aproximado  Ocupación Actual B_3": {
+   "data_key": "responsable_pago_ingreso_anual_actual",
+   "type": "text"
+  },
+  "Ingreso Anual Aproximado  Otras Ocupaciones B_3": {
+   "data_key": "responsable_pago_ingreso_anual_otras_ocupaciones",
+   "type": "text"
+  },
+  "Países donde Tributa por sus Ingresos_3": {
+   "data_key": "responsable_pago_pais_tributa_1",
+   "type": "text"
+  },
+  "undefined_70": {
+   "data_key": "responsable_pago_pais_tributa_2",
+   "type": "text"
+  },
+  "undefined_71": {
+   "data_key": "responsable_pago_pais_tributa_3",
+   "type": "text"
+  },
+  "Group118": {
+   "data_key": "plan_tipo_poliza",
+   "type": "text"
+  },
+  "Colectiva Póliza No": {
+   "data_key": "plan_no_poliza",
+   "type": "text"
+  },
+  "Plan": {
+   "data_key": "plan_nombre",
+   "type": "text"
+  },
+  "Group119": {
+   "data_key": "plan_tipo_seleccionado",
+   "type": "text"
+  },
+  "MEDIRED PLAN": {
+   "data_key": "plan_medired_detalle",
+   "type": "text"
+  },
+  "XTREME CARE PLAN": {
+   "data_key": "plan_xtreme_care_detalle",
+   "type": "text"
+  },
+  "DEDUCIBLE  B": {
+   "data_key": "plan_xtreme_care_deducible",
+   "type": "text"
+  },
+  "PLAN MÉDICO INTERNACIONAL PLAN": {
+   "data_key": "plan_medico_internacional_detalle",
+   "type": "text"
+  },
+  "DEDUCIBLE  B_2": {
+   "data_key": "plan_medico_internacional_deducible",
+   "type": "text"
+  },
+  "Group120": {
+   "data_key": "plan_endoso_premium_si_no",
+   "type": "text"
+  },
+  "Group121": {
+   "data_key": "forma_pago",
+   "type": "text"
+  },
+  "Group122": {
+   "data_key": "frecuencia_pago",
+   "type": "text"
+  },
+  "Prima": {
+   "data_key": "prima_monto",
+   "type": "text"
+  },
+  "Impuesto": {
+   "data_key": "prima_impuesto_5",
+   "type": "text"
+  },
+  "TOTAL": {
+   "data_key": "prima_total",
+   "type": "text"
+  },
+  "Group123": {
+   "data_key": "primas_superan_10000_si_no",
+   "type": "text"
+  },
+  "Group124": {
+   "data_key": "pago_tarjeta_pagador",
+   "type": "text"
+  },
+  "Banco": {
+   "data_key": "pago_tarjeta_banco",
+   "type": "text"
+  },
+  "Group125": {
+   "data_key": "pago_tarjeta_tipo",
+   "type": "text"
+  },
+  "N de tarjeta": {
+   "data_key": "pago_tarjeta_numero",
+   "type": "text"
+  },
+  "Vencimiento mes": {
+   "data_key": "pago_tarjeta_vencimiento_mes",
+   "type": "text"
+  },
+  "Vencimiento año": {
+   "data_key": "pago_tarjeta_vencimiento_anio",
+   "type": "text"
+  },
+  "Vencimiento mes 2": {
+   "data_key": "pago_tarjeta_a_partir_de_mes",
+   "type": "text"
+  },
+  "Vencimiento año 2": {
+   "data_key": "pago_tarjeta_a_partir_de_anio",
+   "type": "text"
+  },
+  "Día de cargo": {
+   "data_key": "pago_tarjeta_dia_cargo",
+   "type": "text"
+  },
+  "Cédula": {
+   "data_key": "pago_tarjeta_firma_cedula",
+   "type": "text"
+  },
+  "Fecha AP dia": {
+   "data_key": "pago_tarjeta_firma_fecha_dia",
+   "type": "text"
+  },
+  "Fecha AP mes": {
+   "data_key": "pago_tarjeta_firma_fecha_mes",
+   "type": "text"
+  },
+  "Fecha AP año": {
+   "data_key": "pago_tarjeta_firma_fecha_anio",
+   "type": "text"
+  },
+  "Group126": {
+   "data_key": "reembolso_beneficiario",
+   "type": "text"
+  },
+  "Banco_2": {
+   "data_key": "reembolso_banco",
+   "type": "text"
+  },
+  "Group127": {
+   "data_key": "reembolso_tipo_cuenta",
+   "type": "text"
+  },
+  "Nombre de la Cuenta": {
+   "data_key": "reembolso_nombre_cuenta",
+   "type": "text"
+  },
+  "N de Cuenta": {
+   "data_key": "reembolso_numero_cuenta",
+   "type": "text"
+  },
+  "Group128": {
+   "data_key": "pep_prospecto_si_no",
+   "type": "text"
+  },
+  "Cargo actual o anterior": {
+   "data_key": "pep_prospecto_cargo",
+   "type": "text"
+  },
+  "Group129": {
+   "data_key": "pep_contratante_si_no",
+   "type": "text"
+  },
+  "Cargo actual o anterior_2": {
+   "data_key": "pep_contratante_cargo",
+   "type": "text"
+  },
+  "Group130": {
+   "data_key": "pep_responsable_pago_si_no",
+   "type": "text"
+  },
+  "Cargo actual o anterior_3": {
+   "data_key": "pep_responsable_pago_cargo",
+   "type": "text"
+  },
+  "fill_7": {
+   "data_key": "beneficiario_prospecto_1_nombre",
+   "type": "text"
+  },
+  "Parentesco": {
+   "data_key": "beneficiario_prospecto_1_parentesco",
+   "type": "text"
+  },
+  "undefined_80": {
+   "data_key": "beneficiario_prospecto_1_porcentaje",
+   "type": "text"
+  },
+  "undefined_81": {
+   "data_key": "beneficiario_prospecto_2_nombre",
+   "type": "text"
+  },
+  "undefined_82": {
+   "data_key": "beneficiario_prospecto_2_parentesco",
+   "type": "text"
+  },
+  "undefined_83": {
+   "data_key": "beneficiario_prospecto_2_porcentaje",
+   "type": "text"
+  },
+  "undefined_84": {
+   "data_key": "beneficiario_prospecto_3_nombre",
+   "type": "text"
+  },
+  "undefined_85": {
+   "data_key": "beneficiario_prospecto_3_parentesco",
+   "type": "text"
+  },
+  "undefined_86": {
+   "data_key": "beneficiario_prospecto_3_porcentaje",
+   "type": "text"
+  },
+  "undefined_87": {
+   "data_key": "beneficiario_prospecto_4_nombre",
+   "type": "text"
+  },
+  "undefined_88": {
+   "data_key": "beneficiario_prospecto_4_parentesco",
+   "type": "text"
+  },
+  "undefined_89": {
+   "data_key": "beneficiario_prospecto_4_porcentaje",
+   "type": "text"
+  },
+  "undefined_90": {
+   "data_key": "beneficiario_prospecto_contingente",
+   "type": "text"
+  },
+  "fill_16": {
+   "data_key": "beneficiario_conyuge_1_nombre",
+   "type": "text"
+  },
+  "Parentesco_2": {
+   "data_key": "beneficiario_conyuge_1_parentesco",
+   "type": "text"
+  },
+  "undefined_91": {
+   "data_key": "beneficiario_conyuge_1_porcentaje",
+   "type": "text"
+  },
+  "undefined_92": {
+   "data_key": "beneficiario_conyuge_2_nombre",
+   "type": "text"
+  },
+  "undefined_93": {
+   "data_key": "beneficiario_conyuge_2_parentesco",
+   "type": "text"
+  },
+  "undefined_94": {
+   "data_key": "beneficiario_conyuge_2_porcentaje",
+   "type": "text"
+  },
+  "undefined_95": {
+   "data_key": "beneficiario_conyuge_3_nombre",
+   "type": "text"
+  },
+  "undefined_96": {
+   "data_key": "beneficiario_conyuge_3_parentesco",
+   "type": "text"
+  },
+  "undefined_97": {
+   "data_key": "beneficiario_conyuge_3_porcentaje",
+   "type": "text"
+  },
+  "undefined_98": {
+   "data_key": "beneficiario_conyuge_4_nombre",
+   "type": "text"
+  },
+  "undefined_99": {
+   "data_key": "beneficiario_conyuge_4_parentesco",
+   "type": "text"
+  },
+  "undefined_100": {
+   "data_key": "beneficiario_conyuge_4_porcentaje",
+   "type": "text"
+  },
+  "undefined_101": {
+   "data_key": "beneficiario_conyuge_contingente",
+   "type": "text"
+  },
+  "fill_25_2": {
+   "data_key": "beneficiario_hijos_contingente",
+   "type": "text"
+  },
+  "comb_9": {
+   "data_key": "admin_menores_cedula",
+   "type": "text"
+  },
+  "undefined_102": {
+   "data_key": "admin_menores_nombre",
+   "type": "text"
+  },
+  "y en su defecto": {
+   "data_key": "admin_menores_nombre_alterno",
+   "type": "text"
+  },
+  "con cédula de identidad personal N": {
+   "data_key": "admin_menores_cedula_alterno",
+   "type": "text"
+  },
+  "Nombre de Prospecto": {
+   "data_key": "firma_anexoA_prospecto_nombre",
+   "type": "text"
+  },
+  "2_2": {
+   "data_key": "firma_anexoA_prospecto_cedula",
+   "type": "text",
+   "nota": "Nombre de campo interno del PDF es '2_2' y su /TU dice 'Fecha firma' (inconsistente); por posicion (rect y=56.6, entre 'Nombre de Prospecto' y 'Fecha firma dia 2_2') corresponde al campo 'Cédula' del bloque de firma del Prospecto en el Anexo A.",
+   "revisar": true
+  },
+  "Fecha firma dia 2_2": {
+   "data_key": "firma_anexoA_prospecto_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes2_2": {
+   "data_key": "firma_anexoA_prospecto_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año2_2": {
+   "data_key": "firma_anexoA_prospecto_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Cónyuge": {
+   "data_key": "firma_anexoA_conyuge_nombre",
+   "type": "text"
+  },
+  "2_3": {
+   "data_key": "firma_anexoA_conyuge_cedula",
+   "type": "text",
+   "nota": "Nombre de campo interno del PDF es '2_3' y su /TU dice '[2]' (no descriptivo); por posicion (misma fila que '2_2', columna Cónyuge) corresponde al campo 'Cédula' del bloque de firma del Cónyuge en el Anexo A.",
+   "revisar": true
+  },
+  "Fecha firma dia 2_3": {
+   "data_key": "firma_anexoA_conyuge_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes2_3": {
+   "data_key": "firma_anexoA_conyuge_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año2_3": {
+   "data_key": "firma_anexoA_conyuge_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Prospecto_2": {
+   "data_key": "firma_prospecto_nombre",
+   "type": "text"
+  },
+  "Cédula_2": {
+   "data_key": "firma_prospecto_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 1": {
+   "data_key": "firma_prospecto_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 1": {
+   "data_key": "firma_prospecto_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 1": {
+   "data_key": "firma_prospecto_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Cónyuge_2": {
+   "data_key": "firma_conyuge_nombre",
+   "type": "text"
+  },
+  "Cédula_3": {
+   "data_key": "firma_conyuge_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 2": {
+   "data_key": "firma_conyuge_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 2": {
+   "data_key": "firma_conyuge_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 2": {
+   "data_key": "firma_conyuge_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Dependiente": {
+   "data_key": "firma_dependiente1_nombre",
+   "type": "text"
+  },
+  "Cédula_4": {
+   "data_key": "firma_dependiente1_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 4": {
+   "data_key": "firma_dependiente1_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 4": {
+   "data_key": "firma_dependiente1_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 4": {
+   "data_key": "firma_dependiente1_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Dependiente_2": {
+   "data_key": "firma_dependiente2_nombre",
+   "type": "text"
+  },
+  "Cédula_5": {
+   "data_key": "firma_dependiente2_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 3": {
+   "data_key": "firma_dependiente2_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 3": {
+   "data_key": "firma_dependiente2_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 3": {
+   "data_key": "firma_dependiente2_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Dependiente_3": {
+   "data_key": "firma_dependiente3_nombre",
+   "type": "text"
+  },
+  "Cédula_6": {
+   "data_key": "firma_dependiente3_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 5": {
+   "data_key": "firma_dependiente3_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 5": {
+   "data_key": "firma_dependiente3_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 5": {
+   "data_key": "firma_dependiente3_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Dependiente_4": {
+   "data_key": "firma_dependiente4_nombre",
+   "type": "text"
+  },
+  "Cédula_7": {
+   "data_key": "firma_dependiente4_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 7": {
+   "data_key": "firma_dependiente4_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 7": {
+   "data_key": "firma_dependiente4_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 7": {
+   "data_key": "firma_dependiente4_fecha_anio",
+   "type": "text"
+  },
+  "Nombre de Contratante": {
+   "data_key": "firma_contratante_nombre",
+   "type": "text"
+  },
+  "Cédula_8": {
+   "data_key": "firma_contratante_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 6": {
+   "data_key": "firma_contratante_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 6": {
+   "data_key": "firma_contratante_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 6": {
+   "data_key": "firma_contratante_fecha_anio",
+   "type": "text"
+  },
+  "Responsable de Pago_2": {
+   "data_key": "firma_responsable_pago_nombre",
+   "type": "text"
+  },
+  "Cédula_9": {
+   "data_key": "firma_responsable_pago_cedula",
+   "type": "text"
+  },
+  "Fecha firma dia 8": {
+   "data_key": "firma_responsable_pago_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 8": {
+   "data_key": "firma_responsable_pago_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 8": {
+   "data_key": "firma_responsable_pago_fecha_anio",
+   "type": "text"
+  },
+  "Group131": {
+   "data_key": "agente_bc_conoce_prospecto_si_no",
+   "type": "text"
+  },
+  "fill_1_3": {
+   "data_key": "agente_bc_conoce_prospecto_desde_cuando",
+   "type": "text"
+  },
+  "Group132": {
+   "data_key": "agente_bc_le_consta_firmaron_si_no",
+   "type": "text"
+  },
+  "fill_2_3": {
+   "data_key": "agente_bc_conoce_contradiccion_detalle",
+   "type": "text"
+  },
+  "Group133": {
+   "data_key": "agente_bc_rechazo_previo_si_no",
+   "type": "text"
+  },
+  "undefined_103": {
+   "data_key": "agente_bc_rechazo_previo_detalle",
+   "type": "text"
+  },
+  "Nombre o Razón Social": {
+   "data_key": "agente_bc_nombre_razon_social",
+   "type": "text"
+  },
+  "Teléfono": {
+   "data_key": "agente_bc_telefono",
+   "type": "text"
+  },
+  "Email": {
+   "data_key": "agente_bc_email",
+   "type": "text"
+  },
+  "Número de Licencia": {
+   "data_key": "agente_bc_numero_licencia",
+   "type": "text"
+  },
+  "Fecha firma dia 9": {
+   "data_key": "agente_bc_fecha_dia",
+   "type": "text"
+  },
+  "Fecha firma mes 9": {
+   "data_key": "agente_bc_fecha_mes",
+   "type": "text"
+  },
+  "Fecha firma año 9": {
+   "data_key": "agente_bc_fecha_anio",
+   "type": "text"
+  },
+  "Group134": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Evaluación: Aprobado[state /0] / Declinado[state /1]'. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Check Box136": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Checkbox 'Recargo' (single, on_state='/Sí'). Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "undefined_104": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Recargo %:' blanco. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Motivo": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Motivo:' del recargo. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Group135": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Condiciones Pre-existentes: Temporal[state /0] / Permanente[state /1]'. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "DD_4": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Duración Desde:' dia. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "MM_7": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Duración Desde:' mes. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "AA_4": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Duración Desde:' anio. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "DD_5": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Duración Hasta:' dia. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "MM_8": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Duración Hasta:' mes. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "AA_5": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Duración Hasta:' anio. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Exclusiones 1": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Exclusiones:' línea 1. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Exclusiones 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Exclusiones:' línea 2. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Nombre y Apellido del Suscriptor": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma dia 10": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Fecha firma del Suscriptor, dia. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma mes 10": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Fecha firma del Suscriptor, mes. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma año 10": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Fecha firma del Suscriptor, anio. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Nombre_5": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "'Aprobación:' Nombre. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma dia 11": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Fecha de Aprobación, dia. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma mes 11": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Fecha de Aprobación, mes. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma año 11": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Fecha de Aprobación, anio. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "EVALUACIÓN MÉDICA 1": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica, línea 1 (texto libre). Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "EVALUACIÓN MÉDICA 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica, línea 2. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "EVALUACIÓN MÉDICA 3": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica, línea 3. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "EVALUACIÓN MÉDICA 4": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica, línea 4. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Nombre_6": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica: 'Médico:' Nombre. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma dia 12": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica: fecha, dia. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma mes 12": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica: fecha, mes. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "Fecha firma año 12": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Evaluación Médica: fecha, anio. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "OBSERVACIONES 1": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Observaciones, línea 1. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "OBSERVACIONES 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Observaciones, línea 2. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  },
+  "undefined_105": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Observaciones, línea 3. Seccion 'PARA USO DE LA COMPAÑIA' / 'EVALUACIÓN MÉDICA' / 'OBSERVACIONES' (página 8): estos datos los completa la aseguradora DESPUÉS de recibir y evaluar la solicitud (suscripcion/underwriting post-emision), no son parte del intake del Prospecto/Contratante/Corredor al momento de solicitar. Se dejan como type=manual (no se autocompletan desde datos.json) por decision de diseño explicita del tarea."
+  }
+ }
+}

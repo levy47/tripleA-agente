@@ -1,0 +1,1277 @@
+{
+ "template": "aseguradoras/univivir/colectivo/templates/solicitud_colectivo.pdf",
+ "fields": {
+  "Campo de texto 5": {
+   "data_key": "encabezado_vida_suma_fija",
+   "type": "text"
+  },
+  "Campo de texto 6": {
+   "data_key": "encabezado_vida_suma_variable",
+   "type": "text"
+  },
+  "Campo de texto 7": {
+   "data_key": "encabezado_vida_suma_sueldo",
+   "type": "text"
+  },
+  "Campo de texto 10": {
+   "data_key": "encabezado_medico_suma_fija",
+   "type": "text"
+  },
+  "Campo de texto 11": {
+   "data_key": "encabezado_medico_suma_variable",
+   "type": "text"
+  },
+  "Campo de texto 12": {
+   "data_key": "encabezado_medico_suma_sueldo",
+   "type": "text"
+  },
+  "Campo de texto 15": {
+   "data_key": "encabezado_accidentes_suma_fija",
+   "type": "text"
+  },
+  "Campo de texto 16": {
+   "data_key": "encabezado_accidentes_suma_variable",
+   "type": "text"
+  },
+  "Campo de texto 17": {
+   "data_key": "encabezado_accidentes_suma_sueldo",
+   "type": "text"
+  },
+  "Campo de texto 3": {
+   "data_key": "encabezado_vida_certificado",
+   "type": "text"
+  },
+  "Campo de texto 4": {
+   "data_key": "encabezado_vida_poliza",
+   "type": "text"
+  },
+  "Campo de texto 8": {
+   "data_key": "encabezado_medico_certificado",
+   "type": "text"
+  },
+  "Campo de texto 9": {
+   "data_key": "encabezado_medico_poliza",
+   "type": "text"
+  },
+  "Campo de texto 13": {
+   "data_key": "encabezado_accidentes_certificado",
+   "type": "text"
+  },
+  "Campo de texto 14": {
+   "data_key": "encabezado_accidentes_poliza",
+   "type": "text"
+  },
+  "Campo de texto 22": {
+   "data_key": "encabezado_vigencia_dia",
+   "type": "text"
+  },
+  "Campo de texto 21": {
+   "data_key": "encabezado_vigencia_mes",
+   "type": "text"
+  },
+  "Campo de texto 20": {
+   "data_key": "encabezado_vigencia_año",
+   "type": "text"
+  },
+  "Campo de texto 18": {
+   "data_key": "encabezado_contratante",
+   "type": "text"
+  },
+  "Campo de texto 19": {
+   "data_key": "encabezado_filial_division",
+   "type": "text"
+  },
+  "Campo de texto 23": {
+   "data_key": "asegurado_nombres",
+   "type": "text"
+  },
+  "Campo de texto 24": {
+   "data_key": "asegurado_apellidos",
+   "type": "text"
+  },
+  "Botón de opción 1": {
+   "data_key": "asegurado_sexo",
+   "type": "text",
+   "nota": "Campo de boton de radio (Boton de opcion / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Fila 'Sexo' del asegurado. Estados: F=widget en x=538 -> '/0', M=widget en x=556 -> '/1'."
+  },
+  "Campo de texto 25": {
+   "data_key": "asegurado_apellido_casada",
+   "type": "text"
+  },
+  "Campo de texto 26": {
+   "data_key": "asegurado_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 27": {
+   "data_key": "asegurado_edad",
+   "type": "text"
+  },
+  "Campo de texto 41": {
+   "data_key": "asegurado_fecha_nacimiento_dia",
+   "type": "text"
+  },
+  "Campo de texto 40": {
+   "data_key": "asegurado_fecha_nacimiento_mes",
+   "type": "text"
+  },
+  "Campo de texto 39": {
+   "data_key": "asegurado_fecha_nacimiento_año",
+   "type": "text"
+  },
+  "Campo de texto 28": {
+   "data_key": "asegurado_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 29": {
+   "data_key": "asegurado_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 30": {
+   "data_key": "asegurado_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 31": {
+   "data_key": "asegurado_estatura",
+   "type": "text"
+  },
+  "Campo de texto 32": {
+   "data_key": "asegurado_peso",
+   "type": "text"
+  },
+  "Campo de texto 33": {
+   "data_key": "asegurado_cargo_desempena",
+   "type": "text"
+  },
+  "Campo de texto 34": {
+   "data_key": "asegurado_email",
+   "type": "text"
+  },
+  "Campo de texto 35": {
+   "data_key": "asegurado_direccion_residencial",
+   "type": "text"
+  },
+  "Campo de texto 36": {
+   "data_key": "asegurado_provincia",
+   "type": "text"
+  },
+  "Campo de texto 37": {
+   "data_key": "asegurado_telefono_celular",
+   "type": "text"
+  },
+  "Botón de opción 2": {
+   "data_key": "asegurado_pep_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Boton de opcion / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). ¿Es usted una persona politicamente expuesta? del asegurado. Estados: Si=widget en x=55 -> '/0', No=widget en x=81 -> '/1'."
+  },
+  "Campo de texto 38": {
+   "data_key": "asegurado_pep_cargo",
+   "type": "text"
+  },
+  "Campo de texto 42": {
+   "data_key": "pago_cuenta_nombre",
+   "type": "text"
+  },
+  "Campo de texto 43": {
+   "data_key": "pago_email_liquidaciones",
+   "type": "text"
+  },
+  "Botón de opción 3": {
+   "data_key": "pago_cuenta_tipo",
+   "type": "text",
+   "nota": "Campo de boton de radio (Boton de opcion / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Tipo de cuenta. Estados: Ahorro=widget en x=486 -> '/0', Corriente=widget en x=527 -> '/1'."
+  },
+  "Campo de texto 44": {
+   "data_key": "pago_cuenta_numero",
+   "type": "text"
+  },
+  "Campo de texto 45": {
+   "data_key": "pago_banco_nombre",
+   "type": "text"
+  },
+  "Campo de texto 46": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Campo AcroForm huerfano (rect x=433-481,y=642-650) ubicado en el hueco entre el final del campo 'Nombre del banco' (Campo de texto 45, hasta x=397) y el inicio del checkbox 'Tipo de cuenta: Ahorro' (Boton de opcion 3, desde x=486), exactamente donde el PDF solo tiene la etiqueta impresa 'Tipo de cuenta' sin ninguna linea/caja de captura visible en esa zona. No corresponde a ningun campo visible de la Seccion 'Autorizacion de pago de reclamaciones'; se deja sin llenar para evitar texto flotando sobre la etiqueta.",
+   "revisar": true
+  },
+  "Campo de texto 47": {
+   "data_key": "dependiente1_nombre",
+   "type": "text"
+  },
+  "Campo de texto 48": {
+   "data_key": "dependiente1_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 49": {
+   "data_key": "dependiente1_estatura",
+   "type": "text"
+  },
+  "Campo de texto 50": {
+   "data_key": "dependiente1_peso",
+   "type": "text"
+  },
+  "Campo de texto 51": {
+   "data_key": "dependiente1_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 52": {
+   "data_key": "dependiente1_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 53": {
+   "data_key": "dependiente1_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 54": {
+   "data_key": "dependiente1_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 55": {
+   "data_key": "dependiente1_edad",
+   "type": "text"
+  },
+  "Campo de texto 56": {
+   "data_key": "dependiente1_sexo",
+   "type": "text"
+  },
+  "Campo de texto 57": {
+   "data_key": "dependiente2_nombre",
+   "type": "text"
+  },
+  "Campo de texto 58": {
+   "data_key": "dependiente2_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 60": {
+   "data_key": "dependiente2_estatura",
+   "type": "text"
+  },
+  "Campo de texto 62": {
+   "data_key": "dependiente2_peso",
+   "type": "text"
+  },
+  "Campo de texto 64": {
+   "data_key": "dependiente2_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 65": {
+   "data_key": "dependiente2_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 66": {
+   "data_key": "dependiente2_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 59": {
+   "data_key": "dependiente2_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 61": {
+   "data_key": "dependiente2_edad",
+   "type": "text"
+  },
+  "Campo de texto 63": {
+   "data_key": "dependiente2_sexo",
+   "type": "text"
+  },
+  "Campo de texto 67": {
+   "data_key": "dependiente3_nombre",
+   "type": "text"
+  },
+  "Campo de texto 68": {
+   "data_key": "dependiente3_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 70": {
+   "data_key": "dependiente3_estatura",
+   "type": "text"
+  },
+  "Campo de texto 72": {
+   "data_key": "dependiente3_peso",
+   "type": "text"
+  },
+  "Campo de texto 74": {
+   "data_key": "dependiente3_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 75": {
+   "data_key": "dependiente3_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 76": {
+   "data_key": "dependiente3_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 69": {
+   "data_key": "dependiente3_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 71": {
+   "data_key": "dependiente3_edad",
+   "type": "text"
+  },
+  "Campo de texto 73": {
+   "data_key": "dependiente3_sexo",
+   "type": "text"
+  },
+  "Campo de texto 77": {
+   "data_key": "dependiente4_nombre",
+   "type": "text"
+  },
+  "Campo de texto 78": {
+   "data_key": "dependiente4_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 80": {
+   "data_key": "dependiente4_estatura",
+   "type": "text"
+  },
+  "Campo de texto 82": {
+   "data_key": "dependiente4_peso",
+   "type": "text"
+  },
+  "Campo de texto 84": {
+   "data_key": "dependiente4_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 85": {
+   "data_key": "dependiente4_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 86": {
+   "data_key": "dependiente4_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 79": {
+   "data_key": "dependiente4_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 81": {
+   "data_key": "dependiente4_edad",
+   "type": "text"
+  },
+  "Campo de texto 83": {
+   "data_key": "dependiente4_sexo",
+   "type": "text"
+  },
+  "Campo de texto 87": {
+   "data_key": "dependiente5_nombre",
+   "type": "text"
+  },
+  "Campo de texto 88": {
+   "data_key": "dependiente5_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 90": {
+   "data_key": "dependiente5_estatura",
+   "type": "text"
+  },
+  "Campo de texto 92": {
+   "data_key": "dependiente5_peso",
+   "type": "text"
+  },
+  "Campo de texto 94": {
+   "data_key": "dependiente5_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 95": {
+   "data_key": "dependiente5_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 96": {
+   "data_key": "dependiente5_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 89": {
+   "data_key": "dependiente5_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 91": {
+   "data_key": "dependiente5_edad",
+   "type": "text"
+  },
+  "Campo de texto 93": {
+   "data_key": "dependiente5_sexo",
+   "type": "text"
+  },
+  "Campo de texto 97": {
+   "data_key": "beneficiario_principal_fila1_nombre",
+   "type": "text"
+  },
+  "Campo de texto 102": {
+   "data_key": "beneficiario_principal_fila1_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 107": {
+   "data_key": "beneficiario_principal_fila1_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 108": {
+   "data_key": "beneficiario_principal_fila1_porcentaje",
+   "type": "text"
+  },
+  "Campo de texto 98": {
+   "data_key": "beneficiario_principal_fila2_nombre",
+   "type": "text"
+  },
+  "Campo de texto 103": {
+   "data_key": "beneficiario_principal_fila2_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 109": {
+   "data_key": "beneficiario_principal_fila2_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 1010": {
+   "data_key": "beneficiario_principal_fila2_porcentaje",
+   "type": "text"
+  },
+  "Campo de texto 99": {
+   "data_key": "beneficiario_principal_fila3_nombre",
+   "type": "text"
+  },
+  "Campo de texto 104": {
+   "data_key": "beneficiario_principal_fila3_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 1011": {
+   "data_key": "beneficiario_principal_fila3_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 1012": {
+   "data_key": "beneficiario_principal_fila3_porcentaje",
+   "type": "text"
+  },
+  "Campo de texto 100": {
+   "data_key": "beneficiario_principal_fila4_nombre",
+   "type": "text"
+  },
+  "Campo de texto 105": {
+   "data_key": "beneficiario_principal_fila4_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 1013": {
+   "data_key": "beneficiario_principal_fila4_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 1014": {
+   "data_key": "beneficiario_principal_fila4_porcentaje",
+   "type": "text"
+  },
+  "Campo de texto 101": {
+   "data_key": "beneficiario_principal_fila5_nombre",
+   "type": "text"
+  },
+  "Campo de texto 106": {
+   "data_key": "beneficiario_principal_fila5_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 1015": {
+   "data_key": "beneficiario_principal_fila5_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 1016": {
+   "data_key": "beneficiario_principal_fila5_porcentaje",
+   "type": "text"
+  },
+  "Campo de texto 1017": {
+   "data_key": "beneficiario_contingente_fila1_nombre",
+   "type": "text"
+  },
+  "Campo de texto 1020": {
+   "data_key": "beneficiario_contingente_fila1_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 1018": {
+   "data_key": "beneficiario_contingente_fila1_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 1019": {
+   "data_key": "beneficiario_contingente_fila1_porcentaje",
+   "type": "text"
+  },
+  "Campo de texto 1021": {
+   "data_key": "beneficiario_contingente_fila2_nombre",
+   "type": "text"
+  },
+  "Campo de texto 1024": {
+   "data_key": "beneficiario_contingente_fila2_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 1022": {
+   "data_key": "beneficiario_contingente_fila2_parentesco",
+   "type": "text"
+  },
+  "Campo de texto 1023": {
+   "data_key": "beneficiario_contingente_fila2_porcentaje",
+   "type": "text"
+  },
+  "Botón de opción 4": {
+   "data_key": "infoadicional_seguro_similar_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Boton de opcion / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta inicial del bloque a) seguro similar. Estados: Si=widget en x=371 -> '/0', No=widget en x=398 -> '/1'."
+  },
+  "Campo de texto 1025": {
+   "data_key": "infoadicional_seguro_similar_fila1_quien",
+   "type": "text"
+  },
+  "Campo de texto 1026": {
+   "data_key": "infoadicional_seguro_similar_fila1_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1027": {
+   "data_key": "infoadicional_seguro_similar_fila1_compania",
+   "type": "text"
+  },
+  "Campo de texto 1028": {
+   "data_key": "infoadicional_seguro_similar_fila1_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1029": {
+   "data_key": "infoadicional_seguro_similar_fila1_vencimiento",
+   "type": "text"
+  },
+  "Campo de texto 1030": {
+   "data_key": "infoadicional_seguro_similar_fila2_quien",
+   "type": "text"
+  },
+  "Campo de texto 1031": {
+   "data_key": "infoadicional_seguro_similar_fila2_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1032": {
+   "data_key": "infoadicional_seguro_similar_fila2_compania",
+   "type": "text"
+  },
+  "Campo de texto 1033": {
+   "data_key": "infoadicional_seguro_similar_fila2_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1034": {
+   "data_key": "infoadicional_seguro_similar_fila2_vencimiento",
+   "type": "text"
+  },
+  "Botón de opción 5": {
+   "data_key": "infoadicional_consumo_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Boton de opcion / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta inicial del bloque b) fuma/alcohol/drogas. Estados: Si=widget en x=428 -> '/0', No=widget en x=455 -> '/1'."
+  },
+  "Campo de texto 1035": {
+   "data_key": "infoadicional_consumo_fila1_quien",
+   "type": "text"
+  },
+  "Campo de texto 1037": {
+   "data_key": "infoadicional_consumo_fila1_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1039": {
+   "data_key": "infoadicional_consumo_fila1_compania",
+   "type": "text"
+  },
+  "Campo de texto 1041": {
+   "data_key": "infoadicional_consumo_fila1_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1043": {
+   "data_key": "infoadicional_consumo_fila1_vencimiento",
+   "type": "text"
+  },
+  "Campo de texto 1036": {
+   "data_key": "infoadicional_consumo_fila2_quien",
+   "type": "text"
+  },
+  "Campo de texto 1038": {
+   "data_key": "infoadicional_consumo_fila2_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1040": {
+   "data_key": "infoadicional_consumo_fila2_compania",
+   "type": "text"
+  },
+  "Campo de texto 1042": {
+   "data_key": "infoadicional_consumo_fila2_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1044": {
+   "data_key": "infoadicional_consumo_fila2_vencimiento",
+   "type": "text"
+  },
+  "Botón de opción 6": {
+   "data_key": "infoadicional_deporte_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Boton de opcion / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta inicial del bloque c) deporte o actividad de riesgo. Estados: Si=widget en x=290 -> '/0', No=widget en x=317 -> '/1'. ANOMALIA: a diferencia de los otros 5 grupos de radio de esta pagina, el estado inicial (/AS) de este campo en la plantilla original es '/0' (Si) en vez de quedar sin marcar / en blanco; esto es un remanente de la autoria del PDF. Si datos.json no provee un valor para esta data_key, fill_pdf.py (que solo escribe si la clave existe y no esta vacia) DEJARA el PDF con 'Si' pre-marcado por defecto. Se recomienda proveer siempre un valor explicito ('/0' o '/1') para esta data_key para evitar ese estado residual enganoso."
+  },
+  "Campo de texto 1045": {
+   "data_key": "infoadicional_deporte_fila1_quien",
+   "type": "text"
+  },
+  "Campo de texto 1047": {
+   "data_key": "infoadicional_deporte_fila1_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1049": {
+   "data_key": "infoadicional_deporte_fila1_compania",
+   "type": "text"
+  },
+  "Campo de texto 1051": {
+   "data_key": "infoadicional_deporte_fila1_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1053": {
+   "data_key": "infoadicional_deporte_fila1_vencimiento",
+   "type": "text"
+  },
+  "Campo de texto 1046": {
+   "data_key": "infoadicional_deporte_fila2_quien",
+   "type": "text"
+  },
+  "Campo de texto 1048": {
+   "data_key": "infoadicional_deporte_fila2_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1050": {
+   "data_key": "infoadicional_deporte_fila2_compania",
+   "type": "text"
+  },
+  "Campo de texto 1052": {
+   "data_key": "infoadicional_deporte_fila2_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1054": {
+   "data_key": "infoadicional_deporte_fila2_vencimiento",
+   "type": "text"
+  },
+  "Button6": {
+   "data_key": "salud_pregunta1_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button2": {
+   "data_key": "salud_pregunta1_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button4": {
+   "data_key": "salud_pregunta2_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button3": {
+   "data_key": "salud_pregunta2_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button7": {
+   "data_key": "salud_pregunta3_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button10": {
+   "data_key": "salud_pregunta3_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button8": {
+   "data_key": "salud_pregunta4_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button9": {
+   "data_key": "salud_pregunta4_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button5": {
+   "data_key": "salud_pregunta5_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button11": {
+   "data_key": "salud_pregunta5_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button12": {
+   "data_key": "salud_pregunta6_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button13": {
+   "data_key": "salud_pregunta6_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button14": {
+   "data_key": "salud_pregunta7_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button15": {
+   "data_key": "salud_pregunta7_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button16": {
+   "data_key": "salud_pregunta8_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button17": {
+   "data_key": "salud_pregunta8_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button19": {
+   "data_key": "salud_pregunta9_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button18": {
+   "data_key": "salud_pregunta9_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button21": {
+   "data_key": "salud_pregunta10_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button24": {
+   "data_key": "salud_pregunta10_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button22": {
+   "data_key": "salud_pregunta11_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button25": {
+   "data_key": "salud_pregunta11_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button23": {
+   "data_key": "salud_pregunta12_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button26": {
+   "data_key": "salud_pregunta12_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button27": {
+   "data_key": "salud_pregunta13_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button29": {
+   "data_key": "salud_pregunta13_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button30": {
+   "data_key": "salud_pregunta14_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button31": {
+   "data_key": "salud_pregunta14_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button32": {
+   "data_key": "salud_pregunta15_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button33": {
+   "data_key": "salud_pregunta15_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button34": {
+   "data_key": "salud_pregunta16_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button35": {
+   "data_key": "salud_pregunta16_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button36": {
+   "data_key": "salud_pregunta17_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button38": {
+   "data_key": "salud_pregunta17_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button39": {
+   "data_key": "salud_pregunta18_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button40": {
+   "data_key": "salud_pregunta18_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button41": {
+   "data_key": "salud_pregunta19_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button42": {
+   "data_key": "salud_pregunta19_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button43": {
+   "data_key": "salud_pregunta20_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button44": {
+   "data_key": "salud_pregunta20_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button45": {
+   "data_key": "salud_pregunta21_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button46": {
+   "data_key": "salud_pregunta21_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button47": {
+   "data_key": "salud_pregunta22_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button48": {
+   "data_key": "salud_pregunta22_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button50": {
+   "data_key": "salud_pregunta23_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button49": {
+   "data_key": "salud_pregunta23_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button51": {
+   "data_key": "salud_pregunta24_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button52": {
+   "data_key": "salud_pregunta24_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button54": {
+   "data_key": "salud_pregunta25_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button53": {
+   "data_key": "salud_pregunta25_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button55": {
+   "data_key": "salud_pregunta26_si_no",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Button56": {
+   "data_key": "salud_pregunta26_si_no",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "Button20": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Checkbox AcroForm huerfano ubicado casi enteramente fuera del area visible de la pagina (rect con x0>=613pt, mientras que el ancho de pagina es 612pt = MediaBox [0,0,612,1008]); no tiene ninguna etiqueta ni casilla dibujada visible en el render de la pagina. Posicionado muy cerca verticalmente de la fila de la pregunta 13 de la Declaracion de Salud, pero claramente NO es uno de los 2 checkboxes Si/No de esa fila (esos ya estan mapeados como salud_pregunta13_si_no via las columnas x=541.8/x=568.6). Artefacto de autoria del PDF sin proposito visible, del mismo tipo que 'Botón 20' documentado en el mapping de UniVivir Salud; se deja sin marcar.",
+   "revisar": true
+  },
+  "Button28": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Checkbox AcroForm huerfano ubicado casi enteramente fuera del area visible de la pagina (rect con x0>=613pt, mientras que el ancho de pagina es 612pt = MediaBox [0,0,612,1008]); no tiene ninguna etiqueta ni casilla dibujada visible en el render de la pagina. Posicionado muy cerca verticalmente de la fila de la pregunta 13 de la Declaracion de Salud, pero claramente NO es uno de los 2 checkboxes Si/No de esa fila (esos ya estan mapeados como salud_pregunta13_si_no via las columnas x=541.8/x=568.6). Artefacto de autoria del PDF sin proposito visible, del mismo tipo que 'Botón 20' documentado en el mapping de UniVivir Salud; se deja sin marcar.",
+   "revisar": true
+  },
+  "Button37": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Checkbox AcroForm huerfano ubicado casi enteramente fuera del area visible de la pagina (rect con x0>=613pt, mientras que el ancho de pagina es 612pt = MediaBox [0,0,612,1008]); no tiene ninguna etiqueta ni casilla dibujada visible en el render de la pagina. Posicionado muy cerca verticalmente de la fila de la pregunta 18 de la Declaracion de Salud, pero claramente NO es uno de los 2 checkboxes Si/No de esa fila (esos ya estan mapeados como salud_pregunta18_si_no via las columnas x=541.8/x=568.6). Artefacto de autoria del PDF sin proposito visible, del mismo tipo que 'Botón 20' documentado en el mapping de UniVivir Salud; se deja sin marcar.",
+   "revisar": true
+  },
+  "Campo de texto 1055": {
+   "data_key": "salud_pregunta3_quien",
+   "type": "text"
+  },
+  "Campo de texto 1056": {
+   "data_key": "salud_pregunta3_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1057": {
+   "data_key": "salud_pregunta3_lesiones",
+   "type": "text"
+  },
+  "Campo de texto 1058": {
+   "data_key": "salud_pregunta4_quien",
+   "type": "text"
+  },
+  "Campo de texto 1059": {
+   "data_key": "salud_pregunta6_quien",
+   "type": "text"
+  },
+  "Campo de texto 1060": {
+   "data_key": "salud_pregunta6_fecha",
+   "type": "text"
+  },
+  "Campo de texto 1061": {
+   "data_key": "salud_pregunta6_resultado",
+   "type": "text"
+  },
+  "Campo de texto 1062": {
+   "data_key": "salud_pregunta7_quien",
+   "type": "text"
+  },
+  "Campo de texto 1063": {
+   "data_key": "salud_pregunta7_fecha",
+   "type": "text"
+  },
+  "Campo de texto 1064": {
+   "data_key": "salud_pregunta7_resultado",
+   "type": "text"
+  },
+  "Campo de texto 1065": {
+   "data_key": "salud_pregunta8_quien",
+   "type": "text"
+  },
+  "Campo de texto 1066": {
+   "data_key": "salud_pregunta8_cuantas_semanas",
+   "type": "text"
+  },
+  "Campo de texto 1067": {
+   "data_key": "salud_pregunta9_quien",
+   "type": "text"
+  },
+  "Campo de texto 1068": {
+   "data_key": "salud_pregunta9_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1069": {
+   "data_key": "salud_pregunta10_quien",
+   "type": "text"
+  },
+  "Campo de texto 1070": {
+   "data_key": "salud_pregunta10_que_medicamento",
+   "type": "text"
+  },
+  "Campo de texto 1071": {
+   "data_key": "salud_pregunta11_quien",
+   "type": "text"
+  },
+  "Campo de texto 1072": {
+   "data_key": "salud_pregunta11_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1073": {
+   "data_key": "salud_pregunta11_por_que",
+   "type": "text"
+  },
+  "Campo de texto 1094": {
+   "data_key": "afirmativas_fila1_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1074": {
+   "data_key": "afirmativas_fila1_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1075": {
+   "data_key": "afirmativas_fila1_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1076": {
+   "data_key": "afirmativas_fila1_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1077": {
+   "data_key": "afirmativas_fila1_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1078": {
+   "data_key": "afirmativas_fila1_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1095": {
+   "data_key": "afirmativas_fila2_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1079": {
+   "data_key": "afirmativas_fila2_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1080": {
+   "data_key": "afirmativas_fila2_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1081": {
+   "data_key": "afirmativas_fila2_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1082": {
+   "data_key": "afirmativas_fila2_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1083": {
+   "data_key": "afirmativas_fila2_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1096": {
+   "data_key": "afirmativas_fila3_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1084": {
+   "data_key": "afirmativas_fila3_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1085": {
+   "data_key": "afirmativas_fila3_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1086": {
+   "data_key": "afirmativas_fila3_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1087": {
+   "data_key": "afirmativas_fila3_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1088": {
+   "data_key": "afirmativas_fila3_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1097": {
+   "data_key": "afirmativas_fila4_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1089": {
+   "data_key": "afirmativas_fila4_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1090": {
+   "data_key": "afirmativas_fila4_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1091": {
+   "data_key": "afirmativas_fila4_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1092": {
+   "data_key": "afirmativas_fila4_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1093": {
+   "data_key": "afirmativas_fila4_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1098": {
+   "data_key": "medico_cabecera_fila1_solicitante",
+   "type": "text"
+  },
+  "Campo de texto 1099": {
+   "data_key": "medico_cabecera_fila1_medico",
+   "type": "text"
+  },
+  "Campo de texto 10100": {
+   "data_key": "medico_cabecera_fila1_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 10101": {
+   "data_key": "medico_cabecera_fila1_telefono",
+   "type": "text"
+  },
+  "Campo de texto 10102": {
+   "data_key": "medico_cabecera_fila2_solicitante",
+   "type": "text"
+  },
+  "Campo de texto 10103": {
+   "data_key": "medico_cabecera_fila2_medico",
+   "type": "text"
+  },
+  "Campo de texto 10104": {
+   "data_key": "medico_cabecera_fila2_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 10105": {
+   "data_key": "medico_cabecera_fila2_telefono",
+   "type": "text"
+  },
+  "Campo de texto 10106": {
+   "data_key": "medico_cabecera_fila3_solicitante",
+   "type": "text"
+  },
+  "Campo de texto 10107": {
+   "data_key": "medico_cabecera_fila3_medico",
+   "type": "text"
+  },
+  "Campo de texto 10108": {
+   "data_key": "medico_cabecera_fila3_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 10109": {
+   "data_key": "medico_cabecera_fila3_telefono",
+   "type": "text"
+  },
+  "Campo de texto 101010": {
+   "data_key": "medico_cabecera_fila4_solicitante",
+   "type": "text"
+  },
+  "Campo de texto 101011": {
+   "data_key": "medico_cabecera_fila4_medico",
+   "type": "text"
+  },
+  "Campo de texto 101012": {
+   "data_key": "medico_cabecera_fila4_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 101013": {
+   "data_key": "medico_cabecera_fila4_telefono",
+   "type": "text"
+  },
+  "Campo de texto 101014": {
+   "data_key": "medico_cabecera_fila5_solicitante",
+   "type": "text"
+  },
+  "Campo de texto 101015": {
+   "data_key": "medico_cabecera_fila5_medico",
+   "type": "text"
+  },
+  "Campo de texto 101016": {
+   "data_key": "medico_cabecera_fila5_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 101017": {
+   "data_key": "medico_cabecera_fila5_telefono",
+   "type": "text"
+  },
+  "Campo de texto 10110": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Autorizacion': campo 'Fecha' de la fila de firmas (Firma del solicitante / Firma y sello del contratante / Fecha). Instruccion explicita de la tarea: las 3 casillas de esta fila (incluyendo Fecha) se dejan como 'manual', no se autocompletan. Nota adicional: 'Firma del solicitante' y 'Firma y sello del contratante' son solo lineas impresas SIN campo AcroForm asociado (no aparecen en este mapping por no existir campo que llenar)."
+  },
+  "Campo de texto 10111": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': primera linea en blanco para notas de la aseguradora. Post-emision/suscripcion, no se autocompleta (dato que completa la aseguradora DESPUES de recibir y evaluar la solicitud), siguiendo el mismo criterio usado en los mappings de Blue Cross y UniVivir Salud para sus secciones equivalentes."
+  },
+  "Campo de texto 10112": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': segunda linea en blanco para notas de la aseguradora. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10113": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': tercera linea en blanco para notas de la aseguradora. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10114": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': cuarta linea en blanco para notas de la aseguradora. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Casilla de verificación 1": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': checkbox 'Aprobado'. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Casilla de verificación 2": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': checkbox 'Declinado'. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10115": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': campo 'Evaluador'. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10116": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': campo 'Cargo' (del evaluador). Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10117": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Seccion 'Para uso de la compañía': campo 'Fecha' (de la evaluacion). Post-emision/suscripcion, no se autocompleta."
+  }
+ }
+}

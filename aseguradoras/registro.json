@@ -1,0 +1,426 @@
+{
+  "worldwide_medical": {
+    "nombre": "WorldWide Medical",
+    "productos": {
+      "salud": {
+        "nombre": "Gastos Médicos Mayores (Salud)",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Suscripción",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/worldwide_medical/salud/mappings/solicitud_suscripcion.json",
+            "salida": "solicitud.pdf"
+          },
+          {
+            "titulo": "Pago con Tarjeta de Crédito",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/pago_tarjeta_credito.json",
+            "salida": "pago.pdf"
+          },
+          {
+            "titulo": "Conozca a su Cliente (KYC)",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/kyc_persona_natural.json",
+            "salida": "kyc.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      },
+      "vida": {
+        "nombre": "Seguro de Vida",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro de Vida",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/worldwide_medical/vida/mappings/solicitud_vida.json",
+            "salida": "solicitud_vida.pdf"
+          },
+          {
+            "titulo": "Pago con Tarjeta de Crédito",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/pago_tarjeta_credito.json",
+            "salida": "pago.pdf"
+          },
+          {
+            "titulo": "Conozca a su Cliente (KYC)",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/kyc_persona_natural.json",
+            "salida": "kyc.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      },
+      "solo_kyc": {
+        "nombre": "Conoce tu Cliente Natural",
+        "etiqueta_menu": "Conoce tu Cliente Natural",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Conozca a su Cliente (KYC) — Persona Natural",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/kyc_persona_natural.json",
+            "salida": "kyc.pdf"
+          }
+        ],
+        "grupos": [
+          "salud",
+          "danos"
+        ]
+      },
+      "solo_kyc_juridico": {
+        "nombre": "Conoce tu Cliente Jurídico",
+        "etiqueta_menu": "Conoce tu Cliente Jurídico",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Conozca a su Cliente (KYC) — Persona Jurídica",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/kyc_persona_juridica.json",
+            "salida": "kyc_juridico.pdf"
+          }
+        ],
+        "grupos": [
+          "salud",
+          "danos"
+        ]
+      },
+      "solo_tcr": {
+        "nombre": "Pago de Primas con Tarjeta de Crédito",
+        "etiqueta_menu": "WorldWide Medical — Pago de Primas con Tarjeta",
+        "disponible": true,
+        "grupos": [
+          "cobros"
+        ],
+        "documentos": [
+          {
+            "titulo": "Pago de Primas Mediante Tarjeta de Crédito",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/worldwide_medical/compartido/mappings/pago_tarjeta_credito.json",
+            "salida": "pago_tarjeta_wwm.pdf"
+          }
+        ]
+      }
+    }
+  },
+  "internacional_de_seguros": {
+    "nombre": "Internacional de Seguros",
+    "productos": {
+      "vida": {
+        "nombre": "Seguro de Vida",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro de Vida",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/internacional_de_seguros/vida/mappings/solicitud_vida.json",
+            "salida": "solicitud_vida_intl.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      },
+      "tcr": {
+        "nombre": "Autorización de Débito (Tarjeta de Crédito)",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Autorización para el Plan de Descuento / Tarjeta de Crédito",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/internacional_de_seguros/tcr/mappings/tcr_is.json",
+            "salida": "tcr_is.pdf"
+          }
+        ],
+        "grupos": [
+          "cobros"
+        ]
+      }
+    }
+  },
+  "blue_cross_internacional_seguros": {
+    "nombre": "Blue Cross Internacional de Seguros",
+    "productos": {
+      "salud": {
+        "nombre": "Seguro Médico",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro Médico",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/blue_cross_internacional_seguros/salud/mappings/solicitud_seguro_medico.json",
+            "salida": "solicitud_bluecross.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      }
+    }
+  },
+  "univivir": {
+    "nombre": "UniVivir",
+    "productos": {
+      "salud": {
+        "nombre": "Seguro de Salud Individual",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Inscripción",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/univivir/salud/mappings/solicitud_salud.json",
+            "salida": "solicitud_univivir.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      },
+      "colectivo": {
+        "nombre": "Seguro Colectivo (Vida, Médico y Accidentes Personales)",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Inscripción — Seguro Colectivo",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/univivir/colectivo/mappings/solicitud_colectivo.json",
+            "salida": "solicitud_colectivo_univivir.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      }
+    }
+  },
+  "pan_american_life": {
+    "nombre": "Pan-American Life",
+    "productos": {
+      "salud": {
+        "nombre": "Gastos Médicos y Accidentes Personales",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud Combinada de Seguro",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/pan_american_life/salud/mappings/solicitud_seguro.json",
+            "salida": "solicitud_palig.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      }
+    }
+  },
+  "vumi": {
+    "nombre": "VUMI",
+    "productos": {
+      "salud": {
+        "nombre": "Gastos Médicos Mayores",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro para Gastos Médicos Mayores",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/vumi/salud/mappings/solicitud_salud.json",
+            "salida": "solicitud_vumi.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      }
+    }
+  },
+  "la_regional_de_seguros": {
+    "nombre": "La Regional de Seguros",
+    "productos": {
+      "autos": {
+        "nombre": "Seguro de Automóvil",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro de Automóvil",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/la_regional_de_seguros/autos/mappings/solicitud_auto.json",
+            "salida": "solicitud_auto.pdf"
+          }
+        ],
+        "grupos": [
+          "danos"
+        ]
+      }
+    }
+  },
+  "bupa": {
+    "nombre": "Bupa Panamá",
+    "productos": {
+      "salud": {
+        "nombre": "Gastos Médicos Mayores",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro Individual para Gastos Médicos Mayores",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/bupa/salud/mappings/solicitud_salud.json",
+            "salida": "solicitud_bupa.pdf"
+          }
+        ],
+        "grupos": [
+          "salud"
+        ]
+      }
+    }
+  },
+  "optima": {
+    "nombre": "Óptima Compañía de Seguros",
+    "productos": {
+      "incendio": {
+        "nombre": "Seguro de Incendio",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro de Incendio",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/optima/incendio/mappings/solicitud_incendio.json",
+            "salida": "solicitud_incendio_optima.pdf"
+          }
+        ],
+        "grupos": [
+          "danos"
+        ]
+      },
+      "auto": {
+        "nombre": "Seguro de Automóvil",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro de Automóvil",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/optima/auto/mappings/solicitud_auto.json",
+            "salida": "solicitud_auto_optima.pdf"
+          }
+        ],
+        "grupos": [
+          "danos"
+        ]
+      },
+      "tcr": {
+        "nombre": "Autorización de Débito (Tarjeta de Crédito)",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Autorización para Débito de Tarjeta de Crédito",
+            "script": "src/fill_pdf.py",
+            "mapping": "aseguradoras/optima/tcr/mappings/tcr_optima.json",
+            "salida": "tcr_optima.pdf"
+          }
+        ],
+        "grupos": [
+          "cobros"
+        ]
+      }
+    }
+  },
+  "sura": {
+    "nombre": "Sura",
+    "productos": {
+      "tcr": {
+        "nombre": "Autorización de Débito Automático (Tarjeta de Crédito)",
+        "disponible": true,
+        "grupos": [
+          "cobros"
+        ],
+        "documentos": [
+          {
+            "titulo": "Autorización de Débito Automático",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/sura/tcr/mappings/tcr_sura.json",
+            "salida": "tcr_sura.pdf"
+          }
+        ]
+      },
+      "devolucion_prima": {
+        "nombre": "Devolución de Prima (ACH / Transferencia Internacional)",
+        "disponible": true,
+        "grupos": [
+          "cobros"
+        ],
+        "documentos": [
+          {
+            "titulo": "Formulario de Pagos ACH",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/sura/devolucion_prima/mappings/devolucion_prima.json",
+            "salida": "devolucion_prima_sura.pdf"
+          }
+        ]
+      }
+    }
+  },
+  "mercantil_seguros": {
+    "nombre": "Mercantil Seguros",
+    "productos": {
+      "tcr": {
+        "nombre": "Autorización de Débito (Tarjeta de Crédito)",
+        "disponible": true,
+        "grupos": [
+          "cobros"
+        ],
+        "documentos": [
+          {
+            "titulo": "Autorización de Pago de Primas por Tarjeta de Crédito",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/mercantil_seguros/tcr/mappings/tcr_mercantil.json",
+            "salida": "tcr_mercantil.pdf"
+          }
+        ]
+      }
+    }
+  },
+  "assa": {
+    "nombre": "ASSA Compañía de Seguros",
+    "productos": {
+      "tcr": {
+        "nombre": "Autorización de Débito (Tarjeta de Crédito)",
+        "disponible": true,
+        "grupos": [
+          "cobros"
+        ],
+        "documentos": [
+          {
+            "titulo": "Autorización de pago de Primas Por Tarjeta de Crédito",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/assa/tcr/mappings/tcr_assa.json",
+            "salida": "tcr_assa.pdf"
+          }
+        ]
+      }
+    }
+  },
+  "aliado": {
+    "nombre": "Aliado Seguros",
+    "productos": {
+      "auto": {
+        "nombre": "Seguro de Automóvil",
+        "disponible": true,
+        "documentos": [
+          {
+            "titulo": "Solicitud de Seguro de Automóvil",
+            "script": "src/fill_pdf_overlay.py",
+            "mapping": "aseguradoras/aliado/auto/mappings/solicitud_auto.json",
+            "salida": "solicitud_auto_aliado.pdf"
+          }
+        ],
+        "grupos": [
+          "danos"
+        ]
+      }
+    }
+  }
+}

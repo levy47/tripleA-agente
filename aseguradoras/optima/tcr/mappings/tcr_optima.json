@@ -1,0 +1,102 @@
+{
+  "template": "aseguradoras/optima/tcr/templates/tcr_optima.pdf",
+  "fields": {
+    "Fecha": {
+      "type": "manual",
+      "note": "fecha de firma"
+    },
+    "Nombre del tarjetahabiente": {
+      "data_key": "tarjetahabiente_nombre_completo",
+      "type": "text"
+    },
+    "Cédula de identidad personal": {
+      "data_key": "cedula_o_pasaporte",
+      "type": "text"
+    },
+    "Check Box432": {
+      "data_key": "cobro_frecuencia",
+      "type": "checkbox_group",
+      "value": "anual"
+    },
+    "Check Box433": {
+      "data_key": "cobro_frecuencia",
+      "type": "checkbox_group",
+      "value": "semestral"
+    },
+    "Check Box434": {
+      "data_key": "cobro_frecuencia",
+      "type": "checkbox_group",
+      "value": "mensual"
+    },
+    "Text435": {
+      "data_key": "cobro_monto_o_suma_total",
+      "type": "text"
+    },
+    "Autorizo a Optima Compañia de Seguros para que cargue anual D semestral D o mensualmente D a mi tarjeta de crédito la suma de BI 1 para el pago de las primas de las siguientes pólizasRow1": {
+      "data_key": "poliza_1_numero_poliza",
+      "type": "text"
+    },
+    "Autorizo a Optima Compañia de Seguros para que cargue anual D semestral D o mensualmente D a mi tarjeta de crédito la suma de BI 1 para el pago de las primas de las siguientes pólizasRow1_2": {
+      "data_key": "poliza_1_nombre_asegurado",
+      "type": "text"
+    },
+    "Autorizo a Optima Compañia de Seguros para que cargue anual D semestral D o mensualmente D a mi tarjeta de crédito la suma de BI 1 para el pago de las primas de las siguientes pólizasRow2": {
+      "data_key": "poliza_2_numero_poliza",
+      "type": "text"
+    },
+    "Autorizo a Optima Compañia de Seguros para que cargue anual D semestral D o mensualmente D a mi tarjeta de crédito la suma de BI 1 para el pago de las primas de las siguientes pólizasRow2_2": {
+      "data_key": "poliza_2_nombre_asegurado",
+      "type": "text"
+    },
+    "A nombre de": {
+      "type": "manual",
+      "note": "nombre impreso en la tarjeta, si es distinto del tarjetahabiente (caso raro)"
+    },
+    "Check Box436": {
+      "data_key": "tarjeta_tipo",
+      "type": "checkbox_group",
+      "value": "visa"
+    },
+    "Check Box437": {
+      "data_key": "tarjeta_tipo",
+      "type": "checkbox_group",
+      "value": "mastercard"
+    },
+    "Text438": {
+      "data_key": "numero_tarjeta",
+      "type": "text"
+    },
+    "Text439": {
+      "data_key": "tarjeta_fecha_exp_mmaa",
+      "type": "text"
+    },
+    "Banco emisor": {
+      "data_key": "banco_emisor",
+      "type": "text"
+    },
+    "Text440": {
+      "type": "manual",
+      "note": "numero de tarjeta de respaldo (segunda tarjeta), el cliente normalmente no la tiene lista"
+    },
+    "Text441": {
+      "type": "manual",
+      "note": "vencimiento de la tarjeta de respaldo"
+    },
+    "Signature Block442_es_:signer:signatureblock": {
+      "type": "manual",
+      "note": "firma"
+    },
+    "Text443": {
+      "data_key": "cobro_telefono_celular",
+      "type": "text"
+    },
+    "Text444": {
+      "data_key": "cobro_telefono_residencial",
+      "type": "text"
+    },
+    "Correo electrónico": {
+      "data_key": "cobro_correo_1",
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,3187 @@
+[
+  {
+    "field": "fill_1",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 1,
+    "rect": [
+      85.08,
+      232.56,
+      259.32,
+      261.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "fill_2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 1,
+    "rect": [
+      355.2,
+      232.56,
+      525.12,
+      261.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "En Panamá a los",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 1,
+    "rect": [
+      161.16,
+      169.8,
+      203.52,
+      198.6
+    ],
+    "label_guess": "Principal Afiliado Nombre"
+  },
+  {
+    "field": "día s del mes de",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 1,
+    "rect": [
+      283.32,
+      169.8,
+      427.8,
+      198.6
+    ],
+    "label_guess": "Firma Afiliado Principal Principal"
+  },
+  {
+    "field": "undefined",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 1,
+    "rect": [
+      464.64,
+      169.8,
+      524.16,
+      198.6
+    ],
+    "label_guess": "Principal Afiliado Firma"
+  },
+  {
+    "field": "Check Box255.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      351.637,
+      644.178,
+      368.155,
+      660.696
+    ],
+    "label_guess": "Planes Deducibles Dependiente de Adición Nueva"
+  },
+  {
+    "field": "Check Box255.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      459.143,
+      644.178,
+      475.661,
+      660.696
+    ],
+    "label_guess": "Deducibles Plus Planes Optimum Dependiente de"
+  },
+  {
+    "field": "Check Box255.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      351.637,
+      620.101,
+      368.155,
+      636.619
+    ],
+    "label_guess": "Optimum Plus Opción Plan de Cambio"
+  },
+  {
+    "field": "Check Box255.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      459.143,
+      620.101,
+      475.661,
+      636.619
+    ],
+    "label_guess": "Opción Plus I Optimum 0/$1,000 Optimum"
+  },
+  {
+    "field": "Check Box255.2.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      351.637,
+      596.024,
+      368.155,
+      612.542
+    ],
+    "label_guess": "Optimum Opción"
+  },
+  {
+    "field": "Check Box255.2.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      459.143,
+      596.024,
+      475.661,
+      612.542
+    ],
+    "label_guess": "Opción II $1,000/$2,000 Optimum Security"
+  },
+  {
+    "field": "Check Box255.3.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      351.637,
+      571.947,
+      368.155,
+      588.465
+    ],
+    "label_guess": "Security Opción Pago de Frecuencia"
+  },
+  {
+    "field": "Check Box255.3.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      459.143,
+      571.947,
+      475.661,
+      588.465
+    ],
+    "label_guess": "Opción III $2,000/$3,000 Security Essence Pago"
+  },
+  {
+    "field": "Check Box255.4.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      351.637,
+      547.87,
+      368.155,
+      564.388
+    ],
+    "label_guess": "Essence Opción Otra Semestral Anual"
+  },
+  {
+    "field": "Check Box255.4.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      459.143,
+      547.87,
+      475.661,
+      564.388
+    ],
+    "label_guess": "Opción IV Int. $5,000/$5,000 Essence Exclusive"
+  },
+  {
+    "field": "Check Box256.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      23.2371,
+      652.017,
+      39.7551,
+      668.535
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Check Box256.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      120.105,
+      652.017,
+      136.623,
+      668.535
+    ],
+    "label_guess": "Nueva Póliza"
+  },
+  {
+    "field": "Check Box256.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      23.2371,
+      628.22,
+      39.7551,
+      644.738
+    ],
+    "label_guess": "Póliza Nueva Adición de"
+  },
+  {
+    "field": "Check Box256.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      120.105,
+      628.22,
+      136.623,
+      644.738
+    ],
+    "label_guess": "Adición Rehabilitación Nueva de Dependiente Póliza"
+  },
+  {
+    "field": "Check Box257",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      22.9572,
+      547.234,
+      39.5513,
+      563.828
+    ],
+    "label_guess": "Frecuencia de Pago"
+  },
+  {
+    "field": "Check Box258",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      80.3501,
+      547.514,
+      96.9443,
+      564.108
+    ],
+    "label_guess": "Anual de Pago Frecuencia"
+  },
+  {
+    "field": "Text259",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      176.098,
+      547.87,
+      320.281,
+      564.108
+    ],
+    "label_guess": "Otra Semestral Pago de Anual"
+  },
+  {
+    "field": "Text260",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      511.497,
+      547.87,
+      584.008,
+      564.108
+    ],
+    "label_guess": "IV Otro $5,000/$5,000 Opción Essence Int."
+  },
+  {
+    "field": "Check Box261.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      23.5171,
+      486.558,
+      40.0351,
+      503.076
+    ],
+    "label_guess": "Persona que completa el formulario"
+  },
+  {
+    "field": "Check Box261.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      100.788,
+      486.558,
+      117.306,
+      503.076
+    ],
+    "label_guess": "Contratante completa el que formulario Persona"
+  },
+  {
+    "field": "Check Box261.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      173.859,
+      486.558,
+      190.377,
+      503.076
+    ],
+    "label_guess": "Asegurado formulario el completa que Persona"
+  },
+  {
+    "field": "Check Box261.3",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      241.05,
+      486.558,
+      257.568,
+      503.076
+    ],
+    "label_guess": "Corredor formulario el Asegurado Contratante"
+  },
+  {
+    "field": "Check Box261.4",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      304.602,
+      486.558,
+      321.12,
+      503.076
+    ],
+    "label_guess": "Pagador Corredor Asegurado Contratante"
+  },
+  {
+    "field": "Check Box261.5",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      396.991,
+      486.558,
+      413.509,
+      503.076
+    ],
+    "label_guess": "Seguros De Cía. Pagador Corredor Asegurado"
+  },
+  {
+    "field": "Check Box262.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      99.3878,
+      350.494,
+      115.906,
+      367.012
+    ],
+    "label_guess": "Civil Cédula/Pasaporte Estado"
+  },
+  {
+    "field": "Check Box262.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      155.941,
+      350.494,
+      172.459,
+      367.012
+    ],
+    "label_guess": "Soltero Cédula/Pasaporte Edad Civil Estado"
+  },
+  {
+    "field": "Check Box262.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      215.853,
+      350.494,
+      232.371,
+      367.012
+    ],
+    "label_guess": "Casado Edad Soltero Civil Estado"
+  },
+  {
+    "field": "Check Box262.3",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      288.084,
+      350.494,
+      304.602,
+      367.012
+    ],
+    "label_guess": "Divorciado Edad Casado Soltero Civil Estado"
+  },
+  {
+    "field": "Check Box263",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      347.437,
+      350.698,
+      364.031,
+      367.292
+    ],
+    "label_guess": "Viudo Edad Divorciado Casado Soltero Civil"
+  },
+  {
+    "field": "Text264",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      91.5487,
+      441.483,
+      296.203,
+      457.441
+    ],
+    "label_guess": "Nombre (Completar en caso de Contratante"
+  },
+  {
+    "field": "Text265",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      382.153,
+      441.483,
+      586.808,
+      457.441
+    ],
+    "label_guess": "Nombre el formulario completar correspondiente Jurídica,"
+  },
+  {
+    "field": "Text266",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      407.91,
+      397.809,
+      588.208,
+      413.487
+    ],
+    "label_guess": "(es) Nacionalidad M F Sexo a"
+  },
+  {
+    "field": "Text267",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      106.667,
+      327.257,
+      347.717,
+      342.935
+    ],
+    "label_guess": "Nacimiento Soltero Civil Casado Estado Divorciado"
+  },
+  {
+    "field": "Text268",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      220.053,
+      419.366,
+      588.208,
+      435.324
+    ],
+    "label_guess": "Casada Segundo de Nombre Apellido /"
+  },
+  {
+    "field": "Date269_af_date",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      119.545,
+      397.809,
+      215.573,
+      413.207
+    ],
+    "label_guess": "/ nacimiento Apellido Apellido de Segundo"
+  },
+  {
+    "field": "Check Box270",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      264.007,
+      396.892,
+      280.602,
+      413.487
+    ],
+    "label_guess": "Sexo Casada de Apellido / a"
+  },
+  {
+    "field": "Check Box271",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      295.924,
+      396.892,
+      312.518,
+      413.487
+    ],
+    "label_guess": "F Casada Sexo de a a"
+  },
+  {
+    "field": "Text272",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      324.2,
+      374.851,
+      360.036,
+      391.089
+    ],
+    "label_guess": "Edad M Nacionalidad F (es) Sexo"
+  },
+  {
+    "field": "Text273",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      101.068,
+      374.851,
+      292.284,
+      390.809
+    ],
+    "label_guess": "Cédula/Pasaporte d d nacimiento m de"
+  },
+  {
+    "field": "Text274",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      99.9477,
+      177.756,
+      267.647,
+      193.994
+    ],
+    "label_guess": "Ocupación/Cargo Profesión Empresa donde"
+  },
+  {
+    "field": "Text275",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      444.025,
+      326.697,
+      589.607,
+      343.215
+    ],
+    "label_guess": "Residencia Unido Viudo de País Nacimiento"
+  },
+  {
+    "field": "Text276",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      132.144,
+      302.9,
+      588.208,
+      318.858
+    ],
+    "label_guess": "Residencia Nacimiento de País de Dirección"
+  },
+  {
+    "field": "Text277",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      468.102,
+      271.544,
+      588.208,
+      286.942
+    ],
+    "label_guess": "Celular Tel. Residencia Tel."
+  },
+  {
+    "field": "Text278",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      281.365,
+      270.704,
+      401.75,
+      286.942
+    ],
+    "label_guess": "Celular Tel. Residencia Tel."
+  },
+  {
+    "field": "Text280",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      95.7482,
+      270.704,
+      215.853,
+      286.382
+    ],
+    "label_guess": "Residencia Residencia de Dirección Tel."
+  },
+  {
+    "field": "Text281",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      303.763,
+      201.553,
+      520.176,
+      217.511
+    ],
+    "label_guess": "labora donde ingresos sus por Empresa"
+  },
+  {
+    "field": "Text282",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      299.003,
+      248.587,
+      586.808,
+      264.825
+    ],
+    "label_guess": "Personal Celular Tel. Electrónico Correo Fax"
+  },
+  {
+    "field": "Text283",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      240.49,
+      226.47,
+      587.088,
+      241.868
+    ],
+    "label_guess": "ingresos Personal Electrónico Correo sus por"
+  },
+  {
+    "field": "Text284",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      47.5941,
+      248.587,
+      168.259,
+      264.825
+    ],
+    "label_guess": "Fax Residencia Tel."
+  },
+  {
+    "field": "Text285",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      71.9511,
+      201.273,
+      191.776,
+      217.791
+    ],
+    "label_guess": "Profesión el dónde contratante País(es) tributa"
+  },
+  {
+    "field": "Text286",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      167.699,
+      124.002,
+      359.756,
+      139.96
+    ],
+    "label_guess": "Empresa la de Dirección Económica Actividad"
+  },
+  {
+    "field": "Text287",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      74.7508,
+      155.358,
+      531.095,
+      172.156
+    ],
+    "label_guess": "Dirección Ocupación/Cargo"
+  },
+  {
+    "field": "Check Box288",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      447.945,
+      123.086,
+      464.539,
+      139.68
+    ],
+    "label_guess": "Propia Empresa Empresa la de Económica"
+  },
+  {
+    "field": "Check Box289",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      484.06,
+      123.366,
+      500.655,
+      139.96
+    ],
+    "label_guess": "Sí Propia Empresa Empresa la de"
+  },
+  {
+    "field": "Check Box290.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      386.912,
+      99.6453,
+      403.43,
+      116.163
+    ],
+    "label_guess": "Jubilado Empresa Propia Sí No empresa"
+  },
+  {
+    "field": "Check Box290.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      470.622,
+      99.6453,
+      487.14,
+      116.163
+    ],
+    "label_guess": "Asalariado Sí No Propia Empresa Jubilado"
+  },
+  {
+    "field": "Check Box290.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      571.13,
+      99.6453,
+      587.648,
+      116.163
+    ],
+    "label_guess": "Independiente No Sí Asalariado Jubilado empresa"
+  },
+  {
+    "field": "Check Box291",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      106.947,
+      79.4116,
+      123.541,
+      96.0058
+    ],
+    "label_guess": "pagador? empresa la de Email usted"
+  },
+  {
+    "field": "Check Box292",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 2,
+    "rect": [
+      143.062,
+      79.1317,
+      159.657,
+      95.7258
+    ],
+    "label_guess": "Sí empresa la de Email pagador?"
+  },
+  {
+    "field": "Text293",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      108.067,
+      99.6453,
+      300.403,
+      115.883
+    ],
+    "label_guess": "empresa de la Empresa Económica Actividad"
+  },
+  {
+    "field": "Text294",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      242.45,
+      18.7353,
+      589.047,
+      34.6934
+    ],
+    "label_guess": "ingresos sus por tributa pagador el"
+  },
+  {
+    "field": "Text295",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 2,
+    "rect": [
+      23.2371,
+      39.1728,
+      588.487,
+      55.6907
+    ],
+    "label_guess": "Si su respuesta es negativa, por"
+  },
+  {
+    "field": "Text296",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      92.1086,
+      638.019,
+      296.763,
+      653.977
+    ],
+    "label_guess": "Nombre Asegurado o Principal Solicitante Primer"
+  },
+  {
+    "field": "Text297",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      381.873,
+      638.299,
+      586.528,
+      654.257
+    ],
+    "label_guess": "Nombre Segundo Nombre Primer"
+  },
+  {
+    "field": "Text298",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      99.6677,
+      568.308,
+      292.004,
+      585.105
+    ],
+    "label_guess": "Cédula/Pasaporte d nacimiento d de m"
+  },
+  {
+    "field": "Text299",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      408.19,
+      592.105,
+      587.928,
+      608.623
+    ],
+    "label_guess": "(es) Nacionalidad M F Sexo a"
+  },
+  {
+    "field": "Text300",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      219.493,
+      614.222,
+      588.208,
+      630.46
+    ],
+    "label_guess": "Casada Segundo de Nombre Apellido /"
+  },
+  {
+    "field": "Text301",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      107.227,
+      526.313,
+      347.437,
+      541.991
+    ],
+    "label_guess": "Nacimiento Soltero Civil Casado Estado Divorciado"
+  },
+  {
+    "field": "Text302",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      443.745,
+      526.313,
+      588.208,
+      542.271
+    ],
+    "label_guess": "Residencia Unido Viudo de País Nacimiento"
+  },
+  {
+    "field": "Text303",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      132.424,
+      505.035,
+      587.368,
+      520.713
+    ],
+    "label_guess": "Residencia Nacimiento de País de Dirección"
+  },
+  {
+    "field": "Check Box304.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      99.1078,
+      546.75,
+      115.626,
+      563.268
+    ],
+    "label_guess": "Cédula/Pasaporte Civil Estado"
+  },
+  {
+    "field": "Check Box304.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      155.381,
+      546.75,
+      171.899,
+      563.268
+    ],
+    "label_guess": "Soltero Cédula/Pasaporte Edad Civil Estado"
+  },
+  {
+    "field": "Check Box304.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      215.014,
+      546.75,
+      231.531,
+      563.268
+    ],
+    "label_guess": "Casado Edad Soltero Civil Estado"
+  },
+  {
+    "field": "Check Box304.3",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      287.525,
+      546.75,
+      304.043,
+      563.268
+    ],
+    "label_guess": "Divorciado Edad Peso Lbs/Kgs Casado Soltero"
+  },
+  {
+    "field": "Check Box304.4",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      347.997,
+      546.75,
+      364.515,
+      563.268
+    ],
+    "label_guess": "Peso Viudo Edad Lbs/Kgs Estatura Divorciado"
+  },
+  {
+    "field": "Text305.0",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      323.64,
+      568.588,
+      360.036,
+      584.546
+    ],
+    "label_guess": "Edad M Nacionalidad F (es) Sexo"
+  },
+  {
+    "field": "Text305.1",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      396.151,
+      568.588,
+      432.547,
+      584.546
+    ],
+    "label_guess": "Peso (es) Nacionalidad M F Edad"
+  },
+  {
+    "field": "Text305.2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      512.337,
+      568.588,
+      548.732,
+      584.546
+    ],
+    "label_guess": "Estatura Lbs/Kgs (es) Peso Edad Cédula/Pasaporte"
+  },
+  {
+    "field": "Date306_af_date",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      119.825,
+      592.385,
+      216.133,
+      608.623
+    ],
+    "label_guess": "/ Apellido nacimiento Apellido de Segundo"
+  },
+  {
+    "field": "Check Box307",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      263.727,
+      592.308,
+      280.322,
+      608.903
+    ],
+    "label_guess": "Sexo Casada de Apellido / a"
+  },
+  {
+    "field": "Check Box308",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      295.924,
+      592.308,
+      312.518,
+      608.903
+    ],
+    "label_guess": "F Casada de Sexo a a"
+  },
+  {
+    "field": "Text309",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      71.1112,
+      376.251,
+      526.895,
+      391.929
+    ],
+    "label_guess": "Dirección Ocupación/Cargo"
+  },
+  {
+    "field": "Text310",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      299.283,
+      448.202,
+      586.808,
+      463.6
+    ],
+    "label_guess": "Personal Celular Tel. Electrónico Correo Fax"
+  },
+  {
+    "field": "Text311",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      281.365,
+      471.999,
+      402.59,
+      487.678
+    ],
+    "label_guess": "Celular Tel. Residencia Tel."
+  },
+  {
+    "field": "Text312",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      467.822,
+      471.999,
+      587.648,
+      488.517
+    ],
+    "label_guess": "Celular Tel. Residencia Tel."
+  },
+  {
+    "field": "Text313",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      95.7482,
+      470.88,
+      216.413,
+      487.957
+    ],
+    "label_guess": "Residencia Residencia de Dirección Tel."
+  },
+  {
+    "field": "Text314",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      47.5941,
+      446.803,
+      168.259,
+      463.88
+    ],
+    "label_guess": "Fax Residencia Tel."
+  },
+  {
+    "field": "Text315",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      71.6712,
+      422.446,
+      192.336,
+      439.523
+    ],
+    "label_guess": "Profesión Fax Correo Electrónico"
+  },
+  {
+    "field": "Text316",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      100.228,
+      399.488,
+      267.927,
+      415.446
+    ],
+    "label_guess": "Ocupación/Cargo Profesión Empresa donde"
+  },
+  {
+    "field": "Text317",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      303.763,
+      423.565,
+      520.456,
+      439.803
+    ],
+    "label_guess": "labora Personal donde Electrónico Correo Empresa"
+  },
+  {
+    "field": "Check Box318.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      448.225,
+      338.176,
+      464.743,
+      354.694
+    ],
+    "label_guess": "Propia Empresa Empresa la de Económica"
+  },
+  {
+    "field": "Check Box318.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      484.62,
+      338.176,
+      501.138,
+      354.694
+    ],
+    "label_guess": "Sí Propia Empresa Empresa la de"
+  },
+  {
+    "field": "Text319",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      107.787,
+      317.179,
+      301.243,
+      333.137
+    ],
+    "label_guess": "empresa de la Empresa Económica Actividad"
+  },
+  {
+    "field": "Check Box320.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      64.1121,
+      290.302,
+      80.6301,
+      306.82
+    ],
+    "label_guess": "Jubilado empresa la de Email"
+  },
+  {
+    "field": "Check Box320.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      147.822,
+      290.302,
+      164.34,
+      306.82
+    ],
+    "label_guess": "Asalariado empresa la de Email Jubilado"
+  },
+  {
+    "field": "Check Box320.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      247.21,
+      290.302,
+      263.728,
+      306.82
+    ],
+    "label_guess": "Independiente Asalariado Jubilado"
+  },
+  {
+    "field": "Text321",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      167.979,
+      338.176,
+      359.476,
+      355.254
+    ],
+    "label_guess": "Empresa la de Económica Actividad"
+  },
+  {
+    "field": "Text322",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      241.89,
+      272.104,
+      589.327,
+      288.622
+    ],
+    "label_guess": "ingresos Independiente Asalariado sus por tributa"
+  },
+  {
+    "field": "Text323",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      271.287,
+      249.987,
+      589.327,
+      266.225
+    ],
+    "label_guess": "dedica ingresos se sus por que"
+  },
+  {
+    "field": "Text324",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 3,
+    "rect": [
+      24.077,
+      44.7721,
+      587.648,
+      80.0477
+    ],
+    "label_guess": "Contratante Sí No"
+  },
+  {
+    "field": "Check Box325",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      87.6292,
+      88.3705,
+      104.223,
+      104.965
+    ],
+    "label_guess": "Contratante relación. de tipo y PEP"
+  },
+  {
+    "field": "Check Box326",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      124.585,
+      87.8106,
+      141.179,
+      104.405
+    ],
+    "label_guess": "Sí relación. de tipo y PEP"
+  },
+  {
+    "field": "Check Box327",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      237.971,
+      87.8106,
+      254.565,
+      104.405
+    ],
+    "label_guess": "Titular No Sí Contratante"
+  },
+  {
+    "field": "Check Box328",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 3,
+    "rect": [
+      272.966,
+      87.8106,
+      289.561,
+      104.405
+    ],
+    "label_guess": "Sí Titular No Sí Contratante"
+  },
+  {
+    "field": "de Identidad",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      25.44,
+      449.4,
+      586.56,
+      543.48
+    ],
+    "label_guess": "Nombres y Apellidos de Identidad Documento"
+  },
+  {
+    "field": "Check Box329.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      184.217,
+      635.779,
+      200.735,
+      652.297
+    ],
+    "label_guess": "principal actividad anuales Ingresos"
+  },
+  {
+    "field": "Check Box329.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      291.444,
+      635.779,
+      307.962,
+      652.297
+    ],
+    "label_guess": "US$ mil 10 de Menos principal"
+  },
+  {
+    "field": "Check Box329.0.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      392.512,
+      635.779,
+      409.03,
+      652.297
+    ],
+    "label_guess": "US$ mil 30 a mil 10"
+  },
+  {
+    "field": "Check Box329.0.3",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      494.139,
+      635.779,
+      510.657,
+      652.297
+    ],
+    "label_guess": "US$ mil 50 a mil 30"
+  },
+  {
+    "field": "Check Box329.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      184.217,
+      611.982,
+      200.735,
+      628.5
+    ],
+    "label_guess": "actividades Menos de principal 10 mil"
+  },
+  {
+    "field": "Check Box329.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      291.444,
+      611.982,
+      307.962,
+      628.5
+    ],
+    "label_guess": "US$ US$ 10 mil mil mil"
+  },
+  {
+    "field": "Check Box329.1.2",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      392.512,
+      611.982,
+      409.03,
+      628.5
+    ],
+    "label_guess": "US$ 30 US$ mil mil mil"
+  },
+  {
+    "field": "Check Box329.1.3",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      494.139,
+      611.982,
+      510.657,
+      628.5
+    ],
+    "label_guess": "US$ Más US$ mil de 50"
+  },
+  {
+    "field": "Text330",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      83.9897,
+      393.049,
+      588.208,
+      409.287
+    ],
+    "label_guess": "Hijo a 19 24 de años"
+  },
+  {
+    "field": "Text331",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      84.2696,
+      344.615,
+      588.487,
+      360.853
+    ],
+    "label_guess": "Hijo Nombre Universidad"
+  },
+  {
+    "field": "Text332",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      83.7097,
+      368.972,
+      336.239,
+      385.49
+    ],
+    "label_guess": "Universidad Hijo Nombre"
+  },
+  {
+    "field": "Text333",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      83.4297,
+      321.658,
+      336.239,
+      336.776
+    ],
+    "label_guess": "Universidad Hijo Nombre"
+  },
+  {
+    "field": "Text334",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      407.91,
+      368.412,
+      588.487,
+      385.49
+    ],
+    "label_guess": "Teléfono No. Universidad"
+  },
+  {
+    "field": "Text335",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 4,
+    "rect": [
+      408.47,
+      319.978,
+      587.928,
+      337.056
+    ],
+    "label_guess": "Teléfono No. Universidad"
+  },
+  {
+    "field": "Check Box336",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.896,
+      420.97,
+      536.49,
+      437.564
+    ],
+    "label_guess": "completo? tiempo a estudiantes son años"
+  },
+  {
+    "field": "Check Box337",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      556.011,
+      420.69,
+      572.606,
+      437.284
+    ],
+    "label_guess": "Sí completo? tiempo a estudiantes son"
+  },
+  {
+    "field": "Check Box338.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      241.308,
+      535.854,
+      257.826
+    ],
+    "label_guess": "padezca o columna de alguna padecido"
+  },
+  {
+    "field": "Check Box338.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      241.308,
+      572.249,
+      257.826
+    ],
+    "label_guess": "Sí alguna de padezca o padecido"
+  },
+  {
+    "field": "Check Box338.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      209.672,
+      535.854,
+      226.19
+    ],
+    "label_guess": "Sí No columna la de padecimientos"
+  },
+  {
+    "field": "Check Box338.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      209.672,
+      572.249,
+      226.19
+    ],
+    "label_guess": "Sí Sí No columna la de"
+  },
+  {
+    "field": "Check Box338.2.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      184.755,
+      535.854,
+      201.273
+    ],
+    "label_guess": "Sí o No cerebro del padecimientos"
+  },
+  {
+    "field": "Check Box338.2.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      184.755,
+      572.249,
+      201.273
+    ],
+    "label_guess": "Sí Sí No o cerebro del"
+  },
+  {
+    "field": "Check Box338.3.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      152.279,
+      535.854,
+      168.797
+    ],
+    "label_guess": "oído? Sí o No cerebro del"
+  },
+  {
+    "field": "Check Box338.3.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      152.279,
+      572.249,
+      168.797
+    ],
+    "label_guess": "Sí Sí No o cerebro oído?"
+  },
+  {
+    "field": "Check Box338.4.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      128.202,
+      535.854,
+      144.72
+    ],
+    "label_guess": "Sí oído? del No y/o vista"
+  },
+  {
+    "field": "Check Box338.4.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      128.202,
+      572.249,
+      144.72
+    ],
+    "label_guess": "Sí Sí No oído? del y/o"
+  },
+  {
+    "field": "Check Box338.5.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      97.1257,
+      535.854,
+      113.644
+    ],
+    "label_guess": "Sí No"
+  },
+  {
+    "field": "Check Box338.5.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      97.1257,
+      572.249,
+      113.644
+    ],
+    "label_guess": "Sí Sí No"
+  },
+  {
+    "field": "Check Box338.6.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      63.8098,
+      535.854,
+      80.3278
+    ],
+    "label_guess": "Sí No"
+  },
+  {
+    "field": "Check Box338.6.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      63.8098,
+      572.249,
+      80.3278
+    ],
+    "label_guess": "Sí Sí No"
+  },
+  {
+    "field": "Check Box338.7.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      519.336,
+      33.5735,
+      535.854,
+      50.0915
+    ],
+    "label_guess": "del Sí padecimientos No Digestivo? otros"
+  },
+  {
+    "field": "Check Box338.7.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 4,
+    "rect": [
+      555.732,
+      33.5735,
+      572.249,
+      50.0915
+    ],
+    "label_guess": "Sí Sí No del padecimientos otros"
+  },
+  {
+    "field": "Text339",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 5,
+    "rect": [
+      24.077,
+      540.311,
+      588.767,
+      556.269
+    ],
+    "label_guess": "radioterapia o tratamiento alterno? Detalle"
+  },
+  {
+    "field": "Text340",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 5,
+    "rect": [
+      24.077,
+      443.723,
+      588.767,
+      459.681
+    ],
+    "label_guess": "15. ¿Ha recibido transfusión de sangre?"
+  },
+  {
+    "field": "Check Box341.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.896,
+      659.576,
+      536.414,
+      676.094
+    ],
+    "label_guess": "Pág. masculinos? 5 de 8 reproductivos"
+  },
+  {
+    "field": "Check Box341.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.291,
+      659.576,
+      572.809,
+      676.094
+    ],
+    "label_guess": "Sí 5 Pág. de 8 masculinos?"
+  },
+  {
+    "field": "Check Box341.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.896,
+      635.219,
+      536.414,
+      651.737
+    ],
+    "label_guess": "Sí No masculinos? reproductivos"
+  },
+  {
+    "field": "Check Box341.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.291,
+      635.219,
+      572.809,
+      651.737
+    ],
+    "label_guess": "Sí Sí No masculinos?"
+  },
+  {
+    "field": "Check Box341.2.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.896,
+      603.583,
+      536.414,
+      620.101
+    ],
+    "label_guess": "Sí No endócrinos? trastornos o gota"
+  },
+  {
+    "field": "Check Box341.2.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.291,
+      603.583,
+      572.809,
+      620.101
+    ],
+    "label_guess": "Sí Sí No endócrinos? trastornos o"
+  },
+  {
+    "field": "Check Box341.3.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.896,
+      572.227,
+      536.414,
+      588.745
+    ],
+    "label_guess": "Sí No endócrinos?"
+  },
+  {
+    "field": "Check Box341.3.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.291,
+      572.227,
+      572.809,
+      588.745
+    ],
+    "label_guess": "Sí Sí No"
+  },
+  {
+    "field": "Text342",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 5,
+    "rect": [
+      24.357,
+      364.773,
+      589.047,
+      380.731
+    ],
+    "label_guess": "17. ¿Fuma o ha fumado cigarrillos,"
+  },
+  {
+    "field": "Check Box343.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      515.954,
+      536.134,
+      532.472
+    ],
+    "label_guess": "funcional? limitación de tipo algún de"
+  },
+  {
+    "field": "Check Box343.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      515.954,
+      572.529,
+      532.472
+    ],
+    "label_guess": "Sí funcional? limitación de tipo algún"
+  },
+  {
+    "field": "Check Box343.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      491.597,
+      536.134,
+      508.115
+    ],
+    "label_guess": "Sí No miembro? algún o ojo(s)"
+  },
+  {
+    "field": "Check Box343.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      491.597,
+      572.529,
+      508.115
+    ],
+    "label_guess": "Sí Sí No miembro? algún o"
+  },
+  {
+    "field": "Check Box343.2.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      467.24,
+      536.134,
+      483.758
+    ],
+    "label_guess": "Sí No miembro? algún o ojo(s)"
+  },
+  {
+    "field": "Check Box343.2.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      467.24,
+      572.529,
+      483.758
+    ],
+    "label_guess": "Sí Sí No miembro? algún qué?"
+  },
+  {
+    "field": "Check Box344.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      520.176,
+      421.046,
+      536.694,
+      437.564
+    ],
+    "label_guess": "alcohólica? dependencia vez alguna tenido ha"
+  },
+  {
+    "field": "Check Box344.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.571,
+      421.046,
+      573.089,
+      437.564
+    ],
+    "label_guess": "Sí alcohólica? dependencia vez alguna tenido"
+  },
+  {
+    "field": "Check Box344.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      520.176,
+      397.249,
+      536.694,
+      413.767
+    ],
+    "label_guess": "Sí No alcohólica? forma? dependencia cualquier"
+  },
+  {
+    "field": "Check Box344.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.571,
+      397.249,
+      573.089,
+      413.767
+    ],
+    "label_guess": "Sí Sí No alcohólica? forma? cualquier"
+  },
+  {
+    "field": "Check Box345.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      340.416,
+      536.134,
+      356.934
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Check Box345.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      340.416,
+      572.529,
+      356.934
+    ],
+    "label_guess": "Sí"
+  },
+  {
+    "field": "Check Box345.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      309.06,
+      536.134,
+      325.577
+    ],
+    "label_guess": "Sí No"
+  },
+  {
+    "field": "Check Box345.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      309.06,
+      572.529,
+      325.577
+    ],
+    "label_guess": "Sí Sí No"
+  },
+  {
+    "field": "Check Box345.2.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      279.383,
+      536.134,
+      295.901
+    ],
+    "label_guess": "Sí No Describa. riesgo? o impacto"
+  },
+  {
+    "field": "Check Box345.2.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      279.383,
+      572.529,
+      295.901
+    ],
+    "label_guess": "Sí Sí No Describa. riesgo? o"
+  },
+  {
+    "field": "Check Box345.3.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      244.108,
+      536.134,
+      260.625
+    ],
+    "label_guess": "embarazo de semanas indicar Favor embarazada?"
+  },
+  {
+    "field": "Check Box345.3.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      244.108,
+      572.529,
+      260.625
+    ],
+    "label_guess": "Sí embarazo de semanas indicar Favor"
+  },
+  {
+    "field": "Check Box345.4.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      519.616,
+      218.351,
+      536.134,
+      234.869
+    ],
+    "label_guess": "Sí No los de enfermedades cervicitis,"
+  },
+  {
+    "field": "Check Box345.4.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.011,
+      218.351,
+      572.529,
+      234.869
+    ],
+    "label_guess": "Sí Sí No los de enfermedades"
+  },
+  {
+    "field": "Text346",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 5,
+    "rect": [
+      23.7971,
+      262.865,
+      431.147,
+      278.543
+    ],
+    "label_guess": "20. Practica en la actualidad alguna"
+  },
+  {
+    "field": "Text347",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 5,
+    "rect": [
+      292.004,
+      243.548,
+      328.12,
+      260.066
+    ],
+    "label_guess": "embarazo de semanas indicar Favor embarazada?"
+  },
+  {
+    "field": "Check Box348.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      520.176,
+      119.803,
+      536.694,
+      136.321
+    ],
+    "label_guess": "hay alguna conocimiento, o y enfermedad"
+  },
+  {
+    "field": "Check Box348.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.571,
+      119.803,
+      573.089,
+      136.321
+    ],
+    "label_guess": "Sí alguna hay conocimiento, y entendimiento"
+  },
+  {
+    "field": "Check Box348.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      520.176,
+      87.8868,
+      536.694,
+      104.405
+    ],
+    "label_guess": "Sí o No primera enfermedad otra"
+  },
+  {
+    "field": "Check Box348.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.571,
+      87.8868,
+      573.089,
+      104.405
+    ],
+    "label_guess": "Sí Sí No o enfermedad otra"
+  },
+  {
+    "field": "Check Box348.2.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      520.176,
+      55.9707,
+      536.694,
+      72.4887
+    ],
+    "label_guess": "Sí No primera la en o"
+  },
+  {
+    "field": "Check Box348.2.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 5,
+    "rect": [
+      556.571,
+      55.9707,
+      573.089,
+      72.4887
+    ],
+    "label_guess": "Sí Sí No primera la en"
+  },
+  {
+    "field": "Text349",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 5,
+    "rect": [
+      23.7971,
+      32.1737,
+      588.488,
+      48.1317
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "y duración",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      25.44,
+      456.36,
+      586.56,
+      614.52
+    ],
+    "label_guess": "Nombre del Paciente"
+  },
+  {
+    "field": "Text350.0",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      131.864,
+      262.865,
+      587.928,
+      279.103
+    ],
+    "label_guess": "Asegurado Póliza de Número del Nombre"
+  },
+  {
+    "field": "Text350.1",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      131.864,
+      239.628,
+      587.928,
+      255.866
+    ],
+    "label_guess": "Aseguradora Asegurado del Nombre Compañía"
+  },
+  {
+    "field": "Text350.2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      131.864,
+      216.391,
+      587.928,
+      232.629
+    ],
+    "label_guess": "Aseguradora Compañía Póliza de Tipo"
+  },
+  {
+    "field": "Text351",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      23.2371,
+      359.453,
+      587.928,
+      376.531
+    ],
+    "label_guess": "¿Alguna compañía de seguros le ha"
+  },
+  {
+    "field": "Check Box352.0.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      520.176,
+      420.486,
+      536.694,
+      437.004
+    ],
+    "label_guess": "alta, arterial presión cáncer, diabetes, tuberculosis,"
+  },
+  {
+    "field": "Check Box352.0.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      556.571,
+      420.486,
+      573.089,
+      437.004
+    ],
+    "label_guess": "Sí alta, arterial presión cáncer, diabetes,"
+  },
+  {
+    "field": "Check Box352.1.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      520.176,
+      391.649,
+      536.694,
+      408.167
+    ],
+    "label_guess": "salud Sí No de alta, arterial"
+  },
+  {
+    "field": "Check Box352.1.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      556.571,
+      391.649,
+      573.089,
+      408.167
+    ],
+    "label_guess": "Sí Sí No alta, salud de"
+  },
+  {
+    "field": "Check Box353.0",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      520.176,
+      336.216,
+      536.694,
+      352.734
+    ],
+    "label_guess": "? Médicos/Salud Gastos de Seguros tiene"
+  },
+  {
+    "field": "Check Box353.1",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      556.571,
+      336.216,
+      573.089,
+      352.734
+    ],
+    "label_guess": "Sí ? Médicos/Salud Gastos de Seguros"
+  },
+  {
+    "field": "Text354",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      132.424,
+      311.579,
+      587.928,
+      328.097
+    ],
+    "label_guess": "de Gastos Seguros compañía Médicos/Salud tiene"
+  },
+  {
+    "field": "Text355",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      132.144,
+      287.502,
+      240.21,
+      303.74
+    ],
+    "label_guess": "compañía de Póliza Nombre de Número"
+  },
+  {
+    "field": "Check Box356",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      423.588,
+      191.118,
+      440.182,
+      207.712
+    ],
+    "label_guess": "actualidad la en vigente encuentra Se"
+  },
+  {
+    "field": "Check Box357",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      460.263,
+      191.118,
+      476.857,
+      207.712
+    ],
+    "label_guess": "Sí actualidad la en vigente encuentra"
+  },
+  {
+    "field": "Check Box358",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      159.86,
+      167.881,
+      176.454,
+      184.475
+    ],
+    "label_guess": "d d m póliza la m"
+  },
+  {
+    "field": "Check Box359",
+    "type": "/Btn",
+    "on_state": "/Yes",
+    "page": 6,
+    "rect": [
+      195.976,
+      167.601,
+      212.57,
+      184.195
+    ],
+    "label_guess": "Sí m m a d a"
+  },
+  {
+    "field": "Text360",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      371.514,
+      167.117,
+      588.487,
+      183.635
+    ],
+    "label_guess": "actualidad la en vigente Sí encuentra"
+  },
+  {
+    "field": "Date361_af_date",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 6,
+    "rect": [
+      160.42,
+      191.474,
+      257.008,
+      207.152
+    ],
+    "label_guess": "póliza la Póliza emitió de Tipo"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      25.2,
+      569.76,
+      185.04,
+      599.16
+    ],
+    "label_guess": "Nombres y Apellidos"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      187.2,
+      569.76,
+      257.4,
+      599.16
+    ],
+    "label_guess": "Nacimiento Fecha de de Identidad Apellidos"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      25.2,
+      537.96,
+      185.04,
+      567.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      187.2,
+      537.96,
+      257.4,
+      567.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      25.2,
+      505.92,
+      185.04,
+      535.32
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      187.2,
+      505.92,
+      257.4,
+      535.32
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_4",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      316.92,
+      569.76,
+      382.92,
+      599.16
+    ],
+    "label_guess": "Nacionalidad Identidad de Documento Ocupación Nacimiento"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_5",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      385.08,
+      569.76,
+      468.96,
+      599.16
+    ],
+    "label_guess": "Ocupación Nacionalidad Identidad Parentesco de Documento"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_6",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      471.12,
+      569.76,
+      543.96,
+      599.16
+    ],
+    "label_guess": "Parentesco Ocupación % Nacionalidad"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_3",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      316.92,
+      537.96,
+      382.92,
+      567.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_4",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      385.08,
+      537.96,
+      468.96,
+      567.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow2_5",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      471.12,
+      537.96,
+      543.96,
+      567.36
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_3",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      316.92,
+      505.92,
+      382.92,
+      535.32
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_4",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      385.08,
+      505.92,
+      468.96,
+      535.32
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow3_5",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      471.12,
+      505.92,
+      543.96,
+      535.32
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_7",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      25.44,
+      350.52,
+      184.8,
+      396.72
+    ],
+    "label_guess": "Nombres y Apellidos"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_8",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      187.44,
+      350.76,
+      250.32,
+      396.72
+    ],
+    "label_guess": "Nacimiento Fecha de de Identidad Apellidos"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_9",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      252.96,
+      350.52,
+      314.52,
+      396.72
+    ],
+    "label_guess": "de Identidad Documento Nacimiento de Fecha"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_10",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      317.16,
+      350.76,
+      382.68,
+      396.72
+    ],
+    "label_guess": "Nacionalidad Identidad de Documento Ocupación Nacimiento"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_11",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      385.32,
+      350.52,
+      468.72,
+      396.72
+    ],
+    "label_guess": "Ocupación Nacionalidad Identidad Parentesco de Documento"
+  },
+  {
+    "field": "Nombres y Apellidos Documento de Identidad Fecha de Nacimiento Nacionalidad Parentesco OcupaciónRow1_12",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      471.36,
+      350.76,
+      543.72,
+      396.72
+    ],
+    "label_guess": "Parentesco Ocupación % Nacionalidad"
+  },
+  {
+    "field": "Text362.0",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      545.653,
+      569.987,
+      587.368,
+      598.824
+    ],
+    "label_guess": "% Parentesco Ocupación"
+  },
+  {
+    "field": "Text362.1",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      545.653,
+      537.511,
+      587.368,
+      566.348
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text362.2",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      545.653,
+      505.035,
+      587.368,
+      533.872
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text363",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      259.528,
+      569.427,
+      315.521,
+      598.544
+    ],
+    "label_guess": "de Identidad Documento Nacimiento de Nacionalidad"
+  },
+  {
+    "field": "Text364",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      259.528,
+      537.791,
+      315.521,
+      566.908
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text365",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      259.248,
+      506.155,
+      315.241,
+      535.272
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text366",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      455.224,
+      468.08,
+      587.928,
+      482.918
+    ],
+    "label_guess": "Cédula/Pasaporte Parentesco"
+  },
+  {
+    "field": "Text367",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      286.685,
+      467.24,
+      370.394,
+      483.198
+    ],
+    "label_guess": "Parentesco"
+  },
+  {
+    "field": "Text368",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      24.357,
+      467.24,
+      227.892,
+      484.038
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text369",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      546.213,
+      351.054,
+      586.808,
+      396.409
+    ],
+    "label_guess": "% Parentesco Ocupación"
+  },
+  {
+    "field": "Text370",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      23.7971,
+      264.265,
+      587.928,
+      280.223
+    ],
+    "label_guess": "Comentarios adicionales"
+  },
+  {
+    "field": "Text371",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      24.077,
+      240.468,
+      588.208,
+      256.426
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text372",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      24.357,
+      215.831,
+      588.487,
+      231.789
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text373",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      24.077,
+      192.314,
+      588.208,
+      208.272
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text374",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      24.357,
+      315.499,
+      228.172,
+      332.297
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text375",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      286.965,
+      316.059,
+      370.954,
+      332.017
+    ],
+    "label_guess": "Parentesco"
+  },
+  {
+    "field": "Text376",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 7,
+    "rect": [
+      456.064,
+      315.499,
+      587.648,
+      332.297
+    ],
+    "label_guess": "Cédula/Pasaporte Parentesco"
+  },
+  {
+    "field": "Text377",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 8,
+    "rect": [
+      75.5907,
+      336.776,
+      274.646,
+      377.371
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Text378",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 8,
+    "rect": [
+      75.5907,
+      264.545,
+      274.646,
+      305.14
+    ],
+    "label_guess": "Firma del Contratante"
+  },
+  {
+    "field": "Text379",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 8,
+    "rect": [
+      76.1506,
+      181.115,
+      275.206,
+      221.71
+    ],
+    "label_guess": "(si no fuera el contratante)"
+  },
+  {
+    "field": "Date381_af_date",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 8,
+    "rect": [
+      364.235,
+      265.105,
+      525.215,
+      288.622
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Date382_af_date",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 8,
+    "rect": [
+      363.955,
+      335.656,
+      524.935,
+      359.173
+    ],
+    "label_guess": ""
+  },
+  {
+    "field": "Date383_af_date",
+    "type": "/Tx",
+    "on_state": "/BBox",
+    "page": 8,
+    "rect": [
+      364.795,
+      180.835,
+      525.775,
+      204.352
+    ],
+    "label_guess": ""
+  }
+]

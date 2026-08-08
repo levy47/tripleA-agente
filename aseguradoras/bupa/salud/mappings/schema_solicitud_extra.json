@@ -1,0 +1,1562 @@
+{
+ "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud de Seguro Individual para Gastos Medicos Mayores' de Bupa Panama, S.A. / Global Health Plans, formulario PAN-SSEG-BP-V24.01) que no forman parte del intake estandar de WhatsApp en schema_cliente.json (mappings/schema_cliente.json).\n\nESTRUCTURA DEL PDF: 11 paginas, la ultima (11) es una contraportada azul sin campos y se ignora. Las paginas 1-10 tienen 316 campos AcroForm reales.\n\nSOBRE LOS RADIO BUTTONS 'GroupN' (~63 grupos,~140 pares/conjuntos Si/No o multi-opcion): al igual que en el formulario de Blue Cross Blue Shield Panama (ver aseguradoras/blue_cross_internacional_seguros/salud/mappings/schema_solicitud_extra.json), Bupa implementa CASI TODAS las preguntas de opcion unica (estado civil, sexo, unidad de peso, PEP, Si/No de todo el Cuestionario Medico, modalidad de pago, parentesco, etc.) como UN SOLO campo AcroForm de tipo boton de radio con 2 o mas 'kids'/estados de exportacion, en vez de casillas independientes por opcion (como si hace, por ejemplo, Pan-American Life en su mapping de salud). El helper de llenado src/fill_pdf.py (que NO se modifico) solo soporta, para type=checkbox_group, UN par (value, on_state) por entrada de mapping.json, y como los nombres de campo PDF son unicos (json no permite claves duplicadas), es IMPOSIBLE representar cada opcion como una entrada separada para el mismo campo compartido. Por eso, siguiendo el mismo patron ya usado en este repositorio (ver Blue Cross e Internacional de Seguros Vida), estos campos se mapearon con type='text' en mapping.json (tipo semantico 'enum_radio_pdf' documentado abajo), y el VALOR que datos.json debe proveer es el ESTADO DE EXPORTACION LITERAL del PDF tal como lo reporta pypdf (ej. '/Choice4', '/0', copiado EXACTAMENTE, incluyendo la barra inicial '/'). Cada data_key de este tipo documenta su 'valores_pdf_literales' (diccionario semantico -> string literal exacto a usar en datos.json).\n\nLas ~20 casillas independientes reales (un solo campo, un solo estado 'on', ej. 'favor marque el recuadro', 'Marque aquí si necesita más espacio...', 'undefined_17', 'Check Box2'..'Check Box12', 'TARJETA DE CRÉDITO'..'TRANSFERENCIA BANCARIA') SI se mapearon con el checkbox_group nativo de fill_pdf.py (patron Pan-American Life), incluyendo los 5 checkboxes de metodo de pago (Seccion 13) y los 11 checkboxes de 'Relacion de documentos' (Seccion 12), que al ser 5/11 campos AcroForm independientes (no un radio compartido) SI permiten multiples entradas de mapping.json con el mismo data_key y distinto 'value', tal como en el mapping de Pan-American Life.\n\nBUG DEL PDF - CAMPO 'Group161' (Historial Medico, pagina 6): las preguntas visualmente independientes '¿Ha tenido alguno de los solicitantes un examen pediatrico, ginecologico o de rutina en los ultimos 5 años? Si/No' y 'Habitos: ¿...fuma cigarrillos o consume productos con nicotina, alcohol o drogas ilegales? Si/No' comparten UN SOLO campo AcroForm de radio de 4 estados (objeto PDF id 1488) en vez de dos campos de 2 estados cada uno, por lo que solo se puede reflejar UNA de las dos respuestas a la vez en el PDF final. Se documenta en detalle junto al data_key 'cuest_examen_o_habito_estado' en la seccion de campos abajo. El PDF ademas trae este campo con el valor '/3' (Habitos: No) PRE-MARCADO DE FABRICA en la plantilla original (verificado con reader.get_fields()['Group161']['/V'] == '/3'); tambien 'Group162' (Resultado de examen) trae '/Choice3' (Normal) pre-marcado. En ambos casos el mapping sobreescribe explicitamente el estado segun el dato real (o lo deja en el estado por defecto si datos.json no provee el dato, para Group162 por ser checkbox_group... en realidad Group162 tambien usa el patron enum_radio_pdf/text por ser parte del mismo bloque, asi que si datos.json OMITE 'historial_examen_resultado', el valor de fabrica '/Choice3' (Normal) PERSISTIRA en el PDF de salida; se recomienda que el intake siempre provea este dato quirurgicamente cuando se responde 'Si' a la pregunta de examenes).\n\nCAMPOS SIN CHECKBOX AcroForm (texto impreso sugiere una casilla pero no existe campo real, posibles omisiones de Bupa al diseñar el formulario): Seccion 10 'por favor marque aqui' (mantener cobertura con otra compañia, pagina 7) y Seccion 12 'Las copias simples de los documentos fueron cotejadas contra sus originales' (pagina 9). Ambos data_keys se documentan en el schema por completitud del intake pero no tienen entrada en mapping.json (no hay campo PDF al cual enlazarlos).\n\nCAMPOS CON NOMBRE INTERNO DESALINEADO DE SU ETIQUETA VISIBLE (Seccion 13, pagina 10): el campo 'DEPÓSITO EN CUENTA' es visualmente la casilla 'TRANSFERENCIA BANCARIA' de la columna izquierda (Metodo de Pago), y el campo 'TRANSFERENCIA BANCARIA' es visualmente la casilla superior de la columna derecha junto a 'TRANSFERENCIA BANCARIA LOCAL'; no existe campo AcroForm para 'TRANSFERENCIA BANCARIA INTERNACIONAL'. Ver detalle junto a cada campo abajo.\n\nCAMPO 'Indique en Profesión u ocupación si el dependiente es estudiante' (Seccion 5, 3 de los 4 dependientes): es un campo AcroForm de texto real pero SUPERPUESTO sobre una linea puramente instructiva/impresa; no representa un dato nuevo (la instruccion es escribir 'estudiante' dentro del campo de Profesion u ocupacion, ya mapeado). Se dejo como type=manual para no imprimir texto encima de esa instruccion.\n\nBOTON 'BORRAR' (pagina 1, campo 'Button14'): pushbutton de reseteo de formulario (JavaScript), no es un campo de datos; se dejo type=manual.\n\nFIRMAS: todos los campos de firma (Firma del Asegurado Titular y/o Contratante x2, Firma del agente, Firma del entrevistador) son campos AcroForm de tipo TEXTO (no /Sig) pero se dejaron type=manual por decision de diseño explicita de la tarea: deben firmarse fisicamente, no se autocompletan desde datos.json.\n\nFILAS DUPLICADAS EN SECCION 11 Y 12: tanto 'Nombre del Asegurado Titular y/o contratante' (Seccion 11, consentimiento) como 'Nombre del AT y/o contratante' (Seccion 12, entrevista) tienen 2 campos de texto apilados en el PDF (linea1/linea2) en vez de 1 solo; se modelaron como 2 data_keys (*_linea1/*_linea2) ya que probablemente sirven para el caso en que el Asegurado Titular y el Contratante son personas distintas y ambas deben figurar/firmar.",
+ "campos": {
+  "tipo_solicitud": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Tipo de solicitud (encabezado, pagina 2): Poliza Nueva / Dependiente Adicional / Cambio de Plan. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "nueva": "/Choice1",
+    "dependiente_adicional": "/Choice2",
+    "cambio_plan": "/Choice3"
+   }
+  },
+  "fecha_solicitud_cobertura": {
+   "tipo": "string",
+   "descripcion": "Fecha solicitada de cobertura (encabezado, formato DD/MM/AAAA)."
+  },
+  "numero_poliza_existente": {
+   "tipo": "string",
+   "descripcion": "Seccion 1: Numero de poliza existente (solo aplica si Dependiente Adicional / Cambio de Plan)."
+  },
+  "contratante_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante, Persona Natural): Estado civil. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "soltero": "/Choice4",
+    "casado": "/Choice5",
+    "viudo": "/Choice6",
+    "divorciado": "/Choice7"
+   }
+  },
+  "contratante_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante): Sexo. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "M": "/Choice8",
+    "F": "/Choice9"
+   }
+  },
+  "contratante_peso_unidad": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante): Unidad del peso (checkbox junto al campo de valor numerico). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "lbs": "/Choice10",
+    "kg": "/Choice11"
+   }
+  },
+  "contratante_peso": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Peso (valor numerico; unidad en contratante_peso_unidad)."
+  },
+  "contratante_estatura": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Estatura en metros."
+  },
+  "contratante_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Natural): Nombres."
+  },
+  "contratante_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Natural): Apellidos."
+  },
+  "contratante_cedula": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Cedula."
+  },
+  "contratante_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Fecha de nacimiento."
+  },
+  "contratante_pais_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Pais de nacimiento."
+  },
+  "contratante_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Pais de residencia."
+  },
+  "contratante_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Ocupacion o profesion."
+  },
+  "contratante_ingresos_anuales": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Natural): Ingresos anuales promedio."
+  },
+  "contratante_lugar_tributa": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Natural): Lugar(es) donde tributa."
+  },
+  "contratante_pep": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante): ¿El solicitante es una Persona Expuesta Politicamente (PEP)? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice16",
+    "no": "/Choice17"
+   }
+  },
+  "contratante_parentesco_pep": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante): ¿Tiene parentesco con una PEP? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice12",
+    "no": "/Choice13"
+   }
+  },
+  "contratante_asociado_pep": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante): ¿Es asociado cercano de una PEP? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice18",
+    "no": "/Choice19"
+   }
+  },
+  "contratante_contribuyente_fiscal": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Contratante): Indique si es contribuyente fiscal. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice14",
+    "no": "/Choice15"
+   }
+  },
+  "contratante_ruc_dv": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante): Numero de RUC y DV (aplica si es contribuyente fiscal)."
+  },
+  "contratante_juridica_nombre": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): Nombre / razon social."
+  },
+  "contratante_juridica_fecha_constitucion": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): Fecha de constitucion."
+  },
+  "contratante_juridica_ruc": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): R.U.C."
+  },
+  "contratante_juridica_dv": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): DV."
+  },
+  "contratante_juridica_actividad": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): Actividad comercial o giro del negocio."
+  },
+  "contratante_juridica_ingresos_anuales": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): Ingresos anuales promedio."
+  },
+  "contratante_juridica_lugar_tributa": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Contratante, Persona Juridica): Lugar(es) donde tributa."
+  },
+  "contratante_dir_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Direccion de residencia."
+  },
+  "contratante_dir_provincia": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Provincia (residencia)."
+  },
+  "contratante_dir_distrito": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Distrito (residencia)."
+  },
+  "contratante_dir_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Corregimiento (residencia)."
+  },
+  "contratante_dir_calle_avenida": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Calle / Avenida (residencia)."
+  },
+  "contratante_dir_sector_edificio": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Sector / Edificio (residencia)."
+  },
+  "contratante_dir_casa_apartamento": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Casa / Apartamento (residencia)."
+  },
+  "contratante_telefono": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Telefono residencial o celular."
+  },
+  "contratante_residente_eeuu": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): ¿Es usted residente de los EE.UU.? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice20",
+    "no": "/Choice21"
+   }
+  },
+  "contratante_lugar_trabajo": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Lugar de trabajo."
+  },
+  "contratante_cargo": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Cargo que desempeña."
+  },
+  "contratante_dir_laboral": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Direccion laboral (linea)."
+  },
+  "contratante_dir_laboral_provincia": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Provincia (laboral)."
+  },
+  "contratante_dir_laboral_distrito": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Distrito (laboral)."
+  },
+  "contratante_dir_laboral_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Corregimiento (laboral)."
+  },
+  "contratante_dir_laboral_calle_avenida": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Calle / Avenida (laboral)."
+  },
+  "contratante_dir_laboral_sector_edificio": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Sector / Edificio (laboral)."
+  },
+  "contratante_dir_laboral_casa_apartamento": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Casa / Apartamento (laboral)."
+  },
+  "contratante_telefono_laboral": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Telefono laboral."
+  },
+  "contratante_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 2 (Datos de Contacto Contratante): Correo electronico."
+  },
+  "titular_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Asegurado Principal Titular): Estado civil. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "soltero": "/Choice22",
+    "casado": "/Choice23",
+    "viudo": "/Choice24",
+    "divorciado": "/Choice25"
+   }
+  },
+  "titular_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Titular): Sexo. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "M": "/Choice26",
+    "F": "/Choice27"
+   }
+  },
+  "titular_peso_unidad": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Titular): Unidad del peso. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "lbs": "/Choice28",
+    "kg": "/Choice29"
+   }
+  },
+  "titular_peso": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Peso (valor numerico)."
+  },
+  "titular_estatura": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Estatura en metros."
+  },
+  "titular_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Nombres."
+  },
+  "titular_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Apellidos."
+  },
+  "titular_cedula": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Cedula."
+  },
+  "titular_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Fecha de nacimiento."
+  },
+  "titular_pais_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Pais de nacimiento."
+  },
+  "titular_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Pais de residencia."
+  },
+  "titular_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Ocupacion o profesion."
+  },
+  "titular_ingresos_anuales": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Ingresos anuales promedio."
+  },
+  "titular_pep": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Titular): ¿Es una Persona Expuesta Politicamente (PEP)? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice30",
+    "no": "/Choice31"
+   }
+  },
+  "titular_parentesco_pep": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Titular): ¿Tiene parentesco con una PEP? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice32",
+    "no": "/Choice33"
+   }
+  },
+  "titular_asociado_pep": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Titular): ¿Es asociado cercano de una PEP? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice36",
+    "no": "/Choice37"
+   }
+  },
+  "titular_contribuyente_fiscal": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Titular): Indique si es contribuyente fiscal. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice34",
+    "no": "/Choice35"
+   }
+  },
+  "titular_ruc_dv": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Titular): Numero de RUC y DV."
+  },
+  "titular_dir_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Direccion de residencia."
+  },
+  "titular_dir_provincia": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Provincia (residencia)."
+  },
+  "titular_dir_distrito": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Distrito (residencia)."
+  },
+  "titular_dir_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Corregimiento (residencia)."
+  },
+  "titular_dir_calle_avenida": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Calle / Avenida (residencia)."
+  },
+  "titular_dir_sector_edificio": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Sector / Edificio (residencia)."
+  },
+  "titular_dir_casa_apartamento": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Casa / Apartamento (residencia)."
+  },
+  "titular_telefono": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Telefono residencial o celular."
+  },
+  "titular_residente_eeuu": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): ¿Es usted residente de los EE.UU.? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice1",
+    "no": "/Choice2"
+   }
+  },
+  "titular_lugar_trabajo": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Lugar de trabajo."
+  },
+  "titular_cargo": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Cargo que desempeña."
+  },
+  "titular_dir_laboral": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Direccion laboral (linea)."
+  },
+  "titular_dir_laboral_provincia": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Provincia (laboral)."
+  },
+  "titular_dir_laboral_distrito": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Distrito (laboral)."
+  },
+  "titular_dir_laboral_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Corregimiento (laboral)."
+  },
+  "titular_dir_laboral_calle_avenida": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Calle / Avenida (laboral)."
+  },
+  "titular_dir_laboral_sector_edificio": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Sector / Edificio (laboral)."
+  },
+  "titular_dir_laboral_casa_apartamento": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Casa / Apartamento (laboral)."
+  },
+  "titular_telefono_laboral": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Telefono laboral."
+  },
+  "titular_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 3 (Datos de Contacto Titular): Correo electronico."
+  },
+  "necesita_documentos_impresos": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 4: marcar si el cliente necesita recibir documentos impresos (opuesto a digital/paperless).",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "dependiente1_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 1): Estado civil. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "soltero": "/Choice38",
+    "casado": "/Choice39",
+    "viudo": "/Choice40",
+    "divorciado": "/Choice41"
+   }
+  },
+  "dependiente1_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 1): Sexo. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "M": "/Choice42",
+    "F": "/Choice43"
+   }
+  },
+  "dependiente1_peso_unidad": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 1): Unidad del peso. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "lbs": "/Choice44",
+    "kg": "/Choice45"
+   }
+  },
+  "dependiente1_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Nombres."
+  },
+  "dependiente1_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Apellidos."
+  },
+  "dependiente1_peso": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Peso (valor numerico)."
+  },
+  "dependiente1_estatura": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Estatura en metros."
+  },
+  "dependiente1_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Nacionalidad."
+  },
+  "dependiente1_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Pais de residencia."
+  },
+  "dependiente1_tipo_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Tipo de Identificacion (Cedula/Pasaporte/etc)."
+  },
+  "dependiente1_numero_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Numero y extension del documento de identificacion."
+  },
+  "dependiente1_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Fecha de nacimiento."
+  },
+  "dependiente1_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Profesion u ocupacion (indicar si es estudiante)."
+  },
+  "dependiente1_relacion_at": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Relacion con el Asegurado Titular."
+  },
+  "dependiente1_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 1): Correo electronico."
+  },
+  "dependiente1_recien_nacido": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 1): Si esta adicion es de un recien nacido, ¿nacio como resultado de algun tratamiento de infertilidad, es adoptado o de maternidad subrogada? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice46",
+    "no": "/Choice47"
+   }
+  },
+  "dependiente2_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 2): Estado civil. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "soltero": "/Choice48",
+    "casado": "/Choice49",
+    "viudo": "/Choice50",
+    "divorciado": "/Choice51"
+   }
+  },
+  "dependiente2_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 2): Sexo. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "M": "/Choice52",
+    "F": "/Choice53"
+   }
+  },
+  "dependiente2_peso_unidad": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 2): Unidad del peso. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "lbs": "/Choice54",
+    "kg": "/Choice55"
+   }
+  },
+  "dependiente2_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Nombres."
+  },
+  "dependiente2_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Apellidos."
+  },
+  "dependiente2_peso": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Peso (valor numerico)."
+  },
+  "dependiente2_estatura": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Estatura en metros."
+  },
+  "dependiente2_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Nacionalidad."
+  },
+  "dependiente2_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Pais de residencia."
+  },
+  "dependiente2_tipo_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Tipo de Identificacion (Cedula/Pasaporte/etc)."
+  },
+  "dependiente2_numero_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Numero y extension del documento de identificacion."
+  },
+  "dependiente2_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Fecha de nacimiento."
+  },
+  "dependiente2_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Profesion u ocupacion (indicar si es estudiante)."
+  },
+  "dependiente2_relacion_at": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Relacion con el Asegurado Titular."
+  },
+  "dependiente2_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 2): Correo electronico."
+  },
+  "dependiente2_recien_nacido": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 2): Si esta adicion es de un recien nacido, ¿nacio como resultado de algun tratamiento de infertilidad, es adoptado o de maternidad subrogada? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice56",
+    "no": "/Choice57"
+   }
+  },
+  "dependiente3_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 3): Estado civil. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "soltero": "/Choice58",
+    "casado": "/Choice59",
+    "viudo": "/Choice60",
+    "divorciado": "/Choice61"
+   }
+  },
+  "dependiente3_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 3): Sexo. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "M": "/Choice62",
+    "F": "/Choice63"
+   }
+  },
+  "dependiente3_peso_unidad": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 3): Unidad del peso. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "lbs": "/Choice64",
+    "kg": "/Choice65"
+   }
+  },
+  "dependiente3_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Nombres."
+  },
+  "dependiente3_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Apellidos."
+  },
+  "dependiente3_peso": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Peso (valor numerico)."
+  },
+  "dependiente3_estatura": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Estatura en metros."
+  },
+  "dependiente3_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Nacionalidad."
+  },
+  "dependiente3_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Pais de residencia."
+  },
+  "dependiente3_tipo_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Tipo de Identificacion (Cedula/Pasaporte/etc)."
+  },
+  "dependiente3_numero_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Numero y extension del documento de identificacion."
+  },
+  "dependiente3_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Fecha de nacimiento."
+  },
+  "dependiente3_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Profesion u ocupacion (indicar si es estudiante)."
+  },
+  "dependiente3_relacion_at": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Relacion con el Asegurado Titular."
+  },
+  "dependiente3_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 3): Correo electronico."
+  },
+  "dependiente3_recien_nacido": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 3): Si esta adicion es de un recien nacido, ¿nacio como resultado de algun tratamiento de infertilidad, es adoptado o de maternidad subrogada? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice66",
+    "no": "/Choice67"
+   }
+  },
+  "dependiente4_estado_civil": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 4): Estado civil. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "soltero": "/Choice68",
+    "casado": "/Choice69",
+    "viudo": "/Choice70",
+    "divorciado": "/Choice71"
+   }
+  },
+  "dependiente4_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 4): Sexo. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "M": "/Choice72",
+    "F": "/Choice73"
+   }
+  },
+  "dependiente4_peso_unidad": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 4): Unidad del peso. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "lbs": "/Choice74",
+    "kg": "/Choice75"
+   }
+  },
+  "dependiente4_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Nombres."
+  },
+  "dependiente4_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Apellidos."
+  },
+  "dependiente4_peso": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Peso (valor numerico)."
+  },
+  "dependiente4_estatura": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Estatura en metros."
+  },
+  "dependiente4_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Nacionalidad."
+  },
+  "dependiente4_pais_residencia": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Pais de residencia."
+  },
+  "dependiente4_tipo_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Tipo de Identificacion (Cedula/Pasaporte/etc)."
+  },
+  "dependiente4_numero_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Numero y extension del documento de identificacion."
+  },
+  "dependiente4_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Fecha de nacimiento."
+  },
+  "dependiente4_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Profesion u ocupacion (indicar si es estudiante)."
+  },
+  "dependiente4_relacion_at": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Relacion con el Asegurado Titular."
+  },
+  "dependiente4_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 5 (Dependiente 4): Correo electronico."
+  },
+  "dependiente4_recien_nacido": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 5 (Dependiente 4): Si esta adicion es de un recien nacido, ¿nacio como resultado de algun tratamiento de infertilidad, es adoptado o de maternidad subrogada? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice76",
+    "no": "/Choice77"
+   }
+  },
+  "cuest1_p1_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 1: ¿Padece o ha padecido enfermedad o accidente en los ultimos 5 años? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice78",
+    "no": "/Choice79"
+   }
+  },
+  "cuest1_p1_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 1: Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest1_p2_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 2: ¿Esta o ha estado ingresado, o intervenido en algun centro hospitalario? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice80",
+    "no": "/Choice81"
+   }
+  },
+  "cuest1_p2_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 2: Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest1_p3_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 3: ¿Se encuentra actualmente bajo algun tratamiento prescrito por un medico? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice82",
+    "no": "/Choice83"
+   }
+  },
+  "cuest1_p3_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 3: Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest1_p4_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 4: ¿Tiene algun sintoma o dolor persistente o reiterado, no diagnosticado? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice84",
+    "no": "/Choice85"
+   }
+  },
+  "cuest1_p4_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 4: Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest1_p5_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 5: ¿Esta embarazada o ha estado embarazada alguna vez? (si la respuesta es Si, ademas complete la Informacion Adicional sobre complicaciones del embarazo). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice86",
+    "no": "/Choice87"
+   }
+  },
+  "cuest1_p5_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 1, Pregunta 5 (embarazo): Nombre del(los) solicitante(s)."
+  },
+  "cuest2_p1_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 1: Enfermedades de Corazon o Sistema Circulatorio. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice88",
+    "no": "/Choice89"
+   }
+  },
+  "cuest2_p1_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 1 (Enfermedades de Corazon o Sistema Circulatorio): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p2_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 2: Trastornos en Sistema Endocrino. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice90",
+    "no": "/Choice91"
+   }
+  },
+  "cuest2_p2_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 2 (Trastornos en Sistema Endocrino): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p3_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 3: Trastornos en Sistema Respiratorio. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice92",
+    "no": "/Choice93"
+   }
+  },
+  "cuest2_p3_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 3 (Trastornos en Sistema Respiratorio): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p4_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 4: Trastornos Digestivos. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice94",
+    "no": "/Choice95"
+   }
+  },
+  "cuest2_p4_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 4 (Trastornos Digestivos): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p5_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 5: Dermatologia - piel y anejos. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice96",
+    "no": "/Choice97"
+   }
+  },
+  "cuest2_p5_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 5 (Dermatologia - piel y anejos): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p6_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 6: Sistema Neurologico. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice98",
+    "no": "/Choice99"
+   }
+  },
+  "cuest2_p6_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 6 (Sistema Neurologico): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p7_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 7: Sistema Musculo-esqueletico. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice100",
+    "no": "/Choice101"
+   }
+  },
+  "cuest2_p7_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 7 (Sistema Musculo-esqueletico): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p8_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 8: Urologia / Sistema Genitourinario masculino. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice102",
+    "no": "/Choice103"
+   }
+  },
+  "cuest2_p8_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 8 (Urologia / Sistema Genitourinario masculino): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p9_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 9: Urologia / Ginecologia. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice104",
+    "no": "/Choice105"
+   }
+  },
+  "cuest2_p9_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 9 (Urologia / Ginecologia): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p10_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 10: Hematologia e inmunologia. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice106",
+    "no": "/Choice107"
+   }
+  },
+  "cuest2_p10_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 10 (Hematologia e inmunologia): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p11_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 11: Enfermedades de ojos, nariz, oidos o garganta. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice108",
+    "no": "/Choice109"
+   }
+  },
+  "cuest2_p11_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 11 (Enfermedades de ojos, nariz, oidos o garganta): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p12_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 12: Psiquiatria y Psicologia. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice110",
+    "no": "/Choice111"
+   }
+  },
+  "cuest2_p12_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 12 (Psiquiatria y Psicologia): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p13_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 13: Cancer y enfermedades linfoproliferativas. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice112",
+    "no": "/Choice113"
+   }
+  },
+  "cuest2_p13_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 13 (Cancer y enfermedades linfoproliferativas): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p14_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 14: Enfermedades Congenitas. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice114",
+    "no": "/Choice115"
+   }
+  },
+  "cuest2_p14_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 14 (Enfermedades Congenitas): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p15_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 15: Enfermedades infecciosas relevantes y/o de transmision sexual. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice116",
+    "no": "/Choice117"
+   }
+  },
+  "cuest2_p15_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 15 (Enfermedades infecciosas relevantes y/o de transmision sexual): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest2_p16_respuesta": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 16: ¿Alguna otra enfermedad, desorden, lesion, accidente o cirugia/hospitalizacion pendiente no mencionada arriba?. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice118",
+    "no": "/Choice119"
+   }
+  },
+  "cuest2_p16_nombre_solicitantes": {
+   "tipo": "string",
+   "descripcion": "Cuestionario Medico Seccion 2, categoria 16 (¿Alguna otra enfermedad, desorden, lesion, accidente o cirugia/hospitalizacion pendiente no mencionada arriba?): Nombre del(los) solicitante(s) que respondieron Si."
+  },
+  "cuest_info_adicional_necesita_mas_espacio": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Cuestionario Medico, Informacion Adicional: marcar si necesito mas espacio y utilizo una hoja aparte.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "infoad1_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: Nombre del solicitante."
+  },
+  "infoad1_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: No. de la pregunta (1 al 19 aprox., segun cuestionario)."
+  },
+  "infoad1_enfermedad_problema": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: Enfermedad o problema medico, indicando la zona del cuerpo afectada."
+  },
+  "infoad1_fecha_primer_sintoma": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: Fecha del primer sintoma."
+  },
+  "infoad1_inicio_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: Inicio del tratamiento."
+  },
+  "infoad1_fin_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: Fin del tratamiento."
+  },
+  "infoad1_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 1: Descripcion del tratamiento (medico/quirurgico/rehabilitacion), resultado, medicamentos."
+  },
+  "infoad2_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: Nombre del solicitante."
+  },
+  "infoad2_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: No. de la pregunta (1 al 19 aprox., segun cuestionario)."
+  },
+  "infoad2_enfermedad_problema": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: Enfermedad o problema medico, indicando la zona del cuerpo afectada."
+  },
+  "infoad2_fecha_primer_sintoma": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: Fecha del primer sintoma."
+  },
+  "infoad2_inicio_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: Inicio del tratamiento."
+  },
+  "infoad2_fin_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: Fin del tratamiento."
+  },
+  "infoad2_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 2: Descripcion del tratamiento (medico/quirurgico/rehabilitacion), resultado, medicamentos."
+  },
+  "infoad3_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: Nombre del solicitante."
+  },
+  "infoad3_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: No. de la pregunta (1 al 19 aprox., segun cuestionario)."
+  },
+  "infoad3_enfermedad_problema": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: Enfermedad o problema medico, indicando la zona del cuerpo afectada."
+  },
+  "infoad3_fecha_primer_sintoma": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: Fecha del primer sintoma."
+  },
+  "infoad3_inicio_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: Inicio del tratamiento."
+  },
+  "infoad3_fin_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: Fin del tratamiento."
+  },
+  "infoad3_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 3: Descripcion del tratamiento (medico/quirurgico/rehabilitacion), resultado, medicamentos."
+  },
+  "infoad4_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: Nombre del solicitante."
+  },
+  "infoad4_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: No. de la pregunta (1 al 19 aprox., segun cuestionario)."
+  },
+  "infoad4_enfermedad_problema": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: Enfermedad o problema medico, indicando la zona del cuerpo afectada."
+  },
+  "infoad4_fecha_primer_sintoma": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: Fecha del primer sintoma."
+  },
+  "infoad4_inicio_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: Inicio del tratamiento."
+  },
+  "infoad4_fin_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: Fin del tratamiento."
+  },
+  "infoad4_tratamiento": {
+   "tipo": "string",
+   "descripcion": "Informacion Adicional bloque 4: Descripcion del tratamiento (medico/quirurgico/rehabilitacion), resultado, medicamentos."
+  },
+  "historial_examen_nombre": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Examenes: Nombre del solicitante que se realizo el examen."
+  },
+  "historial_examen_tipo": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Examenes: Tipo de examen (pediatrico/ginecologico/rutina)."
+  },
+  "historial_examen_fecha": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Examenes: Fecha del examen."
+  },
+  "historial_examen_resultado": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico - Examenes: Resultado del examen (Normal/Anormal). NOTA: el PDF trae este campo con el valor por defecto '/Choice3' (Normal) pre-marcado de fabrica; el mapping siempre sobreescribe ambos estados explicitamente asi que el dato real de datos.json prevalece. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "normal": "/Choice3",
+    "anormal": "/Choice4"
+   }
+  },
+  "historial_examen_resultado_explicacion": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Examenes: Explicacion si el resultado fue anormal."
+  },
+  "cuest_examen_o_habito_estado": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico: BUG DEL PDF - '¿Ha tenido alguno de los solicitantes un examen pediatrico, ginecologico o de rutina en los ultimos 5 años? Si/No' y 'Habitos: ¿El Solicitante y/o Dependiente(s) fuma cigarrillos o consume productos con nicotina, alcohol o drogas ilegales? Si/No' son DOS preguntas visualmente independientes, pero en el AcroForm ambas comparten UN UNICO campo de radio de 4 estados ('Group161', objeto PDF id 1488) en vez de dos campos separados de 2 estados cada uno. Esto significa que EN EL PDF FINAL solo se puede reflejar UNA de las dos respuestas a la vez (marcar 'Examen: Si' desmarca automaticamente cualquier respuesta de Habitos, y viceversa) porque las 4 casillas son 'kids' del mismo campo padre. Es un defecto de autoria del PDF original de Bupa, no un error de este mapping ni de fill_pdf.py (que no se modifico). El PDF ademas trae '/3' (Habitos: No) pre-marcado de fabrica como valor por defecto. RECOMENDACION OPERATIVA mientras Bupa no corrija el PDF: priorizar la respuesta que sea 'Si' (mas relevante para suscripcion); si ambas respuestas son 'No' o solo una de las dos preguntas fue respondida por el cliente, usar esa. Los detalles del examen (nombre, tipo, fecha, resultado) y de los habitos (nombre, tipo, tiempo, cantidad) SI tienen campos de texto propios e independientes (ver historial_examen_* y historial_habito_*), por lo que no se pierde informacion en el intake, solo la casilla Si/No visual queda limitada a mostrar una sola de las dos respuestas. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "examen_si": "/0",
+    "examen_no": "/1",
+    "habito_si": "/2",
+    "habito_no": "/3"
+   }
+  },
+  "historial_habito_nombre": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Habitos: Nombre del solicitante y/o dependiente."
+  },
+  "historial_habito_tipo": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Habitos: Tipo (cigarrillo/nicotina/alcohol/droga)."
+  },
+  "historial_habito_cuanto_tiempo": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Habitos: Cuanto tiempo lleva con el habito."
+  },
+  "historial_habito_cantidad_dia": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Habitos: Cantidad por dia."
+  },
+  "historial_familiar_tiene": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico: ¿Tiene el Solicitante y/o Dependiente(s) historial familiar de diabetes, hipertension, cancer o algun desorden cardiovascular congenito o hereditario? Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "si": "/Choice120",
+    "no": "/Choice121"
+   }
+  },
+  "historial_familiar_fila1_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 1: Nombre del solicitante."
+  },
+  "historial_familiar_fila1_parentesco": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico - Historial familiar, fila 1: Familiar con el desorden (Padre/Madre/Hermano/Hijo). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "padre": "/Choice122",
+    "madre": "/Choice123",
+    "hermano": "/Choice124",
+    "hijo": "/Choice125"
+   }
+  },
+  "historial_familiar_fila1_desorden": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 1: Desorden."
+  },
+  "historial_familiar_fila2_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 2: Nombre del solicitante."
+  },
+  "historial_familiar_fila2_parentesco": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico - Historial familiar, fila 2: Familiar con el desorden (Padre/Madre/Hermano/Hijo). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "padre": "/Choice126",
+    "madre": "/Choice127",
+    "hermano": "/Choice128",
+    "hijo": "/Choice129"
+   }
+  },
+  "historial_familiar_fila2_desorden": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 2: Desorden."
+  },
+  "historial_familiar_fila3_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 3: Nombre del solicitante."
+  },
+  "historial_familiar_fila3_parentesco": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico - Historial familiar, fila 3: Familiar con el desorden (Padre/Madre/Hermano/Hijo). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "padre": "/Choice130",
+    "madre": "/Choice131",
+    "hermano": "/Choice132",
+    "hijo": "/Choice133"
+   }
+  },
+  "historial_familiar_fila3_desorden": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 3: Desorden."
+  },
+  "historial_familiar_fila4_solicitante": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 4: Nombre del solicitante."
+  },
+  "historial_familiar_fila4_parentesco": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Historial Medico - Historial familiar, fila 4: Familiar con el desorden (Padre/Madre/Hermano/Hijo). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "padre": "/Choice134",
+    "madre": "/Choice135",
+    "hermano": "/Choice136",
+    "hijo": "/Choice137"
+   }
+  },
+  "historial_familiar_fila4_desorden": {
+   "tipo": "string",
+   "descripcion": "Historial Medico - Historial familiar, fila 4: Desorden."
+  },
+  "medico1_nombre": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 1: Nombre del medico."
+  },
+  "medico1_especialidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 1: Especialidad."
+  },
+  "medico1_telefono": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 1: Telefono."
+  },
+  "medico1_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 1: Nombre del solicitante paciente de este medico."
+  },
+  "medico2_nombre": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 2: Nombre del medico."
+  },
+  "medico2_especialidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 2: Especialidad."
+  },
+  "medico2_telefono": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 2: Telefono."
+  },
+  "medico2_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 2: Nombre del solicitante paciente de este medico."
+  },
+  "medico3_nombre": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 3: Nombre del medico."
+  },
+  "medico3_especialidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 3: Especialidad."
+  },
+  "medico3_telefono": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 3: Telefono."
+  },
+  "medico3_nombre_solicitante": {
+   "tipo": "string",
+   "descripcion": "Seccion 7 (Medico Tratante), bloque 3: Nombre del solicitante paciente de este medico."
+  },
+  "producto": {
+   "tipo": "string",
+   "descripcion": "Seccion 8: Producto (plan de Global Health Plans) a contratar."
+  },
+  "deducible": {
+   "tipo": "string",
+   "descripcion": "Seccion 8: Deducible elegido."
+  },
+  "opcion_coaseguro_20_fuera_panama": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 8: marcar si aplica la Opcion de 20% de coaseguro fuera de Panama.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "emergencia_nombres": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Nombres."
+  },
+  "emergencia_apellidos": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Apellidos."
+  },
+  "emergencia_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Nacionalidad."
+  },
+  "emergencia_tipo_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Tipo de Identificacion."
+  },
+  "emergencia_numero_identificacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Numero de identificacion."
+  },
+  "emergencia_telefono": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Telefono."
+  },
+  "emergencia_correo": {
+   "tipo": "string",
+   "descripcion": "Seccion 9 (Contacto de Emergencia): Correo electronico."
+  },
+  "otros_seguros_compania": {
+   "tipo": "string",
+   "descripcion": "Seccion 10 (Otros Seguros): Nombre de la compañia."
+  },
+  "otros_seguros_numero_poliza": {
+   "tipo": "string",
+   "descripcion": "Seccion 10 (Otros Seguros): Numero de poliza."
+  },
+  "otros_seguros_fecha_renovacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 10 (Otros Seguros): Fecha de renovacion."
+  },
+  "otros_seguros_valor_deducible": {
+   "tipo": "string",
+   "descripcion": "Seccion 10 (Otros Seguros): Valor del deducible."
+  },
+  "otros_seguros_mantener_cobertura": {
+   "tipo": "string",
+   "descripcion": "Seccion 10 (Otros Seguros): 'Si el Solicitante y/o Dependiente(s) cuentan actualmente con cobertura de gastos medicos mayores con otra compañia y mantendran dicha cobertura, por favor marque aqui...'. ADVERTENCIA: el PDF describe un checkbox junto a esa frase pero NO existe ningun campo AcroForm rellenable en esa posicion (pagina 7) -- es una omision del formulario original de Bupa. No hay forma de marcar esta casilla programaticamente; se documenta el data_key por completitud de intake pero no esta enlazado a mapping.json."
+  },
+  "consentimiento_nombre_linea1": {
+   "tipo": "string",
+   "descripcion": "Seccion 11 (Consentimiento): Nombre del Asegurado Titular y/o Contratante (linea 1 de 2 disponibles en el PDF; usar la linea 2 solo si Titular y Contratante son personas distintas y ambas deben constar)."
+  },
+  "consentimiento_nombre_linea2": {
+   "tipo": "string",
+   "descripcion": "Seccion 11 (Consentimiento): Nombre del Asegurado Titular y/o Contratante (linea 2, opcional; ver nota de linea 1)."
+  },
+  "consentimiento_fecha_linea1": {
+   "tipo": "string",
+   "descripcion": "Seccion 11 (Consentimiento): Fecha correspondiente a la firma de la linea 1."
+  },
+  "consentimiento_fecha_linea2": {
+   "tipo": "string",
+   "descripcion": "Seccion 11 (Consentimiento): Fecha correspondiente a la firma de la linea 2."
+  },
+  "agente_clave": {
+   "tipo": "string",
+   "descripcion": "Seccion 11: Clave del agente."
+  },
+  "promotor_clave": {
+   "tipo": "string",
+   "descripcion": "Seccion 11: Clave de promotor."
+  },
+  "agente_nombre": {
+   "tipo": "string",
+   "descripcion": "Seccion 11: Nombre del agente."
+  },
+  "agente_fecha": {
+   "tipo": "string",
+   "descripcion": "Seccion 11: Fecha (firma del agente)."
+  },
+  "entrevista_nombre_at_linea1": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal - la llena el corredor): Nombre del AT y/o contratante (linea 1 de 2)."
+  },
+  "entrevista_nombre_at_linea2": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Nombre del AT y/o contratante (linea 2, opcional)."
+  },
+  "entrevista_fecha_visita_anterior": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Fecha de visita anterior."
+  },
+  "entrevista_fecha_visita_actual": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Fecha de visita actual."
+  },
+  "entrevista_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Ocupacion."
+  },
+  "entrevista_relacion_asegurado": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Relacion con el Asegurado Principal/Titular."
+  },
+  "entrevista_doc_cedula_identidad": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Cedula de identidad personal o pasaporte.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_registro_civil": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Registro civil de nacimiento o cedula juvenil de los menores de edad.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_estadia_legal": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Documento con que se acredite estadia legal en el pais, en caso de extranjeros.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_factura_servicios": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Factura de Servicios Publicos.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_referencia_bancaria": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Referencia Bancaria.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_certificado_registro_publico": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Certificado del Registro Publico.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_pacto_social": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Pacto social y enmiendas (si las tiene).",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_poder": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Poder (si lo hubiere) con facultad para contratar servicios.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_aviso_operaciones": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Aviso de Operaciones (si aplica).",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_copia_identidad_directores": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Copia de documento de identidad de directores, dignatarios, representantes legales, apoderados y accionistas.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_doc_formulario_conoce_cliente": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 12 (Entrevista Personal), Relacion de documentos: Formulario Conoce a tu Cliente Persona Juridica, firmado por el representante legal o apoderado.",
+   "valores_posibles": [
+    "si"
+   ]
+  },
+  "entrevista_copias_cotejadas": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): 'Las copias simples de los documentos fueron cotejadas contra sus originales.' ADVERTENCIA: el PDF imprime esta frase pero NO existe ningun campo AcroForm de checkbox en esa posicion (pagina 9) -- omision del formulario original de Bupa, igual que otros_seguros_mantener_cobertura. Se documenta por completitud pero no esta enlazado a mapping.json."
+  },
+  "entrevista_nombre_entrevistador": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Nombre del entrevistador."
+  },
+  "entrevista_apellidos_entrevistador": {
+   "tipo": "string",
+   "descripcion": "Seccion 12 (Entrevista Personal): Apellidos del entrevistador."
+  },
+  "pago_modalidad_poliza": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 13 (Pago): Modalidad de la poliza (aplica solo si se elige cargo automatico con tarjeta de credito). Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "anual": "/Choice138",
+    "semestral": "/Choice139",
+    "trimestral": "/Choice140",
+    "mensual": "/Choice141"
+   }
+  },
+  "pago_titular_nombre": {
+   "tipo": "string",
+   "descripcion": "Seccion 13 (Pago): Asegurado Titular (nombre del titular de la tarjeta/cuenta usada para el pago)."
+  },
+  "pago_parentesco_titular": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Seccion 13 (Pago): Parentesco de la persona que paga con el Asegurado Titular. Radio button de un solo campo AcroForm con multiples estados de exportacion literales (patron 'enum_radio_pdf', igual al usado en Blue Cross / Internacional de Seguros Vida). fill_pdf.py NO se modifico: para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE uno de los valores de 'valores_pdf_literales' de abajo (incluyendo la barra inicial '/').",
+   "valores_pdf_literales": {
+    "mismo": "/Choice142",
+    "nieto": "/Choice143",
+    "abuelo": "/Choice144",
+    "padre_madre": "/Choice145",
+    "conyuge": "/Choice146",
+    "representante_legal": "/Choice147",
+    "hermano": "/Choice148",
+    "hijo": "/Choice149",
+    "otro": "/Choice150"
+   }
+  },
+  "pago_parentesco_otro_detalle": {
+   "tipo": "string",
+   "descripcion": "Seccion 13 (Pago): Detalle si el parentesco marcado es 'Otro'."
+  },
+  "metodo_pago": {
+   "tipo": "enum_checkbox",
+   "descripcion": "Seccion 13 (Pago): Metodo de pago.",
+   "valores_posibles": [
+    "tarjeta_credito",
+    "giro_bancario",
+    "cheque_personal",
+    "transferencia_bancaria",
+    "transferencia_bancaria_local"
+   ]
+  }
+ }
+}

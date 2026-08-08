@@ -1,0 +1,1995 @@
+{
+  "template": "aseguradoras/internacional_de_seguros/vida/templates/solicitud_vida.pdf",
+  "fields": {
+    "RC": {
+      "data_key": "rc_numero",
+      "type": "text"
+    },
+    "B": {
+      "data_key": "cantidad_pagada_solicitud",
+      "type": "text"
+    },
+    "Solicitud No": {
+      "data_key": "solicitud_numero",
+      "type": "text"
+    },
+    "Agentes": {
+      "data_key": "agente_nombres",
+      "type": "text"
+    },
+    "Supervisor": {
+      "data_key": "supervisor_nombre",
+      "type": "text"
+    },
+    "CAIS": {
+      "data_key": "cais",
+      "type": "text"
+    },
+    "Primer Apellido": {
+      "data_key": "asegurado_primer_apellido",
+      "type": "text"
+    },
+    "Segundo Apellido": {
+      "data_key": "asegurado_segundo_apellido",
+      "type": "text"
+    },
+    "Apellido de Casada": {
+      "data_key": "asegurado_apellido_casada",
+      "type": "text"
+    },
+    "Primer Nombre": {
+      "data_key": "asegurado_primer_nombre",
+      "type": "text"
+    },
+    "Segundo Nombre": {
+      "data_key": "asegurado_segundo_nombre",
+      "type": "text"
+    },
+    "Nombre Usual": {
+      "data_key": "asegurado_nombre_usual",
+      "type": "text"
+    },
+    "Cédula  Pasaporte": {
+      "data_key": "asegurado_cedula_pasaporte",
+      "type": "text"
+    },
+    "DV": {
+      "data_key": "asegurado_dv",
+      "type": "text"
+    },
+    "Sexo": {
+      "data_key": "asegurado_sexo",
+      "type": "text",
+      "nota": "Campo AcroForm 'Sexo' es un UNICO radio button (no dos casillas separadas) con estados de exportacion literales '/M' y '/F'. El valor en datos.json debe ser exactamente el string '/M' o '/F' (con la barra), ya que fill_pdf.py escribe str(data[key]) tal cual para type=text. Ver schema_extra."
+    },
+    "Fecha de Nacimiento": {
+      "data_key": "asegurado_fecha_nacimiento",
+      "type": "date",
+      "format": "ddmmaaaa"
+    },
+    "Nombre": {
+      "data_key": "contratante_nombre_completo",
+      "type": "text",
+      "nota": "Contratante, solo si es diferente al Asegurado Propuesto."
+    },
+    "Cédula o RUC": {
+      "data_key": "contratante_cedula_ruc",
+      "type": "text"
+    },
+    "Dirección": {
+      "data_key": "contratante_direccion",
+      "type": "text"
+    },
+    "Apdo": {
+      "data_key": "contratante_apdo",
+      "type": "text"
+    },
+    "Zona": {
+      "data_key": "contratante_zona",
+      "type": "text"
+    },
+    "Ciudad": {
+      "data_key": "contratante_ciudad",
+      "type": "text"
+    },
+    "Relación con el asegurado": {
+      "data_key": "contratante_relacion_asegurado",
+      "type": "text"
+    },
+    "Teléfono": {
+      "data_key": "contratante_telefono",
+      "type": "text"
+    },
+    "Fax": {
+      "data_key": "contratante_fax",
+      "type": "text"
+    },
+    "Sí 1": {
+      "data_key": "fatca_accionistas_nacionalidad_distinta",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/Sí"
+    },
+    "No 1": {
+      "data_key": "fatca_accionistas_nacionalidad_distinta",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Especifique": {
+      "data_key": "fatca_accionistas_especifique",
+      "type": "text"
+    },
+    "Sí_2": {
+      "data_key": "asegurado_extranjero",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_2": {
+      "data_key": "asegurado_extranjero",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "País de Origen": {
+      "data_key": "asegurado_pais_origen",
+      "type": "text"
+    },
+    "Sí_3": {
+      "data_key": "asegurado_otra_nacionalidad_o_green_card",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_3": {
+      "data_key": "asegurado_otra_nacionalidad_o_green_card",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "De qué país es": {
+      "data_key": "asegurado_otra_nacionalidad_pais",
+      "type": "text"
+    },
+    "Sí_4": {
+      "data_key": "asegurado_zurdo",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_4": {
+      "data_key": "asegurado_zurdo",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Estado Civil Casado": {
+      "data_key": "asegurado_estado_civil",
+      "type": "checkbox_group",
+      "value": "casado",
+      "on_state": "/On"
+    },
+    "Divorciado": {
+      "data_key": "asegurado_estado_civil",
+      "type": "checkbox_group",
+      "value": "divorciado",
+      "on_state": "/On"
+    },
+    "Soltero": {
+      "data_key": "asegurado_estado_civil",
+      "type": "checkbox_group",
+      "value": "soltero",
+      "on_state": "/On"
+    },
+    "Separado": {
+      "data_key": "asegurado_estado_civil",
+      "type": "checkbox_group",
+      "value": "separado",
+      "on_state": "/On"
+    },
+    "Unido": {
+      "data_key": "asegurado_estado_civil",
+      "type": "checkbox_group",
+      "value": "unido",
+      "on_state": "/On"
+    },
+    "Viudo": {
+      "data_key": "asegurado_estado_civil",
+      "type": "checkbox_group",
+      "value": "viudo",
+      "on_state": "/On"
+    },
+    "Otro": {
+      "data_key": "asegurado_estado_civil_otro_detalle",
+      "type": "text",
+      "nota": "Detalle cuando el Estado Civil del Asegurado no es ninguno de los checkboxes (valor 'otro')."
+    },
+    "Ocupación": {
+      "data_key": "asegurado_ocupacion",
+      "type": "text"
+    },
+    "Empresa Donde Trabaja": {
+      "data_key": "asegurado_empresa_donde_trabaja",
+      "type": "text"
+    },
+    "Detalle de Ocupación": {
+      "data_key": "asegurado_ocupacion_detalle",
+      "type": "text"
+    },
+    "Tiempo en Ocupación Actual": {
+      "data_key": "asegurado_ocupacion_actual_tiempo",
+      "type": "text"
+    },
+    "Ocupación Anterior": {
+      "data_key": "asegurado_ocupacion_anterior",
+      "type": "text"
+    },
+    "Detalle": {
+      "data_key": "asegurado_ocupacion_anterior_detalle",
+      "type": "text"
+    },
+    "Tiempo en Ocupación Anterior": {
+      "data_key": "asegurado_ocupacion_anterior_tiempo",
+      "type": "text"
+    },
+    "Otras Ocupaciones": {
+      "data_key": "asegurado_otras_ocupaciones",
+      "type": "text"
+    },
+    "Detalle_2": {
+      "data_key": "asegurado_otras_ocupaciones_detalle",
+      "type": "text"
+    },
+    "Ingreso Anual Aproximado  Ocupación Actual B": {
+      "data_key": "asegurado_ingreso_anual_ocupacion_actual",
+      "type": "text"
+    },
+    "Ingreso Anual  Otras Ocupaciones B": {
+      "data_key": "asegurado_ingreso_anual_otras_ocupaciones",
+      "type": "text"
+    },
+    "País Residencial": {
+      "data_key": "asegurado_residencia_pais",
+      "type": "text"
+    },
+    "Provincia": {
+      "data_key": "asegurado_residencia_provincia",
+      "type": "text"
+    },
+    "Distrito": {
+      "data_key": "asegurado_residencia_distrito",
+      "type": "text"
+    },
+    "Corregimiento": {
+      "data_key": "asegurado_residencia_corregimiento",
+      "type": "text"
+    },
+    "Urbanización": {
+      "data_key": "asegurado_residencia_urbanizacion",
+      "type": "text"
+    },
+    "Calle": {
+      "data_key": "asegurado_residencia_calle",
+      "type": "text"
+    },
+    "Edificio": {
+      "data_key": "asegurado_residencia_edificio",
+      "type": "text"
+    },
+    "Apto": {
+      "data_key": "asegurado_residencia_apto",
+      "type": "text"
+    },
+    "Casa": {
+      "data_key": "asegurado_residencia_casa",
+      "type": "text"
+    },
+    "Teléfono Residencial": {
+      "data_key": "asegurado_residencia_telefono",
+      "type": "text"
+    },
+    "Celular": {
+      "data_key": "asegurado_residencia_celular",
+      "type": "text"
+    },
+    "Fax_2": {
+      "data_key": "asegurado_residencia_fax",
+      "type": "text"
+    },
+    "Correo Electrónico": {
+      "data_key": "asegurado_residencia_correo",
+      "type": "text"
+    },
+    "País Oficina": {
+      "data_key": "asegurado_oficina_pais",
+      "type": "text"
+    },
+    "Provincia_2": {
+      "data_key": "asegurado_oficina_provincia",
+      "type": "text"
+    },
+    "Distrito_2": {
+      "data_key": "asegurado_oficina_distrito",
+      "type": "text"
+    },
+    "Corregimiento_2": {
+      "data_key": "asegurado_oficina_corregimiento",
+      "type": "text"
+    },
+    "Urbanización_2": {
+      "data_key": "asegurado_oficina_urbanizacion",
+      "type": "text"
+    },
+    "Calle_2": {
+      "data_key": "asegurado_oficina_calle",
+      "type": "text"
+    },
+    "Edificio_2": {
+      "data_key": "asegurado_oficina_edificio",
+      "type": "text"
+    },
+    "Apto_2": {
+      "data_key": "asegurado_oficina_apto",
+      "type": "text"
+    },
+    "Casa_2": {
+      "data_key": "asegurado_oficina_casa",
+      "type": "text"
+    },
+    "Teléfono_3": {
+      "data_key": "asegurado_oficina_telefono",
+      "type": "text"
+    },
+    "Celular_2": {
+      "data_key": "asegurado_oficina_celular",
+      "type": "text"
+    },
+    "Fax_3": {
+      "data_key": "asegurado_oficina_fax",
+      "type": "text"
+    },
+    "Correo Electrónico_2": {
+      "data_key": "asegurado_oficina_correo",
+      "type": "text"
+    },
+    "Sí_5": {
+      "data_key": "otras_cias_q1_ofrecido_seguro_diferente",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_5": {
+      "data_key": "otras_cias_q1_ofrecido_seguro_diferente",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_6": {
+      "data_key": "otras_cias_q2_rechazado_diferido_recargado",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_6": {
+      "data_key": "otras_cias_q2_rechazado_diferido_recargado",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_7": {
+      "data_key": "otras_cias_q3_solicitud_o_rehabilitacion_pendiente",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_7": {
+      "data_key": "otras_cias_q3_solicitud_o_rehabilitacion_pendiente",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_8": {
+      "data_key": "otras_cias_q4_beneficios_o_indemnizacion_reclamados",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_8": {
+      "data_key": "otras_cias_q4_beneficios_o_indemnizacion_reclamados",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_9": {
+      "data_key": "otras_cias_q5_actividades_ilicitas_lavado_dinero",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_9": {
+      "data_key": "otras_cias_q5_actividades_ilicitas_lavado_dinero",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_10": {
+      "data_key": "otras_cias_q6_pep",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_10": {
+      "data_key": "otras_cias_q6_pep",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_11": {
+      "data_key": "otras_cias_q7_primas_anuales_10mil_o_mas",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_11": {
+      "data_key": "otras_cias_q7_primas_anuales_10mil_o_mas",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_12": {
+      "data_key": "otras_cias_q8_183dias_eeuu_u_otro_pais",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_12": {
+      "data_key": "otras_cias_q8_183dias_eeuu_u_otro_pais",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_13": {
+      "data_key": "otras_cias_q9_ordenes_pago_eeuu_u_otro_pais",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_13": {
+      "data_key": "otras_cias_q9_ordenes_pago_eeuu_u_otro_pais",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_14": {
+      "data_key": "otras_cias_q10_contribuyente_fiscal_eeuu_u_otro_pais",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_14": {
+      "data_key": "otras_cias_q10_contribuyente_fiscal_eeuu_u_otro_pais",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Países donde tributa por sus Ingresos 1": {
+      "data_key": "otras_cias_q11_pais_tributa_1",
+      "type": "text"
+    },
+    "Países donde tributa por sus ingresos 2": {
+      "data_key": "otras_cias_q11_pais_tributa_2",
+      "type": "text"
+    },
+    "Países donde tributa por sus ingresos 3": {
+      "data_key": "otras_cias_q11_pais_tributa_3",
+      "type": "text"
+    },
+    "Sí_15": {
+      "data_key": "otras_cias_q11_pais_tributa_aplica",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_15": {
+      "data_key": "otras_cias_q11_pais_tributa_aplica",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_16": {
+      "data_key": "otras_cias_q12_licencia_piloto_o_pilotea",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_16": {
+      "data_key": "otras_cias_q12_licencia_piloto_o_pilotea",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_17": {
+      "data_key": "otras_cias_q13_practica_deporte",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_17": {
+      "data_key": "otras_cias_q13_practica_deporte",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "Sí_18": {
+      "data_key": "otras_cias_q14_deporte_riesgo_o_carreras",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_18": {
+      "data_key": "otras_cias_q14_deporte_riesgo_o_carreras",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/Sí"
+    },
+    "En caso afirmativo de detalles": {
+      "data_key": "otras_cias_q14_detalle",
+      "type": "text"
+    },
+    "COMPAÑÍARow1": {
+      "data_key": "seguro_vigor_1_compania",
+      "type": "text"
+    },
+    "NO DE PÓLIZARow1": {
+      "data_key": "seguro_vigor_1_no_poliza",
+      "type": "text"
+    },
+    "SUMA ASEGURADARow1": {
+      "data_key": "seguro_vigor_1_suma_asegurada",
+      "type": "text"
+    },
+    "BENEFICIO CUBIERTORow1": {
+      "data_key": "seguro_vigor_1_beneficio_cubierto",
+      "type": "text"
+    },
+    "FECHA DE EMISIÓNRow1": {
+      "data_key": "seguro_vigor_1_fecha_emision",
+      "type": "text"
+    },
+    "COMPAÑÍARow2": {
+      "data_key": "seguro_vigor_2_compania",
+      "type": "text"
+    },
+    "NO DE PÓLIZARow2": {
+      "data_key": "seguro_vigor_2_no_poliza",
+      "type": "text"
+    },
+    "SUMA ASEGURADARow2": {
+      "data_key": "seguro_vigor_2_suma_asegurada",
+      "type": "text"
+    },
+    "BENEFICIO CUBIERTORow2": {
+      "data_key": "seguro_vigor_2_beneficio_cubierto",
+      "type": "text"
+    },
+    "FECHA DE EMISIÓNRow2": {
+      "data_key": "seguro_vigor_2_fecha_emision",
+      "type": "text"
+    },
+    "COMPAÑÍARow3": {
+      "data_key": "seguro_vigor_3_compania",
+      "type": "text"
+    },
+    "NO DE PÓLIZARow3": {
+      "data_key": "seguro_vigor_3_no_poliza",
+      "type": "text"
+    },
+    "SUMA ASEGURADARow3": {
+      "data_key": "seguro_vigor_3_suma_asegurada",
+      "type": "text"
+    },
+    "BENEFICIO CUBIERTORow3": {
+      "data_key": "seguro_vigor_3_beneficio_cubierto",
+      "type": "text"
+    },
+    "FECHA DE EMISIÓNRow3": {
+      "data_key": "seguro_vigor_3_fecha_emision",
+      "type": "text"
+    },
+    "COMPAÑÍARow4": {
+      "data_key": "seguro_vigor_4_compania",
+      "type": "text"
+    },
+    "NO DE PÓLIZARow4": {
+      "data_key": "seguro_vigor_4_no_poliza",
+      "type": "text"
+    },
+    "SUMA ASEGURADARow4": {
+      "data_key": "seguro_vigor_4_suma_asegurada",
+      "type": "text"
+    },
+    "BENEFICIO CUBIERTORow4": {
+      "data_key": "seguro_vigor_4_beneficio_cubierto",
+      "type": "text"
+    },
+    "FECHA DE EMISIÓNRow4": {
+      "data_key": "seguro_vigor_4_fecha_emision",
+      "type": "text"
+    },
+    "Sí_19": {
+      "data_key": "solicita_cancelar_otra_poliza",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_19": {
+      "data_key": "solicita_cancelar_otra_poliza",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Cuál": {
+      "data_key": "solicita_cancelar_otra_poliza_cual",
+      "type": "text"
+    },
+    "NOMBRE COMPLETORow1": {
+      "data_key": "beneficiario_principal_1_nombre",
+      "type": "text"
+    },
+    "CÉDULA O RUCRow1": {
+      "data_key": "beneficiario_principal_1_cedula_ruc",
+      "type": "text"
+    },
+    "PARENTESCORow1": {
+      "data_key": "beneficiario_principal_1_parentesco",
+      "type": "text"
+    },
+    "EDADRow1": {
+      "data_key": "beneficiario_principal_1_edad",
+      "type": "text"
+    },
+    " PARTICIPACIÓNRow1": {
+      "data_key": "beneficiario_principal_1_porcentaje",
+      "type": "text"
+    },
+    "NOMBRE COMPLETORow2": {
+      "data_key": "beneficiario_principal_2_nombre",
+      "type": "text"
+    },
+    "CÉDULA O RUCRow2": {
+      "data_key": "beneficiario_principal_2_cedula_ruc",
+      "type": "text"
+    },
+    "PARENTESCORow2": {
+      "data_key": "beneficiario_principal_2_parentesco",
+      "type": "text"
+    },
+    "EDADRow2": {
+      "data_key": "beneficiario_principal_2_edad",
+      "type": "text"
+    },
+    " PARTICIPACIÓNRow2": {
+      "data_key": "beneficiario_principal_2_porcentaje",
+      "type": "text"
+    },
+    "NOMBRE COMPLETORow3": {
+      "data_key": "beneficiario_principal_3_nombre",
+      "type": "text"
+    },
+    "CÉDULA O RUCRow3": {
+      "data_key": "beneficiario_principal_3_cedula_ruc",
+      "type": "text"
+    },
+    "PARENTESCORow3": {
+      "data_key": "beneficiario_principal_3_parentesco",
+      "type": "text"
+    },
+    "EDADRow3": {
+      "data_key": "beneficiario_principal_3_edad",
+      "type": "text"
+    },
+    " PARTICIPACIÓNRow3": {
+      "data_key": "beneficiario_principal_3_porcentaje",
+      "type": "text"
+    },
+    "NOMBRE COMPLETORow4": {
+      "data_key": "beneficiario_principal_4_nombre",
+      "type": "text"
+    },
+    "CÉDULA O RUCRow4": {
+      "data_key": "beneficiario_principal_4_cedula_ruc",
+      "type": "text"
+    },
+    "PARENTESCORow4": {
+      "data_key": "beneficiario_principal_4_parentesco",
+      "type": "text"
+    },
+    "EDADRow4": {
+      "data_key": "beneficiario_principal_4_edad",
+      "type": "text"
+    },
+    " PARTICIPACIÓNRow4": {
+      "data_key": "beneficiario_principal_4_porcentaje",
+      "type": "text"
+    },
+    "NOMBRE COMPLETORow5": {
+      "data_key": "beneficiario_principal_5_nombre",
+      "type": "text"
+    },
+    "CÉDULA O RUCRow5": {
+      "data_key": "beneficiario_principal_5_cedula_ruc",
+      "type": "text"
+    },
+    "PARENTESCORow5": {
+      "data_key": "beneficiario_principal_5_parentesco",
+      "type": "text"
+    },
+    "EDADRow5": {
+      "data_key": "beneficiario_principal_5_edad",
+      "type": "text"
+    },
+    " PARTICIPACIÓNRow5": {
+      "data_key": "beneficiario_principal_5_porcentaje",
+      "type": "text"
+    },
+    "Texto8": {
+      "data_key": "beneficiario_contingente_1_nombre",
+      "type": "text"
+    },
+    "Texto9": {
+      "data_key": "beneficiario_contingente_1_cedula_ruc",
+      "type": "text"
+    },
+    "Texto10": {
+      "data_key": "beneficiario_contingente_1_parentesco",
+      "type": "text"
+    },
+    "Texto11": {
+      "data_key": "beneficiario_contingente_1_edad",
+      "type": "text"
+    },
+    "Texto12": {
+      "data_key": "beneficiario_contingente_1_porcentaje",
+      "type": "text"
+    },
+    "Texto13": {
+      "data_key": "beneficiario_contingente_2_nombre",
+      "type": "text"
+    },
+    "Texto14": {
+      "data_key": "beneficiario_contingente_2_cedula_ruc",
+      "type": "text"
+    },
+    "Texto15": {
+      "data_key": "beneficiario_contingente_2_parentesco",
+      "type": "text"
+    },
+    "Texto16": {
+      "data_key": "beneficiario_contingente_2_edad",
+      "type": "text"
+    },
+    "Texto17": {
+      "data_key": "beneficiario_contingente_2_porcentaje",
+      "type": "text"
+    },
+    "Texto18": {
+      "data_key": "beneficiario_contingente_3_nombre",
+      "type": "text"
+    },
+    "Texto19": {
+      "data_key": "beneficiario_contingente_3_cedula_ruc",
+      "type": "text"
+    },
+    "Texto20": {
+      "data_key": "beneficiario_contingente_3_parentesco",
+      "type": "text"
+    },
+    "Texto21": {
+      "data_key": "beneficiario_contingente_3_edad",
+      "type": "text"
+    },
+    "Texto22": {
+      "data_key": "beneficiario_contingente_3_porcentaje",
+      "type": "text"
+    },
+    "Texto23": {
+      "data_key": "beneficiario_contingente_4_nombre",
+      "type": "text"
+    },
+    "Texto24": {
+      "data_key": "beneficiario_contingente_4_cedula_ruc",
+      "type": "text"
+    },
+    "Texto25": {
+      "data_key": "beneficiario_contingente_4_parentesco",
+      "type": "text"
+    },
+    "Texto26": {
+      "data_key": "beneficiario_contingente_4_edad",
+      "type": "text"
+    },
+    "Texto27": {
+      "data_key": "beneficiario_contingente_4_porcentaje",
+      "type": "text"
+    },
+    "Texto28": {
+      "data_key": "beneficiario_contingente_5_nombre",
+      "type": "text"
+    },
+    "Texto29": {
+      "data_key": "beneficiario_contingente_5_cedula_ruc",
+      "type": "text"
+    },
+    "Texto30": {
+      "data_key": "beneficiario_contingente_5_parentesco",
+      "type": "text"
+    },
+    "Texto31": {
+      "data_key": "beneficiario_contingente_5_edad",
+      "type": "text"
+    },
+    "Texto32": {
+      "data_key": "beneficiario_contingente_5_porcentaje",
+      "type": "text"
+    },
+    "Cesión Bancaria": {
+      "data_key": "cesion_bancaria_entidad",
+      "type": "text"
+    },
+    "Monto": {
+      "data_key": "cesion_bancaria_monto",
+      "type": "text"
+    },
+    "Cualquier beneficio que corresponda a un menor de edad designado como beneficiario será pagado a": {
+      "data_key": "admin_menores_nombre",
+      "type": "text"
+    },
+    "con cédula de identidad personal No": {
+      "data_key": "admin_menores_cedula",
+      "type": "text"
+    },
+    "y en su defecto a": {
+      "data_key": "admin_menores_nombre_alterno",
+      "type": "text"
+    },
+    "personal No": {
+      "data_key": "admin_menores_cedula_alterno",
+      "type": "text"
+    },
+    "Plan": {
+      "data_key": "plan_nombre",
+      "type": "text",
+      "nota": "Campo de texto libre bajo el encabezado 'Vida Universal' para indicar el nombre/codigo del plan. El PDF NO tiene checkboxes reales para elegir entre 'Vida Universal' y 'Vida Tradicional' (son solo titulos de seccion en el formulario); use plan_nombre para indicar cual aplica si hace falta."
+    },
+    "Decreciente": {
+      "data_key": "tipo_riesgo",
+      "type": "checkbox_group",
+      "value": "decreciente",
+      "on_state": "/On"
+    },
+    "Flex": {
+      "data_key": "tipo_riesgo",
+      "type": "checkbox_group",
+      "value": "flex",
+      "on_state": "/On"
+    },
+    "Génesis 100": {
+      "data_key": "tipo_riesgo",
+      "type": "checkbox_group",
+      "value": "genesis_100",
+      "on_state": "/On"
+    },
+    "Creciente": {
+      "data_key": "tipo_riesgo",
+      "type": "checkbox_group",
+      "value": "creciente",
+      "on_state": "/On"
+    },
+    "Flex DPS": {
+      "data_key": "tipo_riesgo",
+      "type": "checkbox_group",
+      "value": "flex_dps",
+      "on_state": "/On"
+    },
+    "Nivelado": {
+      "data_key": "opcion_beneficio_muerte",
+      "type": "checkbox_group",
+      "value": "nivelado",
+      "on_state": "/On"
+    },
+    "Creciente_2": {
+      "data_key": "opcion_beneficio_muerte",
+      "type": "checkbox_group",
+      "value": "creciente",
+      "on_state": "/On"
+    },
+    "Plazo de Cobertura": {
+      "data_key": "plazo_cobertura",
+      "type": "text"
+    },
+    "Plazo de Pago": {
+      "data_key": "plazo_pago",
+      "type": "text"
+    },
+    "Prima Mínima según Forma de Pago": {
+      "data_key": "prima_minima_forma_pago",
+      "type": "text"
+    },
+    "Prima según forma de Pago": {
+      "data_key": "prima_segun_forma_pago",
+      "type": "text"
+    },
+    "Opción": {
+      "data_key": "prima_opcion",
+      "type": "text"
+    },
+    "Prima Planeada según Forma de Pago": {
+      "data_key": "prima_planeada_forma_pago",
+      "type": "text"
+    },
+    "Porcentaje de Incremento de": {
+      "data_key": "porcentaje_incremento_vida_creciente",
+      "type": "text",
+      "nota": "Campo AcroForm 'Porcentaje de Incremento de' es un radio button de 3 vias (unico nombre de campo) con estados de exportacion literales '/2', '/4', '/6'. El valor en datos.json debe ser exactamente '/2', '/4' o '/6' (con la barra). Solo aplica si Tipo de Riesgo = Creciente o Flex DPS. Ver schema_extra."
+    },
+    "undefined_4": {
+      "data_key": "cobertura_vida_basica_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_2": {
+      "data_key": "cobertura_vida_basica_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_6": {
+      "data_key": "cobertura_temporal_asegurado_principal_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_4": {
+      "data_key": "cobertura_temporal_asegurado_principal_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_8": {
+      "data_key": "cobertura_invalidez_total_permanente_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_6": {
+      "data_key": "cobertura_invalidez_total_permanente_suma_asegurada",
+      "type": "text"
+    },
+    "Relevo de Pago de Prima por Incapacidad Total y Permanente": {
+      "data_key": "cobertura_relevo_pago_prima_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_8": {
+      "data_key": "cobertura_relevo_pago_prima_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_11": {
+      "data_key": "cobertura_muerte_accidental_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_10": {
+      "data_key": "cobertura_muerte_accidental_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_12": {
+      "data_key": "cobertura_enfermedades_catastroficas_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_11": {
+      "data_key": "cobertura_enfermedades_catastroficas_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_13": {
+      "data_key": "cobertura_temporal_otro_asegurado_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_12": {
+      "data_key": "cobertura_temporal_otro_asegurado_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_14": {
+      "data_key": "cobertura_temporal_ninos_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_13": {
+      "data_key": "cobertura_temporal_ninos_suma_asegurada",
+      "type": "text"
+    },
+    "Cobertura Desempleo Involuntario para Crédito Hipotecario": {
+      "data_key": "cobertura_desempleo_involuntario_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_14": {
+      "data_key": "cobertura_desempleo_involuntario_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_15": {
+      "data_key": "cobertura_renta_hipotecaria_temporal_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_15": {
+      "data_key": "cobertura_renta_hipotecaria_temporal_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_5": {
+      "data_key": "ap_cobertura_basica_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_3": {
+      "data_key": "ap_cobertura_basica_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_7": {
+      "data_key": "ap_muerte_accidental_desmembramiento_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_5": {
+      "data_key": "ap_muerte_accidental_desmembramiento_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_9": {
+      "data_key": "ap_gastos_medicos_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_7": {
+      "data_key": "ap_gastos_medicos_suma_asegurada",
+      "type": "text"
+    },
+    "undefined_10": {
+      "data_key": "ap_renta_diaria_seleccionada",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "B_9": {
+      "data_key": "ap_renta_diaria_suma_asegurada",
+      "type": "text"
+    },
+    "Tarjeta de Crédito": {
+      "data_key": "medio_pago",
+      "type": "checkbox_group",
+      "value": "tarjeta_credito",
+      "on_state": "/On"
+    },
+    "Descuento Bancario": {
+      "data_key": "medio_pago",
+      "type": "checkbox_group",
+      "value": "descuento_bancario",
+      "on_state": "/On"
+    },
+    "Descuento Salario": {
+      "data_key": "medio_pago",
+      "type": "checkbox_group",
+      "value": "descuento_salario",
+      "on_state": "/On"
+    },
+    "Cobrador": {
+      "data_key": "medio_pago",
+      "type": "checkbox_group",
+      "value": "cobrador",
+      "on_state": "/Sí"
+    },
+    "Corredor": {
+      "data_key": "medio_pago",
+      "type": "checkbox_group",
+      "value": "corredor_acp",
+      "on_state": "/Sí"
+    },
+    "Mensual": {
+      "data_key": "frecuencia_pago",
+      "type": "checkbox_group",
+      "value": "mensual",
+      "on_state": "/On"
+    },
+    "Trimestral": {
+      "data_key": "frecuencia_pago",
+      "type": "checkbox_group",
+      "value": "trimestral",
+      "on_state": "/On"
+    },
+    "Semestral": {
+      "data_key": "frecuencia_pago",
+      "type": "checkbox_group",
+      "value": "semestral",
+      "on_state": "/On"
+    },
+    "Anual": {
+      "data_key": "frecuencia_pago",
+      "type": "checkbox_group",
+      "value": "anual",
+      "on_state": "/On"
+    },
+    "Bisemanal": {
+      "data_key": "frecuencia_pago",
+      "type": "checkbox_group",
+      "value": "bisemanal",
+      "on_state": "/On"
+    },
+    "1": {
+      "data_key": "referencia_1_nombre",
+      "type": "text"
+    },
+    "Tel": {
+      "data_key": "referencia_1_telefono",
+      "type": "text"
+    },
+    "2_2": {
+      "data_key": "referencia_2_nombre",
+      "type": "text"
+    },
+    "Tel_3": {
+      "data_key": "referencia_2_telefono",
+      "type": "text"
+    },
+    "3": {
+      "data_key": "referencia_3_nombre",
+      "type": "text"
+    },
+    "Tel_5": {
+      "data_key": "referencia_3_telefono",
+      "type": "text"
+    },
+    "1_2": {
+      "data_key": "referencia_4_nombre",
+      "type": "text"
+    },
+    "Tel_2": {
+      "data_key": "referencia_4_telefono",
+      "type": "text"
+    },
+    "2_3": {
+      "data_key": "referencia_5_nombre",
+      "type": "text"
+    },
+    "Tel_4": {
+      "data_key": "referencia_5_telefono",
+      "type": "text"
+    },
+    "3_2": {
+      "data_key": "referencia_6_nombre",
+      "type": "text"
+    },
+    "Tel_6": {
+      "data_key": "referencia_6_telefono",
+      "type": "text"
+    },
+    "Firmada en": {
+      "data_key": "firma_parte1_lugar_ciudad",
+      "type": "text"
+    },
+    "el": {
+      "data_key": "firma_parte1_dia",
+      "type": "text"
+    },
+    "de": {
+      "data_key": "firma_parte1_mes",
+      "type": "text"
+    },
+    "de 20": {
+      "data_key": "firma_parte1_anio",
+      "type": "text"
+    },
+    "Cédula": {
+      "data_key": "firma_parte1_asegurado_cedula",
+      "type": "text",
+      "nota": "Cedula escrita junto a la firma del Asegurado (linea 'Firma el Asegurado' no tiene campo AcroForm propio - es una firma manuscrita sin campo)."
+    },
+    "Contratante Dueño": {
+      "data_key": "firma_parte1_contratante_dueño_nombre",
+      "type": "text",
+      "nota": "Nombre impreso del Contratante/Dueño junto a su firma (solo si es diferente al asegurado); la firma en si es manuscrita sin campo AcroForm."
+    },
+    "Solicitud No_2": {
+      "data_key": "solicitud_numero",
+      "type": "text"
+    },
+    "Sí_20": {
+      "data_key": "fumador_actual_o_ultimos_12meses",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_20": {
+      "data_key": "fumador_actual_o_ultimos_12meses",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "En caso afirmativo dé detalles": {
+      "data_key": "fumador_detalle",
+      "type": "text"
+    },
+    "Cuántos se fuma al día": {
+      "data_key": "fumador_cantidad_dia",
+      "type": "text"
+    },
+    "Sí_21": {
+      "data_key": "fumador_dejo_habito",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_21": {
+      "data_key": "fumador_dejo_habito",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "En caso afirmativo favor indicar la fecha": {
+      "data_key": "fumador_dejo_habito_fecha",
+      "type": "text"
+    },
+    "Estatura": {
+      "data_key": "estatura_metros",
+      "type": "text"
+    },
+    "Pies": {
+      "data_key": "estatura_pies",
+      "type": "text"
+    },
+    "Peso": {
+      "data_key": "peso_libras",
+      "type": "text"
+    },
+    "Kilos": {
+      "data_key": "peso_kilos",
+      "type": "text"
+    },
+    "Desde cuándo ha mantenido el peso actual": {
+      "data_key": "peso_actual_desde_cuando",
+      "type": "text"
+    },
+    "Cuál ha sido su peso máximo": {
+      "data_key": "peso_maximo",
+      "type": "text"
+    },
+    "Fecha": {
+      "data_key": "peso_maximo_fecha",
+      "type": "text"
+    },
+    "Qué médico ha consultado últimamente": {
+      "data_key": "medico_consultado_recientemente",
+      "type": "text"
+    },
+    "Cuándo": {
+      "data_key": "medico_consultado_cuando",
+      "type": "text"
+    },
+    "Para qué": {
+      "data_key": "medico_consultado_para_que",
+      "type": "text"
+    },
+    "EDAD SI VIVEEsposo": {
+      "data_key": "historia_familiar_esposo_edad_si_vive",
+      "type": "text"
+    },
+    "ESTADO DE SALUD SI NO ES BUENA DIGA POR QUÉEsposo": {
+      "data_key": "historia_familiar_esposo_estado_salud",
+      "type": "text"
+    },
+    "EDAD A LA MUERTEEsposo": {
+      "data_key": "historia_familiar_esposo_edad_muerte",
+      "type": "text"
+    },
+    "CAUSAS DE LA MUERTE DIGA LA FECHAEsposo": {
+      "data_key": "historia_familiar_esposo_causa_muerte",
+      "type": "text"
+    },
+    "EDAD SI VIVEEsposa": {
+      "data_key": "historia_familiar_esposa_edad_si_vive",
+      "type": "text"
+    },
+    "ESTADO DE SALUD SI NO ES BUENA DIGA POR QUÉEsposa": {
+      "data_key": "historia_familiar_esposa_estado_salud",
+      "type": "text"
+    },
+    "EDAD A LA MUERTEEsposa": {
+      "data_key": "historia_familiar_esposa_edad_muerte",
+      "type": "text"
+    },
+    "CAUSAS DE LA MUERTE DIGA LA FECHAEsposa": {
+      "data_key": "historia_familiar_esposa_causa_muerte",
+      "type": "text"
+    },
+    "EDAD SI VIVEMadre": {
+      "data_key": "historia_familiar_madre_edad_si_vive",
+      "type": "text"
+    },
+    "ESTADO DE SALUD SI NO ES BUENA DIGA POR QUÉMadre": {
+      "data_key": "historia_familiar_madre_estado_salud",
+      "type": "text"
+    },
+    "EDAD A LA MUERTEMadre": {
+      "data_key": "historia_familiar_madre_edad_muerte",
+      "type": "text"
+    },
+    "CAUSAS DE LA MUERTE DIGA LA FECHAMadre": {
+      "data_key": "historia_familiar_madre_causa_muerte",
+      "type": "text"
+    },
+    "EDAD SI VIVEPadre": {
+      "data_key": "historia_familiar_padre_edad_si_vive",
+      "type": "text"
+    },
+    "ESTADO DE SALUD SI NO ES BUENA DIGA POR QUÉPadre": {
+      "data_key": "historia_familiar_padre_estado_salud",
+      "type": "text"
+    },
+    "EDAD A LA MUERTEPadre": {
+      "data_key": "historia_familiar_padre_edad_muerte",
+      "type": "text"
+    },
+    "CAUSAS DE LA MUERTE DIGA LA FECHAPadre": {
+      "data_key": "historia_familiar_padre_causa_muerte",
+      "type": "text"
+    },
+    "EDAD SI VIVEHermanosas": {
+      "data_key": "historia_familiar_hermanos_edad_si_vive",
+      "type": "text"
+    },
+    "ESTADO DE SALUD SI NO ES BUENA DIGA POR QUÉHermanosas": {
+      "data_key": "historia_familiar_hermanos_estado_salud",
+      "type": "text"
+    },
+    "EDAD A LA MUERTEHermanosas": {
+      "data_key": "historia_familiar_hermanos_edad_muerte",
+      "type": "text"
+    },
+    "CAUSAS DE LA MUERTE DIGA LA FECHAHermanosas": {
+      "data_key": "historia_familiar_hermanos_causa_muerte",
+      "type": "text"
+    },
+    "Padece alguna enfermedad crónica Cuál": {
+      "data_key": "medico_intl_1_detalle",
+      "type": "text"
+    },
+    "Sí_22": {
+      "data_key": "medico_intl_1",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_22": {
+      "data_key": "medico_intl_1",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_23": {
+      "data_key": "medico_intl_2",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_23": {
+      "data_key": "medico_intl_2",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_20": {
+      "data_key": "medico_intl_3",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_21": {
+      "data_key": "medico_intl_3",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_24": {
+      "data_key": "medico_intl_4",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_24": {
+      "data_key": "medico_intl_4",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_26": {
+      "data_key": "medico_intl_5",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_27": {
+      "data_key": "medico_intl_5",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_28": {
+      "data_key": "medico_intl_6",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_29": {
+      "data_key": "medico_intl_6",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_28": {
+      "data_key": "medico_intl_7",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_28": {
+      "data_key": "medico_intl_7",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_32": {
+      "data_key": "medico_intl_8",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_33": {
+      "data_key": "medico_intl_8",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_30": {
+      "data_key": "medico_intl_9",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_30": {
+      "data_key": "medico_intl_9",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_31": {
+      "data_key": "medico_intl_10",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_31": {
+      "data_key": "medico_intl_10",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_32": {
+      "data_key": "medico_intl_11",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_32": {
+      "data_key": "medico_intl_11",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_34": {
+      "data_key": "medico_intl_12",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_34": {
+      "data_key": "medico_intl_12",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_36": {
+      "data_key": "medico_intl_13",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_37": {
+      "data_key": "medico_intl_13",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_37": {
+      "data_key": "medico_intl_14",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_37": {
+      "data_key": "medico_intl_14",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_38": {
+      "data_key": "medico_intl_15",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_38": {
+      "data_key": "medico_intl_15",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_40": {
+      "data_key": "medico_intl_16",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_40": {
+      "data_key": "medico_intl_16",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_42": {
+      "data_key": "medico_intl_17",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_42": {
+      "data_key": "medico_intl_17",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_43": {
+      "data_key": "medico_intl_18",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_43": {
+      "data_key": "medico_intl_18",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_45": {
+      "data_key": "medico_intl_19",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_45": {
+      "data_key": "medico_intl_19",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_47": {
+      "data_key": "medico_intl_20",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_47": {
+      "data_key": "medico_intl_20",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_42": {
+      "data_key": "medico_intl_21",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_43": {
+      "data_key": "medico_intl_21",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_18": {
+      "data_key": "medico_intl_22",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_19": {
+      "data_key": "medico_intl_22",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_22": {
+      "data_key": "medico_intl_23",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_23": {
+      "data_key": "medico_intl_23",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_24": {
+      "data_key": "medico_intl_24",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_25": {
+      "data_key": "medico_intl_24",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_25": {
+      "data_key": "medico_intl_25",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_25": {
+      "data_key": "medico_intl_25",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_26": {
+      "data_key": "medico_intl_26",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_26": {
+      "data_key": "medico_intl_26",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_27": {
+      "data_key": "medico_intl_27",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_27": {
+      "data_key": "medico_intl_27",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_30": {
+      "data_key": "medico_intl_28",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_31": {
+      "data_key": "medico_intl_28",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Diario": {
+      "data_key": "medico_intl_28_copas_diario",
+      "type": "text"
+    },
+    "Semanal": {
+      "data_key": "medico_intl_28_copas_semanal",
+      "type": "text"
+    },
+    "Mensual_2": {
+      "data_key": "medico_intl_28_copas_mensual",
+      "type": "text"
+    },
+    "Sí_29": {
+      "data_key": "medico_intl_29",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_29": {
+      "data_key": "medico_intl_29",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_34": {
+      "data_key": "medico_intl_30",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_35": {
+      "data_key": "medico_intl_30",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_33": {
+      "data_key": "medico_intl_31",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_33": {
+      "data_key": "medico_intl_31",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_35": {
+      "data_key": "medico_intl_32",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_35": {
+      "data_key": "medico_intl_32",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_36": {
+      "data_key": "medico_intl_33",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_36": {
+      "data_key": "medico_intl_33",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_38": {
+      "data_key": "medico_intl_34",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_39": {
+      "data_key": "medico_intl_34",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_39": {
+      "data_key": "medico_intl_35",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_39": {
+      "data_key": "medico_intl_35",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_41": {
+      "data_key": "medico_intl_36",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_41": {
+      "data_key": "medico_intl_36",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Sí_44": {
+      "data_key": "medico_intl_37",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_44": {
+      "data_key": "medico_intl_37",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "a Los pechos": {
+      "data_key": "medico_intl_37_organo_afectado",
+      "type": "checkbox_group",
+      "value": "pechos",
+      "on_state": "/On"
+    },
+    "b Los ovarios": {
+      "data_key": "medico_intl_37_organo_afectado",
+      "type": "checkbox_group",
+      "value": "ovarios",
+      "on_state": "/On"
+    },
+    "c La matriz": {
+      "data_key": "medico_intl_37_organo_afectado",
+      "type": "checkbox_group",
+      "value": "matriz",
+      "on_state": "/On"
+    },
+    "Sí_46": {
+      "data_key": "medico_intl_38",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_46": {
+      "data_key": "medico_intl_38",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "undefined_40": {
+      "data_key": "medico_intl_39",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "undefined_41": {
+      "data_key": "medico_intl_39",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Fecha de la última menstruación": {
+      "data_key": "medico_intl_39_fecha_ultima_menstruacion",
+      "type": "text"
+    },
+    "Afirmativas": {
+      "data_key": "antecedentes_detalle_afirmativas_1",
+      "type": "text",
+      "nota": "Cuadro grande izquierdo de 'Detalle de las respuestas afirmativas' (pagina 3)."
+    },
+    "Afirmativas 2": {
+      "data_key": "antecedentes_detalle_afirmativas_2",
+      "type": "text",
+      "nota": "Cuadro grande derecho de 'Detalle de las respuestas afirmativas' (pagina 3)."
+    },
+    "Firmada en_2": {
+      "data_key": "firma_parte2_lugar_ciudad",
+      "type": "text"
+    },
+    "el_2": {
+      "data_key": "firma_parte2_dia",
+      "type": "text"
+    },
+    "de_2": {
+      "data_key": "firma_parte2_mes",
+      "type": "text"
+    },
+    "de 20_2": {
+      "data_key": "firma_parte2_anio",
+      "type": "text"
+    },
+    "Testigo": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del Testigo - no se autocompleta."
+    },
+    "Contratante  Dueño": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del Contratante/Dueño (solo si es diferente al Asegurado) - no se autocompleta."
+    },
+    "Propuesto Asegurado": {
+      "data_key": null,
+      "type": "manual",
+      "note": "Firma manuscrita del Propuesto Asegurado - no se autocompleta."
+    },
+    "1 Conoce usted bien al solicitante": {
+      "data_key": "corredor_q1_conoce_solicitante",
+      "type": "text"
+    },
+    "2 Qué ingesos deriva de su ocupación": {
+      "data_key": "corredor_q2_ingresos_ocupacion",
+      "type": "text"
+    },
+    "3 Qué ingreso deriva de otras fuentes": {
+      "data_key": "corredor_q3_ingresos_otras_fuentes",
+      "type": "text"
+    },
+    "4 Dirección residencial anterior si hubiera cambiado en los últimos dos años": {
+      "data_key": "corredor_q4_direccion_anterior",
+      "type": "text"
+    },
+    "5 Qué necesidad cubre el seguro solicitado": {
+      "data_key": "corredor_q5_necesidad_cubierta",
+      "type": "text"
+    },
+    "6 Tiene usted conocimiento de algún detalle que podría afectar el riesgo el cual no ha sido mencionado en esta solicitud": {
+      "data_key": "corredor_q6_detalle_riesgo",
+      "type": "text"
+    },
+    "undefined_44": {
+      "data_key": "corredor_q6_detalle_riesgo_linea2",
+      "type": "text",
+      "nota": "Segunda linea (continuacion) del campo de respuesta a la pregunta 6 del Reporte del Corredor; el PDF divide la respuesta en dos campos de texto porque la pregunta ocupa dos renglones impresos."
+    },
+    "1 Con quién reside ella": {
+      "data_key": "mujer_q1_con_quien_reside",
+      "type": "text"
+    },
+    "2 De ser casada Cuál es el nombre completo del esposo": {
+      "data_key": "mujer_q2_nombre_esposo",
+      "type": "text"
+    },
+    "3 Qué edad tiene él": {
+      "data_key": "mujer_q3_edad_esposo",
+      "type": "text"
+    },
+    "Qué ocupación tiene él": {
+      "data_key": "mujer_q3_ocupacion_esposo",
+      "type": "text"
+    },
+    "4 Qué cantidad de seguro de vida tiene él": {
+      "data_key": "mujer_q4_seguro_vida_esposo_monto",
+      "type": "text"
+    },
+    "5 Si él no tiene seguro a qué se debe": {
+      "data_key": "mujer_q5_razon_no_tiene_seguro",
+      "type": "text"
+    },
+    "Sí_48": {
+      "data_key": "aplica_descuento_plan_retiro",
+      "type": "checkbox_group",
+      "value": "si",
+      "on_state": "/On"
+    },
+    "No_48": {
+      "data_key": "aplica_descuento_plan_retiro",
+      "type": "checkbox_group",
+      "value": "no",
+      "on_state": "/On"
+    },
+    "Nombre o Razón Social": {
+      "data_key": "corredor_nombre_razon_social",
+      "type": "text"
+    },
+    "Fecha_2": {
+      "data_key": "corredor_fecha_firma",
+      "type": "text"
+    },
+    "Comentarios o Endosos": {
+      "data_key": "comentarios_endosos",
+      "type": "text"
+    }
+  }
+}

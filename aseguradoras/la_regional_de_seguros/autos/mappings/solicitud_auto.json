@@ -1,0 +1,851 @@
+{
+ "template": "aseguradoras/la_regional_de_seguros/autos/templates/solicitud_auto.pdf",
+ "fields": {
+  "TextBox131_9": {
+   "data_key": "encabezado_vigencia_desde",
+   "type": "text"
+  },
+  "TextBox131_10": {
+   "data_key": "encabezado_vigencia_hasta",
+   "type": "text"
+  },
+  "TextBox2": {
+   "data_key": "contratante_nombre_razon_social",
+   "type": "text"
+  },
+  "TextBox131": {
+   "data_key": "contratante_ruc",
+   "type": "text"
+  },
+  "TextBox131_2": {
+   "data_key": "contratante_cedula_pasaporte",
+   "type": "text"
+  },
+  "TextBox3": {
+   "data_key": "contratante_fnac_dia",
+   "type": "text"
+  },
+  "TextBox31": {
+   "data_key": "contratante_fnac_mes",
+   "type": "text"
+  },
+  "TextBox32": {
+   "data_key": "contratante_fnac_anio",
+   "type": "text"
+  },
+  "TextBox13": {
+   "data_key": "contratante_edad",
+   "type": "text"
+  },
+  "TextBox131_3": {
+   "data_key": "contratante_lugar_nacimiento",
+   "type": "text"
+  },
+  "TextBox131_4": {
+   "data_key": "contratante_provincia_nacimiento",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_30": {
+   "data_key": "contratante_genero",
+   "type": "checkbox_group",
+   "value": "f",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_31": {
+   "data_key": "contratante_genero",
+   "type": "checkbox_group",
+   "value": "m",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1": {
+   "data_key": "contratante_estado_civil",
+   "type": "checkbox_group",
+   "value": "soltero",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_2": {
+   "data_key": "contratante_estado_civil",
+   "type": "checkbox_group",
+   "value": "casado",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_3": {
+   "data_key": "contratante_estado_civil",
+   "type": "checkbox_group",
+   "value": "divorciado",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_4": {
+   "data_key": "contratante_estado_civil",
+   "type": "checkbox_group",
+   "value": "viudo",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_5": {
+   "data_key": "contratante_estado_civil",
+   "type": "checkbox_group",
+   "value": "unido",
+   "on_state": "/Yes"
+  },
+  "TextBox12": {
+   "data_key": "contratante_profesion_oficio",
+   "type": "text"
+  },
+  "Casilla 2": {
+   "data_key": "contratante_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "comercial_profesional",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_6": {
+   "data_key": "contratante_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "estudiante",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_7": {
+   "data_key": "contratante_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "gubernamental",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_8": {
+   "data_key": "contratante_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "independiente",
+   "on_state": "/Yes"
+  },
+  "TextBox132": {
+   "data_key": "contratante_residencia_provincia",
+   "type": "text"
+  },
+  "TextBox133": {
+   "data_key": "contratante_residencia_distrito",
+   "type": "text"
+  },
+  "TextBox134": {
+   "data_key": "contratante_residencia_corregimiento",
+   "type": "text"
+  },
+  "TextBox134_5": {
+   "data_key": "contratante_residencia_urbanizacion",
+   "type": "text"
+  },
+  "TextBox134_2": {
+   "data_key": "contratante_residencia_calle",
+   "type": "text"
+  },
+  "TextBox134_3": {
+   "data_key": "contratante_residencia_via",
+   "type": "text"
+  },
+  "Casilla 2_2": {
+   "data_key": "contratante_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "casa",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_32": {
+   "data_key": "contratante_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "edificio",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_33": {
+   "data_key": "contratante_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "local",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_34": {
+   "data_key": "contratante_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "cc",
+   "on_state": "/Yes"
+  },
+  "TextBox134_4": {
+   "data_key": "contratante_residencia_inmueble_nombre",
+   "type": "text"
+  },
+  "TextBox132_2": {
+   "data_key": "contratante_residencia_piso",
+   "type": "text"
+  },
+  "TextBox133_2": {
+   "data_key": "contratante_residencia_apartamento",
+   "type": "text"
+  },
+  "TextBox134_6": {
+   "data_key": "contratante_residencia_oficina",
+   "type": "text"
+  },
+  "TextBox134_7": {
+   "data_key": "contratante_residencia_apartado_postal",
+   "type": "text"
+  },
+  "TextBox2211": {
+   "data_key": "contratante_telefono_celular",
+   "type": "text"
+  },
+  "TextBox221": {
+   "data_key": "contratante_telefono_residencial",
+   "type": "text"
+  },
+  "TextBox2212": {
+   "data_key": "contratante_telefono_oficina",
+   "type": "text"
+  },
+  "TextBox111": {
+   "data_key": "contratante_email",
+   "type": "text"
+  },
+  "TextBox2_2": {
+   "data_key": "asegurado_nombre_razon_social",
+   "type": "text"
+  },
+  "TextBox131_5": {
+   "data_key": "asegurado_ruc",
+   "type": "text"
+  },
+  "TextBox131_6": {
+   "data_key": "asegurado_cedula_pasaporte",
+   "type": "text"
+  },
+  "TextBox3_2": {
+   "data_key": "asegurado_fnac_dia",
+   "type": "text"
+  },
+  "TextBox31_2": {
+   "data_key": "asegurado_fnac_mes",
+   "type": "text"
+  },
+  "TextBox32_2": {
+   "data_key": "asegurado_fnac_anio",
+   "type": "text"
+  },
+  "TextBox13_2": {
+   "data_key": "asegurado_edad",
+   "type": "text"
+  },
+  "TextBox131_7": {
+   "data_key": "asegurado_lugar_nacimiento",
+   "type": "text"
+  },
+  "TextBox131_8": {
+   "data_key": "asegurado_provincia_nacimiento",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_35": {
+   "data_key": "asegurado_genero",
+   "type": "checkbox_group",
+   "value": "f",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_36": {
+   "data_key": "asegurado_genero",
+   "type": "checkbox_group",
+   "value": "m",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_37": {
+   "data_key": "asegurado_estado_civil",
+   "type": "checkbox_group",
+   "value": "soltero",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_38": {
+   "data_key": "asegurado_estado_civil",
+   "type": "checkbox_group",
+   "value": "casado",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_39": {
+   "data_key": "asegurado_estado_civil",
+   "type": "checkbox_group",
+   "value": "divorciado",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_40": {
+   "data_key": "asegurado_estado_civil",
+   "type": "checkbox_group",
+   "value": "viudo",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_41": {
+   "data_key": "asegurado_estado_civil",
+   "type": "checkbox_group",
+   "value": "unido",
+   "on_state": "/Yes"
+  },
+  "TextBox12_2": {
+   "data_key": "asegurado_profesion_oficio",
+   "type": "text"
+  },
+  "Casilla 2_3": {
+   "data_key": "asegurado_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "comercial_profesional",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_42": {
+   "data_key": "asegurado_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "estudiante",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_43": {
+   "data_key": "asegurado_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "gubernamental",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_44": {
+   "data_key": "asegurado_tipo_actividad",
+   "type": "checkbox_group",
+   "value": "independiente",
+   "on_state": "/Yes"
+  },
+  "TextBox132_3": {
+   "data_key": "asegurado_residencia_provincia",
+   "type": "text"
+  },
+  "TextBox133_3": {
+   "data_key": "asegurado_residencia_distrito",
+   "type": "text"
+  },
+  "TextBox134_8": {
+   "data_key": "asegurado_residencia_corregimiento",
+   "type": "text"
+  },
+  "TextBox134_9": {
+   "data_key": "asegurado_residencia_urbanizacion",
+   "type": "text"
+  },
+  "TextBox134_10": {
+   "data_key": "asegurado_residencia_calle",
+   "type": "text"
+  },
+  "TextBox134_11": {
+   "data_key": "asegurado_residencia_via",
+   "type": "text"
+  },
+  "Casilla 2_4": {
+   "data_key": "asegurado_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "casa",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_45": {
+   "data_key": "asegurado_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "edificio",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_46": {
+   "data_key": "asegurado_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "local",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_47": {
+   "data_key": "asegurado_residencia_tipo_inmueble",
+   "type": "checkbox_group",
+   "value": "cc",
+   "on_state": "/Yes"
+  },
+  "TextBox134_12": {
+   "data_key": "asegurado_residencia_inmueble_nombre",
+   "type": "text"
+  },
+  "TextBox132_4": {
+   "data_key": "asegurado_residencia_piso",
+   "type": "text"
+  },
+  "TextBox133_4": {
+   "data_key": "asegurado_residencia_apartamento",
+   "type": "text"
+  },
+  "TextBox134_13": {
+   "data_key": "asegurado_residencia_oficina",
+   "type": "text"
+  },
+  "TextBox134_14": {
+   "data_key": "asegurado_residencia_apartado_postal",
+   "type": "text"
+  },
+  "TextBox2211_12": {
+   "data_key": "asegurado_telefono_celular",
+   "type": "text"
+  },
+  "TextBox221_2": {
+   "data_key": "asegurado_telefono_residencial",
+   "type": "text"
+  },
+  "TextBox2212_2": {
+   "data_key": "asegurado_telefono_oficina",
+   "type": "text"
+  },
+  "TextBox111_2": {
+   "data_key": "asegurado_email",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_48": {
+   "data_key": "forma_pago",
+   "type": "checkbox_group",
+   "value": "tarjeta_credito",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_9": {
+   "data_key": "forma_pago",
+   "type": "checkbox_group",
+   "value": "transferencia_ach",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_10": {
+   "data_key": "forma_pago",
+   "type": "checkbox_group",
+   "value": "transferencia_banca_linea",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_11": {
+   "data_key": "forma_pago",
+   "type": "checkbox_group",
+   "value": "descuento_planilla",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_12": {
+   "data_key": "forma_pago",
+   "type": "checkbox_group",
+   "value": "pago_voluntario",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_13": {
+   "data_key": "frecuencia_pago",
+   "type": "checkbox_group",
+   "value": "mensual",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_14": {
+   "data_key": "frecuencia_pago",
+   "type": "checkbox_group",
+   "value": "trimestral",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_15": {
+   "data_key": "frecuencia_pago",
+   "type": "checkbox_group",
+   "value": "semestral",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_16": {
+   "data_key": "frecuencia_pago",
+   "type": "checkbox_group",
+   "value": "anual",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_2": {
+   "data_key": "vehiculo_marca",
+   "type": "text"
+  },
+  "TextBox2211_3": {
+   "data_key": "vehiculo_modelo",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_17": {
+   "data_key": "vehiculo_tipo_traccion",
+   "type": "checkbox_group",
+   "value": "automatica",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_18": {
+   "data_key": "vehiculo_tipo_traccion",
+   "type": "checkbox_group",
+   "value": "manual",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_4": {
+   "data_key": "vehiculo_anio",
+   "type": "text"
+  },
+  "TextBox2211_5": {
+   "data_key": "vehiculo_colores",
+   "type": "text"
+  },
+  "TextBox2211_6": {
+   "data_key": "vehiculo_placa",
+   "type": "text"
+  },
+  "TextBox2211_7": {
+   "data_key": "vehiculo_num_pasajeros",
+   "type": "text"
+  },
+  "TextBox2211_8": {
+   "data_key": "vehiculo_num_motor",
+   "type": "text"
+  },
+  "TextBox2211_9": {
+   "data_key": "vehiculo_num_chasis",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_19": {
+   "data_key": "vehiculo_uso",
+   "type": "checkbox_group",
+   "value": "particular",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_20": {
+   "data_key": "vehiculo_uso",
+   "type": "checkbox_group",
+   "value": "comercial",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_21": {
+   "data_key": "vehiculo_uso",
+   "type": "checkbox_group",
+   "value": "autobuses",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_22": {
+   "data_key": "vehiculo_uso",
+   "type": "checkbox_group",
+   "value": "otro",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_10": {
+   "data_key": "vehiculo_uso_otro_texto",
+   "type": "text"
+  },
+  "Casilla 3": {
+   "data_key": "vehiculo_tipo",
+   "type": "checkbox_group",
+   "value": "turismo",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_23": {
+   "data_key": "vehiculo_tipo",
+   "type": "checkbox_group",
+   "value": "4x4",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_24": {
+   "data_key": "vehiculo_grupo",
+   "type": "checkbox_group",
+   "value": "2_a_4_ton",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_25": {
+   "data_key": "vehiculo_grupo",
+   "type": "checkbox_group",
+   "value": "4_ton_en_adelante",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_26": {
+   "data_key": "vehiculo_dispositivos_seguridad",
+   "type": "checkbox_group",
+   "value": "inmobilizer",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_27": {
+   "data_key": "vehiculo_dispositivos_seguridad",
+   "type": "checkbox_group",
+   "value": "baston",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_28": {
+   "data_key": "vehiculo_dispositivos_seguridad",
+   "type": "checkbox_group",
+   "value": "alarma",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_29": {
+   "data_key": "vehiculo_dispositivos_seguridad",
+   "type": "checkbox_group",
+   "value": "otro",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_11": {
+   "data_key": "vehiculo_dispositivos_seguridad_otro_texto",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_51": {
+   "data_key": "cobertura_tipo",
+   "type": "checkbox_group",
+   "value": "rc_obligatoria",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_52": {
+   "data_key": "cobertura_tipo",
+   "type": "checkbox_group",
+   "value": "rc",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_53": {
+   "data_key": "cobertura_tipo",
+   "type": "checkbox_group",
+   "value": "todo_riesgo",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_49": {
+   "data_key": "cobertura_rc_lesiones_corporales",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_17": {
+   "data_key": "cobertura_rc_lesiones_corporales_suma",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_50": {
+   "data_key": "cobertura_rc_danos_propiedad_ajena",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_18": {
+   "data_key": "cobertura_rc_danos_propiedad_ajena_suma",
+   "type": "text"
+  },
+  "Casilla 1": {
+   "data_key": "cobertura_rc_gastos_medicos",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_20": {
+   "data_key": "cobertura_rc_gastos_medicos_suma",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_56": {
+   "data_key": "cobertura_rc_todo_riesgo_automovil",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_21": {
+   "data_key": "cobertura_rc_todo_riesgo_automovil_suma",
+   "type": "text"
+  },
+  "TextBox2211_15": {
+   "data_key": "apov_num_ocupantes",
+   "type": "text"
+  },
+  "TextBox2211_14": {
+   "data_key": "apov_num_conductor",
+   "type": "text"
+  },
+  "TextBox2211_13": {
+   "data_key": "apov_num_ayudantes",
+   "type": "text"
+  },
+  "TextBox2211_16": {
+   "data_key": "apov_muerte_conductor_suma",
+   "type": "text"
+  },
+  "TextBox2211_22": {
+   "data_key": "apov_muerte_ocupante_suma",
+   "type": "text"
+  },
+  "TextBox2211_23": {
+   "data_key": "apov_incapacidad_conductor_suma",
+   "type": "text"
+  },
+  "TextBox2211_24": {
+   "data_key": "apov_incapacidad_ocupante_suma",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_57": {
+   "data_key": "accesorio_1_incluido",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Cuadro de texto 1": {
+   "data_key": "accesorio_1_descripcion",
+   "type": "text"
+  },
+  "Cuadro de texto 1_2": {
+   "data_key": "accesorio_1_suma",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_58": {
+   "data_key": "accesorio_2_incluido",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Cuadro de texto 1_3": {
+   "data_key": "accesorio_2_descripcion",
+   "type": "text"
+  },
+  "Cuadro de texto 1_4": {
+   "data_key": "accesorio_2_suma",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_59": {
+   "data_key": "accesorio_3_incluido",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Cuadro de texto 1_5": {
+   "data_key": "accesorio_3_descripcion",
+   "type": "text"
+  },
+  "Cuadro de texto 1_6": {
+   "data_key": "accesorio_3_suma",
+   "type": "text"
+  },
+  "Casilla de verificaci#C3#B3n 1_60": {
+   "data_key": "cobertura_extension_garantias_0km",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_61": {
+   "data_key": "cobertura_automedida_mas_7_anios",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_54": {
+   "data_key": "siniestros_anteriores",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Yes"
+  },
+  "Casilla de verificaci#C3#B3n 1_55": {
+   "data_key": "siniestros_anteriores",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Yes"
+  },
+  "TextBox2211_19": {
+   "data_key": "siniestros_anteriores_compania",
+   "type": "text"
+  },
+  "TextBox222": {
+   "data_key": "conductor_1_nombre",
+   "type": "text"
+  },
+  "TextBox223": {
+   "data_key": "conductor_1_cedula",
+   "type": "text"
+  },
+  "TextBox22341": {
+   "data_key": "conductor_1_parentesco",
+   "type": "text"
+  },
+  "Cuadro de texto 2": {
+   "data_key": "conductor_1_fecha_nacimiento",
+   "type": "text"
+  },
+  "TextBox22346": {
+   "data_key": "conductor_1_porcentaje_uso",
+   "type": "text"
+  },
+  "TextBox222_3": {
+   "data_key": "conductor_2_nombre",
+   "type": "text"
+  },
+  "TextBox2231": {
+   "data_key": "conductor_2_cedula",
+   "type": "text"
+  },
+  "TextBox223411": {
+   "data_key": "conductor_2_parentesco",
+   "type": "text"
+  },
+  "Cuadro de texto 3": {
+   "data_key": "conductor_2_fecha_nacimiento",
+   "type": "text"
+  },
+  "TextBox223461": {
+   "data_key": "conductor_2_porcentaje_uso",
+   "type": "text"
+  },
+  "TextBox222_4": {
+   "data_key": "conductor_3_nombre",
+   "type": "text"
+  },
+  "TextBox2232": {
+   "data_key": "conductor_3_cedula",
+   "type": "text"
+  },
+  "TextBox2234111": {
+   "data_key": "conductor_3_parentesco",
+   "type": "text"
+  },
+  "Cuadro de texto 4": {
+   "data_key": "conductor_3_fecha_nacimiento",
+   "type": "text"
+  },
+  "TextBox223462": {
+   "data_key": "conductor_3_porcentaje_uso",
+   "type": "text"
+  },
+  "TextBox222_2": {
+   "data_key": "acreedor_1_entidad",
+   "type": "text"
+  },
+  "TextBox223_2": {
+   "data_key": "acreedor_1_ruc",
+   "type": "text"
+  },
+  "TextBox22342": {
+   "data_key": "acreedor_1_monto",
+   "type": "text"
+  },
+  "TextBox2221": {
+   "data_key": "acreedor_2_entidad",
+   "type": "text"
+  },
+  "TextBox2231_2": {
+   "data_key": "acreedor_2_ruc",
+   "type": "text"
+  },
+  "TextBox223422": {
+   "data_key": "acreedor_2_monto",
+   "type": "text"
+  },
+  "TextBox2222": {
+   "data_key": "acreedor_3_entidad",
+   "type": "text"
+  },
+  "TextBox2232_2": {
+   "data_key": "acreedor_3_ruc",
+   "type": "text"
+  },
+  "TextBox223423": {
+   "data_key": "acreedor_3_monto",
+   "type": "text"
+  },
+  "TextBox13211": {
+   "data_key": "firmas_contratante_nombre",
+   "type": "text"
+  },
+  "TextBox132112": {
+   "data_key": "firmas_contratante_fecha",
+   "type": "text"
+  },
+  "TextBox13211_2": {
+   "data_key": "firmas_asegurado_nombre",
+   "type": "text"
+  },
+  "TextBox132112_2": {
+   "data_key": "firmas_asegurado_fecha",
+   "type": "text"
+  },
+  "TextBox13211_3": {
+   "data_key": "firmas_productor_nombre",
+   "type": "text"
+  },
+  "Cuadro de texto 5": {
+   "data_key": "firmas_productor_codigo",
+   "type": "text"
+  },
+  "Cuadro de texto 5_2": {
+   "data_key": "firmas_productor_fecha",
+   "type": "text"
+  }
+ }
+}

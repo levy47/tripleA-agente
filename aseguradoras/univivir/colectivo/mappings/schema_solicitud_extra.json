@@ -1,0 +1,1141 @@
+{
+ "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud de Inscripción - Seguro Colectivo' de UniVivir Seguros, que combina Vida + Médico Hospitalario + Accidentes Personales en una sola solicitud) que no forman parte del intake estandar de WhatsApp en schema_cliente.json (mappings/schema_cliente.json).\n\nESTRUCTURA GENERAL: 2 páginas, 286 campos AcroForm de primer nivel (confirmado con pypdf PdfReader(...).get_fields(), que en ESTE PDF funciona sin el workaround manual que hizo falta en UniVivir Salud). Página 1: encabezado (Vida/Médico Hospitalario/Accidentes Personales, Vigencia, Contratante, Filial), Datos del asegurado, Autorización de pago de reclamaciones, Datos de los dependientes (5 filas), Beneficiarios principales (5 filas, no 4 como podria sugerir una lectura superficial del formulario) y contingentes (2 filas), Información adicional (3 bloques de 2 filas cada uno). Página 2: Declaración de salud (26 preguntas Sí/No + detalle en línea para 8 de ellas), tabla 'si contestó afirmativamente' (4 filas x 6 columnas), Información del médico de cabecera (5 filas), Autorización (solo el campo Fecha tiene AcroForm; las líneas de firma no), y 'Para uso de la compañía' (post-emisión, manual).\n\nENCABEZADO 'Fija/Variable/Sueldo': a diferencia de lo que podría sugerir una lectura superficial del formulario ('checkbox + monto'), estas NO son casillas de verificación: son 3 campos de texto libre por ramo (Vida/Médico/Accidentes) donde se escribe el monto directamente en la línea correspondiente al tipo de plan aplicable (Fija, Variable o Sueldo), dejando las otras 2 vacías.\n\nDECLARACIÓN DE SALUD (26 preguntas): a diferencia del mapping de UniVivir Salud (mismo emisor, formulario distinto) donde cada pregunta Sí/No es UN campo de radio compartido con 2 kids y hay que escribir el estado de exportación literal ('/0'/'/1'), en ESTE formulario cada pregunta tiene 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un único estado de exportación '/Yes'/'Off'), por lo que se mapearon con type='checkbox_group' normal (mismo patrón que 'pago_metodo'/'pago_frecuencia' en el mapping de UniVivir Salud): datos.json usa los valores semánticos simples 'si'/'no', no estados PDF literales.\n\nBOTONES DE RADIO ('Botón de opción 1' a 'Botón de opción 6', 6 grupos en la página 1): estos SÍ son grupos de radio de un solo campo AcroForm con 2 kids/estados de exportación ('/0'/'/1'), igual que en Blue Cross y UniVivir Salud. El helper src/fill_pdf.py (que NO se modificó) solo soporta, para type=checkbox_group, UN par (value, on_state) por entrada de mapping.json; como los nombres de campo PDF son únicos, es imposible representar los 2 estados como entradas separadas del mismo campo compartido. Por eso estos 6 campos se mapearon con type='text' en mapping.json: datos.json debe proveer el ESTADO DE EXPORTACIÓN LITERAL del PDF ('/0' o '/1'), documentado por cada data_key abajo en 'valores_pdf_literales'. ANOMALÍA en 'infoadicional_deporte_si_no' ('Botón de opción 6'): su estado inicial (/AS) en la plantilla es '/0' (Si) en vez de estar en blanco; ver nota completa en ese data_key.\n\nCAMPO HUÉRFANO 'Campo de texto 46' (página 1): posicionado en el hueco entre 'Nombre del banco' y el checkbox 'Tipo de cuenta: Ahorro', sin ninguna línea o caja de captura visible en el render de esa zona (coincide con la etiqueta impresa 'Tipo de cuenta'). Se dejó como type=manual para evitar texto flotando sobre la etiqueta.\n\nCHECKBOXES HUÉRFANOS 'Button20', 'Button28', 'Button37' (página 2, Declaración de salud): posicionados con x0 >= 613pt, es decir casi enteramente FUERA del área visible de la página (MediaBox [0,0,612,1008], ancho=612pt), sin etiqueta ni casilla dibujada visible en el render. Cercanos verticalmente a las filas de las preguntas 13 (Button20, Button28) y 18 (Button37) de la Declaración de salud, pero claramente NO son los checkboxes Sí/No reales de esas filas (esos ya están mapeados en las columnas x=541.8/x=568.6). Artefactos de autoría del PDF del mismo tipo que 'Botón 20' documentado en el mapping de UniVivir Salud; se dejan sin marcar.\n\nANOMALÍA DE ETIQUETA DUPLICADA en la tabla 'Si ha contestado afirmativamente...' (página 2): las columnas 5 y 6 están IMPRESAS con el mismo texto 'Condición actual' en el PDF original (defecto de autoría, no un error de este mapping). Por analogía con la tabla equivalente de 6 columnas del formulario de UniVivir Salud (que sí distingue 'Condición actual' de 'Médico/Hospital'), la 6ta columna de este mapping se nombró 'medico_hospital'; ver nota completa en ese data_key.\n\nSECCIÓN 'AUTORIZACIÓN' (firmas): 'Firma del solicitante' y 'Firma y sello del contratante' son solo líneas impresas SIN campo AcroForm asociado (no aparecen en este mapping por no existir campo que llenar); solo 'Fecha' tiene un campo AcroForm real ('Campo de texto 10110'), y por instrucción explícita de la tarea se dejó como type=manual junto con las otras 2 (no se autocompleta ninguna de las 3).\n\nSECCIÓN 'PARA USO DE LA COMPAÑÍA' (página 2, al final: 4 líneas en blanco para notas, Aprobado/Declinado, Evaluador, Cargo, Fecha): se dejaron todas como type=manual (no se autocompletan) porque son datos que la aseguradora completa DESPUES de recibir y evaluar la solicitud (post-emisión/suscripción), igual que en los mappings de Blue Cross y UniVivir Salud para sus secciones equivalentes.",
+ "campos": {
+  "encabezado_vida_suma_fija": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Seguros de Vida': monto de 'Suma asegurada o plan' si el plan es de suma FIJA. Campo de texto libre (no checkbox): se escribe el monto directamente en la linea de 'Fija ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_vida_suma_variable": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Seguros de Vida': monto de 'Suma asegurada o plan' si el plan es VARIABLE. Campo de texto libre, se escribe en la linea de 'Variable ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_vida_suma_sueldo": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Seguros de Vida': monto/factor de 'Suma asegurada o plan' si el plan esta basado en SUELDO. Campo de texto libre, se escribe en la linea de 'Sueldo ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_vida_certificado": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Seguros de Vida': numero de Certificado."
+  },
+  "encabezado_vida_poliza": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Seguros de Vida': numero de Poliza."
+  },
+  "encabezado_medico_suma_fija": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Médico Hospitalario': monto de 'Suma asegurada o plan' si el plan es de suma FIJA. Campo de texto libre (no checkbox): se escribe el monto directamente en la linea de 'Fija ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_medico_suma_variable": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Médico Hospitalario': monto de 'Suma asegurada o plan' si el plan es VARIABLE. Campo de texto libre, se escribe en la linea de 'Variable ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_medico_suma_sueldo": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Médico Hospitalario': monto/factor de 'Suma asegurada o plan' si el plan esta basado en SUELDO. Campo de texto libre, se escribe en la linea de 'Sueldo ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_medico_certificado": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Médico Hospitalario': numero de Certificado."
+  },
+  "encabezado_medico_poliza": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Médico Hospitalario': numero de Poliza."
+  },
+  "encabezado_accidentes_suma_fija": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Accidentes Personales': monto de 'Suma asegurada o plan' si el plan es de suma FIJA. Campo de texto libre (no checkbox): se escribe el monto directamente en la linea de 'Fija ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_accidentes_suma_variable": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Accidentes Personales': monto de 'Suma asegurada o plan' si el plan es VARIABLE. Campo de texto libre, se escribe en la linea de 'Variable ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_accidentes_suma_sueldo": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Accidentes Personales': monto/factor de 'Suma asegurada o plan' si el plan esta basado en SUELDO. Campo de texto libre, se escribe en la linea de 'Sueldo ____'. Dejar vacio si no aplica. LIMITACION DE ANCHO: el campo AcroForm real mide solo ~15pt de ancho en el PDF (disenado aparentemente para una marca corta, no un monto completo). Verificado visualmente: un valor como '50,000' se renderiza VISUALMENTE RECORTADO (se ve '50,00') aunque el VALOR interno del campo (/V) se guarda completo y correcto -- confirmado inspeccionando el PDF de salida con pypdf. Se recomienda usar valores compactos (ej. '50000' sin separador de miles, o un monto abreviado) si la presentacion visual importa; de lo contrario el dato queda integro en el PDF aunque no se lea completo a simple vista."
+  },
+  "encabezado_accidentes_certificado": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Accidentes Personales': numero de Certificado."
+  },
+  "encabezado_accidentes_poliza": {
+   "tipo": "string",
+   "descripcion": "Encabezado, columna 'Accidentes Personales': numero de Poliza."
+  },
+  "encabezado_vigencia_dia": {
+   "tipo": "string",
+   "descripcion": "Encabezado: Vigencia, Día."
+  },
+  "encabezado_vigencia_mes": {
+   "tipo": "string",
+   "descripcion": "Encabezado: Vigencia, Mes."
+  },
+  "encabezado_vigencia_año": {
+   "tipo": "string",
+   "descripcion": "Encabezado: Vigencia, Año."
+  },
+  "encabezado_contratante": {
+   "tipo": "string",
+   "descripcion": "Encabezado: nombre del Contratante (grupo/empresa que contrata el seguro colectivo)."
+  },
+  "encabezado_filial_division": {
+   "tipo": "string",
+   "descripcion": "Encabezado: Filial o División del contratante a la que pertenece el asegurado."
+  },
+  "asegurado_nombres": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Nombres."
+  },
+  "asegurado_apellidos": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Apellidos."
+  },
+  "asegurado_sexo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Datos del asegurado: Sexo. IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 1') con 2 kids/estados de exportacion literales '/0' (F) y '/1' (M). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'. Posiciones: F=widget en x=538 -> '/0'; M=widget en x=556 -> '/1'.",
+   "valores_semanticos": [
+    "f",
+    "m"
+   ],
+   "valores_pdf_literales": {
+    "f": "/0",
+    "m": "/1"
+   }
+  },
+  "asegurado_apellido_casada": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Apellido de casada (si aplica)."
+  },
+  "asegurado_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Cédula o Pasaporte."
+  },
+  "asegurado_edad": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Edad."
+  },
+  "asegurado_fecha_nacimiento_dia": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Fecha de nacimiento, Día."
+  },
+  "asegurado_fecha_nacimiento_mes": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Fecha de nacimiento, Mes."
+  },
+  "asegurado_fecha_nacimiento_año": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Fecha de nacimiento, Año."
+  },
+  "asegurado_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Nacionalidad."
+  },
+  "asegurado_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Estado civil (texto libre, no checkbox)."
+  },
+  "asegurado_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Profesión u ocupación."
+  },
+  "asegurado_estatura": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Estatura (Mts / Pies)."
+  },
+  "asegurado_peso": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Peso (kgs / Lbs)."
+  },
+  "asegurado_cargo_desempena": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Cargo que desempeña."
+  },
+  "asegurado_email": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: E-mail."
+  },
+  "asegurado_direccion_residencial": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Dirección Residencial."
+  },
+  "asegurado_provincia": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Provincia."
+  },
+  "asegurado_telefono_celular": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: Teléfono/Celular."
+  },
+  "asegurado_pep_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Datos del asegurado: ¿Es usted una persona políticamente expuesta? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 2') con 2 kids/estados de exportacion literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'. Posiciones: Si=widget en x=55 -> '/0'; No=widget en x=81 -> '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "asegurado_pep_cargo": {
+   "tipo": "string",
+   "descripcion": "Datos del asegurado: 'Indicar cargo actual o anterior' (si es o fue PEP)."
+  },
+  "pago_cuenta_nombre": {
+   "tipo": "string",
+   "descripcion": "Autorización de pago de reclamaciones: Nombre de la cuenta."
+  },
+  "pago_email_liquidaciones": {
+   "tipo": "string",
+   "descripcion": "Autorización de pago de reclamaciones: E-mail para envío de liquidaciones."
+  },
+  "pago_cuenta_tipo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Autorización de pago de reclamaciones: Tipo de cuenta. IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 3') con 2 kids/estados de exportacion literales '/0' (Ahorro) y '/1' (Corriente). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'. Posiciones: Ahorro=widget en x=486 -> '/0'; Corriente=widget en x=527 -> '/1'.",
+   "valores_semanticos": [
+    "ahorro",
+    "corriente"
+   ],
+   "valores_pdf_literales": {
+    "ahorro": "/0",
+    "corriente": "/1"
+   }
+  },
+  "pago_cuenta_numero": {
+   "tipo": "string",
+   "descripcion": "Autorización de pago de reclamaciones: No. de cuenta."
+  },
+  "pago_banco_nombre": {
+   "tipo": "string",
+   "descripcion": "Autorización de pago de reclamaciones: Nombre del banco."
+  },
+  "dependiente1_nombre": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Nombre."
+  },
+  "dependiente1_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Fecha de nacimiento."
+  },
+  "dependiente1_estatura": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Estatura (mts/pies)."
+  },
+  "dependiente1_peso": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Peso (kgs/lbs)."
+  },
+  "dependiente1_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Parentesco con el asegurado."
+  },
+  "dependiente1_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Cédula/Pasaporte."
+  },
+  "dependiente1_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Nacionalidad."
+  },
+  "dependiente1_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Profesión u ocupación."
+  },
+  "dependiente1_edad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Edad."
+  },
+  "dependiente1_sexo": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 1 (de 5): Sexo (texto libre, no checkbox)."
+  },
+  "dependiente2_nombre": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Nombre."
+  },
+  "dependiente2_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Fecha de nacimiento."
+  },
+  "dependiente2_estatura": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Estatura (mts/pies)."
+  },
+  "dependiente2_peso": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Peso (kgs/lbs)."
+  },
+  "dependiente2_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Parentesco con el asegurado."
+  },
+  "dependiente2_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Cédula/Pasaporte."
+  },
+  "dependiente2_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Nacionalidad."
+  },
+  "dependiente2_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Profesión u ocupación."
+  },
+  "dependiente2_edad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Edad."
+  },
+  "dependiente2_sexo": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 2 (de 5): Sexo (texto libre, no checkbox)."
+  },
+  "dependiente3_nombre": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Nombre."
+  },
+  "dependiente3_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Fecha de nacimiento."
+  },
+  "dependiente3_estatura": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Estatura (mts/pies)."
+  },
+  "dependiente3_peso": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Peso (kgs/lbs)."
+  },
+  "dependiente3_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Parentesco con el asegurado."
+  },
+  "dependiente3_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Cédula/Pasaporte."
+  },
+  "dependiente3_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Nacionalidad."
+  },
+  "dependiente3_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Profesión u ocupación."
+  },
+  "dependiente3_edad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Edad."
+  },
+  "dependiente3_sexo": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 3 (de 5): Sexo (texto libre, no checkbox)."
+  },
+  "dependiente4_nombre": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Nombre."
+  },
+  "dependiente4_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Fecha de nacimiento."
+  },
+  "dependiente4_estatura": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Estatura (mts/pies)."
+  },
+  "dependiente4_peso": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Peso (kgs/lbs)."
+  },
+  "dependiente4_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Parentesco con el asegurado."
+  },
+  "dependiente4_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Cédula/Pasaporte."
+  },
+  "dependiente4_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Nacionalidad."
+  },
+  "dependiente4_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Profesión u ocupación."
+  },
+  "dependiente4_edad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Edad."
+  },
+  "dependiente4_sexo": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 4 (de 5): Sexo (texto libre, no checkbox)."
+  },
+  "dependiente5_nombre": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Nombre."
+  },
+  "dependiente5_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Fecha de nacimiento."
+  },
+  "dependiente5_estatura": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Estatura (mts/pies)."
+  },
+  "dependiente5_peso": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Peso (kgs/lbs)."
+  },
+  "dependiente5_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Parentesco con el asegurado."
+  },
+  "dependiente5_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Cédula/Pasaporte."
+  },
+  "dependiente5_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Nacionalidad."
+  },
+  "dependiente5_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Profesión u ocupación."
+  },
+  "dependiente5_edad": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Edad."
+  },
+  "dependiente5_sexo": {
+   "tipo": "string",
+   "descripcion": "'Datos de los dependientes para el Seguro', fila 5 (de 5): Sexo (texto libre, no checkbox)."
+  },
+  "beneficiario_principal_fila1_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_principal_fila1_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_principal_fila1_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_principal_fila1_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Porcentaje."
+  },
+  "beneficiario_principal_fila2_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_principal_fila2_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_principal_fila2_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_principal_fila2_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Porcentaje."
+  },
+  "beneficiario_principal_fila3_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 3 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_principal_fila3_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 3 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_principal_fila3_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 3 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_principal_fila3_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 3 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Porcentaje."
+  },
+  "beneficiario_principal_fila4_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 4 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_principal_fila4_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 4 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_principal_fila4_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 4 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_principal_fila4_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 4 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Porcentaje."
+  },
+  "beneficiario_principal_fila5_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 5 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_principal_fila5_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 5 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_principal_fila5_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 5 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_principal_fila5_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios principales para el Seguro de Vida y/o Accidentes Personales', fila 5 (de 5; la suma de los porcentajes de las 5 filas debe ser 100%): Porcentaje."
+  },
+  "beneficiario_contingente_fila1_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_contingente_fila1_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_contingente_fila1_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_contingente_fila1_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 1 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Porcentaje."
+  },
+  "beneficiario_contingente_fila2_nombre": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Nombre."
+  },
+  "beneficiario_contingente_fila2_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Cédula/Pasaporte."
+  },
+  "beneficiario_contingente_fila2_parentesco": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Parentesco."
+  },
+  "beneficiario_contingente_fila2_porcentaje": {
+   "tipo": "string",
+   "descripcion": "'Beneficiarios contingentes para el Seguro de Vida y/o Accidentes Personales', fila 2 (de 2; la suma de los porcentajes de las 2 filas debe ser 100%): Porcentaje."
+  },
+  "infoadicional_seguro_similar_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Información adicional, bloque a): ¿Ha tenido usted o alguno de sus dependientes algún seguro similar al que está solicitando? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 4') con 2 kids/estados de exportacion literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'. Posiciones: Si=widget en x=371 -> '/0'; No=widget en x=398 -> '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "infoadicional_seguro_similar_fila1_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 1 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): ¿Quién?."
+  },
+  "infoadicional_seguro_similar_fila1_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 1 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): ¿Qué seguro?."
+  },
+  "infoadicional_seguro_similar_fila1_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 1 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): ¿Qué compañía?."
+  },
+  "infoadicional_seguro_similar_fila1_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 1 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): Suma asegurada."
+  },
+  "infoadicional_seguro_similar_fila1_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 1 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): Vencimiento."
+  },
+  "infoadicional_seguro_similar_fila2_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 2 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): ¿Quién?."
+  },
+  "infoadicional_seguro_similar_fila2_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 2 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): ¿Qué seguro?."
+  },
+  "infoadicional_seguro_similar_fila2_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 2 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): ¿Qué compañía?."
+  },
+  "infoadicional_seguro_similar_fila2_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 2 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): Suma asegurada."
+  },
+  "infoadicional_seguro_similar_fila2_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque a) 'seguro similar', fila 2 (de 2, PDF real solo tiene 2 filas por bloque aunque visualmente parezca dejar espacio para mas): Vencimiento."
+  },
+  "infoadicional_consumo_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Información adicional, bloque b): ¿Usted o alguno de sus dependientes fuma o ha fumado, consume bebidas alcohólicas o drogas estupefacientes? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 5') con 2 kids/estados de exportacion literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'. Posiciones: Si=widget en x=428 -> '/0'; No=widget en x=455 -> '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "infoadicional_consumo_fila1_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 1 (de 2): ¿Quién?."
+  },
+  "infoadicional_consumo_fila1_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 1 (de 2): ¿Qué seguro?."
+  },
+  "infoadicional_consumo_fila1_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 1 (de 2): ¿Qué compañía?."
+  },
+  "infoadicional_consumo_fila1_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 1 (de 2): Suma asegurada."
+  },
+  "infoadicional_consumo_fila1_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 1 (de 2): Vencimiento."
+  },
+  "infoadicional_consumo_fila2_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 2 (de 2): ¿Quién?."
+  },
+  "infoadicional_consumo_fila2_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 2 (de 2): ¿Qué seguro?."
+  },
+  "infoadicional_consumo_fila2_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 2 (de 2): ¿Qué compañía?."
+  },
+  "infoadicional_consumo_fila2_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 2 (de 2): Suma asegurada."
+  },
+  "infoadicional_consumo_fila2_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque b) 'fuma/alcohol/drogas', fila 2 (de 2): Vencimiento."
+  },
+  "infoadicional_deporte_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Información adicional, bloque c): ¿Practica usted o alguno de sus dependientes algún deporte o actividad que pueda ser considerada de riesgo? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 6') con 2 kids/estados de exportacion literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'. Posiciones: Si=widget en x=290 -> '/0'; No=widget en x=317 -> '/1'. ANOMALIA: a diferencia de los otros 5 grupos de radio de esta pagina, el estado inicial (/AS) de este campo widget en la plantilla original es '/0' (Si) en vez de quedar sin marcar. fill_pdf.py solo escribe un campo si su data_key esta presente y no vacia en datos.json; si se omite esta clave, el PDF de salida quedara con 'Si' pre-marcado por el estado residual de la plantilla (potencialmente enganoso). Se recomienda SIEMPRE proveer un valor explicito ('/0' o '/1') para esta data_key. CAVEAT DE RENDERIZADO ADICIONAL: este par de widgets usa un estilo visual distinto (casilla ovalada) cuyo estado 'marcado' se dibuja con un glifo de una fuente simbolica embebida (/F0) en vez de un circulo/tilde vectorial simple como los otros 5 grupos de radio. Se verifico programaticamente que fill_pdf.py SI actualiza correctamente /V y /AS del campo (inspeccionado con pypdf en el PDF de salida de prueba), pero al renderizar con PyMuPDF (usado para las previsualizaciones de este proyecto) la marca no se ve (aparenta quedar en blanco); es probable que se vea correctamente en Adobe Acrobat u otros lectores con mejor soporte de esa fuente simbolica. No es un defecto de este mapping ni de fill_pdf.py.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "infoadicional_deporte_fila1_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 1 (de 2): ¿Quién?."
+  },
+  "infoadicional_deporte_fila1_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 1 (de 2): ¿Qué seguro?."
+  },
+  "infoadicional_deporte_fila1_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 1 (de 2): ¿Qué compañía?."
+  },
+  "infoadicional_deporte_fila1_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 1 (de 2): Suma asegurada."
+  },
+  "infoadicional_deporte_fila1_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 1 (de 2): Vencimiento."
+  },
+  "infoadicional_deporte_fila2_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 2 (de 2): ¿Quién?."
+  },
+  "infoadicional_deporte_fila2_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 2 (de 2): ¿Qué seguro?."
+  },
+  "infoadicional_deporte_fila2_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 2 (de 2): ¿Qué compañía?."
+  },
+  "infoadicional_deporte_fila2_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 2 (de 2): Suma asegurada."
+  },
+  "infoadicional_deporte_fila2_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque c) 'deporte o actividad de riesgo', fila 2 (de 2): Vencimiento."
+  },
+  "salud_pregunta1_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 1 de la Declaración de Salud (Declaración de salud del solicitante y los dependientes): ¿Goza usted y todos sus dependientes de buena salud física y mental? IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta2_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 2 de la Declaración de Salud (Declaración de salud del solicitante y los dependientes): ¿Tiene usted o alguno de sus dependientes algún defecto congénito o adquirido evidente o no físicamente? IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta3_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 3 de la Declaración de Salud (Declaración de salud del solicitante y los dependientes): ¿Ha sufrido usted o algún dependiente un accidente grave o intoxicación? (ver también salud_pregunta3_quien/_cuando/_lesiones) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta4_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 4 de la Declaración de Salud (Declaración de salud del solicitante y los dependientes): ¿Es usted o algún dependiente piloto o tripulante en aviones privados o comerciales? (ver también salud_pregunta4_quien) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta5_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 5 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Se ha realizado usted o algún dependiente un examen, tratamiento o cirugía para cualquier afección médica? IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta6_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 6 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Se ha realizado usted o algún dependiente un papanicolau? (ver también salud_pregunta6_quien/_fecha/_resultado) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta7_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 7 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Se ha realizado usted o algún dependiente una mamografía, ultrasonido o prueba especial? (ver también salud_pregunta7_quien/_fecha/_resultado) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta8_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 8 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Está usted o algún dependiente embarazada? (ver también salud_pregunta8_quien/_cuantas_semanas) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta9_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 9 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Ha tenido usted o algún dependiente una pérdida de embarazo? (ver también salud_pregunta9_quien/_cuando) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta10_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 10 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Toma usted o algún dependiente medicamentos permanentes? (ver también salud_pregunta10_quien/_que_medicamento) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta11_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 11 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): ¿Ha recibido usted o algún dependiente transfusiones de sangre? (ver también salud_pregunta11_quien/_cuando/_por_que) IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta12_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 12 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades del sistema nervioso (epilepsia, hemiplejia, paraplejia, poliomielitis, convulsiones, desmayos, derrame isquémico, hemorragia cerebral, meningitis, neurastenia, parálisis, neurosis, insomnio, vértigo, mal de parkinson, esclerosis lateral amiotrófica, distrofia muscular, síndrome de Guillain Barré). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta13_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 13 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Trastornos mentales (psicosis, esquizofrenia, trastornos bipolares, ansiedad, trastornos alimenticios, fatiga crónica, abuso o dependencia de sustancias químicas o drogas, alcoholismo, depresiones). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta14_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 14 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades del corazón y del aparato circulatorio (insuficiencia cardíaca, angina, dolor de pecho, arteriosclerosis, hipertensión, trombosis, flebitis, fiebre reumática, infarto, síncope, defecto cardíaco o soplo al corazón, inflamación de pies o tobillos, edemas de miembros inferiores, venas varicosas, aneurismas, valvulopatías, arritmias). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta15_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 15 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades de la sangre (anemia, hemofilia, leucemia, hepatitis, ganglios, colesterol alto, deficiencia del factor II, V, VII, X y XII, deficiencia congénita de antitrombina III, púrpura trombocitopénica idiopática o trombótica, enfermedad de Von Willebrand, defectos de la función plaquetaria, triglicéridos altos). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta16_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 16 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Trastornos autoinmunes (anemia perniciosa, tiroiditis de Hashimoto, enfermedad de Addison, dermatomiositis, esclerosis múltiple, lupus eritematoso o sistémico, síndrome de Sjögren, miastenia grave, bocio tóxico difuso, síndrome de reiter, nefritis lúpica, hepatitis autoinmune, anemia hemolítica autoinmune). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta17_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 17 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Trastornos gastrointestinales (úlceras, cálculos biliares, reflujo gastroesofágico, infecciones de sangre, diverticulitis, gastritis, ictericia, hemorroides, fístula de recto, hernia hiatal, enfermedades del hígado o del páncreas, pólipos intestinales, poliposis gástrica, enfermedad de Crohn). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta18_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 18 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades del sistema endócrino (diabetes, hiperglucemia, hipoglucemia, obesidad, bocio, hipófisis, hipertiroidismo, hipotiroidismo). De ser afirmativo para diabetes, indicar tipo de diabetes, fecha en que se diagnosticó y medicamentos que lleva. IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta19_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 19 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades del sistema osteomuscular (lumbago, ciática, escoliosis, artritis, tendinitis, gota, osteoporosis, síndrome del túnel carpiano, espina bífida, hernias discales). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta20_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 20 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades del sistema respiratorio (asma, tos crónica, tuberculosis, enfisema pulmonar, bronquitis crónica, neumonía, pleuresía, catarro persistente, enfermedad pulmonar obstructiva crónica o EPOC, ronquera crónica, sinusitis, alergias, silicosis). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta21_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 21 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades del sistema genito-urinario (tumores o enfermedades de la próstata, insuficiencia renal crónica o aguda, cálculos renales, quistes de ovarios, enfermedades de la vejiga o la uretra, sangrado genital anormal, fibromas, displasias, cáncer cérvico-uterino). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta22_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 22 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades de transmisión sexual (Síndrome de Inmunodeficiencia Adquirida SIDA/VIH, virus del papiloma humano VPH, sífilis, gonorrea, hepatitis B y C, herpes genital, condilomas). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta23_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 23 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades de los ojos, oídos, nariz o boca (cataratas, glaucoma, lesiones de la retina, sinusitis crónica, trastornos de la articulación temporomandibular ATM, síndrome de Meniere/pérdigo). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta24_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 24 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Enfermedades o lesiones de la piel (lunares que han crecido en corto tiempo, cambio de color o que pican, vitíligo, cáncer en la piel). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta25_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 25 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Secuelas de enfermedades infecciosas (escarlatina, difteria, tifoidea, tuberculosis, malaria, ébola, chikungunya, zika). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta26_si_no": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta 26 de la Declaración de Salud (Padece o ha padecido usted o alguno de sus dependientes alguna de las siguientes condiciones (no aplica para Accidentes Personales)): Tumores o enfermedades congénitas o hereditarias (deformidad congénita de algún miembro, historia familiar de diabetes tipo I y tipo II, enfermedades mentales, enfermedades del corazón, hipertensión, lupus, linfomas, quistes, deformidad o mutación de algún órgano, enfermedades de la sangre, enfermedades autoinmunes, cáncer, enfermedades congénitas o hereditarias como el coeficiente genético, desnutrición, síndrome de Down u otras enfermedades genéticas). IMPORTANTE: a diferencia del formulario de UniVivir Salud (que usa un solo campo de radio por pregunta), en ESTE formulario 'Sí' y 'No' son 2 checkboxes AcroForm INDEPENDIENTES (campos 'ButtonN' distintos, cada uno con un unico estado de exportacion '/Yes'), por lo que se mapearon con type='checkbox_group' normal: solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Yes'; el otro queda '/Off'.",
+   "valores_validos": [
+    "si",
+    "no"
+   ]
+  },
+  "salud_pregunta3_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 3 (accidente grave o intoxicación), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta3_cuando": {
+   "tipo": "string",
+   "descripcion": "Pregunta 3 (accidente grave o intoxicación), detalle en línea: 'cuándo'."
+  },
+  "salud_pregunta3_lesiones": {
+   "tipo": "string",
+   "descripcion": "Pregunta 3 (accidente grave o intoxicación), detalle en línea: 'qué lesiones sufrió'."
+  },
+  "salud_pregunta4_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 4 (piloto/tripulante), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta6_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 6 (papanicolau), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta6_fecha": {
+   "tipo": "string",
+   "descripcion": "Pregunta 6 (papanicolau), detalle en línea: 'fecha'."
+  },
+  "salud_pregunta6_resultado": {
+   "tipo": "string",
+   "descripcion": "Pregunta 6 (papanicolau), detalle en línea: 'resultado'."
+  },
+  "salud_pregunta7_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 7 (mamografía/ultrasonido/prueba especial), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta7_fecha": {
+   "tipo": "string",
+   "descripcion": "Pregunta 7 (mamografía/ultrasonido/prueba especial), detalle en línea: 'fecha'."
+  },
+  "salud_pregunta7_resultado": {
+   "tipo": "string",
+   "descripcion": "Pregunta 7 (mamografía/ultrasonido/prueba especial), detalle en línea: 'resultado'."
+  },
+  "salud_pregunta8_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 8 (embarazo), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta8_cuantas_semanas": {
+   "tipo": "string",
+   "descripcion": "Pregunta 8 (embarazo), detalle en línea: 'de cuántas semanas'."
+  },
+  "salud_pregunta9_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 9 (pérdida de embarazo), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta9_cuando": {
+   "tipo": "string",
+   "descripcion": "Pregunta 9 (pérdida de embarazo), detalle en línea: 'cuándo'."
+  },
+  "salud_pregunta10_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 10 (medicamentos permanentes), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta10_que_medicamento": {
+   "tipo": "string",
+   "descripcion": "Pregunta 10 (medicamentos permanentes), detalle en línea: 'qué medicamento'."
+  },
+  "salud_pregunta11_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 11 (transfusiones de sangre), detalle en línea: 'indique quién'."
+  },
+  "salud_pregunta11_cuando": {
+   "tipo": "string",
+   "descripcion": "Pregunta 11 (transfusiones de sangre), detalle en línea: 'cuándo'."
+  },
+  "salud_pregunta11_por_que": {
+   "tipo": "string",
+   "descripcion": "Pregunta 11 (transfusiones de sangre), detalle en línea: 'por qué'."
+  },
+  "afirmativas_fila1_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 1 (de 4 filas reales en el PDF): No. (número de la pregunta 1-26 a la que se contestó afirmativamente)."
+  },
+  "afirmativas_fila1_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 1 (de 4 filas reales en el PDF): Solicitante/dependiente."
+  },
+  "afirmativas_fila1_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 1 (de 4 filas reales en el PDF): Detalle."
+  },
+  "afirmativas_fila1_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 1 (de 4 filas reales en el PDF): Atención/diagnóstico."
+  },
+  "afirmativas_fila1_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 1 (de 4 filas reales en el PDF): Condición actual (5ta columna)."
+  },
+  "afirmativas_fila1_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 1 (de 4 filas reales en el PDF): 6ta columna de la tabla. ANOMALIA DE AUTORIA DEL PDF: la etiqueta impresa de esta 6ta columna esta duplicada como 'Condición actual' (identica a la 5ta columna) en vez de decir algo como 'Médico/Hospital'; es un defecto del PDF original, no un error de este mapping. Se documenta y nombra este data_key como 'medico_hospital' por analogia con la columna equivalente del formulario de UniVivir Salud, que tiene la misma estructura de 6 columnas.."
+  },
+  "afirmativas_fila2_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 2 (de 4 filas reales en el PDF): No. (número de la pregunta 1-26 a la que se contestó afirmativamente)."
+  },
+  "afirmativas_fila2_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 2 (de 4 filas reales en el PDF): Solicitante/dependiente."
+  },
+  "afirmativas_fila2_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 2 (de 4 filas reales en el PDF): Detalle."
+  },
+  "afirmativas_fila2_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 2 (de 4 filas reales en el PDF): Atención/diagnóstico."
+  },
+  "afirmativas_fila2_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 2 (de 4 filas reales en el PDF): Condición actual (5ta columna)."
+  },
+  "afirmativas_fila2_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 2 (de 4 filas reales en el PDF): 6ta columna de la tabla. ANOMALIA DE AUTORIA DEL PDF: la etiqueta impresa de esta 6ta columna esta duplicada como 'Condición actual' (identica a la 5ta columna) en vez de decir algo como 'Médico/Hospital'; es un defecto del PDF original, no un error de este mapping. Se documenta y nombra este data_key como 'medico_hospital' por analogia con la columna equivalente del formulario de UniVivir Salud, que tiene la misma estructura de 6 columnas.."
+  },
+  "afirmativas_fila3_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 3 (de 4 filas reales en el PDF): No. (número de la pregunta 1-26 a la que se contestó afirmativamente)."
+  },
+  "afirmativas_fila3_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 3 (de 4 filas reales en el PDF): Solicitante/dependiente."
+  },
+  "afirmativas_fila3_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 3 (de 4 filas reales en el PDF): Detalle."
+  },
+  "afirmativas_fila3_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 3 (de 4 filas reales en el PDF): Atención/diagnóstico."
+  },
+  "afirmativas_fila3_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 3 (de 4 filas reales en el PDF): Condición actual (5ta columna)."
+  },
+  "afirmativas_fila3_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 3 (de 4 filas reales en el PDF): 6ta columna de la tabla. ANOMALIA DE AUTORIA DEL PDF: la etiqueta impresa de esta 6ta columna esta duplicada como 'Condición actual' (identica a la 5ta columna) en vez de decir algo como 'Médico/Hospital'; es un defecto del PDF original, no un error de este mapping. Se documenta y nombra este data_key como 'medico_hospital' por analogia con la columna equivalente del formulario de UniVivir Salud, que tiene la misma estructura de 6 columnas.."
+  },
+  "afirmativas_fila4_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 4 (de 4 filas reales en el PDF): No. (número de la pregunta 1-26 a la que se contestó afirmativamente)."
+  },
+  "afirmativas_fila4_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 4 (de 4 filas reales en el PDF): Solicitante/dependiente."
+  },
+  "afirmativas_fila4_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 4 (de 4 filas reales en el PDF): Detalle."
+  },
+  "afirmativas_fila4_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 4 (de 4 filas reales en el PDF): Atención/diagnóstico."
+  },
+  "afirmativas_fila4_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 4 (de 4 filas reales en el PDF): Condición actual (5ta columna)."
+  },
+  "afirmativas_fila4_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla 'Si ha contestado afirmativamente alguna de las preguntas anteriores', fila 4 (de 4 filas reales en el PDF): 6ta columna de la tabla. ANOMALIA DE AUTORIA DEL PDF: la etiqueta impresa de esta 6ta columna esta duplicada como 'Condición actual' (identica a la 5ta columna) en vez de decir algo como 'Médico/Hospital'; es un defecto del PDF original, no un error de este mapping. Se documenta y nombra este data_key como 'medico_hospital' por analogia con la columna equivalente del formulario de UniVivir Salud, que tiene la misma estructura de 6 columnas.."
+  },
+  "medico_cabecera_fila1_solicitante": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 1 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Solicitante."
+  },
+  "medico_cabecera_fila1_medico": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 1 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Médico."
+  },
+  "medico_cabecera_fila1_especialidad": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 1 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Especialidad."
+  },
+  "medico_cabecera_fila1_telefono": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 1 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Teléfono."
+  },
+  "medico_cabecera_fila2_solicitante": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 2 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Solicitante."
+  },
+  "medico_cabecera_fila2_medico": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 2 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Médico."
+  },
+  "medico_cabecera_fila2_especialidad": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 2 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Especialidad."
+  },
+  "medico_cabecera_fila2_telefono": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 2 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Teléfono."
+  },
+  "medico_cabecera_fila3_solicitante": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 3 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Solicitante."
+  },
+  "medico_cabecera_fila3_medico": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 3 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Médico."
+  },
+  "medico_cabecera_fila3_especialidad": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 3 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Especialidad."
+  },
+  "medico_cabecera_fila3_telefono": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 3 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Teléfono."
+  },
+  "medico_cabecera_fila4_solicitante": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 4 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Solicitante."
+  },
+  "medico_cabecera_fila4_medico": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 4 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Médico."
+  },
+  "medico_cabecera_fila4_especialidad": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 4 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Especialidad."
+  },
+  "medico_cabecera_fila4_telefono": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 4 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Teléfono."
+  },
+  "medico_cabecera_fila5_solicitante": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 5 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Solicitante."
+  },
+  "medico_cabecera_fila5_medico": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 5 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Médico."
+  },
+  "medico_cabecera_fila5_especialidad": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 5 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Especialidad."
+  },
+  "medico_cabecera_fila5_telefono": {
+   "tipo": "string",
+   "descripcion": "'Información del médico de cabecera, ginecólogo y pediatra que atienden al solicitante o sus dependientes', fila 5 (de 5; el número de fila 1-5 esta impreso en el PDF, no es un campo AcroForm): Teléfono."
+  }
+ }
+}

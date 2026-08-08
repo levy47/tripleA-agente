@@ -1,0 +1,266 @@
+{
+  "template": "aseguradoras/assa/tcr/templates/tcr_assa.pdf",
+  "page_width": 612,
+  "page_height": 792,
+  "font_size": 8,
+  "fields": [
+    {
+      "data_key": "tarjetahabiente_nombre_completo",
+      "page": 1,
+      "x": 58,
+      "y": 693,
+      "type": "text",
+      "note": "linea 'Yo, ___ (Nombre impreso en la tarjeta)'"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 62,
+      "y": 673.5,
+      "type": "text",
+      "note": "linea 'No. ___' (cedula)"
+    },
+
+    {
+      "data_key": "poliza_1_nombre_asegurado",
+      "page": 1,
+      "x": 41,
+      "y": 604.3,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 1, col Nombre del Asegurado"
+    },
+    {
+      "data_key": "poliza_1_numero_poliza",
+      "page": 1,
+      "x": 224.5,
+      "y": 604.3,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_dia_cobro",
+      "page": 1,
+      "x": 360.3,
+      "y": 604.3,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_monto_descuento",
+      "page": 1,
+      "x": 463.4,
+      "y": 604.3,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "poliza_2_nombre_asegurado",
+      "page": 1,
+      "x": 41,
+      "y": 587.2,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 2"
+    },
+    {
+      "data_key": "poliza_2_numero_poliza",
+      "page": 1,
+      "x": 224.5,
+      "y": 587.2,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_dia_cobro",
+      "page": 1,
+      "x": 360.3,
+      "y": 587.2,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_monto_descuento",
+      "page": 1,
+      "x": 463.4,
+      "y": 587.2,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "poliza_3_nombre_asegurado",
+      "page": 1,
+      "x": 41,
+      "y": 570.1,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 3"
+    },
+    {
+      "data_key": "poliza_3_numero_poliza",
+      "page": 1,
+      "x": 224.5,
+      "y": 570.1,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_dia_cobro",
+      "page": 1,
+      "x": 360.3,
+      "y": 570.1,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_monto_descuento",
+      "page": 1,
+      "x": 463.4,
+      "y": 570.1,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "poliza_4_nombre_asegurado",
+      "page": 1,
+      "x": 41,
+      "y": 552.9,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 4"
+    },
+    {
+      "data_key": "poliza_4_numero_poliza",
+      "page": 1,
+      "x": 224.5,
+      "y": 552.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_dia_cobro",
+      "page": 1,
+      "x": 360.3,
+      "y": 552.9,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_monto_descuento",
+      "page": 1,
+      "x": 463.4,
+      "y": 552.9,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "tarjeta_tipo",
+      "page": 1,
+      "type": "checkbox_mark",
+      "font_size": 7,
+      "options": {
+        "visa": {"x": 149.4, "y": 486.3},
+        "mastercard": {"x": 195.1, "y": 486},
+        "american_express": {"x": 278.7, "y": 486}
+      },
+      "note": "circulos dibujados ( ) antes de 'Visa;' / 'Master Card;' / 'American Express' -- marca colocada dentro del circulo"
+    },
+    {
+      "data_key": "banco_emisor",
+      "page": 1,
+      "x": 94,
+      "y": 459,
+      "type": "text",
+      "note": "'del Banco: ___ .' -- no hay linea subrayada dibujada, es espacio en blanco antes del punto"
+    },
+    {
+      "data_key": "numero_tarjeta",
+      "page": 1,
+      "x": 88.4,
+      "y": 432.6,
+      "type": "text",
+      "note": "16 casilleros en 4 grupos de 4 -- se dibuja el numero completo empezando en el primer casillero"
+    },
+    {
+      "data_key": "tarjeta_fecha_exp_mmaa",
+      "page": 1,
+      "x": 395.4,
+      "y": 432.6,
+      "type": "text",
+      "note": "4 casilleros en 2 grupos de 2 (MM AA) -- se dibuja 'MM/AA' completo empezando en el primer casillero"
+    },
+
+    {
+      "data_key": "cobro_telefono_residencial",
+      "page": 1,
+      "x": 41.2,
+      "y": 375,
+      "type": "text",
+      "note": "tabla telefonos, col Teléfono Residencial"
+    },
+    {
+      "data_key": "cobro_telefono_celular",
+      "page": 1,
+      "x": 221.8,
+      "y": 375,
+      "type": "text",
+      "note": "tabla telefonos, col 'Oficina / Celular'"
+    },
+    {
+      "data_key": "cobro_correo_1",
+      "page": 1,
+      "x": 401.8,
+      "y": 375,
+      "type": "text",
+      "note": "tabla telefonos, col Correo Electrónico"
+    },
+
+    {
+      "data_key": "direccion_residencial",
+      "page": 1,
+      "x": 92,
+      "y": 347.3,
+      "type": "text"
+    },
+
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "dato poco comun, sin data_key, se completa a mano",
+      "label": "Apartado Postal"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "el corredor completa el total real de descuento sumando las 4 filas",
+      "label": "Total del Descuento"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "firma manuscrita, igual que en la tarjeta, no se autocompleta",
+      "label": "Firma del Asegurado (Igual que en la tarjeta)"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "fecha manuscrita",
+      "label": "Fecha"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "seccion 'Para Uso de la Oficina' -- la completa Triple A Seguros al procesar",
+      "label": "Para Uso de la Oficina"
+    }
+  ]
+}

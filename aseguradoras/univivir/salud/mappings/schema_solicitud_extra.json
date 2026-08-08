@@ -1,0 +1,1409 @@
+{
+ "descripcion": "Datos NUEVOS (especificos del formulario 'Solicitud de Inscripción - Seguro de Salud Individual' de UniVivir Seguros, Grupo Financiero Unibank) que no forman parte del intake estandar de WhatsApp en schema_cliente.json (mappings/schema_cliente.json).\n\nADVERTENCIA TECNICA GENERAL SOBRE ESTE PDF: pypdf.PdfReader(...).get_fields() FALLA con KeyError('/N') en este PDF porque algun widget tiene un diccionario /AP sin la clave /N. El mapping se construyo iterando manualmente acroform['/Fields'] y las /Annots de cada pagina con manejo de excepciones (try/except), NUNCA con get_fields(). Se enumeraron exitosamente los 295 campos de primer nivel (360 widgets reales contando los 'kids' de los grupos de radio) sin errores.\n\nADVERTENCIA SOBRE BOTONES DE RADIO ('Botón de opción N' y 'preguntaN', 38 grupos en total): igual que en el mapping de Blue Cross, estos son grupos de radio de UN solo campo AcroForm con 2 (o 3, ver abajo) kids/estados de exportacion, en vez de dos casillas independientes. El helper src/fill_pdf.py (que NO se modifico) solo soporta, para type=checkbox_group, UN par (value, on_state) por entrada de mapping.json, y como los nombres de campo PDF son unicos, es IMPOSIBLE representar 'Si' y 'No' como dos entradas separadas para el mismo campo compartido; dejar 'No' como '/Off' lo haria indistinguible de 'no contestado', inaceptable en un cuestionario medico de suscripcion. Por eso estos 38 campos se mapearon con type='text' en mapping.json: datos.json debe proveer el ESTADO DE EXPORTACION LITERAL del PDF (mayoritariamente '/0'=Si y '/1'=No, documentado por cada data_key abajo en 'valores_pdf_literales'). Los 27 campos 'preguntaN' (Declaracion de Salud, Secciones G y H) tienen ademas un TERCER kid/widget diminuto (<5x5pt) que es un artefacto residual de autoria del PDF sin funcion visible aparente; no requiere mapeo propio, ya que al fijar el valor del campo padre en '/0' o '/1' ese kid queda automaticamente apagado. ANOMALIA ADICIONAL: 4 de esas 27 preguntas (21, 23, 26 y 27) NO usan los estados limpios '/0'/'/1' de las otras 23, sino estados literales '/OpciónN' (con un caracter no estandar, visible como 'Opci髇' en Python/JSON -- esto es CORRECTO y esperado, copiar tal cual, no 'corregir'), aparentemente copiados por error de otro campo del documento durante la autoria del PDF. Cada data_key de tipo radio documenta su 'valores_pdf_literales' exacto abajo.\n\nFORMA DE PAGO (Seccion C): a diferencia de los grupos de radio de un solo campo, 'Tarjeta de crédito'/'ACH'/'Pago voluntario' y la 'Frecuencia de pago' (Mensual/Trimestral/Cuatrimestral/Semestral/Anual) SI son 8 checkboxes AcroForm INDEPENDIENTES reales (cada uno con un unico estado '/Sí'), por lo que se mapearon con type='checkbox_group' normal (igual que 'Check Box136' en Blue Cross), un data_key compartido ('pago_metodo' / 'pago_frecuencia') con distinto 'value' por campo.\n\nDUPLICADOS: se detectaron 2 pares de widgets AcroForm huerfanos superpuestos casi exactamente (overlap >90%, offset <2pt) sobre otros campos ya mapeados en la Seccion A ('Campo de texto 21' sobre 'Campo de texto 10'=Ocupación; 'Campo de texto 22' sobre 'Campo de texto 11'=Empresa donde trabaja). Se dejaron como type=manual para evitar texto duplicado/solapado visualmente. Se verifico programaticamente (comparacion de rects par a par) que estos son los UNICOS 2 pares de duplicados en las 3 paginas.\n\nWIDGET HUERFANO 'Botón 20': un pushbutton sin /AP/N ni estados de exportacion, flotando en el margen derecho de la pagina 1 (fuera de cualquier tabla o etiqueta visible, entre las Secciones C y D). Parece un artefacto de autoria sin proposito visible; se dejo como type=manual.\n\nSECCION L (Declaraciones del solicitante / firmas) y las firmas de corredor/gerente en la Seccion M: NO existen campos AcroForm para esas lineas de firma (son solo lineas impresas no rellenables); por lo tanto no aparecen data_keys para ellas ni entradas en mapping.json.\n\nSECCION 'PARA USO DE LA COMPAÑÍA' (pagina 3, al final: Exclusión permanente/temporal/Recargo, Motivo, Detalles, Aprobado/Declinado, Evaluador, Cargo, Fecha): se dejaron todas como type=manual (no se autocompletan) porque son datos que la aseguradora completa DESPUES de recibir y evaluar la solicitud (post-emision/suscripcion), igual que la seccion equivalente en el mapping de Blue Cross.",
+ "campos": {
+  "encabezado_fecha_solicitud": {
+   "tipo": "string",
+   "descripcion": "Fecha de solicitud (encabezado del formulario)."
+  },
+  "encabezado_plan": {
+   "tipo": "string",
+   "descripcion": "Nombre/codigo del Plan de Seguro de Salud Individual solicitado."
+  },
+  "encabezado_vigencia_efectividad": {
+   "tipo": "string",
+   "descripcion": "Vigencia/efectividad de la poliza."
+  },
+  "encabezado_poliza": {
+   "tipo": "string",
+   "descripcion": "Numero de Poliza (si aplica)."
+  },
+  "solicitante_nombres": {
+   "tipo": "string",
+   "descripcion": "Nombres del solicitante."
+  },
+  "solicitante_apellidos": {
+   "tipo": "string",
+   "descripcion": "Apellidos del solicitante."
+  },
+  "solicitante_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Cedula o pasaporte del solicitante."
+  },
+  "solicitante_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Nacionalidad del solicitante."
+  },
+  "solicitante_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Fecha de nacimiento del solicitante."
+  },
+  "solicitante_edad": {
+   "tipo": "string",
+   "descripcion": "Edad del solicitante."
+  },
+  "solicitante_sexo": {
+   "tipo": "string",
+   "descripcion": "Sexo del solicitante (campo de texto libre, no checkbox)."
+  },
+  "solicitante_estado_civil": {
+   "tipo": "string",
+   "descripcion": "Estado civil del solicitante (campo de texto libre, no checkbox)."
+  },
+  "solicitante_estatura": {
+   "tipo": "string",
+   "descripcion": "Estatura del solicitante."
+  },
+  "solicitante_peso": {
+   "tipo": "string",
+   "descripcion": "Peso del solicitante."
+  },
+  "solicitante_direccion_residencial": {
+   "tipo": "string",
+   "descripcion": "Direccion residencial del solicitante."
+  },
+  "solicitante_provincia": {
+   "tipo": "string",
+   "descripcion": "Provincia de residencia del solicitante."
+  },
+  "solicitante_telefono_celular": {
+   "tipo": "string",
+   "descripcion": "Telefono/celular del solicitante."
+  },
+  "solicitante_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Ocupacion del solicitante."
+  },
+  "solicitante_email": {
+   "tipo": "string",
+   "descripcion": "Email del solicitante."
+  },
+  "solicitante_empresa": {
+   "tipo": "string",
+   "descripcion": "Empresa donde trabaja el solicitante."
+  },
+  "solicitante_empresa_direccion": {
+   "tipo": "string",
+   "descripcion": "Direccion de la empresa donde trabaja el solicitante."
+  },
+  "solicitante_empresa_telefono": {
+   "tipo": "string",
+   "descripcion": "Telefono de la empresa donde trabaja el solicitante."
+  },
+  "solicitante_pep_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Es usted una persona politicamente expuesta (PEP)? del solicitante (Seccion A). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 24') con 2 kids/estados de exportacion literales '/0' (Si) y '/1' (No), no 'si'/'no' planos. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "solicitante_pep_cargo": {
+   "tipo": "string",
+   "descripcion": "Cargo actual o anterior del solicitante (si es o fue PEP)."
+  },
+  "contratante_tipo_persona": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Tipo de contratante (encabezado Seccion B): Persona Natural (PN) o Persona Juridica (PJ). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 25') con 2 kids/estados literales '/0' (PN) y '/1' (PJ). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "persona_natural",
+    "persona_juridica"
+   ],
+   "valores_pdf_literales": {
+    "persona_natural": "/0",
+    "persona_juridica": "/1"
+   }
+  },
+  "contratante_nombres": {
+   "tipo": "string",
+   "descripcion": "Nombres del contratante (solo si difiere del solicitante)."
+  },
+  "contratante_cedula_pasaporte_ruc": {
+   "tipo": "string",
+   "descripcion": "Cedula/pasaporte/RUC del contratante."
+  },
+  "contratante_email": {
+   "tipo": "string",
+   "descripcion": "Email del contratante."
+  },
+  "contratante_direccion": {
+   "tipo": "string",
+   "descripcion": "Direccion del contratante."
+  },
+  "contratante_provincia": {
+   "tipo": "string",
+   "descripcion": "Provincia del contratante."
+  },
+  "contratante_telefono_celular": {
+   "tipo": "string",
+   "descripcion": "Telefono/celular del contratante."
+  },
+  "contratante_empresa": {
+   "tipo": "string",
+   "descripcion": "Empresa donde trabaja el contratante."
+  },
+  "contratante_empresa_direccion": {
+   "tipo": "string",
+   "descripcion": "Direccion de la empresa donde trabaja el contratante."
+  },
+  "contratante_empresa_telefono": {
+   "tipo": "string",
+   "descripcion": "Telefono de la empresa donde trabaja el contratante."
+  },
+  "contratante_relacion_asegurado": {
+   "tipo": "string",
+   "descripcion": "Relacion del contratante con el asegurado/solicitante."
+  },
+  "contratante_pep_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Es usted una persona politicamente expuesta (PEP)? del contratante (Seccion B). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 3') con 2 kids/estados literales '/0' (Si) y '/1' (No). datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "contratante_pep_cargo": {
+   "tipo": "string",
+   "descripcion": "Cargo actual o anterior del contratante (si es o fue PEP)."
+  },
+  "pago_metodo": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Metodo de pago (Seccion C). Implementado como 3 checkboxes AcroForm INDEPENDIENTES ('Casilla de verificación 9'=tarjeta_credito, '8'=ach, '7'=pago_voluntario), cada uno mapeado con type=checkbox_group y su propio 'value'. Solo el que coincida con el valor de esta data_key en datos.json quedara marcado '/Sí'; los demas quedan '/Off'. Valores validos: 'tarjeta_credito', 'ach', 'pago_voluntario'."
+  },
+  "pago_frecuencia": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Frecuencia de pago (Seccion C). Implementado como 5 checkboxes AcroForm INDEPENDIENTES ('Casilla de verificación 5'=mensual, '4'=trimestral, '3'=cuatrimestral, '2'=semestral, '1'=anual), cada uno mapeado con type=checkbox_group y su propio 'value'. Valores validos: 'mensual', 'trimestral', 'cuatrimestral', 'semestral', 'anual'."
+  },
+  "pago_cuenta_nombre": {
+   "tipo": "string",
+   "descripcion": "Nombre de la cuenta para autorizacion de pago de reclamaciones."
+  },
+  "pago_cuenta_numero": {
+   "tipo": "string",
+   "descripcion": "Numero de cuenta."
+  },
+  "pago_cuenta_tipo": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Tipo de cuenta: Ahorro o Corriente (Seccion D). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 4') con 2 kids/estados literales '/0' (Ahorro) y '/1' (Corriente). datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "ahorro",
+    "corriente"
+   ],
+   "valores_pdf_literales": {
+    "ahorro": "/0",
+    "corriente": "/1"
+   }
+  },
+  "pago_banco_nombre": {
+   "tipo": "string",
+   "descripcion": "Nombre del banco."
+  },
+  "pago_email_liquidaciones": {
+   "tipo": "string",
+   "descripcion": "Email para envio de liquidaciones (completar si es distinto del proporcionado por el solicitante)."
+  },
+  "dependiente1_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de la tabla de Dependientes (Seccion E): Nombre."
+  },
+  "dependiente1_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Fecha de nacimiento."
+  },
+  "dependiente1_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Estatura."
+  },
+  "dependiente1_peso": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Peso."
+  },
+  "dependiente1_parentezco": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Parentezco con el solicitante."
+  },
+  "dependiente1_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Cedula/pasaporte."
+  },
+  "dependiente1_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Nacionalidad."
+  },
+  "dependiente1_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Profesion u ocupacion."
+  },
+  "dependiente1_edad": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Edad."
+  },
+  "dependiente1_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila 1 de Dependientes: Sexo (texto libre, no checkbox)."
+  },
+  "dependiente2_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de la tabla de Dependientes (Seccion E): Nombre."
+  },
+  "dependiente2_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Fecha de nacimiento."
+  },
+  "dependiente2_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Estatura."
+  },
+  "dependiente2_peso": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Peso."
+  },
+  "dependiente2_parentezco": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Parentezco con el solicitante."
+  },
+  "dependiente2_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Cedula/pasaporte."
+  },
+  "dependiente2_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Nacionalidad."
+  },
+  "dependiente2_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Profesion u ocupacion."
+  },
+  "dependiente2_edad": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Edad."
+  },
+  "dependiente2_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila 2 de Dependientes: Sexo (texto libre, no checkbox)."
+  },
+  "dependiente3_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de la tabla de Dependientes (Seccion E): Nombre."
+  },
+  "dependiente3_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Fecha de nacimiento."
+  },
+  "dependiente3_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Estatura."
+  },
+  "dependiente3_peso": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Peso."
+  },
+  "dependiente3_parentezco": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Parentezco con el solicitante."
+  },
+  "dependiente3_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Cedula/pasaporte."
+  },
+  "dependiente3_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Nacionalidad."
+  },
+  "dependiente3_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Profesion u ocupacion."
+  },
+  "dependiente3_edad": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Edad."
+  },
+  "dependiente3_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila 3 de Dependientes: Sexo (texto libre, no checkbox)."
+  },
+  "dependiente4_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de la tabla de Dependientes (Seccion E): Nombre."
+  },
+  "dependiente4_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Fecha de nacimiento."
+  },
+  "dependiente4_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Estatura."
+  },
+  "dependiente4_peso": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Peso."
+  },
+  "dependiente4_parentezco": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Parentezco con el solicitante."
+  },
+  "dependiente4_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Cedula/pasaporte."
+  },
+  "dependiente4_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Nacionalidad."
+  },
+  "dependiente4_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Profesion u ocupacion."
+  },
+  "dependiente4_edad": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Edad."
+  },
+  "dependiente4_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila 4 de Dependientes: Sexo (texto libre, no checkbox)."
+  },
+  "dependiente5_nombre": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de la tabla de Dependientes (Seccion E): Nombre."
+  },
+  "dependiente5_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Fecha de nacimiento."
+  },
+  "dependiente5_estatura": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Estatura."
+  },
+  "dependiente5_peso": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Peso."
+  },
+  "dependiente5_parentezco": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Parentezco con el solicitante."
+  },
+  "dependiente5_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Cedula/pasaporte."
+  },
+  "dependiente5_nacionalidad": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Nacionalidad."
+  },
+  "dependiente5_profesion_ocupacion": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Profesion u ocupacion."
+  },
+  "dependiente5_edad": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Edad."
+  },
+  "dependiente5_sexo": {
+   "tipo": "string",
+   "descripcion": "Fila 5 de Dependientes: Sexo (texto libre, no checkbox)."
+  },
+  "infoadicional_seguro_similar_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Tiene o ha tenido usted o alguno de sus dependientes un seguro similar al que esta solicitando? (bloque 1, Seccion F). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 15') con 2 kids/estados literales '/0' (Si) y '/1' (No).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "infoadicional_seguro_similar_fila1_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 1: ¿Quién?"
+  },
+  "infoadicional_seguro_similar_fila1_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 1: ¿Qué seguro?"
+  },
+  "infoadicional_seguro_similar_fila1_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 1: ¿Con qué compañía?"
+  },
+  "infoadicional_seguro_similar_fila1_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 1: Suma asegurada."
+  },
+  "infoadicional_seguro_similar_fila1_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 1: Vencimiento."
+  },
+  "infoadicional_seguro_similar_fila2_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 2: ¿Quién?"
+  },
+  "infoadicional_seguro_similar_fila2_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 2: ¿Qué seguro?"
+  },
+  "infoadicional_seguro_similar_fila2_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 2: ¿Con qué compañía?"
+  },
+  "infoadicional_seguro_similar_fila2_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 2: Suma asegurada."
+  },
+  "infoadicional_seguro_similar_fila2_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 2: Vencimiento."
+  },
+  "infoadicional_seguro_similar_fila3_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 3: ¿Quién?"
+  },
+  "infoadicional_seguro_similar_fila3_que_seguro": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 3: ¿Qué seguro?"
+  },
+  "infoadicional_seguro_similar_fila3_compania": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 3: ¿Con qué compañía?"
+  },
+  "infoadicional_seguro_similar_fila3_suma_asegurada": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 3: Suma asegurada."
+  },
+  "infoadicional_seguro_similar_fila3_vencimiento": {
+   "tipo": "string",
+   "descripcion": "Bloque 'seguro similar', fila 3: Vencimiento."
+  },
+  "infoadicional_consumo_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Usted o alguno de sus dependientes fuma o ha fumado, consume o ha consumido bebidas alcoholicas o estupefacientes? (bloque 2, Seccion F). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 16') con 2 kids/estados literales '/0' (Si) y '/1' (No).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "infoadicional_consumo_fila1_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 1: ¿Quién?"
+  },
+  "infoadicional_consumo_fila1_que_consume": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 1: ¿Qué consume o ha consumido?"
+  },
+  "infoadicional_consumo_fila1_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 1: ¿Con qué frecuencia?"
+  },
+  "infoadicional_consumo_fila1_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 1: ¿Desde cuándo?"
+  },
+  "infoadicional_consumo_fila1_hasta_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 1: ¿Hasta cuándo?"
+  },
+  "infoadicional_consumo_fila2_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 2: ¿Quién?"
+  },
+  "infoadicional_consumo_fila2_que_consume": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 2: ¿Qué consume o ha consumido?"
+  },
+  "infoadicional_consumo_fila2_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 2: ¿Con qué frecuencia?"
+  },
+  "infoadicional_consumo_fila2_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 2: ¿Desde cuándo?"
+  },
+  "infoadicional_consumo_fila2_hasta_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 2: ¿Hasta cuándo?"
+  },
+  "infoadicional_consumo_fila3_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 3: ¿Quién?"
+  },
+  "infoadicional_consumo_fila3_que_consume": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 3: ¿Qué consume o ha consumido?"
+  },
+  "infoadicional_consumo_fila3_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 3: ¿Con qué frecuencia?"
+  },
+  "infoadicional_consumo_fila3_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 3: ¿Desde cuándo?"
+  },
+  "infoadicional_consumo_fila3_hasta_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'consumo', fila 3: ¿Hasta cuándo?"
+  },
+  "infoadicional_deporte_riesgo_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Practica usted o alguno de sus dependientes un deporte o actividad que pueda ser considerada de alto riesgo? (bloque 3, Seccion F). IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 17') con 2 kids/estados literales '/0' (Si) y '/1' (No).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "infoadicional_deporte_fila1_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 1: ¿Quién?"
+  },
+  "infoadicional_deporte_fila1_actividad": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 1: ¿Qué actividad?"
+  },
+  "infoadicional_deporte_fila1_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 1: ¿Con qué frecuencia?"
+  },
+  "infoadicional_deporte_fila1_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 1: ¿Desde cuándo?"
+  },
+  "infoadicional_deporte_fila1_hasta_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 1: ¿Hasta cuándo?"
+  },
+  "infoadicional_deporte_fila2_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 2: ¿Quién?"
+  },
+  "infoadicional_deporte_fila2_actividad": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 2: ¿Qué actividad?"
+  },
+  "infoadicional_deporte_fila2_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 2: ¿Con qué frecuencia?"
+  },
+  "infoadicional_deporte_fila2_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 2: ¿Desde cuándo?"
+  },
+  "infoadicional_deporte_fila2_hasta_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 2: ¿Hasta cuándo?"
+  },
+  "infoadicional_deporte_fila3_quien": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 3: ¿Quién?"
+  },
+  "infoadicional_deporte_fila3_actividad": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 3: ¿Qué actividad?"
+  },
+  "infoadicional_deporte_fila3_frecuencia": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 3: ¿Con qué frecuencia?"
+  },
+  "infoadicional_deporte_fila3_desde_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 3: ¿Desde cuándo?"
+  },
+  "infoadicional_deporte_fila3_hasta_cuando": {
+   "tipo": "string",
+   "descripcion": "Bloque 'deporte de alto riesgo', fila 3: ¿Hasta cuándo?"
+  },
+  "salud_pregunta1_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 1 de la Declaracion de Salud (Seccion G): ¿Goza usted y todos sus dependientes de buena salud física y mental? IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta2_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 2 de la Declaracion de Salud (Seccion G): ¿Tiene usted o alguno de sus dependientes algún defecto congénito o adquirido evidente o no físicamente? IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta3_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 3 de la Declaracion de Salud (Seccion G): ¿Ha sufrido usted o alguno de sus dependientes algún accidente grave o intoxicación? IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta4_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 4 de la Declaracion de Salud (Seccion G): ¿Es usted o alguno de sus dependientes piloto o tripulante en aviones privados o comerciales? IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta5_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 5 de la Declaracion de Salud (Seccion G): ¿Se ha realizado usted o alguno de sus dependientes un examen, tratamiento o cirugía para cualquier afección médica? IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta6_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 6 de la Declaracion de Salud (Seccion G): ¿Se ha realizado usted o alguno de sus dependientes un Papanicolau? (ver tambien salud_pregunta6_quien/_fecha/_resultado) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta7_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 7 de la Declaracion de Salud (Seccion G): ¿Se ha realizado usted o alguno de sus dependientes una mamografía, ultrasonido o prueba especial? (ver tambien salud_pregunta7_quien/_fecha/_resultado) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta8_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 8 de la Declaracion de Salud (Seccion G): ¿Cuántos embarazos previos ha tenido usted o alguno de sus dependientes? (ver tambien salud_pregunta8_cuantos_embarazos) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta9_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 9 de la Declaracion de Salud (Seccion G): ¿Está usted o alguna de sus dependientes embarazada? (ver tambien salud_pregunta9_quien/_cuantas_semanas) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta10_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 10 de la Declaracion de Salud (Seccion G): ¿Ha tenido usted o alguno de sus dependientes una pérdida de embarazo? (ver tambien salud_pregunta10_quien/_cuando/_por_que) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta11_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 11 de la Declaracion de Salud (Seccion G): ¿Toma usted o alguno de sus dependientes medicamentos permanentes? (ver tambien salud_pregunta11_quien/_que_medicamento/_por_que) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta12_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 12 de la Declaracion de Salud (Seccion G): ¿Ha recibido usted o alguno de sus dependientes transfusiones de sangre? (ver tambien salud_pregunta12_quien/_por_que) IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta13_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 13 de la Declaracion de Salud (Seccion H): Enfermedades del sistema nervioso (epilepsia, hemiplejia, apoplejia, polineuritis, convulsiones, desmayos, derrame isquémico, hemorragia cerebral, meningitis, neurastenia, parálisis, neurosis, insomnio, migraña, vértigo, mal de Parkinson, esclerosis lateral amiotrófica, distrofia muscular, síndrome de Guillian Barré). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta14_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 14 de la Declaracion de Salud (Seccion H): Trastornos mentales (psicosis, esquizofrenia, trastorno bipolar, ansiedad, depresión, fatiga crónica, trastornos alimenticios). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta15_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 15 de la Declaracion de Salud (Seccion H): Enfermedades del corazón o del aparato circulatorio (insuficiencia cardíaca, ataque cardíaco, angina, dolor de pecho, arteriosclerosis, hipertensión, trombosis, flebitis, fiebre reumática, infarto, síncope, defecto cardíaco, soplo al corazón, inflamación de pies o tobillos, edemas de miembros inferiores, venas varicosas, aneurismas, valvulopatías, arritmias). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta16_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 16 de la Declaracion de Salud (Seccion H): Enfermedades de la sangre (anemia, hemofilia, leucemia, hepatitis, ganglios linfáticos, colesterol alto, deficiencias del factor II, V, VII, X y XII, deficiencia congénita de antitrombina III, púrpura trombocitopénica idiopática o trombótica, enfermedad de Von Willebrand, defectos de la función plaquetaria, triglicéridos altos). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta17_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 17 de la Declaracion de Salud (Seccion H): Trastornos autoinmunes (anemia perniciosa, tiroiditis de Hashimoto, enfermedad de Addison, dermatomiositis, esclerosis múltiple, lupus eritematoso o sistémico, síndrome de Sjogren, miastenia grave, bocio tiro tóxico difuso, síndrome de Reiter, hemoglobinopatía, hepatitis autoinmune, anemia hemolítica autoinmune). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta18_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 18 de la Declaracion de Salud (Seccion H): Trastornos gastrointestinales (úlceras, reflujo gastroesofágico, vómitos de sangre, diverticulitis, gastritis, ictericia, hemorroides, fístula de recto, hernia hiatal, enfermedad del hígado o del páncreas, pólipos intestinales, colitis, intolerancia al gluten, enfermedad de Crohn). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta19_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 19 de la Declaracion de Salud (Seccion H): Enfermedades del sistema endocrino (diabetes, hiperglucemia, hipoglucemia, obesidad, bocio, hipófisis, hipertiroidismo). De ser afirmativo para diabetes, indicar tipo de diabetes, fecha en que se diagnosticó, medicamentos y dosis que lleva (ver Seccion I). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta20_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 20 de la Declaracion de Salud (Seccion H): Enfermedades del sistema osteomuscular (lumbago, ciática, escoliosis, artritis, tendonitis, gota, osteoporosis, síndrome del tunel carpiano, espina bífida, hernias discales, artrosis, osteopenia, condomalacia, reumatismo, enfermedad de disco, trastornos de la articulación temporo-mandibular o ATM). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta21_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 21 de la Declaracion de Salud (Seccion H): Enfermedades del sistema respiratorio (asma, tos crónica, tuberculosis, enfisema pulmonar, bronquitis crónica, neumonía, pleuresía, catarro persistente, enfermedad pulmonar obstructiva crónica o EPOC, ronquera crónica, alergias, fibrosis pulmonar). ANOMALIA DE AUTORIA DEL PDF: a diferencia de las demas 23 preguntas de este bloque, este campo de radio NO usa los estados limpios '/0'/'/1' sino estados literales '/OpciónN' heredados (por copia/pega) de otro campo del documento; cópielos EXACTAMENTE tal cual (incluyendo el caracter no estandar visible como 'Opci髇' en Python/JSON -- eso es CORRECTO y esperado, no lo 'corrija').",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇3",
+    "no": "/Opci髇1"
+   }
+  },
+  "salud_pregunta22_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 22 de la Declaracion de Salud (Seccion H): Enfermedades genito-urinarias (tumores o enfermedades de la próstata, insuficiencia renal crónica o aguda, calculos renales o en vias biliares, quistes de ovarios, enfermedades de la vejiga o la uretra, sangrado genital anormal, fibromas, displasias, cáncer cervico-uterino, endometriosis). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta23_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 23 de la Declaracion de Salud (Seccion H): Enfermedades de transmisión sexual (síndrome de inmunodeficiencia adquirida o VIH/SIDA, virus del papiloma humano o VPH, sífilis, gonorrea, hepatitis B o C, herpes genital, condilomas). ANOMALIA DE AUTORIA DEL PDF: a diferencia de las demas 23 preguntas de este bloque, este campo de radio NO usa los estados limpios '/0'/'/1' sino estados literales '/OpciónN' heredados (por copia/pega) de otro campo del documento; cópielos EXACTAMENTE tal cual (incluyendo el caracter no estandar visible como 'Opci髇' en Python/JSON -- eso es CORRECTO y esperado, no lo 'corrija').",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇3",
+    "no": "/Opci髇1"
+   }
+  },
+  "salud_pregunta24_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 24 de la Declaracion de Salud (Seccion H): Enfermedades de los ojos, nariz o boca (cataratas, glaucoma, desviación del tabique nasal, sinusitis crónica, síndrome de Meniere, ptérigión). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta25_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 25 de la Declaracion de Salud (Seccion H): Enfermedades o lesiones de la piel (lunares que han crecido de tamaño, cambiado de color o que pican, vitíligo, cancer de piel). IMPORTANTE: campo de radio de un solo AcroForm ('preguntaN') con 3 kids (2 reales + 1 kid diminuto <5x5pt, artefacto residual sin funcion visible). Estados literales '/0' (Si) y '/1' (No). fill_pdf.py para type=text escribe str(data[key]) tal cual, asi que datos.json DEBE usar EXACTAMENTE '/0' o '/1'.",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "salud_pregunta26_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 26 de la Declaracion de Salud (Seccion H): Secuelas de enfermedades infecciosas (escarlatina, difteria, fiebre reumática, fiebre tifoidea, septicemia, malaria, ébola, chikungunya, zika). ANOMALIA DE AUTORIA DEL PDF: a diferencia de las demas 23 preguntas de este bloque, este campo de radio NO usa los estados limpios '/0'/'/1' sino estados literales '/OpciónN' heredados (por copia/pega) de otro campo del documento; cópielos EXACTAMENTE tal cual (incluyendo el caracter no estandar visible como 'Opci髇' en Python/JSON -- eso es CORRECTO y esperado, no lo 'corrija').",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇2",
+    "no": "/Opci髇1"
+   }
+  },
+  "salud_pregunta27_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "Pregunta 27 de la Declaracion de Salud (Seccion H): Enfermedades o trastornos no citados anteriormente (cáncer, melanomas, tumores benignos, sarcoma de Kaposi, tumores de cualquier tipo, linfomas, quistes, deformidad o mutilación de algún miembro, diarrea crónica, pérdida del oído o sordera, pérdida de la vista o ceguera, anemia crónica, pérdida de conocimiento, desnutrición, síndrome de Down, patologías de mama, cancer de mama o cervico-uterino, algún síntoma o enfermedad no mencionada anteriormente que padezca actualmente). ANOMALIA DE AUTORIA DEL PDF: a diferencia de las demas 23 preguntas de este bloque, este campo de radio NO usa los estados limpios '/0'/'/1' sino estados literales '/OpciónN' heredados (por copia/pega) de otro campo del documento; cópielos EXACTAMENTE tal cual (incluyendo el caracter no estandar visible como 'Opci髇' en Python/JSON -- eso es CORRECTO y esperado, no lo 'corrija').",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/Opci髇3",
+    "no": "/Opci髇1"
+   }
+  },
+  "salud_pregunta6_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 6 (Papanicolau), si contesto afirmativamente: ¿Quién?"
+  },
+  "salud_pregunta6_fecha": {
+   "tipo": "string",
+   "descripcion": "Pregunta 6 (Papanicolau), si contesto afirmativamente: Fecha."
+  },
+  "salud_pregunta6_resultado": {
+   "tipo": "string",
+   "descripcion": "Pregunta 6 (Papanicolau), si contesto afirmativamente: Resultado."
+  },
+  "salud_pregunta7_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 7 (mamografía/ultrasonido/prueba especial), si contesto afirmativamente: ¿Quién?"
+  },
+  "salud_pregunta7_fecha": {
+   "tipo": "string",
+   "descripcion": "Pregunta 7 (mamografía/ultrasonido/prueba especial), si contesto afirmativamente: Fecha."
+  },
+  "salud_pregunta7_resultado": {
+   "tipo": "string",
+   "descripcion": "Pregunta 7 (mamografía/ultrasonido/prueba especial), si contesto afirmativamente: Resultado."
+  },
+  "salud_pregunta8_cuantos_embarazos": {
+   "tipo": "string",
+   "descripcion": "Pregunta 8: ¿Cuántos embarazos previos ha tenido usted o alguno de sus dependientes?"
+  },
+  "salud_pregunta9_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 9 (embarazo), si contesto afirmativamente: ¿Quién?"
+  },
+  "salud_pregunta9_cuantas_semanas": {
+   "tipo": "string",
+   "descripcion": "Pregunta 9 (embarazo), si contesto afirmativamente: ¿De cuántas semanas?"
+  },
+  "salud_pregunta10_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 10 (pérdida de embarazo), si contesto afirmativamente: ¿Quién?"
+  },
+  "salud_pregunta10_cuando": {
+   "tipo": "string",
+   "descripcion": "Pregunta 10 (pérdida de embarazo), si contesto afirmativamente: ¿Cuándo?"
+  },
+  "salud_pregunta10_por_que": {
+   "tipo": "string",
+   "descripcion": "Pregunta 10 (pérdida de embarazo), si contesto afirmativamente: ¿Por qué?"
+  },
+  "salud_pregunta11_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 11 (medicamentos permanentes), si contesto afirmativamente: ¿Quién?"
+  },
+  "salud_pregunta11_que_medicamento": {
+   "tipo": "string",
+   "descripcion": "Pregunta 11 (medicamentos permanentes), si contesto afirmativamente: ¿Qué medicamento?"
+  },
+  "salud_pregunta11_por_que": {
+   "tipo": "string",
+   "descripcion": "Pregunta 11 (medicamentos permanentes), si contesto afirmativamente: ¿Por qué?"
+  },
+  "salud_pregunta12_quien": {
+   "tipo": "string",
+   "descripcion": "Pregunta 12 (transfusiones de sangre), si contesto afirmativamente: ¿Quién?"
+  },
+  "salud_pregunta12_por_que": {
+   "tipo": "string",
+   "descripcion": "Pregunta 12 (transfusiones de sangre), si contesto afirmativamente: ¿Por qué?"
+  },
+  "afirmativas_fila1_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 1: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila1_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 1: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila1_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 1: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila1_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 1: Atención/diagnóstico."
+  },
+  "afirmativas_fila1_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 1: Condición actual."
+  },
+  "afirmativas_fila1_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 1: Médico/hospital."
+  },
+  "afirmativas_fila2_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 2: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila2_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 2: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila2_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 2: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila2_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 2: Atención/diagnóstico."
+  },
+  "afirmativas_fila2_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 2: Condición actual."
+  },
+  "afirmativas_fila2_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 2: Médico/hospital."
+  },
+  "afirmativas_fila3_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 3: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila3_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 3: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila3_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 3: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila3_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 3: Atención/diagnóstico."
+  },
+  "afirmativas_fila3_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 3: Condición actual."
+  },
+  "afirmativas_fila3_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 3: Médico/hospital."
+  },
+  "afirmativas_fila4_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 4: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila4_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 4: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila4_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 4: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila4_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 4: Atención/diagnóstico."
+  },
+  "afirmativas_fila4_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 4: Condición actual."
+  },
+  "afirmativas_fila4_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 4: Médico/hospital."
+  },
+  "afirmativas_fila5_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 5: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila5_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 5: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila5_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 5: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila5_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 5: Atención/diagnóstico."
+  },
+  "afirmativas_fila5_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 5: Condición actual."
+  },
+  "afirmativas_fila5_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 5: Médico/hospital."
+  },
+  "afirmativas_fila6_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 6: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila6_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 6: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila6_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 6: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila6_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 6: Atención/diagnóstico."
+  },
+  "afirmativas_fila6_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 6: Condición actual."
+  },
+  "afirmativas_fila6_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 6: Médico/hospital."
+  },
+  "afirmativas_fila7_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 7: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila7_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 7: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila7_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 7: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila7_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 7: Atención/diagnóstico."
+  },
+  "afirmativas_fila7_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 7: Condición actual."
+  },
+  "afirmativas_fila7_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 7: Médico/hospital."
+  },
+  "afirmativas_fila8_numero_pregunta": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 8: No. de pregunta (13-27 o G) contestada afirmativamente."
+  },
+  "afirmativas_fila8_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 8: Solicitante/dependiente al que corresponde."
+  },
+  "afirmativas_fila8_detalle": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 8: Detalle de la respuesta afirmativa."
+  },
+  "afirmativas_fila8_atencion_diagnostico": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 8: Atención/diagnóstico."
+  },
+  "afirmativas_fila8_condicion_actual": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 8: Condición actual."
+  },
+  "afirmativas_fila8_medico_hospital": {
+   "tipo": "string",
+   "descripcion": "Tabla Seccion I, fila 8: Médico/hospital."
+  },
+  "historial_familiar_fila1_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 1: Solicitante/dependiente."
+  },
+  "historial_familiar_fila1_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 1: Familiar afectado."
+  },
+  "historial_familiar_fila1_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 1: Enfermedad."
+  },
+  "historial_familiar_fila1_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 1: Edad de manifestación."
+  },
+  "historial_familiar_fila1_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 1: Estado actual."
+  },
+  "historial_familiar_fila2_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 2: Solicitante/dependiente."
+  },
+  "historial_familiar_fila2_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 2: Familiar afectado."
+  },
+  "historial_familiar_fila2_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 2: Enfermedad."
+  },
+  "historial_familiar_fila2_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 2: Edad de manifestación."
+  },
+  "historial_familiar_fila2_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 2: Estado actual."
+  },
+  "historial_familiar_fila3_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 3: Solicitante/dependiente."
+  },
+  "historial_familiar_fila3_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 3: Familiar afectado."
+  },
+  "historial_familiar_fila3_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 3: Enfermedad."
+  },
+  "historial_familiar_fila3_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 3: Edad de manifestación."
+  },
+  "historial_familiar_fila3_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 3: Estado actual."
+  },
+  "historial_familiar_fila4_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 4: Solicitante/dependiente."
+  },
+  "historial_familiar_fila4_familiar_afectado": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 4: Familiar afectado."
+  },
+  "historial_familiar_fila4_enfermedad": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 4: Enfermedad."
+  },
+  "historial_familiar_fila4_edad_manifestacion": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 4: Edad de manifestación."
+  },
+  "historial_familiar_fila4_estado_actual": {
+   "tipo": "string",
+   "descripcion": "Historial familiar (Seccion J), fila 4: Estado actual."
+  },
+  "medico_info_fila1_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 1: Solicitante/dependiente."
+  },
+  "medico_info_fila1_medico": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 1: Médico."
+  },
+  "medico_info_fila1_especialidad": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 1: Especialidad."
+  },
+  "medico_info_fila1_telefono": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 1: Teléfono."
+  },
+  "medico_info_fila2_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 2: Solicitante/dependiente."
+  },
+  "medico_info_fila2_medico": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 2: Médico."
+  },
+  "medico_info_fila2_especialidad": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 2: Especialidad."
+  },
+  "medico_info_fila2_telefono": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 2: Teléfono."
+  },
+  "medico_info_fila3_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 3: Solicitante/dependiente."
+  },
+  "medico_info_fila3_medico": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 3: Médico."
+  },
+  "medico_info_fila3_especialidad": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 3: Especialidad."
+  },
+  "medico_info_fila3_telefono": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 3: Teléfono."
+  },
+  "medico_info_fila4_solicitante_dependiente": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 4: Solicitante/dependiente."
+  },
+  "medico_info_fila4_medico": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 4: Médico."
+  },
+  "medico_info_fila4_especialidad": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 4: Especialidad."
+  },
+  "medico_info_fila4_telefono": {
+   "tipo": "string",
+   "descripcion": "Información de médicos (Seccion K), fila 4: Teléfono."
+  },
+  "corredor_nombre_razon_social": {
+   "tipo": "string",
+   "descripcion": "Nombre o razón social del corredor (Seccion M)."
+  },
+  "corredor_numero_licencia": {
+   "tipo": "string",
+   "descripcion": "Número de licencia del corredor."
+  },
+  "corredor_conoce_contratante_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Conoce usted personalmente al contratante? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 21') con 2 kids/estados literales '/0' (Si) y '/1' (No).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "corredor_cuanto_hace_que_conoce": {
+   "tipo": "string",
+   "descripcion": "¿Cuánto hace que lo conoce?"
+  },
+  "corredor_le_consta_firmo_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Le consta que el solicitante completó y firmó esta solicitud? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 23') con 2 kids/estados literales '/0' (Si) y '/1' (No).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "corredor_conocimiento_no_declarado_si_no": {
+   "tipo": "enum_radio_pdf",
+   "descripcion": "¿Tiene usted conocimiento sobre alguna ocupación, actividad o condición médica del solicitante y/o de sus dependientes que pudiera afectar el riesgo y que no haya sido declarada en la solicitud? IMPORTANTE: campo de radio de un solo AcroForm ('Botón de opción 22') con 2 kids/estados literales '/0' (Si) y '/1' (No).",
+   "valores_semanticos": [
+    "si",
+    "no"
+   ],
+   "valores_pdf_literales": {
+    "si": "/0",
+    "no": "/1"
+   }
+  },
+  "corredor_conocimiento_no_declarado_especifique": {
+   "tipo": "string",
+   "descripcion": "Especifique el conocimiento no declarado (si la respuesta anterior fue Si)."
+  }
+ }
+}

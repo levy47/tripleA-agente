@@ -1,0 +1,1253 @@
+{
+ "template": "aseguradoras/univivir/salud/templates/solicitud_salud.pdf",
+ "fields": {
+  "Campo de texto 2": {
+   "data_key": "encabezado_fecha_solicitud",
+   "type": "text"
+  },
+  "Campo de texto 3": {
+   "data_key": "encabezado_plan",
+   "type": "text"
+  },
+  "Campo de texto 4": {
+   "data_key": "encabezado_vigencia_efectividad",
+   "type": "text"
+  },
+  "Campo de texto 5": {
+   "data_key": "encabezado_poliza",
+   "type": "text"
+  },
+  "Campo de texto 6": {
+   "data_key": "solicitante_nombres",
+   "type": "text"
+  },
+  "Campo de texto 150": {
+   "data_key": "solicitante_apellidos",
+   "type": "text"
+  },
+  "Campo de texto 122": {
+   "data_key": "solicitante_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 123": {
+   "data_key": "solicitante_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 124": {
+   "data_key": "solicitante_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 125": {
+   "data_key": "solicitante_edad",
+   "type": "text"
+  },
+  "Campo de texto 126": {
+   "data_key": "solicitante_sexo",
+   "type": "text"
+  },
+  "Campo de texto 127": {
+   "data_key": "solicitante_estado_civil",
+   "type": "text"
+  },
+  "Campo de texto 128": {
+   "data_key": "solicitante_estatura",
+   "type": "text"
+  },
+  "Campo de texto 129": {
+   "data_key": "solicitante_peso",
+   "type": "text"
+  },
+  "Campo de texto 9": {
+   "data_key": "solicitante_direccion_residencial",
+   "type": "text"
+  },
+  "Campo de texto 151": {
+   "data_key": "solicitante_provincia",
+   "type": "text"
+  },
+  "Campo de texto 19": {
+   "data_key": "solicitante_telefono_celular",
+   "type": "text"
+  },
+  "Campo de texto 10": {
+   "data_key": "solicitante_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 21": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Campo AcroForm duplicado, superpuesto casi exactamente (overlap 92%, offset <2pt) sobre 'Campo de texto 10' (Ocupación del solicitante). Se deja sin llenar para evitar texto duplicado/solapado visualmente.",
+   "revisar": true
+  },
+  "Campo de texto 24": {
+   "data_key": "solicitante_email",
+   "type": "text"
+  },
+  "Campo de texto 11": {
+   "data_key": "solicitante_empresa",
+   "type": "text"
+  },
+  "Campo de texto 22": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Campo AcroForm duplicado, superpuesto casi exactamente (overlap 100%) sobre 'Campo de texto 11' (Empresa donde trabaja del solicitante). Se deja sin llenar para evitar texto duplicado/solapado visualmente.",
+   "revisar": true
+  },
+  "Campo de texto 23": {
+   "data_key": "solicitante_empresa_direccion",
+   "type": "text"
+  },
+  "Campo de texto 20": {
+   "data_key": "solicitante_empresa_telefono",
+   "type": "text"
+  },
+  "Botón de opción 24": {
+   "data_key": "solicitante_pep_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Fila '¿Es usted una persona politicamente expuesta?' del solicitante (Seccion A). Estados: Si=widget en x=213 -> '/0', No=widget en x=244 -> '/1'."
+  },
+  "Campo de texto 25": {
+   "data_key": "solicitante_pep_cargo",
+   "type": "text"
+  },
+  "Botón de opción 25": {
+   "data_key": "contratante_tipo_persona",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Encabezado Seccion B: Persona Natural (PN) = widget en x=299 -> '/0'; Persona Juridica (PJ) = widget en x=427 -> '/1'."
+  },
+  "Campo de texto 26": {
+   "data_key": "contratante_nombres",
+   "type": "text"
+  },
+  "Campo de texto 27": {
+   "data_key": "contratante_cedula_pasaporte_ruc",
+   "type": "text"
+  },
+  "Campo de texto 28": {
+   "data_key": "contratante_email",
+   "type": "text"
+  },
+  "Campo de texto 29": {
+   "data_key": "contratante_direccion",
+   "type": "text"
+  },
+  "Campo de texto 30": {
+   "data_key": "contratante_provincia",
+   "type": "text"
+  },
+  "Campo de texto 31": {
+   "data_key": "contratante_telefono_celular",
+   "type": "text"
+  },
+  "Campo de texto 32": {
+   "data_key": "contratante_empresa",
+   "type": "text"
+  },
+  "Campo de texto 33": {
+   "data_key": "contratante_empresa_direccion",
+   "type": "text"
+  },
+  "Campo de texto 34": {
+   "data_key": "contratante_empresa_telefono",
+   "type": "text"
+  },
+  "Campo de texto 291": {
+   "data_key": "contratante_relacion_asegurado",
+   "type": "text"
+  },
+  "Botón de opción 3": {
+   "data_key": "contratante_pep_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Fila '¿Es usted una persona politicamente expuesta?' del contratante (Seccion B). Estados: Si=widget en x=364 -> '/0', No=widget en x=394 -> '/1'."
+  },
+  "Campo de texto 35": {
+   "data_key": "contratante_pep_cargo",
+   "type": "text"
+  },
+  "Casilla de verificación 9": {
+   "data_key": "pago_metodo",
+   "type": "checkbox_group",
+   "value": "tarjeta_credito",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 8": {
+   "data_key": "pago_metodo",
+   "type": "checkbox_group",
+   "value": "ach",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 7": {
+   "data_key": "pago_metodo",
+   "type": "checkbox_group",
+   "value": "pago_voluntario",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 5": {
+   "data_key": "pago_frecuencia",
+   "type": "checkbox_group",
+   "value": "mensual",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 4": {
+   "data_key": "pago_frecuencia",
+   "type": "checkbox_group",
+   "value": "trimestral",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 3": {
+   "data_key": "pago_frecuencia",
+   "type": "checkbox_group",
+   "value": "cuatrimestral",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 2": {
+   "data_key": "pago_frecuencia",
+   "type": "checkbox_group",
+   "value": "semestral",
+   "on_state": "/Sí"
+  },
+  "Casilla de verificación 1": {
+   "data_key": "pago_frecuencia",
+   "type": "checkbox_group",
+   "value": "anual",
+   "on_state": "/Sí"
+  },
+  "Botón 20": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Widget AcroForm 'Botón 20' (pushbutton, sin /AP/N ni estados de exportacion) flotando en el margen derecho, fuera de cualquier tabla o etiqueta visible (aprox. entre Seccion C y D). Parece un artefacto de autoria del PDF sin proposito visible; se deja sin llenar.",
+   "revisar": true
+  },
+  "Campo de texto 36": {
+   "data_key": "pago_cuenta_nombre",
+   "type": "text"
+  },
+  "Campo de texto 38": {
+   "data_key": "pago_cuenta_numero",
+   "type": "text"
+  },
+  "Botón de opción 4": {
+   "data_key": "pago_cuenta_tipo",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Tipo de cuenta: Ahorro = widget en x=552 -> '/0'; Corriente = widget en x=613 -> '/1'."
+  },
+  "Campo de texto 37": {
+   "data_key": "pago_banco_nombre",
+   "type": "text"
+  },
+  "Campo de texto 39": {
+   "data_key": "pago_email_liquidaciones",
+   "type": "text"
+  },
+  "Campo de texto 153": {
+   "data_key": "dependiente1_nombre",
+   "type": "text"
+  },
+  "Campo de texto 160": {
+   "data_key": "dependiente1_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 161": {
+   "data_key": "dependiente1_estatura",
+   "type": "text"
+  },
+  "Campo de texto 162": {
+   "data_key": "dependiente1_peso",
+   "type": "text"
+  },
+  "Campo de texto 154": {
+   "data_key": "dependiente1_parentezco",
+   "type": "text"
+  },
+  "Campo de texto 155": {
+   "data_key": "dependiente1_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 156": {
+   "data_key": "dependiente1_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 157": {
+   "data_key": "dependiente1_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 158": {
+   "data_key": "dependiente1_edad",
+   "type": "text"
+  },
+  "Campo de texto 159": {
+   "data_key": "dependiente1_sexo",
+   "type": "text"
+  },
+  "Campo de texto 163": {
+   "data_key": "dependiente2_nombre",
+   "type": "text"
+  },
+  "Campo de texto 168": {
+   "data_key": "dependiente2_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 170": {
+   "data_key": "dependiente2_estatura",
+   "type": "text"
+  },
+  "Campo de texto 172": {
+   "data_key": "dependiente2_peso",
+   "type": "text"
+  },
+  "Campo de texto 164": {
+   "data_key": "dependiente2_parentezco",
+   "type": "text"
+  },
+  "Campo de texto 165": {
+   "data_key": "dependiente2_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 166": {
+   "data_key": "dependiente2_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 167": {
+   "data_key": "dependiente2_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 169": {
+   "data_key": "dependiente2_edad",
+   "type": "text"
+  },
+  "Campo de texto 171": {
+   "data_key": "dependiente2_sexo",
+   "type": "text"
+  },
+  "Campo de texto 173": {
+   "data_key": "dependiente3_nombre",
+   "type": "text"
+  },
+  "Campo de texto 178": {
+   "data_key": "dependiente3_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 180": {
+   "data_key": "dependiente3_estatura",
+   "type": "text"
+  },
+  "Campo de texto 182": {
+   "data_key": "dependiente3_peso",
+   "type": "text"
+  },
+  "Campo de texto 174": {
+   "data_key": "dependiente3_parentezco",
+   "type": "text"
+  },
+  "Campo de texto 175": {
+   "data_key": "dependiente3_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 176": {
+   "data_key": "dependiente3_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 177": {
+   "data_key": "dependiente3_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 179": {
+   "data_key": "dependiente3_edad",
+   "type": "text"
+  },
+  "Campo de texto 181": {
+   "data_key": "dependiente3_sexo",
+   "type": "text"
+  },
+  "Campo de texto 183": {
+   "data_key": "dependiente4_nombre",
+   "type": "text"
+  },
+  "Campo de texto 188": {
+   "data_key": "dependiente4_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 190": {
+   "data_key": "dependiente4_estatura",
+   "type": "text"
+  },
+  "Campo de texto 192": {
+   "data_key": "dependiente4_peso",
+   "type": "text"
+  },
+  "Campo de texto 184": {
+   "data_key": "dependiente4_parentezco",
+   "type": "text"
+  },
+  "Campo de texto 185": {
+   "data_key": "dependiente4_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 186": {
+   "data_key": "dependiente4_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 187": {
+   "data_key": "dependiente4_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 189": {
+   "data_key": "dependiente4_edad",
+   "type": "text"
+  },
+  "Campo de texto 191": {
+   "data_key": "dependiente4_sexo",
+   "type": "text"
+  },
+  "Campo de texto 193": {
+   "data_key": "dependiente5_nombre",
+   "type": "text"
+  },
+  "Campo de texto 198": {
+   "data_key": "dependiente5_fecha_nacimiento",
+   "type": "text"
+  },
+  "Campo de texto 200": {
+   "data_key": "dependiente5_estatura",
+   "type": "text"
+  },
+  "Campo de texto 202": {
+   "data_key": "dependiente5_peso",
+   "type": "text"
+  },
+  "Campo de texto 194": {
+   "data_key": "dependiente5_parentezco",
+   "type": "text"
+  },
+  "Campo de texto 195": {
+   "data_key": "dependiente5_cedula_pasaporte",
+   "type": "text"
+  },
+  "Campo de texto 196": {
+   "data_key": "dependiente5_nacionalidad",
+   "type": "text"
+  },
+  "Campo de texto 197": {
+   "data_key": "dependiente5_profesion_ocupacion",
+   "type": "text"
+  },
+  "Campo de texto 199": {
+   "data_key": "dependiente5_edad",
+   "type": "text"
+  },
+  "Campo de texto 201": {
+   "data_key": "dependiente5_sexo",
+   "type": "text"
+  },
+  "Botón de opción 15": {
+   "data_key": "infoadicional_seguro_similar_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta inicial del bloque 1 de Seccion F (seguro similar). Si=widget x=401 -> '/0'; No=widget x=442 -> '/1'."
+  },
+  "Campo de texto 1033": {
+   "data_key": "infoadicional_seguro_similar_fila1_quien",
+   "type": "text"
+  },
+  "Campo de texto 1034": {
+   "data_key": "infoadicional_seguro_similar_fila1_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 1035": {
+   "data_key": "infoadicional_seguro_similar_fila1_compania",
+   "type": "text"
+  },
+  "Campo de texto 1036": {
+   "data_key": "infoadicional_seguro_similar_fila1_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1037": {
+   "data_key": "infoadicional_seguro_similar_fila1_vencimiento",
+   "type": "text"
+  },
+  "Campo de texto 219": {
+   "data_key": "infoadicional_seguro_similar_fila2_quien",
+   "type": "text"
+  },
+  "Campo de texto 221": {
+   "data_key": "infoadicional_seguro_similar_fila2_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 223": {
+   "data_key": "infoadicional_seguro_similar_fila2_compania",
+   "type": "text"
+  },
+  "Campo de texto 1088": {
+   "data_key": "infoadicional_seguro_similar_fila2_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1086": {
+   "data_key": "infoadicional_seguro_similar_fila2_vencimiento",
+   "type": "text"
+  },
+  "Campo de texto 220": {
+   "data_key": "infoadicional_seguro_similar_fila3_quien",
+   "type": "text"
+  },
+  "Campo de texto 222": {
+   "data_key": "infoadicional_seguro_similar_fila3_que_seguro",
+   "type": "text"
+  },
+  "Campo de texto 224": {
+   "data_key": "infoadicional_seguro_similar_fila3_compania",
+   "type": "text"
+  },
+  "Campo de texto 1089": {
+   "data_key": "infoadicional_seguro_similar_fila3_suma_asegurada",
+   "type": "text"
+  },
+  "Campo de texto 1087": {
+   "data_key": "infoadicional_seguro_similar_fila3_vencimiento",
+   "type": "text"
+  },
+  "Botón de opción 16": {
+   "data_key": "infoadicional_consumo_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta inicial del bloque 2 de Seccion F (fuma/alcohol/estupefacientes). Si=widget x=487 -> '/0'; No=widget x=526 -> '/1'."
+  },
+  "Campo de texto 1024": {
+   "data_key": "infoadicional_consumo_fila1_quien",
+   "type": "text"
+  },
+  "Campo de texto 1025": {
+   "data_key": "infoadicional_consumo_fila1_que_consume",
+   "type": "text"
+  },
+  "Campo de texto 1026": {
+   "data_key": "infoadicional_consumo_fila1_frecuencia",
+   "type": "text"
+  },
+  "Campo de texto 1027": {
+   "data_key": "infoadicional_consumo_fila1_desde_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1028": {
+   "data_key": "infoadicional_consumo_fila1_hasta_cuando",
+   "type": "text"
+  },
+  "Campo de texto 213": {
+   "data_key": "infoadicional_consumo_fila2_quien",
+   "type": "text"
+  },
+  "Campo de texto 215": {
+   "data_key": "infoadicional_consumo_fila2_que_consume",
+   "type": "text"
+  },
+  "Campo de texto 217": {
+   "data_key": "infoadicional_consumo_fila2_frecuencia",
+   "type": "text"
+  },
+  "Campo de texto 1031": {
+   "data_key": "infoadicional_consumo_fila2_desde_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1029": {
+   "data_key": "infoadicional_consumo_fila2_hasta_cuando",
+   "type": "text"
+  },
+  "Campo de texto 214": {
+   "data_key": "infoadicional_consumo_fila3_quien",
+   "type": "text"
+  },
+  "Campo de texto 216": {
+   "data_key": "infoadicional_consumo_fila3_que_consume",
+   "type": "text"
+  },
+  "Campo de texto 218": {
+   "data_key": "infoadicional_consumo_fila3_frecuencia",
+   "type": "text"
+  },
+  "Campo de texto 1032": {
+   "data_key": "infoadicional_consumo_fila3_desde_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1030": {
+   "data_key": "infoadicional_consumo_fila3_hasta_cuando",
+   "type": "text"
+  },
+  "Botón de opción 17": {
+   "data_key": "infoadicional_deporte_riesgo_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta inicial del bloque 3 de Seccion F (deporte de alto riesgo). Si=widget x=442 -> '/0'; No=widget x=484 -> '/1'."
+  },
+  "Campo de texto 1015": {
+   "data_key": "infoadicional_deporte_fila1_quien",
+   "type": "text"
+  },
+  "Campo de texto 1016": {
+   "data_key": "infoadicional_deporte_fila1_actividad",
+   "type": "text"
+  },
+  "Campo de texto 1017": {
+   "data_key": "infoadicional_deporte_fila1_frecuencia",
+   "type": "text"
+  },
+  "Campo de texto 1018": {
+   "data_key": "infoadicional_deporte_fila1_desde_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1020": {
+   "data_key": "infoadicional_deporte_fila1_hasta_cuando",
+   "type": "text"
+  },
+  "Campo de texto 116": {
+   "data_key": "infoadicional_deporte_fila2_quien",
+   "type": "text"
+  },
+  "Campo de texto 117": {
+   "data_key": "infoadicional_deporte_fila2_actividad",
+   "type": "text"
+  },
+  "Campo de texto 118": {
+   "data_key": "infoadicional_deporte_fila2_frecuencia",
+   "type": "text"
+  },
+  "Campo de texto 1019": {
+   "data_key": "infoadicional_deporte_fila2_desde_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1021": {
+   "data_key": "infoadicional_deporte_fila2_hasta_cuando",
+   "type": "text"
+  },
+  "Campo de texto 210": {
+   "data_key": "infoadicional_deporte_fila3_quien",
+   "type": "text"
+  },
+  "Campo de texto 211": {
+   "data_key": "infoadicional_deporte_fila3_actividad",
+   "type": "text"
+  },
+  "Campo de texto 212": {
+   "data_key": "infoadicional_deporte_fila3_frecuencia",
+   "type": "text"
+  },
+  "Campo de texto 1023": {
+   "data_key": "infoadicional_deporte_fila3_desde_cuando",
+   "type": "text"
+  },
+  "Campo de texto 1022": {
+   "data_key": "infoadicional_deporte_fila3_hasta_cuando",
+   "type": "text"
+  },
+  "pregunta1": {
+   "data_key": "salud_pregunta1_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 1 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta2": {
+   "data_key": "salud_pregunta2_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 2 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta3": {
+   "data_key": "salud_pregunta3_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 3 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta4": {
+   "data_key": "salud_pregunta4_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 4 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta5": {
+   "data_key": "salud_pregunta5_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 5 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta6": {
+   "data_key": "salud_pregunta6_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 6 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta7": {
+   "data_key": "salud_pregunta7_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 7 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta8": {
+   "data_key": "salud_pregunta8_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 8 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta9": {
+   "data_key": "salud_pregunta9_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 9 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta10": {
+   "data_key": "salud_pregunta10_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 10 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta11": {
+   "data_key": "salud_pregunta11_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 11 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta12": {
+   "data_key": "salud_pregunta12_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 12 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta13": {
+   "data_key": "salud_pregunta13_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 13 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta14": {
+   "data_key": "salud_pregunta14_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 14 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta15": {
+   "data_key": "salud_pregunta15_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 15 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta16": {
+   "data_key": "salud_pregunta16_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 16 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta17": {
+   "data_key": "salud_pregunta17_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 17 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta18": {
+   "data_key": "salud_pregunta18_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 18 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta19": {
+   "data_key": "salud_pregunta19_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 19 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta20": {
+   "data_key": "salud_pregunta20_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 20 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta22": {
+   "data_key": "salud_pregunta22_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 22 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta24": {
+   "data_key": "salud_pregunta24_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 24 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta25": {
+   "data_key": "salud_pregunta25_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 25 de la Declaracion de Salud (Seccion G/H). Si=widget x~594 -> '/0'; No=widget x~623 -> '/1'. El 3er widget/kid del grupo (rect diminuto, <5x5pt) es un artefacto residual de autoria del PDF sin funcion visible; no requiere mapeo propio (setear el campo padre en '/0' o '/1' ya lo deja apagado)."
+  },
+  "pregunta21": {
+   "data_key": "salud_pregunta21_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 21 (sistema respiratorio). ANOMALIA: a diferencia de las demas preguntas, este grupo de radio NO usa estados '/0'/'/1' sino los estados literales heredados de otro campo: Si=widget x~594 -> '/Opción3' (bytes con caracter no estandar, cópielo tal cual del PDF), No=widget x~623 -> '/Opción1'."
+  },
+  "pregunta23": {
+   "data_key": "salud_pregunta23_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 23 (transmision sexual). ANOMALIA: igual que pregunta21, estados literales: Si=widget x~594 -> '/Opción3', No=widget x~623 -> '/Opción1'."
+  },
+  "pregunta26": {
+   "data_key": "salud_pregunta26_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 26 (secuelas infecciosas). ANOMALIA: estados literales: Si=widget x~594 -> '/Opción2', No=widget x~623 -> '/Opción1'."
+  },
+  "pregunta27": {
+   "data_key": "salud_pregunta27_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). Pregunta 27 (otras no citadas). ANOMALIA: estados literales: Si=widget x~594 -> '/Opción3', No=widget x~623 -> '/Opción1'."
+  },
+  "Campo de texto 239": {
+   "data_key": "salud_pregunta6_quien",
+   "type": "text"
+  },
+  "Campo de texto 238": {
+   "data_key": "salud_pregunta6_fecha",
+   "type": "text"
+  },
+  "Campo de texto 240": {
+   "data_key": "salud_pregunta6_resultado",
+   "type": "text"
+  },
+  "Campo de texto 242": {
+   "data_key": "salud_pregunta7_quien",
+   "type": "text"
+  },
+  "Campo de texto 243": {
+   "data_key": "salud_pregunta7_fecha",
+   "type": "text"
+  },
+  "Campo de texto 244": {
+   "data_key": "salud_pregunta7_resultado",
+   "type": "text"
+  },
+  "Campo de texto 245": {
+   "data_key": "salud_pregunta8_cuantos_embarazos",
+   "type": "text"
+  },
+  "Campo de texto 246": {
+   "data_key": "salud_pregunta9_quien",
+   "type": "text"
+  },
+  "Campo de texto 293": {
+   "data_key": "salud_pregunta9_cuantas_semanas",
+   "type": "text"
+  },
+  "Campo de texto 247": {
+   "data_key": "salud_pregunta10_quien",
+   "type": "text"
+  },
+  "Campo de texto 248": {
+   "data_key": "salud_pregunta10_cuando",
+   "type": "text"
+  },
+  "Campo de texto 249": {
+   "data_key": "salud_pregunta10_por_que",
+   "type": "text"
+  },
+  "Campo de texto 250": {
+   "data_key": "salud_pregunta11_quien",
+   "type": "text"
+  },
+  "Campo de texto 251": {
+   "data_key": "salud_pregunta11_que_medicamento",
+   "type": "text"
+  },
+  "Campo de texto 252": {
+   "data_key": "salud_pregunta11_por_que",
+   "type": "text"
+  },
+  "Campo de texto 253": {
+   "data_key": "salud_pregunta12_quien",
+   "type": "text"
+  },
+  "Campo de texto 254": {
+   "data_key": "salud_pregunta12_por_que",
+   "type": "text"
+  },
+  "Campo de texto 1078": {
+   "data_key": "afirmativas_fila1_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1038": {
+   "data_key": "afirmativas_fila1_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1039": {
+   "data_key": "afirmativas_fila1_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1040": {
+   "data_key": "afirmativas_fila1_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1041": {
+   "data_key": "afirmativas_fila1_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1042": {
+   "data_key": "afirmativas_fila1_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1079": {
+   "data_key": "afirmativas_fila2_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1043": {
+   "data_key": "afirmativas_fila2_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1044": {
+   "data_key": "afirmativas_fila2_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1045": {
+   "data_key": "afirmativas_fila2_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1046": {
+   "data_key": "afirmativas_fila2_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1047": {
+   "data_key": "afirmativas_fila2_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1080": {
+   "data_key": "afirmativas_fila3_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1048": {
+   "data_key": "afirmativas_fila3_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1049": {
+   "data_key": "afirmativas_fila3_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1050": {
+   "data_key": "afirmativas_fila3_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1051": {
+   "data_key": "afirmativas_fila3_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1052": {
+   "data_key": "afirmativas_fila3_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1081": {
+   "data_key": "afirmativas_fila4_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1053": {
+   "data_key": "afirmativas_fila4_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1054": {
+   "data_key": "afirmativas_fila4_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1055": {
+   "data_key": "afirmativas_fila4_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1056": {
+   "data_key": "afirmativas_fila4_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1057": {
+   "data_key": "afirmativas_fila4_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1082": {
+   "data_key": "afirmativas_fila5_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1058": {
+   "data_key": "afirmativas_fila5_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1059": {
+   "data_key": "afirmativas_fila5_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1060": {
+   "data_key": "afirmativas_fila5_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1061": {
+   "data_key": "afirmativas_fila5_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1062": {
+   "data_key": "afirmativas_fila5_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1083": {
+   "data_key": "afirmativas_fila6_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1063": {
+   "data_key": "afirmativas_fila6_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1064": {
+   "data_key": "afirmativas_fila6_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1065": {
+   "data_key": "afirmativas_fila6_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1066": {
+   "data_key": "afirmativas_fila6_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1067": {
+   "data_key": "afirmativas_fila6_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1084": {
+   "data_key": "afirmativas_fila7_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1068": {
+   "data_key": "afirmativas_fila7_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1069": {
+   "data_key": "afirmativas_fila7_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1070": {
+   "data_key": "afirmativas_fila7_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1071": {
+   "data_key": "afirmativas_fila7_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1072": {
+   "data_key": "afirmativas_fila7_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 1085": {
+   "data_key": "afirmativas_fila8_numero_pregunta",
+   "type": "text"
+  },
+  "Campo de texto 1073": {
+   "data_key": "afirmativas_fila8_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 1074": {
+   "data_key": "afirmativas_fila8_detalle",
+   "type": "text"
+  },
+  "Campo de texto 1075": {
+   "data_key": "afirmativas_fila8_atencion_diagnostico",
+   "type": "text"
+  },
+  "Campo de texto 1076": {
+   "data_key": "afirmativas_fila8_condicion_actual",
+   "type": "text"
+  },
+  "Campo de texto 1077": {
+   "data_key": "afirmativas_fila8_medico_hospital",
+   "type": "text"
+  },
+  "Campo de texto 255": {
+   "data_key": "historial_familiar_fila1_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 270": {
+   "data_key": "historial_familiar_fila1_familiar_afectado",
+   "type": "text"
+  },
+  "Campo de texto 271": {
+   "data_key": "historial_familiar_fila1_enfermedad",
+   "type": "text"
+  },
+  "Campo de texto 278": {
+   "data_key": "historial_familiar_fila1_edad_manifestacion",
+   "type": "text"
+  },
+  "Campo de texto 279": {
+   "data_key": "historial_familiar_fila1_estado_actual",
+   "type": "text"
+  },
+  "Campo de texto 256": {
+   "data_key": "historial_familiar_fila2_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 269": {
+   "data_key": "historial_familiar_fila2_familiar_afectado",
+   "type": "text"
+  },
+  "Campo de texto 272": {
+   "data_key": "historial_familiar_fila2_enfermedad",
+   "type": "text"
+  },
+  "Campo de texto 277": {
+   "data_key": "historial_familiar_fila2_edad_manifestacion",
+   "type": "text"
+  },
+  "Campo de texto 280": {
+   "data_key": "historial_familiar_fila2_estado_actual",
+   "type": "text"
+  },
+  "Campo de texto 257": {
+   "data_key": "historial_familiar_fila3_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 268": {
+   "data_key": "historial_familiar_fila3_familiar_afectado",
+   "type": "text"
+  },
+  "Campo de texto 273": {
+   "data_key": "historial_familiar_fila3_enfermedad",
+   "type": "text"
+  },
+  "Campo de texto 276": {
+   "data_key": "historial_familiar_fila3_edad_manifestacion",
+   "type": "text"
+  },
+  "Campo de texto 281": {
+   "data_key": "historial_familiar_fila3_estado_actual",
+   "type": "text"
+  },
+  "Campo de texto 258": {
+   "data_key": "historial_familiar_fila4_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 267": {
+   "data_key": "historial_familiar_fila4_familiar_afectado",
+   "type": "text"
+  },
+  "Campo de texto 274": {
+   "data_key": "historial_familiar_fila4_enfermedad",
+   "type": "text"
+  },
+  "Campo de texto 275": {
+   "data_key": "historial_familiar_fila4_edad_manifestacion",
+   "type": "text"
+  },
+  "Campo de texto 282": {
+   "data_key": "historial_familiar_fila4_estado_actual",
+   "type": "text"
+  },
+  "Campo de texto 259": {
+   "data_key": "medico_info_fila1_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 266": {
+   "data_key": "medico_info_fila1_medico",
+   "type": "text"
+  },
+  "Campo de texto 290": {
+   "data_key": "medico_info_fila1_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 283": {
+   "data_key": "medico_info_fila1_telefono",
+   "type": "text"
+  },
+  "Campo de texto 260": {
+   "data_key": "medico_info_fila2_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 265": {
+   "data_key": "medico_info_fila2_medico",
+   "type": "text"
+  },
+  "Campo de texto 289": {
+   "data_key": "medico_info_fila2_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 284": {
+   "data_key": "medico_info_fila2_telefono",
+   "type": "text"
+  },
+  "Campo de texto 261": {
+   "data_key": "medico_info_fila3_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 264": {
+   "data_key": "medico_info_fila3_medico",
+   "type": "text"
+  },
+  "Campo de texto 288": {
+   "data_key": "medico_info_fila3_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 285": {
+   "data_key": "medico_info_fila3_telefono",
+   "type": "text"
+  },
+  "Campo de texto 262": {
+   "data_key": "medico_info_fila4_solicitante_dependiente",
+   "type": "text"
+  },
+  "Campo de texto 263": {
+   "data_key": "medico_info_fila4_medico",
+   "type": "text"
+  },
+  "Campo de texto 287": {
+   "data_key": "medico_info_fila4_especialidad",
+   "type": "text"
+  },
+  "Campo de texto 286": {
+   "data_key": "medico_info_fila4_telefono",
+   "type": "text"
+  },
+  "Campo de texto 10115": {
+   "data_key": "corredor_nombre_razon_social",
+   "type": "text"
+  },
+  "Campo de texto 10116": {
+   "data_key": "corredor_numero_licencia",
+   "type": "text"
+  },
+  "Botón de opción 21": {
+   "data_key": "corredor_conoce_contratante_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). ¿Conoce usted personalmente al contratante? Si=widget x=169 -> '/0'; No=widget x=200 -> '/1'."
+  },
+  "Campo de texto 10125": {
+   "data_key": "corredor_cuanto_hace_que_conoce",
+   "type": "text"
+  },
+  "Botón de opción 23": {
+   "data_key": "corredor_le_consta_firmo_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). ¿Le consta que el solicitante completó y firmó esta solicitud? Si=widget x=565 -> '/0'; No=widget x=596 -> '/1'."
+  },
+  "Botón de opción 22": {
+   "data_key": "corredor_conocimiento_no_declarado_si_no",
+   "type": "text",
+   "nota": "Campo de boton de radio (Botón de opción / pregunta) de UN solo AcroForm con 2 kids/estados de exportacion. fill_pdf.py para type=text escribe str(data[key]) tal cual sin traducir, asi que datos.json DEBE usar EXACTAMENTE el estado literal (incluyendo la barra inicial '/'). ¿Tiene usted conocimiento sobre alguna ocupación, actividad o condición médica no declarada? Si=widget x=85 -> '/0'; No=widget x=126 -> '/1'."
+  },
+  "Campo de texto 101023": {
+   "data_key": "corredor_conocimiento_no_declarado_especifique",
+   "type": "text"
+  },
+  "Casilla de verificación 13": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': checkbox 'Exclusión permanente'. Es un dato que completa la aseguradora DESPUES de recibir y evaluar la solicitud (post-emision/suscripcion), no un dato de intake del solicitante/contratante/corredor. Se deja sin autocompletar, siguiendo el mismo criterio usado en el mapping de Blue Cross para su sección equivalente."
+  },
+  "Casilla de verificación 14": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': checkbox 'Exclusión temporal'. Post-emision/suscripcion, no se autocompleta (ver nota de 'Casilla de verificación 13')."
+  },
+  "Casilla de verificación 15": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': checkbox 'Recargo'. Post-emision/suscripcion, no se autocompleta (ver nota de 'Casilla de verificación 13')."
+  },
+  "Campo de texto 10121": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': campo 'Motivo'. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10118": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': campo grande 'Detalles'. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Botón de opción 27": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': radio 'Aprobado'/'Declinado' (widget x=77 -> '/0' Aprobado, x=134 -> '/1' Declinado). Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10122": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': campo 'Evaluador'. Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10123": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': campo 'Cargo' (del evaluador). Post-emision/suscripcion, no se autocompleta."
+  },
+  "Campo de texto 10124": {
+   "data_key": null,
+   "type": "manual",
+   "nota": "Sección 'Para uso de la compañía': campo 'Fecha' (de la evaluación). Post-emision/suscripcion, no se autocompleta."
+  }
+ }
+}

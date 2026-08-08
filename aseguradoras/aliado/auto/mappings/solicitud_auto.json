@@ -1,0 +1,731 @@
+{
+  "template": "aseguradoras/aliado/auto/templates/solicitud_auto.pdf",
+  "page_width": 612,
+  "page_height": 792,
+  "font_size": 8,
+  "fields": [
+    {
+      "data_key": "nombre_1",
+      "page": 1,
+      "x": 45,
+      "y": 684,
+      "type": "text"
+    },
+    {
+      "data_key": "nombre_2",
+      "page": 1,
+      "x": 133,
+      "y": 684,
+      "type": "text"
+    },
+    {
+      "data_key": "apellido_1",
+      "page": 1,
+      "x": 228,
+      "y": 684,
+      "type": "text"
+    },
+    {
+      "data_key": "apellido_2",
+      "page": 1,
+      "x": 305,
+      "y": 684,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Apellido de casada -- sin data_key, se completa a mano si aplica",
+      "label": "Apellido de Casada"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 492,
+      "y": 684,
+      "type": "text"
+    },
+    {
+      "data_key": "fecha_nacimiento",
+      "page": 1,
+      "x": 45,
+      "y": 655,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_nacimiento",
+      "page": 1,
+      "x": 140,
+      "y": 655,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_residencia",
+      "page": 1,
+      "x": 228,
+      "y": 655,
+      "type": "text",
+      "note": "Columna 'Pais de Residencia' de la fila de datos basicos"
+    },
+    {
+      "data_key": "nacionalidad",
+      "page": 1,
+      "x": 326,
+      "y": 655,
+      "type": "text"
+    },
+    {
+      "data_key": "genero",
+      "page": 1,
+      "type": "checkbox_mark",
+      "note": "Valor viene como 'F' o 'M' (una letra)",
+      "options": {
+        "F": {
+          "x": 501.5,
+          "y": 671.5
+        },
+        "M": {
+          "x": 534.5,
+          "y": 672.3
+        }
+      }
+    },
+    {
+      "data_key": "direccion_residencial",
+      "page": 1,
+      "x": 45,
+      "y": 627,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Nombre del Edificio -- sin data_key disponible",
+      "label": "Nombre del Edificio"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "No. Apto o Casa -- sin data_key disponible",
+      "label": "No. Apto o Casa"
+    },
+    {
+      "data_key": "telefono_celular",
+      "page": 1,
+      "x": 492,
+      "y": 627,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_provincia",
+      "page": 1,
+      "x": 45,
+      "y": 598,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_distrito",
+      "page": 1,
+      "x": 163,
+      "y": 598,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_corregimiento",
+      "page": 1,
+      "x": 287,
+      "y": 598,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_residencia",
+      "page": 1,
+      "x": 459,
+      "y": 598,
+      "type": "text",
+      "note": "Columna 'Pais' de la fila Provincia/Distrito/Corregimiento -- mismo dato que pais_residencia"
+    },
+    {
+      "data_key": "correo_personal",
+      "page": 1,
+      "x": 45,
+      "y": 577,
+      "type": "text"
+    },
+    {
+      "data_key": "profesion",
+      "page": 1,
+      "x": 266,
+      "y": 577,
+      "type": "text"
+    },
+    {
+      "data_key": "ocupacion",
+      "page": 1,
+      "x": 420,
+      "y": 577,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_donde_tributa",
+      "page": 1,
+      "x": 45,
+      "y": 556,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Id Tributario (persona natural) -- sin data_key disponible",
+      "label": "Id Tributario (persona natural)"
+    },
+    {
+      "data_key": "es_pep",
+      "page": 1,
+      "type": "checkbox_mark",
+      "note": "Politica de cumplimiento: nunca se automarca 'Si' -- solo se mapea la opcion 'no'. Un valor 'si' requiere confirmacion y marca manual del corredor.",
+      "options": {
+        "no": {
+          "x": 414,
+          "y": 544
+        }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Nombre y Cargo de la persona PEP relacionada (si aplica) -- sin data_key, caso raro que requiere revision humana",
+      "label": "PEP persona natural -- Nombre/Cargo"
+    },
+    {
+      "data_key": "razon_social",
+      "page": 1,
+      "x": 45,
+      "y": 478,
+      "type": "text"
+    },
+    {
+      "data_key": "ruc_empresa",
+      "page": 1,
+      "x": 356,
+      "y": 478,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_fisica_empresa",
+      "page": 1,
+      "x": 45,
+      "y": 450,
+      "type": "text"
+    },
+    {
+      "data_key": "telefono_empresa",
+      "page": 1,
+      "x": 356,
+      "y": 450,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Provincia/Distrito/Corregimiento/Pais de la persona juridica -- el schema solo tiene direccion_fisica_empresa de texto libre, no desglosada",
+      "label": "Persona Juridica -- Provincia/Distrito/Corregimiento/Pais"
+    },
+    {
+      "data_key": "actividad_empresa",
+      "page": 1,
+      "x": 45,
+      "y": 406,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_constitucion",
+      "page": 1,
+      "x": 317,
+      "y": 406,
+      "type": "text"
+    },
+    {
+      "data_key": "representante_legal_nombre",
+      "page": 1,
+      "x": 45,
+      "y": 379,
+      "type": "text"
+    },
+    {
+      "data_key": "representante_legal_identificacion",
+      "page": 1,
+      "x": 394,
+      "y": 379,
+      "type": "text"
+    },
+    {
+      "data_key": "correo_empresa",
+      "page": 1,
+      "x": 45,
+      "y": 357,
+      "type": "text"
+    },
+    {
+      "data_key": "pais_tributa_empresa",
+      "page": 1,
+      "x": 45,
+      "y": 335,
+      "type": "text"
+    },
+    {
+      "data_key": "nit_empresa",
+      "page": 1,
+      "x": 387,
+      "y": 335,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_1_nombre",
+      "page": 1,
+      "x": 45,
+      "y": 287,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_1_identificacion",
+      "page": 1,
+      "x": 312,
+      "y": 287,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_1_nacionalidad",
+      "page": 1,
+      "x": 420,
+      "y": 287,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_1_porcentaje",
+      "page": 1,
+      "x": 530,
+      "y": 287,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_2_nombre",
+      "page": 1,
+      "x": 45,
+      "y": 266,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_2_identificacion",
+      "page": 1,
+      "x": 312,
+      "y": 266,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_2_nacionalidad",
+      "page": 1,
+      "x": 420,
+      "y": 266,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_2_porcentaje",
+      "page": 1,
+      "x": 530,
+      "y": 266,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_3_nombre",
+      "page": 1,
+      "x": 45,
+      "y": 244,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_3_identificacion",
+      "page": 1,
+      "x": 312,
+      "y": 244,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_3_nacionalidad",
+      "page": 1,
+      "x": 420,
+      "y": 244,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_3_porcentaje",
+      "page": 1,
+      "x": 530,
+      "y": 244,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_4_nombre",
+      "page": 1,
+      "x": 45,
+      "y": 222,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_4_identificacion",
+      "page": 1,
+      "x": 312,
+      "y": 222,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_4_nacionalidad",
+      "page": 1,
+      "x": 420,
+      "y": 222,
+      "type": "text"
+    },
+    {
+      "data_key": "accionista_4_porcentaje",
+      "page": 1,
+      "x": 530,
+      "y": 222,
+      "type": "text"
+    },
+    {
+      "data_key": "juridica_pep_titular",
+      "page": 1,
+      "type": "checkbox_mark",
+      "note": "Misma politica que es_pep: solo se mapea la opcion 'no', 'si' siempre requiere marca manual del corredor.",
+      "options": {
+        "no": {
+          "x": 237,
+          "y": 198
+        }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Nombre de la persona PEP relacionada con la juridica -- sin data_key",
+      "label": "PEP juridica -- Nombre"
+    },
+    {
+      "data_key": "juridica_pep_titular_cargo",
+      "page": 1,
+      "x": 370,
+      "y": 172,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Datos del Pagador -- no existe data_key para un pagador distinto del contratante en el schema actual, caso poco comun",
+      "label": "Datos del Pagador (Nombre/Empresa, Cedula-Pasaporte-RUC, Correo, Telefonos, Direccion)"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Checkbox generico 'Tarjeta de Credito' (sin distinguir red) -- se completa a mano",
+      "label": "Forma de Pago -- Tarjeta de Credito (generico)"
+    },
+    {
+      "data_key": "tarjeta_tipo",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "visa": {
+          "x": 137,
+          "y": 694
+        },
+        "mastercard": {
+          "x": 181,
+          "y": 693
+        }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Checkbox ACH -- se completa a mano",
+      "label": "Forma de Pago -- ACH"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "CONFIRMADO: este checkbox viene pre-impreso/marcado en rojo como arte fijo de la plantilla, no se mapea ni se pisa con overlay",
+      "label": "Forma de Pago -- Corredor de Seguros (arte fijo, NO tocar)"
+    },
+    {
+      "data_key": "tarjetahabiente_nombre_completo",
+      "page": 2,
+      "x": 167,
+      "y": 642,
+      "type": "text"
+    },
+    {
+      "data_key": "banco_emisor",
+      "page": 2,
+      "x": 74,
+      "y": 629,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Dia de Cobro (15/30/Otro) -- sin data_key disponible",
+      "label": "Dia de Cobro"
+    },
+    {
+      "data_key": "numero_tarjeta",
+      "page": 2,
+      "x": 46,
+      "y": 582,
+      "type": "text",
+      "note": "Casilleros individuales en el PDF -- se escribe el numero completo como texto corrido, no digito por digito"
+    },
+    {
+      "data_key": "tarjeta_fecha_exp_mmaa",
+      "page": 2,
+      "x": 132,
+      "y": 562,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Firma autorizacion de Descuento -- manuscrita",
+      "label": "Firma autorizacion de Descuento"
+    },
+    {
+      "data_key": "auto_poliza_frecuencia_pago",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "'mensual' viene pre-marcado en rojo como arte fijo (CONFIRMADO), por eso no esta incluido en options -- solo trimestral/semestral/anual son casillas reales vacias",
+      "options": {
+        "trimestral": {
+          "x": 208,
+          "y": 493
+        },
+        "semestral": {
+          "x": 269,
+          "y": 493
+        },
+        "anual": {
+          "x": 327,
+          "y": 493
+        }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Cantidad de pagos -- sin data_key disponible",
+      "label": "Cantidad de pagos"
+    },
+    {
+      "data_key": "auto_poliza_vigencia_desde",
+      "page": 2,
+      "type": "date_split",
+      "input_format": "dd/mm/aaaa",
+      "note": "El PDF dice 'aa' (2 digitos) pero se escribe el valor completo -- prioridad es legibilidad, no el ancho exacto del casillero",
+      "parts": {
+        "day": {
+          "x": 104,
+          "y": 443
+        },
+        "month": {
+          "x": 145,
+          "y": 443
+        },
+        "year": {
+          "x": 200,
+          "y": 443
+        }
+      }
+    },
+    {
+      "data_key": "auto_poliza_vigencia_hasta",
+      "page": 2,
+      "type": "date_split",
+      "input_format": "dd/mm/aaaa",
+      "parts": {
+        "day": {
+          "x": 371,
+          "y": 443
+        },
+        "month": {
+          "x": 411,
+          "y": 443
+        },
+        "year": {
+          "x": 466,
+          "y": 443
+        }
+      }
+    },
+    {
+      "data_key": "auto_poliza_acreedor_hipotecario",
+      "page": 2,
+      "x": 45,
+      "y": 410,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_marca",
+      "page": 2,
+      "x": 45,
+      "y": 362,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_modelo",
+      "page": 2,
+      "x": 122,
+      "y": 362,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_anio",
+      "page": 2,
+      "x": 199,
+      "y": 362,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_placa",
+      "page": 2,
+      "x": 277,
+      "y": 362,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_uso",
+      "page": 2,
+      "x": 357,
+      "y": 362,
+      "type": "text",
+      "note": "Celda de texto libre en este PDF, no checkbox"
+    },
+    {
+      "data_key": "vehiculo_tipo",
+      "page": 2,
+      "x": 440,
+      "y": 362,
+      "type": "text",
+      "note": "Celda de texto libre en este PDF, no checkbox"
+    },
+    {
+      "data_key": "vehiculo_numero_motor",
+      "page": 2,
+      "x": 45,
+      "y": 330,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_numero_chasis",
+      "page": 2,
+      "x": 200,
+      "y": 330,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_color",
+      "page": 2,
+      "x": 352,
+      "y": 330,
+      "type": "text"
+    },
+    {
+      "data_key": "auto_poliza_valor_auto",
+      "page": 2,
+      "x": 445,
+      "y": 330,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "CONFIRMADO: este checkbox viene pre-impreso/marcado en rojo como arte fijo de la plantilla, no se mapea ni se pisa con overlay",
+      "label": "ACEPTO asegurar coberturas... (arte fijo, NO tocar)"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Declaracion especial -- texto fijo de la plantilla, no se toca",
+      "label": "Declaracion especial"
+    },
+    {
+      "data_key": "nombre_completo",
+      "page": 2,
+      "x": 45,
+      "y": 170,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Firma del Solicitante -- manuscrita",
+      "label": "Firma del Solicitante"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 2,
+      "x": 394,
+      "y": 170,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Fecha (fila del solicitante) -- se completa a mano",
+      "label": "Fecha (fila del solicitante)"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "CONFIRMADO: 'Nombre del Corredor de Seguros' ya trae impreso 'Seguros Triple A' como texto fijo de la plantilla -- NO se mapea ni se pisa con overlay",
+      "label": "Nombre del Corredor de Seguros (arte fijo, NO tocar)"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Licencia del Corredor -- se completa a mano",
+      "label": "Licencia del Corredor"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Fecha (fila del corredor) -- se completa a mano",
+      "label": "Fecha (fila del corredor)"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Para Uso Interno de Aliado Seguros -- lo completa la aseguradora",
+      "label": "Para Uso Interno de Aliado Seguros (Nombre/Firma/Fecha del Ejecutivo)"
+    }
+  ]
+}

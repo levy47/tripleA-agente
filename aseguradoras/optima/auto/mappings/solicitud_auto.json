@@ -1,0 +1,359 @@
+{
+  "template": "aseguradoras/optima/auto/templates/solicitud_auto.pdf",
+  "page_width": 612,
+  "page_height": 792,
+  "font_size": 8,
+  "fields": [
+    {
+      "data_key": "nombre_1",
+      "page": 1,
+      "x": 61.3,
+      "y": 630.0,
+      "type": "text"
+    },
+    {
+      "data_key": "nombre_2",
+      "page": 1,
+      "x": 156.9,
+      "y": 630.0,
+      "type": "text"
+    },
+    {
+      "data_key": "apellido_1",
+      "page": 1,
+      "x": 259.8,
+      "y": 630.0,
+      "type": "text"
+    },
+    {
+      "data_key": "apellido_2",
+      "page": 1,
+      "x": 365.9,
+      "y": 630.0,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Apellido de casada -- sin data_key, se completa a mano si aplica",
+      "label": "Apellido de casada"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 64.7,
+      "y": 587.8,
+      "type": "text"
+    },
+    {
+      "data_key": "nacionalidad",
+      "page": 1,
+      "x": 192.2,
+      "y": 587.8,
+      "type": "text"
+    },
+    {
+      "data_key": "genero",
+      "page": 1,
+      "x": 302.9,
+      "y": 587.8,
+      "type": "text",
+      "note": "Celda 'Sexo' sin subdividir en F/M en este PDF (a diferencia del KYC) -- se escribe 'F' o 'M' como texto"
+    },
+    {
+      "data_key": "pais_residencia",
+      "page": 1,
+      "x": 375.3,
+      "y": 587.8,
+      "type": "text"
+    },
+    {
+      "data_key": "estado_civil",
+      "page": 1,
+      "x": 502.5,
+      "y": 587.8,
+      "type": "text"
+    },
+    {
+      "data_key": "fecha_nacimiento",
+      "page": 1,
+      "x": 54.2,
+      "y": 545.6,
+      "type": "text",
+      "note": "Celda unica sin subdividir dia/mes/anio -- se escribe la fecha completa como texto"
+    },
+    {
+      "data_key": "telefono_celular",
+      "page": 1,
+      "x": 173.3,
+      "y": 545.6,
+      "type": "text"
+    },
+    {
+      "data_key": "empresa_donde_labora",
+      "page": 1,
+      "x": 234.3,
+      "y": 545.6,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Tel. Oficina y Fax de la fila 3 -- sin data_key disponible",
+      "label": "Tel. Oficina / Fax (fila datos personales)"
+    },
+    {
+      "data_key": "correo_personal",
+      "page": 1,
+      "x": 483.0,
+      "y": 545.6,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_provincia",
+      "page": 1,
+      "x": 72.0,
+      "y": 468.8,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_distrito",
+      "page": 1,
+      "x": 195.9,
+      "y": 468.8,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_corregimiento",
+      "page": 1,
+      "x": 318.2,
+      "y": 468.8,
+      "type": "text"
+    },
+    {
+      "data_key": "direccion_urbanizacion",
+      "page": 1,
+      "x": 444.6,
+      "y": 468.8,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "Decision de alcance: Datos Persona Juridica (Nombre de la empresa/RUC/Actividad/E-mail/Tel. Oficina/Fax), Ubicacion de la Empresa, Datos del Representante Legal y su Direccion Residencial quedan manuales -- caso raro (vehiculo de una empresa), el corredor completa a mano si aplica",
+      "label": "Persona Juridica / Ubicacion de la Empresa / Representante Legal / Direccion Representante Legal"
+    },
+    {
+      "data_key": "vehiculo_marca",
+      "page": 2,
+      "x": 93.5,
+      "y": 621.7,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_modelo",
+      "page": 2,
+      "x": 228.4,
+      "y": 621.7,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_anio",
+      "page": 2,
+      "x": 365.0,
+      "y": 621.7,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_color",
+      "page": 2,
+      "x": 499.3,
+      "y": 621.7,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_num_pasajeros",
+      "page": 2,
+      "x": 60.4,
+      "y": 579.5,
+      "type": "text"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Tonelaje -- especifico de camiones, sin data_key disponible",
+      "label": "Tonelaje"
+    },
+    {
+      "data_key": "vehiculo_placa",
+      "page": 2,
+      "x": 372.4,
+      "y": 579.5,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_numero_motor",
+      "page": 2,
+      "x": 451.1,
+      "y": 579.5,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_numero_chasis",
+      "page": 2,
+      "x": 528.9,
+      "y": 579.5,
+      "type": "text"
+    },
+    {
+      "data_key": "vehiculo_tipo",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "sedan": { "x": 117.5, "y": 561.5 },
+        "camioneta": { "x": 215.2, "y": 561.5 },
+        "4x4": { "x": 329.3, "y": 561.5 },
+        "4x2": { "x": 416.3, "y": 561.5 },
+        "pick_up": { "x": 508.4, "y": 561.5 }
+      }
+    },
+    {
+      "data_key": "vehiculo_uso",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "comercial": { "x": 154.6, "y": 540.5 },
+        "particular": { "x": 355.4, "y": 540.5 }
+      }
+    },
+    {
+      "data_key": "auto_poliza_vigencia_desde",
+      "page": 2,
+      "x": 67,
+      "y": 488.47,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "auto_poliza_vigencia_hasta",
+      "page": 2,
+      "x": 143,
+      "y": 488.47,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "auto_poliza_acreedor_hipotecario",
+      "page": 2,
+      "x": 197.7,
+      "y": 485.65,
+      "type": "text"
+    },
+    {
+      "data_key": "auto_poliza_valor_auto",
+      "page": 2,
+      "x": 315.3,
+      "y": 485.65,
+      "type": "text"
+    },
+    {
+      "data_key": "auto_poliza_conductor_adicional_nombre",
+      "page": 2,
+      "x": 394.1,
+      "y": 485.65,
+      "type": "text"
+    },
+    {
+      "data_key": "auto_poliza_conductor_adicional_fecha_nacimiento",
+      "page": 2,
+      "x": 497.5,
+      "y": 485.65,
+      "type": "text"
+    },
+    {
+      "data_key": "auto_poliza_experiencia_manejo",
+      "page": 2,
+      "type": "checkbox_mark",
+      "note": "'menos_2_anos' es el piso/opcion base sin casillero real en el PDF ('2 anos' viene impreso sin caja) -- si el valor es ese, no se marca nada (no incluido en options)",
+      "options": {
+        "3_a_5_anos": { "x": 339.64, "y": 458.2 },
+        "mas_6_anos": { "x": 486.28, "y": 458.2 }
+      }
+    },
+    {
+      "data_key": "auto_poliza_siniestros_ultimos_5_anos",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "si": { "x": 339.64, "y": 438.08 },
+        "no": { "x": 486.64, "y": 438.08 }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Tabla de Coberturas (A-G: Limites/Prima) + Prima Anual/6%/Total a Pagar -- la completa el corredor con la cotizacion real",
+      "label": "Coberturas / Prima / Total a pagar"
+    },
+    {
+      "data_key": null,
+      "page": 2,
+      "type": "manual",
+      "note": "Seleccion del metodo de pago (1. Descuento tarjeta / 2. Transferencia ACH / 3. Pago voluntario) -- son numeros sin casillero dibujado, el corredor marca a mano cual aplica",
+      "label": "IV PARTE: Forma de Pago -- metodo (1/2/3)"
+    },
+    {
+      "data_key": "numero_tarjeta",
+      "page": 2,
+      "x": 98.96,
+      "y": 123.88,
+      "type": "text"
+    },
+    {
+      "data_key": "tarjeta_tipo",
+      "page": 2,
+      "type": "checkbox_mark",
+      "options": {
+        "mastercard": { "x": 26.25, "y": 101.58 },
+        "visa": { "x": 127.5, "y": 101.58 }
+      }
+    },
+    {
+      "data_key": "tarjeta_exp_mes",
+      "page": 2,
+      "x": 132.0,
+      "y": 79.4,
+      "type": "text"
+    },
+    {
+      "data_key": "tarjeta_exp_anio",
+      "page": 2,
+      "x": 216.0,
+      "y": 79.4,
+      "type": "text"
+    },
+    {
+      "data_key": "auto_poliza_frecuencia_pago",
+      "page": 3,
+      "type": "checkbox_mark",
+      "options": {
+        "mensual": { "x": 160.8, "y": 649.26 },
+        "trimestral": { "x": 233.63, "y": 649.26 },
+        "semestral": { "x": 309.63, "y": 649.26 },
+        "anual": { "x": 387.04, "y": 649.26 }
+      }
+    },
+    {
+      "data_key": null,
+      "page": 3,
+      "type": "manual",
+      "note": "Firma de autorizacion de descuento, nota legal de firma electronica, y firmas de solicitante/corredor/fecha -- manuscritas",
+      "label": "Firmas / Nota legal (pagina 3)"
+    }
+  ]
+}

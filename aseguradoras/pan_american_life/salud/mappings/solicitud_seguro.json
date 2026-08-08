@@ -1,0 +1,3179 @@
+{
+ "template": "aseguradoras/pan_american_life/salud/templates/solicitud_seguro.pdf",
+ "fields": {
+  "Check Box464": {
+   "data_key": "tipo_solicitud",
+   "type": "checkbox_group",
+   "value": "nueva",
+   "on_state": "/Sí"
+  },
+  "Check Box465": {
+   "data_key": "tipo_solicitud",
+   "type": "checkbox_group",
+   "value": "adicion_dependientes",
+   "on_state": "/Sí"
+  },
+  "Check Box466": {
+   "data_key": "tipo_solicitud",
+   "type": "checkbox_group",
+   "value": "cambio_plan",
+   "on_state": "/Sí"
+  },
+  "Check Box467": {
+   "data_key": "tipo_solicitud",
+   "type": "checkbox_group",
+   "value": "rehabilitacion",
+   "on_state": "/Sí"
+  },
+  "Text468": {
+   "data_key": "numero_poliza",
+   "type": "text"
+  },
+  "Text469": {
+   "type": "manual",
+   "nota": "Campo AcroForm de tipo texto ubicado en la linea punteada inmediatamente despues de la etiqueta impresa 'SOLICITANTE 1' (encabezado de la Seccion I, pagina 1). No tiene ninguna etiqueta propia visible en el PDF que indique su proposito (no es 'Numero de Poliza', ya reservado para Text468 en la fila de arriba). Se dejo como type=manual (no se autocompleta) porque no se pudo determinar con certeza que dato de intake corresponde escribir ahi; revisar visualmente con la aseguradora antes de usarlo."
+  },
+  "Text470": {
+   "data_key": "principal_primer_nombre",
+   "type": "text"
+  },
+  "Text471": {
+   "data_key": "principal_segundo_nombre",
+   "type": "text"
+  },
+  "Text472": {
+   "data_key": "principal_primer_apellido",
+   "type": "text"
+  },
+  "Text473": {
+   "data_key": "principal_segundo_apellido",
+   "type": "text"
+  },
+  "Text474": {
+   "data_key": "principal_apellido_casada",
+   "type": "text"
+  },
+  "Text475": {
+   "data_key": "principal_peso",
+   "type": "text"
+  },
+  "Text476": {
+   "data_key": "principal_estatura",
+   "type": "text"
+  },
+  "Text477": {
+   "data_key": "principal_fecha_nac_mes",
+   "type": "text"
+  },
+  "Text478": {
+   "data_key": "principal_fecha_nac_dia",
+   "type": "text"
+  },
+  "Text479": {
+   "data_key": "principal_fecha_nac_anio",
+   "type": "text"
+  },
+  "Check Box480": {
+   "data_key": "principal_sexo",
+   "type": "checkbox_group",
+   "value": "M",
+   "on_state": "/Sí"
+  },
+  "Check Box481": {
+   "data_key": "principal_sexo",
+   "type": "checkbox_group",
+   "value": "F",
+   "on_state": "/Sí"
+  },
+  "Text482": {
+   "data_key": "principal_estado_civil",
+   "type": "text"
+  },
+  "Text483": {
+   "data_key": "principal_ocupacion",
+   "type": "text"
+  },
+  "Text484": {
+   "data_key": "principal_descripcion_ocupacion",
+   "type": "text"
+  },
+  "Text485": {
+   "data_key": "principal_direccion_trabajo",
+   "type": "text"
+  },
+  "Text485 C": {
+   "data_key": "principal_nacionalidad",
+   "type": "text"
+  },
+  "Text487": {
+   "data_key": "principal_cedula_pasaporte",
+   "type": "text"
+  },
+  "Text486": {
+   "data_key": "principal_correo_electronico",
+   "type": "text"
+  },
+  "Text486 A": {
+   "data_key": "principal_correo_trabajo",
+   "type": "text"
+  },
+  "Text486 B": {
+   "data_key": "principal_telefono_trabajo",
+   "type": "text"
+  },
+  "Check Box488": {
+   "data_key": "principal_pep",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box489": {
+   "data_key": "principal_pep",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text490": {
+   "data_key": "principal_pep_detalle",
+   "type": "text"
+  },
+  "Text490 A": {
+   "data_key": "principal_ingreso_anual",
+   "type": "text"
+  },
+  "Text490 B": {
+   "data_key": "principal_lugar_tributa",
+   "type": "text"
+  },
+  "Text491": {
+   "data_key": "dir_residencial_direccion",
+   "type": "text"
+  },
+  "Text492": {
+   "data_key": "dir_residencial_ciudad",
+   "type": "text"
+  },
+  "Text493": {
+   "data_key": "dir_residencial_provincia",
+   "type": "text"
+  },
+  "Text494": {
+   "data_key": "dir_residencial_apartado_postal",
+   "type": "text"
+  },
+  "Text495": {
+   "data_key": "dir_residencial_pais",
+   "type": "text"
+  },
+  "Text496": {
+   "data_key": "dir_residencial_tiempo_residencia",
+   "type": "text"
+  },
+  "Text1177": {
+   "data_key": "dir_postal_direccion",
+   "type": "text"
+  },
+  "Text1178": {
+   "data_key": "dir_postal_ciudad",
+   "type": "text"
+  },
+  "Text1179": {
+   "data_key": "dir_postal_provincia",
+   "type": "text"
+  },
+  "Text1180": {
+   "data_key": "dir_postal_apartado_postal",
+   "type": "text"
+  },
+  "Text1181": {
+   "data_key": "dir_postal_pais",
+   "type": "text"
+  },
+  "Text500": {
+   "data_key": "telefono_casa",
+   "type": "text"
+  },
+  "Text502": {
+   "data_key": "celular",
+   "type": "text"
+  },
+  "Text501": {
+   "data_key": "fax",
+   "type": "text"
+  },
+  "Text501 A": {
+   "data_key": "correo_personal",
+   "type": "text"
+  },
+  "Text503": {
+   "data_key": "correo_conyuge",
+   "type": "text"
+  },
+  "Check Box504": {
+   "data_key": "demografica_residencia_legal_panama",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box505": {
+   "data_key": "demografica_residencia_legal_panama",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box506": {
+   "data_key": "demografica_reside_eeuu_6meses",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box507": {
+   "data_key": "demografica_reside_eeuu_6meses",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text508": {
+   "data_key": "demografica_paises_autorizado_residir",
+   "type": "text"
+  },
+  "Check Box509": {
+   "data_key": "demografica_multiple_nacionalidad",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box510": {
+   "data_key": "demografica_multiple_nacionalidad",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text511": {
+   "data_key": "demografica_multiple_nacionalidad_pais",
+   "type": "text"
+  },
+  "Text512": {
+   "data_key": "sol2_nombre_completo",
+   "type": "text"
+  },
+  "Text516": {
+   "data_key": "sol2_correo",
+   "type": "text"
+  },
+  "Text517": {
+   "data_key": "sol2_peso",
+   "type": "text"
+  },
+  "Text519": {
+   "data_key": "sol2_estatura",
+   "type": "text"
+  },
+  "Text521": {
+   "data_key": "sol2_fecha_nac_mes",
+   "type": "text"
+  },
+  "Text522": {
+   "data_key": "sol2_fecha_nac_dia",
+   "type": "text"
+  },
+  "Text523": {
+   "data_key": "sol2_fecha_nac_anio",
+   "type": "text"
+  },
+  "Check Box524": {
+   "data_key": "sol2_sexo",
+   "type": "checkbox_group",
+   "value": "M",
+   "on_state": "/Sí"
+  },
+  "Check Box525": {
+   "data_key": "sol2_sexo",
+   "type": "checkbox_group",
+   "value": "F",
+   "on_state": "/Sí"
+  },
+  "Text526": {
+   "data_key": "sol2_ocupacion",
+   "type": "text"
+  },
+  "Text526-1": {
+   "data_key": "sol2_parentesco",
+   "type": "text"
+  },
+  "Text518": {
+   "data_key": "sol2_lugar_trabajo",
+   "type": "text"
+  },
+  "Text520": {
+   "data_key": "sol2_descripcion_ocupacion",
+   "type": "text"
+  },
+  "Text527": {
+   "data_key": "sol2_estado_civil",
+   "type": "text"
+  },
+  "Text528": {
+   "data_key": "sol2_cedula",
+   "type": "text"
+  },
+  "Text1182": {
+   "data_key": "sol3_nombre_completo",
+   "type": "text"
+  },
+  "Text1186": {
+   "data_key": "sol3_correo",
+   "type": "text"
+  },
+  "Text1187": {
+   "data_key": "sol3_parentesco",
+   "type": "text"
+  },
+  "Text1188": {
+   "data_key": "sol3_peso",
+   "type": "text"
+  },
+  "Text1189": {
+   "data_key": "sol3_estatura",
+   "type": "text"
+  },
+  "Text1190": {
+   "data_key": "sol3_fecha_nac_mes",
+   "type": "text"
+  },
+  "Text1191": {
+   "data_key": "sol3_fecha_nac_dia",
+   "type": "text"
+  },
+  "Text1192": {
+   "data_key": "sol3_fecha_nac_anio",
+   "type": "text"
+  },
+  "Check Box1196": {
+   "data_key": "sol3_sexo",
+   "type": "checkbox_group",
+   "value": "M",
+   "on_state": "/Sí"
+  },
+  "Check Box1197": {
+   "data_key": "sol3_sexo",
+   "type": "checkbox_group",
+   "value": "F",
+   "on_state": "/Sí"
+  },
+  "Text1193": {
+   "data_key": "sol3_estado_civil",
+   "type": "text"
+  },
+  "Text1194": {
+   "data_key": "sol3_ocupacion",
+   "type": "text"
+  },
+  "Text1195": {
+   "data_key": "sol3_cedula",
+   "type": "text"
+  },
+  "Text1204": {
+   "data_key": "sol4_nombre_completo",
+   "type": "text"
+  },
+  "Text1208": {
+   "data_key": "sol4_correo",
+   "type": "text"
+  },
+  "Text1209": {
+   "data_key": "sol4_parentesco",
+   "type": "text"
+  },
+  "Text1210": {
+   "data_key": "sol4_peso",
+   "type": "text"
+  },
+  "Text1211": {
+   "data_key": "sol4_estatura",
+   "type": "text"
+  },
+  "Text1212": {
+   "data_key": "sol4_fecha_nac_mes",
+   "type": "text"
+  },
+  "Text1213": {
+   "data_key": "sol4_fecha_nac_dia",
+   "type": "text"
+  },
+  "Text1214": {
+   "data_key": "sol4_fecha_nac_anio",
+   "type": "text"
+  },
+  "Check Box1198": {
+   "data_key": "sol4_sexo",
+   "type": "checkbox_group",
+   "value": "M",
+   "on_state": "/Sí"
+  },
+  "Check Box1199": {
+   "data_key": "sol4_sexo",
+   "type": "checkbox_group",
+   "value": "F",
+   "on_state": "/Sí"
+  },
+  "Text1215": {
+   "data_key": "sol4_estado_civil",
+   "type": "text"
+  },
+  "Text1216": {
+   "data_key": "sol4_ocupacion",
+   "type": "text"
+  },
+  "Text1217": {
+   "data_key": "sol4_cedula",
+   "type": "text"
+  },
+  "Text1218": {
+   "data_key": "sol5_nombre_completo",
+   "type": "text"
+  },
+  "Text1222": {
+   "data_key": "sol5_correo",
+   "type": "text"
+  },
+  "Text1224": {
+   "data_key": "sol5_parentesco",
+   "type": "text"
+  },
+  "Text1225": {
+   "data_key": "sol5_peso",
+   "type": "text"
+  },
+  "Text1226": {
+   "data_key": "sol5_estatura",
+   "type": "text"
+  },
+  "Text1227": {
+   "data_key": "sol5_fecha_nac_mes",
+   "type": "text"
+  },
+  "Text1228": {
+   "data_key": "sol5_fecha_nac_dia",
+   "type": "text"
+  },
+  "Text1229": {
+   "data_key": "sol5_fecha_nac_anio",
+   "type": "text"
+  },
+  "Check Box1200": {
+   "data_key": "sol5_sexo",
+   "type": "checkbox_group",
+   "value": "M",
+   "on_state": "/Sí"
+  },
+  "Check Box1201": {
+   "data_key": "sol5_sexo",
+   "type": "checkbox_group",
+   "value": "F",
+   "on_state": "/Sí"
+  },
+  "Text1230": {
+   "data_key": "sol5_estado_civil",
+   "type": "text"
+  },
+  "Text1231": {
+   "data_key": "sol5_ocupacion",
+   "type": "text"
+  },
+  "Text1223": {
+   "data_key": "sol5_cedula",
+   "type": "text"
+  },
+  "Text1232": {
+   "data_key": "sol6_nombre_completo",
+   "type": "text"
+  },
+  "Text1236": {
+   "data_key": "sol6_correo",
+   "type": "text"
+  },
+  "Text1237": {
+   "data_key": "sol6_parentesco",
+   "type": "text"
+  },
+  "Text1238": {
+   "data_key": "sol6_peso",
+   "type": "text"
+  },
+  "Text1239": {
+   "data_key": "sol6_estatura",
+   "type": "text"
+  },
+  "Text1240": {
+   "data_key": "sol6_fecha_nac_mes",
+   "type": "text"
+  },
+  "Text1241": {
+   "data_key": "sol6_fecha_nac_dia",
+   "type": "text"
+  },
+  "Text1242": {
+   "data_key": "sol6_fecha_nac_anio",
+   "type": "text"
+  },
+  "Check Box1202": {
+   "data_key": "sol6_sexo",
+   "type": "checkbox_group",
+   "value": "M",
+   "on_state": "/Sí"
+  },
+  "Check Box1203": {
+   "data_key": "sol6_sexo",
+   "type": "checkbox_group",
+   "value": "F",
+   "on_state": "/Sí"
+  },
+  "Text1243": {
+   "data_key": "sol6_estado_civil",
+   "type": "text"
+  },
+  "Text1244": {
+   "data_key": "sol6_ocupacion",
+   "type": "text"
+  },
+  "Text1245": {
+   "data_key": "sol6_cedula",
+   "type": "text"
+  },
+  "Check Box540": {
+   "data_key": "deporte_profesional",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box541": {
+   "data_key": "deporte_profesional",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1246": {
+   "data_key": "deporte_profesional_nombre",
+   "type": "text"
+  },
+  "Text1247": {
+   "data_key": "deporte_profesional_cual",
+   "type": "text"
+  },
+  "Check Box547": {
+   "data_key": "imm_producto",
+   "type": "checkbox_group",
+   "value": "worldaccess",
+   "on_state": "/Sí"
+  },
+  "Check Box549": {
+   "data_key": "imm_producto",
+   "type": "checkbox_group",
+   "value": "health_access",
+   "on_state": "/Sí"
+  },
+  "Check Box548": {
+   "data_key": "imm_producto",
+   "type": "checkbox_group",
+   "value": "preferredaccess",
+   "on_state": "/Sí"
+  },
+  "Check Box550": {
+   "data_key": "imm_producto",
+   "type": "checkbox_group",
+   "value": "health_access_plus",
+   "on_state": "/Sí"
+  },
+  "Check Box563": {
+   "data_key": "imm_deducible",
+   "type": "checkbox_group",
+   "value": "1000",
+   "on_state": "/Sí"
+  },
+  "Check Box562": {
+   "data_key": "imm_deducible",
+   "type": "checkbox_group",
+   "value": "2000",
+   "on_state": "/Sí"
+  },
+  "Check Box561": {
+   "data_key": "imm_deducible",
+   "type": "checkbox_group",
+   "value": "5000",
+   "on_state": "/Sí"
+  },
+  "Check Box559": {
+   "data_key": "imm_deducible",
+   "type": "checkbox_group",
+   "value": "10000",
+   "on_state": "/Sí"
+  },
+  "Check Box560": {
+   "data_key": "imm_deducible",
+   "type": "checkbox_group",
+   "value": "20000",
+   "on_state": "/Sí"
+  },
+  "Text564": {
+   "data_key": "imm_fecha_efectividad",
+   "type": "text"
+  },
+  "Check Box551": {
+   "data_key": "healthtrust_plan",
+   "type": "checkbox_group",
+   "value": "a_internacional",
+   "on_state": "/Sí"
+  },
+  "Check Box552": {
+   "data_key": "healthtrust_plan",
+   "type": "checkbox_group",
+   "value": "b_local",
+   "on_state": "/Sí"
+  },
+  "Check Box553": {
+   "data_key": "healthtrust_deducible_internacional",
+   "type": "checkbox_group",
+   "value": "1000_2000",
+   "on_state": "/Sí"
+  },
+  "Check Box555": {
+   "data_key": "healthtrust_deducible_internacional",
+   "type": "checkbox_group",
+   "value": "2500_5000",
+   "on_state": "/Sí"
+  },
+  "Check Box557": {
+   "data_key": "healthtrust_deducible_internacional",
+   "type": "checkbox_group",
+   "value": "5000_10000",
+   "on_state": "/Sí"
+  },
+  "Check Box554": {
+   "data_key": "healthtrust_deducible_local",
+   "type": "checkbox_group",
+   "value": "350",
+   "on_state": "/Sí"
+  },
+  "Check Box556": {
+   "data_key": "healthtrust_deducible_local",
+   "type": "checkbox_group",
+   "value": "700",
+   "on_state": "/Sí"
+  },
+  "Check Box558": {
+   "data_key": "healthtrust_deducible_local",
+   "type": "checkbox_group",
+   "value": "1200",
+   "on_state": "/Sí"
+  },
+  "Text565": {
+   "data_key": "healthtrust_fecha_efectividad",
+   "type": "text"
+  },
+  "Text566": {
+   "type": "manual",
+   "nota": "Fila de encabezado vacia (gris) sobre la tabla 'Monto por diagnostico' de la Seccion IV.3 (Plan de Enfermedades Graves), pagina 3. No tiene etiqueta visible impresa; parece un remanente de diseno de tabla sin uso funcional. Se dejo como manual/no autocompletado; revisar si la aseguradora le da algun uso."
+  },
+  "Text567": {
+   "type": "manual",
+   "nota": "Ver Text566 (misma fila de encabezado vacia, columna 2)."
+  },
+  "Text568": {
+   "type": "manual",
+   "nota": "Ver Text566 (misma fila de encabezado vacia, columna 3)."
+  },
+  "Text569": {
+   "type": "manual",
+   "nota": "Ver Text566 (misma fila de encabezado vacia, columna 4)."
+  },
+  "Check Box570": {
+   "data_key": "graves_monto_diagnostico",
+   "type": "checkbox_group",
+   "value": "10000",
+   "on_state": "/Sí"
+  },
+  "Check Box571": {
+   "data_key": "graves_monto_diagnostico",
+   "type": "checkbox_group",
+   "value": "15000",
+   "on_state": "/Sí"
+  },
+  "Check Box572": {
+   "data_key": "graves_monto_diagnostico",
+   "type": "checkbox_group",
+   "value": "25000",
+   "on_state": "/Sí"
+  },
+  "Check Box573": {
+   "data_key": "graves_monto_diagnostico",
+   "type": "checkbox_group",
+   "value": "50000",
+   "on_state": "/Sí"
+  },
+  "Check Box574": {
+   "data_key": "graves_a_quien_asegurar",
+   "type": "checkbox_group",
+   "value": "principal",
+   "on_state": "/Sí"
+  },
+  "Check Box575": {
+   "data_key": "graves_a_quien_asegurar",
+   "type": "checkbox_group",
+   "value": "principal_conyuge",
+   "on_state": "/Sí"
+  },
+  "Text1249": {
+   "data_key": "beneficiario1_nombre",
+   "type": "text"
+  },
+  "Text1252": {
+   "data_key": "beneficiario1_parentesco",
+   "type": "text"
+  },
+  "Text1255": {
+   "data_key": "beneficiario1_porcentaje",
+   "type": "text"
+  },
+  "Text1258": {
+   "data_key": "beneficiario1_cedula",
+   "type": "text"
+  },
+  "Text1250": {
+   "data_key": "beneficiario2_nombre",
+   "type": "text"
+  },
+  "Text1253": {
+   "data_key": "beneficiario2_parentesco",
+   "type": "text"
+  },
+  "Text1256": {
+   "data_key": "beneficiario2_porcentaje",
+   "type": "text"
+  },
+  "Text1259": {
+   "data_key": "beneficiario2_cedula",
+   "type": "text"
+  },
+  "Text1251": {
+   "data_key": "beneficiario3_nombre",
+   "type": "text"
+  },
+  "Text1254": {
+   "data_key": "beneficiario3_parentesco",
+   "type": "text"
+  },
+  "Text1257": {
+   "data_key": "beneficiario3_porcentaje",
+   "type": "text"
+  },
+  "Text1260": {
+   "data_key": "beneficiario3_cedula",
+   "type": "text"
+  },
+  "Check Box579": {
+   "data_key": "otros_seguros_reemplaza",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box580": {
+   "data_key": "otros_seguros_reemplaza",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1261": {
+   "data_key": "otros_seguros_reemplaza_compania",
+   "type": "text"
+  },
+  "Text1262": {
+   "data_key": "otros_seguros_reemplaza_producto_deducible",
+   "type": "text"
+  },
+  "Text1263": {
+   "data_key": "otros_seguros_reemplaza_no_poliza",
+   "type": "text"
+  },
+  "Check Box581": {
+   "data_key": "otros_seguros_tendra_otro",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box582": {
+   "data_key": "otros_seguros_tendra_otro",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1264": {
+   "data_key": "otros_seguros_tendra_otro_compania",
+   "type": "text"
+  },
+  "Text1265": {
+   "data_key": "otros_seguros_tendra_otro_producto_deducible",
+   "type": "text"
+  },
+  "Text1266": {
+   "data_key": "otros_seguros_tendra_otro_no_poliza",
+   "type": "text"
+  },
+  "Check Box584": {
+   "data_key": "otros_seguros_solicitud_negada",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box585": {
+   "data_key": "otros_seguros_solicitud_negada",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text588": {
+   "data_key": "otros_seguros_solicitud_negada_explicar",
+   "type": "text"
+  },
+  "Check Box586": {
+   "data_key": "otros_seguros_asegurado_pal_antes",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box587": {
+   "data_key": "otros_seguros_asegurado_pal_antes",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1267": {
+   "data_key": "otros_seguros_pal_no_solicitud_poliza",
+   "type": "text"
+  },
+  "Text1268": {
+   "data_key": "otros_seguros_pal_tipo_producto",
+   "type": "text"
+  },
+  "Check Box593": {
+   "data_key": "medico_cabecera_tiene",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box594": {
+   "data_key": "medico_cabecera_tiene",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1269": {
+   "data_key": "medico_cabecera1_solicitante",
+   "type": "text"
+  },
+  "Text1272": {
+   "data_key": "medico_cabecera1_nombre",
+   "type": "text"
+  },
+  "Text1275": {
+   "data_key": "medico_cabecera1_especialidad",
+   "type": "text"
+  },
+  "Text1278": {
+   "data_key": "medico_cabecera1_telefono",
+   "type": "text"
+  },
+  "Text1270": {
+   "data_key": "medico_cabecera2_solicitante",
+   "type": "text"
+  },
+  "Text1273": {
+   "data_key": "medico_cabecera2_nombre",
+   "type": "text"
+  },
+  "Text1276": {
+   "data_key": "medico_cabecera2_especialidad",
+   "type": "text"
+  },
+  "Text1279": {
+   "data_key": "medico_cabecera2_telefono",
+   "type": "text"
+  },
+  "Text1271": {
+   "data_key": "medico_cabecera3_solicitante",
+   "type": "text"
+  },
+  "Text1274": {
+   "data_key": "medico_cabecera3_nombre",
+   "type": "text"
+  },
+  "Text1277": {
+   "data_key": "medico_cabecera3_especialidad",
+   "type": "text"
+  },
+  "Text1280": {
+   "data_key": "medico_cabecera3_telefono",
+   "type": "text"
+  },
+  "Check Box595": {
+   "data_key": "examen_medico_tiene",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box596": {
+   "data_key": "examen_medico_tiene",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1281": {
+   "data_key": "examen1_solicitante",
+   "type": "text"
+  },
+  "Text1284": {
+   "data_key": "examen1_tipo",
+   "type": "text"
+  },
+  "Text1287": {
+   "data_key": "examen1_fecha",
+   "type": "text"
+  },
+  "Check Box1290": {
+   "data_key": "examen1_resultado",
+   "type": "checkbox_group",
+   "value": "normal",
+   "on_state": "/Sí"
+  },
+  "Check Box1291": {
+   "data_key": "examen1_resultado",
+   "type": "checkbox_group",
+   "value": "anormal",
+   "on_state": "/Sí"
+  },
+  "Normal Anormal": {
+   "data_key": "examen1_resultado_explicar",
+   "type": "text"
+  },
+  "Text1282": {
+   "data_key": "examen2_solicitante",
+   "type": "text"
+  },
+  "Text1285": {
+   "data_key": "examen2_tipo",
+   "type": "text"
+  },
+  "Text1288": {
+   "data_key": "examen2_fecha",
+   "type": "text"
+  },
+  "Check Box1292": {
+   "data_key": "examen2_resultado",
+   "type": "checkbox_group",
+   "value": "normal",
+   "on_state": "/Sí"
+  },
+  "Check Box1293": {
+   "data_key": "examen2_resultado",
+   "type": "checkbox_group",
+   "value": "anormal",
+   "on_state": "/Sí"
+  },
+  "Normal Anormal_2": {
+   "data_key": "examen2_resultado_explicar",
+   "type": "text"
+  },
+  "Text1283": {
+   "data_key": "examen3_solicitante",
+   "type": "text"
+  },
+  "Text1286": {
+   "data_key": "examen3_tipo",
+   "type": "text"
+  },
+  "Text1289": {
+   "data_key": "examen3_fecha",
+   "type": "text"
+  },
+  "Check Box1294": {
+   "data_key": "examen3_resultado",
+   "type": "checkbox_group",
+   "value": "normal",
+   "on_state": "/Sí"
+  },
+  "Check Box1295": {
+   "data_key": "examen3_resultado",
+   "type": "checkbox_group",
+   "value": "anormal",
+   "on_state": "/Sí"
+  },
+  "Normal Anormal_3": {
+   "data_key": "examen3_resultado_explicar",
+   "type": "text"
+  },
+  "Check Box598": {
+   "data_key": "maternidad_embarazo_previo",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box599": {
+   "data_key": "maternidad_embarazo_previo",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text600": {
+   "data_key": "maternidad_embarazo_previo_nombre",
+   "type": "text"
+  },
+  "Emparazo 1A": {
+   "data_key": "maternidad_cantidad_embarazos",
+   "type": "text"
+  },
+  "Emparazo 1B": {
+   "data_key": "maternidad_parto_natural",
+   "type": "text"
+  },
+  "Emparazo 1C": {
+   "data_key": "maternidad_cesarea",
+   "type": "text"
+  },
+  "Emparazo 1D": {
+   "data_key": "maternidad_abortos",
+   "type": "text"
+  },
+  "Text600 A": {
+   "data_key": "maternidad_motivo_fechas_cesarea_abortos",
+   "type": "text"
+  },
+  "Check Box605": {
+   "data_key": "maternidad_embarazada_actualmente",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box606": {
+   "data_key": "maternidad_embarazada_actualmente",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text607": {
+   "data_key": "maternidad_embarazada_actualmente_nombre",
+   "type": "text"
+  },
+  "Text608": {
+   "data_key": "maternidad_fecha_probable_parto",
+   "type": "text"
+  },
+  "Check Box610": {
+   "data_key": "maternidad_complicaciones",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box611": {
+   "data_key": "maternidad_complicaciones",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text609": {
+   "data_key": "maternidad_complicaciones_detalle",
+   "type": "text"
+  },
+  "Check Box1296": {
+   "data_key": "medico_preg1_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1297": {
+   "data_key": "medico_preg1_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1298": {
+   "data_key": "medico_preg1_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1299": {
+   "data_key": "medico_preg1_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1300": {
+   "data_key": "medico_preg1_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1301": {
+   "data_key": "medico_preg1_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1302": {
+   "data_key": "medico_preg1_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1303": {
+   "data_key": "medico_preg1_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1304": {
+   "data_key": "medico_preg1_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1305": {
+   "data_key": "medico_preg1_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1306": {
+   "data_key": "medico_preg1_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1307": {
+   "data_key": "medico_preg1_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1308": {
+   "data_key": "medico_preg2_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1309": {
+   "data_key": "medico_preg2_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1310": {
+   "data_key": "medico_preg2_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1311": {
+   "data_key": "medico_preg2_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1312": {
+   "data_key": "medico_preg2_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1313": {
+   "data_key": "medico_preg2_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1314": {
+   "data_key": "medico_preg2_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1315": {
+   "data_key": "medico_preg2_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1316": {
+   "data_key": "medico_preg2_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1317": {
+   "data_key": "medico_preg2_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1318": {
+   "data_key": "medico_preg2_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1319": {
+   "data_key": "medico_preg2_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1320": {
+   "data_key": "medico_preg3_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1321": {
+   "data_key": "medico_preg3_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1322": {
+   "data_key": "medico_preg3_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1323": {
+   "data_key": "medico_preg3_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1324": {
+   "data_key": "medico_preg3_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1325": {
+   "data_key": "medico_preg3_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1326": {
+   "data_key": "medico_preg3_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1327": {
+   "data_key": "medico_preg3_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1328": {
+   "data_key": "medico_preg3_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1329": {
+   "data_key": "medico_preg3_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1330": {
+   "data_key": "medico_preg3_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1331": {
+   "data_key": "medico_preg3_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1332": {
+   "data_key": "medico_preg4_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1333": {
+   "data_key": "medico_preg4_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1334": {
+   "data_key": "medico_preg4_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1335": {
+   "data_key": "medico_preg4_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1336": {
+   "data_key": "medico_preg4_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1337": {
+   "data_key": "medico_preg4_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1338": {
+   "data_key": "medico_preg4_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1339": {
+   "data_key": "medico_preg4_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1340": {
+   "data_key": "medico_preg4_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1341": {
+   "data_key": "medico_preg4_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1342": {
+   "data_key": "medico_preg4_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1343": {
+   "data_key": "medico_preg4_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1344": {
+   "data_key": "medico_preg5_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1345": {
+   "data_key": "medico_preg5_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1346": {
+   "data_key": "medico_preg5_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1347": {
+   "data_key": "medico_preg5_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1348": {
+   "data_key": "medico_preg5_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1349": {
+   "data_key": "medico_preg5_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1350": {
+   "data_key": "medico_preg5_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1351": {
+   "data_key": "medico_preg5_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1352": {
+   "data_key": "medico_preg5_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1353": {
+   "data_key": "medico_preg5_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1354": {
+   "data_key": "medico_preg5_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1355": {
+   "data_key": "medico_preg5_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1356": {
+   "data_key": "medico_preg6_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1357": {
+   "data_key": "medico_preg6_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1358": {
+   "data_key": "medico_preg6_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1359": {
+   "data_key": "medico_preg6_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1360": {
+   "data_key": "medico_preg6_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1361": {
+   "data_key": "medico_preg6_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1362": {
+   "data_key": "medico_preg6_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1363": {
+   "data_key": "medico_preg6_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1364": {
+   "data_key": "medico_preg6_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1365": {
+   "data_key": "medico_preg6_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1366": {
+   "data_key": "medico_preg6_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1367": {
+   "data_key": "medico_preg6_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1368": {
+   "data_key": "medico_preg7_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1369": {
+   "data_key": "medico_preg7_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1370": {
+   "data_key": "medico_preg7_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1371": {
+   "data_key": "medico_preg7_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1372": {
+   "data_key": "medico_preg7_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1373": {
+   "data_key": "medico_preg7_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1374": {
+   "data_key": "medico_preg7_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1375": {
+   "data_key": "medico_preg7_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1376": {
+   "data_key": "medico_preg7_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1377": {
+   "data_key": "medico_preg7_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1378": {
+   "data_key": "medico_preg7_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1379": {
+   "data_key": "medico_preg7_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1382": {
+   "data_key": "medico_preg8_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1383": {
+   "data_key": "medico_preg8_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1384": {
+   "data_key": "medico_preg8_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1385": {
+   "data_key": "medico_preg8_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1386": {
+   "data_key": "medico_preg8_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1387": {
+   "data_key": "medico_preg8_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1388": {
+   "data_key": "medico_preg8_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1389": {
+   "data_key": "medico_preg8_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1390": {
+   "data_key": "medico_preg8_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1391": {
+   "data_key": "medico_preg8_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1392": {
+   "data_key": "medico_preg8_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1393": {
+   "data_key": "medico_preg8_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1394": {
+   "data_key": "medico_preg9_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1395": {
+   "data_key": "medico_preg9_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1396": {
+   "data_key": "medico_preg9_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1397": {
+   "data_key": "medico_preg9_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1398": {
+   "data_key": "medico_preg9_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1399": {
+   "data_key": "medico_preg9_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1400": {
+   "data_key": "medico_preg9_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1401": {
+   "data_key": "medico_preg9_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1402": {
+   "data_key": "medico_preg9_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1403": {
+   "data_key": "medico_preg9_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1404": {
+   "data_key": "medico_preg9_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1405": {
+   "data_key": "medico_preg9_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1406": {
+   "data_key": "medico_preg10_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1407": {
+   "data_key": "medico_preg10_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1408": {
+   "data_key": "medico_preg10_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1409": {
+   "data_key": "medico_preg10_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1410": {
+   "data_key": "medico_preg10_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1411": {
+   "data_key": "medico_preg10_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1412": {
+   "data_key": "medico_preg10_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1413": {
+   "data_key": "medico_preg10_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1414": {
+   "data_key": "medico_preg10_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1415": {
+   "data_key": "medico_preg10_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1416": {
+   "data_key": "medico_preg10_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1417": {
+   "data_key": "medico_preg10_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1418": {
+   "data_key": "medico_preg11_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1419": {
+   "data_key": "medico_preg11_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1420": {
+   "data_key": "medico_preg11_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1421": {
+   "data_key": "medico_preg11_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1422": {
+   "data_key": "medico_preg11_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1423": {
+   "data_key": "medico_preg11_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1424": {
+   "data_key": "medico_preg11_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1425": {
+   "data_key": "medico_preg11_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1426": {
+   "data_key": "medico_preg11_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1427": {
+   "data_key": "medico_preg11_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1428": {
+   "data_key": "medico_preg11_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1429": {
+   "data_key": "medico_preg11_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1430": {
+   "data_key": "medico_preg12_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1431": {
+   "data_key": "medico_preg12_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1432": {
+   "data_key": "medico_preg12_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1433": {
+   "data_key": "medico_preg12_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1434": {
+   "data_key": "medico_preg12_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1435": {
+   "data_key": "medico_preg12_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1436": {
+   "data_key": "medico_preg12_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1437": {
+   "data_key": "medico_preg12_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1438": {
+   "data_key": "medico_preg12_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1439": {
+   "data_key": "medico_preg12_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1440": {
+   "data_key": "medico_preg12_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1441": {
+   "data_key": "medico_preg12_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1442": {
+   "data_key": "medico_preg13_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1443": {
+   "data_key": "medico_preg13_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1444": {
+   "data_key": "medico_preg13_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1445": {
+   "data_key": "medico_preg13_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1446": {
+   "data_key": "medico_preg13_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1447": {
+   "data_key": "medico_preg13_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1448": {
+   "data_key": "medico_preg13_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1449": {
+   "data_key": "medico_preg13_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1450": {
+   "data_key": "medico_preg13_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1451": {
+   "data_key": "medico_preg13_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1452": {
+   "data_key": "medico_preg13_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1453": {
+   "data_key": "medico_preg13_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1454": {
+   "data_key": "medico_preg14_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1455": {
+   "data_key": "medico_preg14_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1456": {
+   "data_key": "medico_preg14_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1457": {
+   "data_key": "medico_preg14_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1458": {
+   "data_key": "medico_preg14_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1459": {
+   "data_key": "medico_preg14_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1460": {
+   "data_key": "medico_preg14_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1461": {
+   "data_key": "medico_preg14_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1462": {
+   "data_key": "medico_preg14_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1463": {
+   "data_key": "medico_preg14_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1464": {
+   "data_key": "medico_preg14_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1465": {
+   "data_key": "medico_preg14_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1466": {
+   "data_key": "medico_preg15_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1467": {
+   "data_key": "medico_preg15_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1468": {
+   "data_key": "medico_preg15_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1469": {
+   "data_key": "medico_preg15_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1470": {
+   "data_key": "medico_preg15_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1471": {
+   "data_key": "medico_preg15_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1472": {
+   "data_key": "medico_preg15_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1473": {
+   "data_key": "medico_preg15_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1474": {
+   "data_key": "medico_preg15_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1475": {
+   "data_key": "medico_preg15_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1476": {
+   "data_key": "medico_preg15_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1477": {
+   "data_key": "medico_preg15_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1478": {
+   "data_key": "medico_preg16_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1479": {
+   "data_key": "medico_preg16_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1480": {
+   "data_key": "medico_preg16_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1481": {
+   "data_key": "medico_preg16_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1482": {
+   "data_key": "medico_preg16_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1483": {
+   "data_key": "medico_preg16_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1484": {
+   "data_key": "medico_preg16_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1485": {
+   "data_key": "medico_preg16_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1486": {
+   "data_key": "medico_preg16_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1487": {
+   "data_key": "medico_preg16_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1488": {
+   "data_key": "medico_preg16_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1489": {
+   "data_key": "medico_preg16_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1490": {
+   "data_key": "medico_preg17_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1491": {
+   "data_key": "medico_preg17_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1492": {
+   "data_key": "medico_preg17_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1493": {
+   "data_key": "medico_preg17_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1494": {
+   "data_key": "medico_preg17_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1495": {
+   "data_key": "medico_preg17_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1496": {
+   "data_key": "medico_preg17_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1497": {
+   "data_key": "medico_preg17_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1498": {
+   "data_key": "medico_preg17_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1499": {
+   "data_key": "medico_preg17_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1500": {
+   "data_key": "medico_preg17_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1501": {
+   "data_key": "medico_preg17_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1502": {
+   "data_key": "medico_preg18_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1503": {
+   "data_key": "medico_preg18_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1504": {
+   "data_key": "medico_preg18_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1505": {
+   "data_key": "medico_preg18_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1506": {
+   "data_key": "medico_preg18_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1507": {
+   "data_key": "medico_preg18_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1508": {
+   "data_key": "medico_preg18_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1509": {
+   "data_key": "medico_preg18_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1510": {
+   "data_key": "medico_preg18_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1511": {
+   "data_key": "medico_preg18_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1512": {
+   "data_key": "medico_preg18_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1513": {
+   "data_key": "medico_preg18_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1514": {
+   "data_key": "medico_preg19_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1515": {
+   "data_key": "medico_preg19_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1516": {
+   "data_key": "medico_preg19_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1517": {
+   "data_key": "medico_preg19_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1518": {
+   "data_key": "medico_preg19_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1519": {
+   "data_key": "medico_preg19_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1520": {
+   "data_key": "medico_preg19_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1521": {
+   "data_key": "medico_preg19_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1522": {
+   "data_key": "medico_preg19_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1523": {
+   "data_key": "medico_preg19_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1524": {
+   "data_key": "medico_preg19_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1525": {
+   "data_key": "medico_preg19_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1526": {
+   "data_key": "medico_preg20_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1527": {
+   "data_key": "medico_preg20_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1528": {
+   "data_key": "medico_preg20_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1529": {
+   "data_key": "medico_preg20_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1530": {
+   "data_key": "medico_preg20_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1531": {
+   "data_key": "medico_preg20_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1532": {
+   "data_key": "medico_preg20_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1533": {
+   "data_key": "medico_preg20_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1534": {
+   "data_key": "medico_preg20_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1535": {
+   "data_key": "medico_preg20_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1536": {
+   "data_key": "medico_preg20_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1537": {
+   "data_key": "medico_preg20_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1538": {
+   "data_key": "medico_preg21_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1539": {
+   "data_key": "medico_preg21_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1540": {
+   "data_key": "medico_preg21_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1541": {
+   "data_key": "medico_preg21_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1542": {
+   "data_key": "medico_preg21_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1543": {
+   "data_key": "medico_preg21_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1544": {
+   "data_key": "medico_preg21_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1545": {
+   "data_key": "medico_preg21_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1546": {
+   "data_key": "medico_preg21_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1547": {
+   "data_key": "medico_preg21_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1548": {
+   "data_key": "medico_preg21_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1549": {
+   "data_key": "medico_preg21_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1550": {
+   "data_key": "medico_preg22_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1551": {
+   "data_key": "medico_preg22_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1552": {
+   "data_key": "medico_preg22_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1553": {
+   "data_key": "medico_preg22_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1554": {
+   "data_key": "medico_preg22_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1555": {
+   "data_key": "medico_preg22_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1556": {
+   "data_key": "medico_preg22_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1557": {
+   "data_key": "medico_preg22_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1558": {
+   "data_key": "medico_preg22_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1559": {
+   "data_key": "medico_preg22_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1560": {
+   "data_key": "medico_preg22_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1561": {
+   "data_key": "medico_preg22_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1562": {
+   "data_key": "medico_preg23_sol1",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1563": {
+   "data_key": "medico_preg23_sol1",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1564": {
+   "data_key": "medico_preg23_sol2",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1565": {
+   "data_key": "medico_preg23_sol2",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1566": {
+   "data_key": "medico_preg23_sol3",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1567": {
+   "data_key": "medico_preg23_sol3",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1568": {
+   "data_key": "medico_preg23_sol4",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1569": {
+   "data_key": "medico_preg23_sol4",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1570": {
+   "data_key": "medico_preg23_sol5",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1571": {
+   "data_key": "medico_preg23_sol5",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Check Box1572": {
+   "data_key": "medico_preg23_sol6",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box1573": {
+   "data_key": "medico_preg23_sol6",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1546": {
+   "data_key": "detalle1_pregunta_solicitante",
+   "type": "text"
+  },
+  "Text1554": {
+   "data_key": "detalle1_condicion",
+   "type": "text"
+  },
+  "Text1538": {
+   "data_key": "detalle1_periodo_desde",
+   "type": "text"
+  },
+  "Text1539": {
+   "data_key": "detalle1_periodo_hasta",
+   "type": "text"
+  },
+  "Text1547": {
+   "data_key": "detalle1_tratamiento_resultados",
+   "type": "text"
+  },
+  "Text1555": {
+   "data_key": "detalle1_info_medico",
+   "type": "text"
+  },
+  "Text1548": {
+   "data_key": "detalle2_pregunta_solicitante",
+   "type": "text"
+  },
+  "Text1556": {
+   "data_key": "detalle2_condicion",
+   "type": "text"
+  },
+  "Text1540": {
+   "data_key": "detalle2_periodo_desde",
+   "type": "text"
+  },
+  "Text1541": {
+   "data_key": "detalle2_periodo_hasta",
+   "type": "text"
+  },
+  "Text1549": {
+   "data_key": "detalle2_tratamiento_resultados",
+   "type": "text"
+  },
+  "Text1557": {
+   "data_key": "detalle2_info_medico",
+   "type": "text"
+  },
+  "Text1550": {
+   "data_key": "detalle3_pregunta_solicitante",
+   "type": "text"
+  },
+  "Text1558": {
+   "data_key": "detalle3_condicion",
+   "type": "text"
+  },
+  "Text1542": {
+   "data_key": "detalle3_periodo_desde",
+   "type": "text"
+  },
+  "Text1543": {
+   "data_key": "detalle3_periodo_hasta",
+   "type": "text"
+  },
+  "Text1551": {
+   "data_key": "detalle3_tratamiento_resultados",
+   "type": "text"
+  },
+  "Text1559": {
+   "data_key": "detalle3_info_medico",
+   "type": "text"
+  },
+  "Text1552": {
+   "data_key": "detalle4_pregunta_solicitante",
+   "type": "text"
+  },
+  "Text1560": {
+   "data_key": "detalle4_condicion",
+   "type": "text"
+  },
+  "Text1544": {
+   "data_key": "detalle4_periodo_desde",
+   "type": "text"
+  },
+  "Text1545": {
+   "data_key": "detalle4_periodo_hasta",
+   "type": "text"
+  },
+  "Text1553": {
+   "data_key": "detalle4_tratamiento_resultados",
+   "type": "text"
+  },
+  "Text1561": {
+   "data_key": "detalle4_info_medico",
+   "type": "text"
+  },
+  "Check Box619": {
+   "data_key": "medicamentos_tiene",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box620": {
+   "data_key": "medicamentos_tiene",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1562": {
+   "data_key": "medicamento1_solicitante",
+   "type": "text"
+  },
+  "Text1565": {
+   "data_key": "medicamento1_nombre",
+   "type": "text"
+  },
+  "Text1568": {
+   "data_key": "medicamento1_motivo",
+   "type": "text"
+  },
+  "Text1571": {
+   "data_key": "medicamento1_cantidad_frecuencia",
+   "type": "text"
+  },
+  "Text1574": {
+   "data_key": "medicamento1_periodo_desde",
+   "type": "text"
+  },
+  "Text1575": {
+   "data_key": "medicamento1_periodo_hasta",
+   "type": "text"
+  },
+  "Text1563": {
+   "data_key": "medicamento2_solicitante",
+   "type": "text"
+  },
+  "Text1566": {
+   "data_key": "medicamento2_nombre",
+   "type": "text"
+  },
+  "Text1569": {
+   "data_key": "medicamento2_motivo",
+   "type": "text"
+  },
+  "Text1572": {
+   "data_key": "medicamento2_cantidad_frecuencia",
+   "type": "text"
+  },
+  "Text1576": {
+   "data_key": "medicamento2_periodo_desde",
+   "type": "text"
+  },
+  "Text1577": {
+   "data_key": "medicamento2_periodo_hasta",
+   "type": "text"
+  },
+  "Text1564": {
+   "data_key": "medicamento3_solicitante",
+   "type": "text"
+  },
+  "Text1567": {
+   "data_key": "medicamento3_nombre",
+   "type": "text"
+  },
+  "Text1570": {
+   "data_key": "medicamento3_motivo",
+   "type": "text"
+  },
+  "Text1573": {
+   "data_key": "medicamento3_cantidad_frecuencia",
+   "type": "text"
+  },
+  "Text1578": {
+   "data_key": "medicamento3_periodo_desde",
+   "type": "text"
+  },
+  "Text1579": {
+   "data_key": "medicamento3_periodo_hasta",
+   "type": "text"
+  },
+  "Check Box625": {
+   "data_key": "historia_familiar_tiene",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box626": {
+   "data_key": "historia_familiar_tiene",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1580": {
+   "data_key": "familiar1_solicitante",
+   "type": "text"
+  },
+  "Text1583": {
+   "data_key": "familiar1_familiar",
+   "type": "text"
+  },
+  "Text1586": {
+   "data_key": "familiar1_desorden",
+   "type": "text"
+  },
+  "Text1581": {
+   "data_key": "familiar2_solicitante",
+   "type": "text"
+  },
+  "Text1584": {
+   "data_key": "familiar2_familiar",
+   "type": "text"
+  },
+  "Text1587": {
+   "data_key": "familiar2_desorden",
+   "type": "text"
+  },
+  "Text1582": {
+   "data_key": "familiar3_solicitante",
+   "type": "text"
+  },
+  "Text1585": {
+   "data_key": "familiar3_familiar",
+   "type": "text"
+  },
+  "Text1588": {
+   "data_key": "familiar3_desorden",
+   "type": "text"
+  },
+  "Check Box633": {
+   "data_key": "habitos_tiene",
+   "type": "checkbox_group",
+   "value": "si",
+   "on_state": "/Sí"
+  },
+  "Check Box634": {
+   "data_key": "habitos_tiene",
+   "type": "checkbox_group",
+   "value": "no",
+   "on_state": "/Sí"
+  },
+  "Text1589": {
+   "data_key": "habito1_solicitante",
+   "type": "text"
+  },
+  "Text1592": {
+   "data_key": "habito1_tipo",
+   "type": "text"
+  },
+  "Text1595": {
+   "data_key": "habito1_cantidad_dia",
+   "type": "text"
+  },
+  "Check Box1598": {
+   "data_key": "habito1_consumo",
+   "type": "checkbox_group",
+   "value": "previo",
+   "on_state": "/Sí"
+  },
+  "Check Box1599": {
+   "data_key": "habito1_consumo",
+   "type": "checkbox_group",
+   "value": "actual",
+   "on_state": "/Sí"
+  },
+  "Text1604": {
+   "data_key": "habito1_periodo_desde",
+   "type": "text"
+  },
+  "Text1605": {
+   "data_key": "habito1_periodo_hasta",
+   "type": "text"
+  },
+  "Text1590": {
+   "data_key": "habito2_solicitante",
+   "type": "text"
+  },
+  "Text1593": {
+   "data_key": "habito2_tipo",
+   "type": "text"
+  },
+  "Text1596": {
+   "data_key": "habito2_cantidad_dia",
+   "type": "text"
+  },
+  "Check Box1600": {
+   "data_key": "habito2_consumo",
+   "type": "checkbox_group",
+   "value": "previo",
+   "on_state": "/Sí"
+  },
+  "Check Box1601": {
+   "data_key": "habito2_consumo",
+   "type": "checkbox_group",
+   "value": "actual",
+   "on_state": "/Sí"
+  },
+  "Text1606": {
+   "data_key": "habito2_periodo_desde",
+   "type": "text"
+  },
+  "Text1607": {
+   "data_key": "habito2_periodo_hasta",
+   "type": "text"
+  },
+  "Text1591": {
+   "data_key": "habito3_solicitante",
+   "type": "text"
+  },
+  "Text1594": {
+   "data_key": "habito3_tipo",
+   "type": "text"
+  },
+  "Text1597": {
+   "data_key": "habito3_cantidad_dia",
+   "type": "text"
+  },
+  "Check Box1602": {
+   "data_key": "habito3_consumo",
+   "type": "checkbox_group",
+   "value": "previo",
+   "on_state": "/Sí"
+  },
+  "Check Box1603": {
+   "data_key": "habito3_consumo",
+   "type": "checkbox_group",
+   "value": "actual",
+   "on_state": "/Sí"
+  },
+  "Text1608": {
+   "data_key": "habito3_periodo_desde",
+   "type": "text"
+  },
+  "Text1609": {
+   "data_key": "habito3_periodo_hasta",
+   "type": "text"
+  },
+  "Text639": {
+   "type": "manual",
+   "nota": "Firma del Asegurado Principal (campo AcroForm de tipo texto usado como linea de firma manuscrita/impresa; no es un campo /Sig). Se completa manualmente, no via datos.json."
+  },
+  "Text640": {
+   "type": "manual",
+   "nota": "Fecha (Mes/Dia/Ano) de la firma del Asegurado Principal. Manual."
+  },
+  "Signature643": {
+   "type": "manual",
+   "nota": "Firma (bloque 1 de 'Ratifico con mi firma...', pagina 7) del Propuesto Asegurado adicional. Campo /Sig, requiere firma manuscrita/digital fuera de este flujo automatizado."
+  },
+  "Text641": {
+   "type": "manual",
+   "nota": "Fecha (Mes/Dia/Ano) del bloque de firma 1 (pagina 7). Manual."
+  },
+  "Text642": {
+   "type": "manual",
+   "nota": "Nombre del Propuesto Asegurado, bloque de firma 1 (pagina 7). Manual: solo se completa junto con la firma fisica del mayor de 18 anos correspondiente, no se autocompleta desde datos.json aunque el nombre pudiera coincidir con uno de los solicitantes."
+  },
+  "Signature644": {
+   "type": "manual",
+   "nota": "Firma (bloque 2 de 'Ratifico con mi firma...', pagina 7) del Propuesto Asegurado adicional. Campo /Sig, requiere firma manuscrita/digital fuera de este flujo automatizado."
+  },
+  "Text1610": {
+   "type": "manual",
+   "nota": "Fecha (Mes/Dia/Ano) del bloque de firma 2 (pagina 7). Manual."
+  },
+  "Text1611": {
+   "type": "manual",
+   "nota": "Nombre del Propuesto Asegurado, bloque de firma 2 (pagina 7). Manual: solo se completa junto con la firma fisica del mayor de 18 anos correspondiente, no se autocompleta desde datos.json aunque el nombre pudiera coincidir con uno de los solicitantes."
+  },
+  "Signature645": {
+   "type": "manual",
+   "nota": "Firma (bloque 3 de 'Ratifico con mi firma...', pagina 7) del Propuesto Asegurado adicional. Campo /Sig, requiere firma manuscrita/digital fuera de este flujo automatizado."
+  },
+  "Text1612": {
+   "type": "manual",
+   "nota": "Fecha (Mes/Dia/Ano) del bloque de firma 3 (pagina 7). Manual."
+  },
+  "Text1613": {
+   "type": "manual",
+   "nota": "Nombre del Propuesto Asegurado, bloque de firma 3 (pagina 7). Manual: solo se completa junto con la firma fisica del mayor de 18 anos correspondiente, no se autocompleta desde datos.json aunque el nombre pudiera coincidir con uno de los solicitantes."
+  },
+  "Signature646": {
+   "type": "manual",
+   "nota": "Firma (bloque 4 de 'Ratifico con mi firma...', pagina 7) del Propuesto Asegurado adicional. Campo /Sig, requiere firma manuscrita/digital fuera de este flujo automatizado."
+  },
+  "Text1614": {
+   "type": "manual",
+   "nota": "Fecha (Mes/Dia/Ano) del bloque de firma 4 (pagina 7). Manual."
+  },
+  "Text1615": {
+   "type": "manual",
+   "nota": "Nombre del Propuesto Asegurado, bloque de firma 4 (pagina 7). Manual: solo se completa junto con la firma fisica del mayor de 18 anos correspondiente, no se autocompleta desde datos.json aunque el nombre pudiera coincidir con uno de los solicitantes."
+  },
+  "Signature647": {
+   "type": "manual",
+   "nota": "Firma (bloque 5 de 'Ratifico con mi firma...', pagina 7) del Propuesto Asegurado adicional. Campo /Sig, requiere firma manuscrita/digital fuera de este flujo automatizado."
+  },
+  "Text1616": {
+   "type": "manual",
+   "nota": "Fecha (Mes/Dia/Ano) del bloque de firma 5 (pagina 7). Manual."
+  },
+  "Text1617": {
+   "type": "manual",
+   "nota": "Nombre del Propuesto Asegurado, bloque de firma 5 (pagina 7). Manual: solo se completa junto con la firma fisica del mayor de 18 anos correspondiente, no se autocompleta desde datos.json aunque el nombre pudiera coincidir con uno de los solicitantes."
+  },
+  "Text648": {
+   "data_key": "agente_registro_sib",
+   "type": "text"
+  },
+  "Text649": {
+   "data_key": "agente_codigo",
+   "type": "text"
+  },
+  "Text650": {
+   "data_key": "agente_nombre",
+   "type": "text"
+  },
+  "Signature651": {
+   "type": "manual",
+   "nota": "Firma del Agente (campo /Sig). Requiere firma manuscrita/digital del corredor, no se autocompleta."
+  },
+  "Text653": {
+   "data_key": "agente_nombre_molde",
+   "type": "text"
+  },
+  "Text655": {
+   "data_key": "agente_codigo",
+   "type": "text"
+  },
+  "Signature652": {
+   "type": "manual",
+   "nota": "Firma del Representante (campo /Sig). Requiere firma manuscrita/digital, no se autocompleta."
+  },
+  "Text654": {
+   "data_key": "agente_fecha_reconocimiento",
+   "type": "text"
+  }
+ }
+}

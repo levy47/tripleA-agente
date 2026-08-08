@@ -1,0 +1,168 @@
+{
+  "template": "aseguradoras/internacional_de_seguros/tcr/templates/tcr_is.pdf",
+  "fields": {
+    "Por este medio autorizo al banco": {
+      "data_key": "banco_emisor",
+      "type": "text"
+    },
+    "Tarjetahabiente": {
+      "data_key": "tarjetahabiente_nombre_completo",
+      "type": "text"
+    },
+    "Correo Electrónico": {
+      "data_key": "cobro_correo_1",
+      "type": "text"
+    },
+    "Teléfono": {
+      "data_key": "cobro_telefono_residencial",
+      "type": "text"
+    },
+    "Celular": {
+      "data_key": "cobro_telefono_celular",
+      "type": "text"
+    },
+    "No Tarjeta crédito": {
+      "data_key": "numero_tarjeta",
+      "type": "text"
+    },
+    "Vencimiento Mes": {
+      "data_key": "tarjeta_exp_mes",
+      "type": "text"
+    },
+    "Año": {
+      "data_key": "tarjeta_exp_anio",
+      "type": "text"
+    },
+    "La suma de B": {
+      "data_key": "cobro_monto_o_suma_total",
+      "type": "text"
+    },
+    "AseguradoRow1": {
+      "data_key": "poliza_1_nombre_asegurado",
+      "type": "text"
+    },
+    "No PólizasRow1": {
+      "data_key": "poliza_1_numero_poliza",
+      "type": "text"
+    },
+    "MontoDel DesctoRow1": {
+      "data_key": "poliza_1_monto_descuento",
+      "type": "text"
+    },
+    "AseguradoRow2": {
+      "data_key": "poliza_2_nombre_asegurado",
+      "type": "text"
+    },
+    "No PólizasRow2": {
+      "data_key": "poliza_2_numero_poliza",
+      "type": "text"
+    },
+    "MontoDel DesctoRow2": {
+      "data_key": "poliza_2_monto_descuento",
+      "type": "text"
+    },
+    "AseguradoRow3": {
+      "data_key": "poliza_3_nombre_asegurado",
+      "type": "text"
+    },
+    "No PólizasRow3": {
+      "data_key": "poliza_3_numero_poliza",
+      "type": "text"
+    },
+    "MontoDel DesctoRow3": {
+      "data_key": "poliza_3_monto_descuento",
+      "type": "text"
+    },
+    "AseguradoRow4": {
+      "data_key": "poliza_4_nombre_asegurado",
+      "type": "text"
+    },
+    "No PólizasRow4": {
+      "data_key": "poliza_4_numero_poliza",
+      "type": "text"
+    },
+    "MontoDel DesctoRow4": {
+      "data_key": "poliza_4_monto_descuento",
+      "type": "text"
+    },
+    "AseguradoRow5": {
+      "data_key": "poliza_5_nombre_asegurado",
+      "type": "text"
+    },
+    "No PólizasRow5": {
+      "data_key": "poliza_5_numero_poliza",
+      "type": "text"
+    },
+    "MontoDel DesctoRow5": {
+      "data_key": "poliza_5_monto_descuento",
+      "type": "text"
+    },
+    "TOTAL DEL DESCUENTO": {
+      "type": "manual",
+      "note": "total calculado y completado por el corredor"
+    },
+    "Cédula": {
+      "data_key": "cedula_o_pasaporte",
+      "type": "text"
+    },
+    "Fecha": {
+      "type": "manual",
+      "note": "fecha de firma"
+    },
+    "Fecha efectiva de descuento": {
+      "type": "manual",
+      "note": "uso interno de la aseguradora"
+    },
+    "Observaciones": {
+      "type": "manual",
+      "note": "uso interno de la Internacional de Seguros (Recibido por / Fecha / Departamento)"
+    },
+    "Enviar": {
+      "type": "manual",
+      "note": "boton del PDF, no es un campo de datos"
+    },
+    "TipoTarjeta": {
+      "data_key": "tarjeta_tipo",
+      "type": "checkbox_group",
+      "note": "radio group de 3 kids; on_state real tiene un caracter mal codificado en el PDF, extraido programaticamente",
+      "options": {
+        "visa": {
+          "on_state": "/Opci髇1"
+        },
+        "mastercard": {
+          "on_state": "/Opci髇2"
+        },
+        "american_express": {
+          "on_state": "/Opci髇3"
+        }
+      }
+    },
+    "TiempoDescuento": {
+      "data_key": "cobro_frecuencia",
+      "type": "checkbox_group",
+      "options": {
+        "mensual": {
+          "on_state": "/Opci髇1"
+        },
+        "trimestral": {
+          "on_state": "/Opci髇2"
+        },
+        "anual": {
+          "on_state": "/Opci髇3"
+        }
+      }
+    },
+    "RenovacionPoliza": {
+      "data_key": "cobro_renovacion_automatica",
+      "type": "checkbox_group",
+      "options": {
+        "si": {
+          "on_state": "/Opci髇1"
+        },
+        "no": {
+          "on_state": "/Opci髇2"
+        }
+      }
+    }
+  }
+}

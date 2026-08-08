@@ -1,0 +1,332 @@
+{
+  "template": "aseguradoras/mercantil_seguros/tcr/templates/tcr_mercantil.pdf",
+  "page_width": 612,
+  "page_height": 792,
+  "font_size": 8,
+  "fields": [
+    {
+      "data_key": "cobro_contratante",
+      "page": 1,
+      "x": 72,
+      "y": 673,
+      "type": "text",
+      "note": "linea 'Yo, ___, portador de la cedula...'"
+    },
+    {
+      "data_key": "cedula_o_pasaporte",
+      "page": 1,
+      "x": 490,
+      "y": 673,
+      "type": "text",
+      "note": "cedula, misma linea del nombre"
+    },
+
+    {
+      "data_key": "poliza_1_nombre_asegurado",
+      "page": 1,
+      "x": 51,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 1, col Nombre del Asegurado"
+    },
+    {
+      "data_key": "poliza_1_numero_poliza",
+      "page": 1,
+      "x": 207,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_cantidad_cuotas",
+      "page": 1,
+      "x": 285,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_frecuencia",
+      "page": 1,
+      "x": 328,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_dia_cobro",
+      "page": 1,
+      "x": 386,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_prima",
+      "page": 1,
+      "x": 427,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_1_monto_descuento",
+      "page": 1,
+      "x": 505,
+      "y": 598.5,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "poliza_2_nombre_asegurado",
+      "page": 1,
+      "x": 51,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 2"
+    },
+    {
+      "data_key": "poliza_2_numero_poliza",
+      "page": 1,
+      "x": 207,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_cantidad_cuotas",
+      "page": 1,
+      "x": 285,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_frecuencia",
+      "page": 1,
+      "x": 328,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_dia_cobro",
+      "page": 1,
+      "x": 386,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_prima",
+      "page": 1,
+      "x": 427,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_2_monto_descuento",
+      "page": 1,
+      "x": 505,
+      "y": 575.4,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "poliza_3_nombre_asegurado",
+      "page": 1,
+      "x": 51,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 3"
+    },
+    {
+      "data_key": "poliza_3_numero_poliza",
+      "page": 1,
+      "x": 207,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_cantidad_cuotas",
+      "page": 1,
+      "x": 285,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_frecuencia",
+      "page": 1,
+      "x": 328,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_dia_cobro",
+      "page": 1,
+      "x": 386,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_prima",
+      "page": 1,
+      "x": 427,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_3_monto_descuento",
+      "page": 1,
+      "x": 505,
+      "y": 552.5,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "poliza_4_nombre_asegurado",
+      "page": 1,
+      "x": 51,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7,
+      "note": "tabla fila 4"
+    },
+    {
+      "data_key": "poliza_4_numero_poliza",
+      "page": 1,
+      "x": 207,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_cantidad_cuotas",
+      "page": 1,
+      "x": 285,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_frecuencia",
+      "page": 1,
+      "x": 328,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_dia_cobro",
+      "page": 1,
+      "x": 386,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_prima",
+      "page": 1,
+      "x": 427,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7
+    },
+    {
+      "data_key": "poliza_4_monto_descuento",
+      "page": 1,
+      "x": 505,
+      "y": 529.5,
+      "type": "text",
+      "font_size": 7
+    },
+
+    {
+      "data_key": "tarjeta_tipo",
+      "page": 1,
+      "type": "checkbox_mark",
+      "font_size": 7,
+      "options": {
+        "visa": {"x": 171.5, "y": 491.5},
+        "mastercard": {"x": 235.5, "y": 491.5}
+      },
+      "note": "no hay casillero dibujado, solo un pequeno cuadrado (rect) antes de cada palabra 'Visa'/'MasterCard' -- marca colocada dentro de ese rect"
+    },
+    {
+      "data_key": "banco_emisor",
+      "page": 1,
+      "x": 366,
+      "y": 490.5,
+      "type": "text"
+    },
+    {
+      "data_key": "numero_tarjeta",
+      "page": 1,
+      "x": 93,
+      "y": 473,
+      "type": "text"
+    },
+    {
+      "data_key": "tarjeta_fecha_exp_mmaa",
+      "page": 1,
+      "x": 294,
+      "y": 472,
+      "type": "text"
+    },
+    {
+      "data_key": "cobro_telefono_residencial",
+      "page": 1,
+      "x": 168,
+      "y": 434,
+      "type": "text"
+    },
+    {
+      "data_key": "cobro_telefono_celular",
+      "page": 1,
+      "x": 325,
+      "y": 434,
+      "type": "text"
+    },
+    {
+      "data_key": "cobro_correo_1",
+      "page": 1,
+      "x": 144,
+      "y": 416,
+      "type": "text"
+    },
+
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "firma manuscrita, no se autocompleta",
+      "label": "Firma del Asegurado"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "fecha manuscrita",
+      "label": "Fecha"
+    },
+    {
+      "data_key": null,
+      "page": 1,
+      "type": "manual",
+      "note": "seccion 'Para Uso de la Oficina' -- la completa Triple A Seguros al procesar",
+      "label": "Recibido por / Fecha de envío al Banco"
+    }
+  ]
+}

@@ -1,0 +1,579 @@
+{
+ "descripcion": "Datos NUEVOS (especificos del formulario 'Poliza de Seguro de Automovil Solicitud de Seguros' de La Regional de Seguros, S.A. en Panama) que no forman parte del intake estandar de WhatsApp en schema_cliente.json.\n\nSOBRE LOS NOMBRES DE CAMPO DEL PDF: el autor del formulario nombro los 178 campos AcroForm de forma generica y no descriptiva (p.ej. 'TextBox2211_17', 'Casilla de verificacion 1_49', 'Cuadro de texto 1_3'), sin relacion visible con la etiqueta impresa junto a cada campo. Todo el mapping.json se construyo correlacionando la posicion geometrica (rect x/y) de cada widget con la etiqueta de texto mas cercana en el PDF renderizado (verificado visualmente a 130dpi y 200dpi, incluyendo zooms de las zonas ambiguas de Coberturas Solicitadas/APOV en pagina 2). Los 178 campos fueron mapeados en su totalidad; ninguno quedo con 'revisar: true'.\n\nSOBRE LOS CHECKBOXES: a diferencia del PDF de VUMI (que usa botones de radio de un solo campo AcroForm con multiples estados de exportacion para las opciones excluyentes), el PDF de La Regional de Seguros implementa CADA opcion de cada grupo de seleccion excluyente (Genero, Estado Civil, Tipo de Actividad, Tipo de Inmueble, Forma de Pago, Frecuencia de Pago, Tipo de Traccion, Uso del Vehiculo, Tipo de Vehiculo, Grupo de Vehiculo, Dispositivos de Seguridad, Tipo de Cobertura, Si/No de siniestros) como un campo AcroForm de casilla de verificacion (checkbox, /Btn) INDEPENDIENTE, cada uno con un unico estado de exportacion 'on' = '/Yes' (confirmado con pypdf get_fields(), todos los /Btn del formulario comparten el mismo par de estados ('/Yes','/Off')). Por eso, en mapping.json, cada checkbox de un grupo se mapeo con type='checkbox_group', compartiendo el MISMO data_key entre todas las opciones del grupo y un 'value' semantico distinto por opcion (ver src/fill_pdf.py: compara data[data_key] contra spec['value'] y marca '/Yes' solo en el campo cuyo value coincide). datos.json debe proveer el data_key UNA sola vez con el valor semantico elegido (p.ej. 'contratante_genero': 'f'), NO el estado de exportacion literal del PDF.\n\nCASO ESPECIAL 'siniestros_anteriores' (Si/No): a diferencia de un grupo de opciones tematicas (Estado Civil, etc.), aqui las dos casillas representan una pregunta binaria Si/No; se mapearon igual como checkbox_group compartiendo el data_key 'siniestros_anteriores' con value='si' y value='no' respectivamente, ambas con on_state='/Yes' (el propio estado de exportacion del PDF, no debe confundirse con el string semantico 'si').\n\nCASO ESPECIAL checkboxes de UNA sola opcion (sin alternativa excluyente en el mismo campo compartido), por ejemplo cada linea de Responsabilidad Civil ('Lesiones Corporales', 'Danos a la Propiedad Ajena', 'Gastos Medicos', 'Todo Riesgo Automovil'), los 3 'Accesorio N incluido', 'Extension de Garantias Vehiculos 0 Km.' y 'Automedida: Vehiculos con mas de 7 anios': cada uno es una casilla de verificacion real (marcar/no marcar esa cobertura especifica), no parte de un grupo excluyente con otras casillas. Se mapearon igual con type='checkbox_group' pero con un data_key PROPIO y UNICO por casilla, value='si' fijo, on_state='/Yes'; datos.json debe proveer el data_key con el string 'si' para marcarla, o simplemente omitirlo/dejarlo vacio para dejarla sin marcar.\n\nCAMPOS DE FIRMA: el formulario original solo dibuja una linea horizontal bajo la palabra 'Firma' en la seccion de Autorizacion (Contratante, Asegurado, Productor); NO existe ningun campo AcroForm de tipo firma (/Sig) ni de texto asociado a esa linea (confirmado: los 178 campos reportados por pypdf get_fields() son unicamente de tipo /Tx y /Btn, ninguno /Sig, y no hay ningun widget adicional sin nombre en las anotaciones de pagina). Por lo tanto la firma debe hacerse a mano sobre el PDF impreso o mediante un flujo de firma electronica separado; no hay entrada de mapping para 'firma' porque no existe campo que llenar.\n\nCAMPO 'TextBox2211_10' (Uso del Vehiculo: texto libre de 'Otro') y 'TextBox2211_11' (Dispositivos de Seguridad: texto libre de 'Otro'): son campos de texto independientes que aparecen a la derecha de su checkbox 'Otro' correspondiente; se recomienda enviarlos junto con el checkbox 'otro' marcado (vehiculo_uso='otro' / vehiculo_dispositivos_seguridad='otro') para que el texto tenga sentido en el PDF impreso, pero fill_pdf.py no impone esa relacion automaticamente.\n\nCAMPO 'apov_num_ocupantes': la etiqueta impresa es unicamente 'N de Ocupantes' seguida de un solo casillero antes de 'Conductor:' y 'Ayudantes:'; se interpreto como el total general de ocupantes del vehiculo (distinto de los campos 'Conductor' y 'Ayudantes' que abren el desglose). No hay onfirmacion adicional en el PDF sobre si es un subtotal o un total; se documenta por transparencia.",
+ "campos": {
+  "encabezado_vigencia_desde": {
+   "tipo": "string",
+   "descripcion": "Encabezado: Vigencia desde (fecha de inicio de la poliza solicitada). Campo de texto libre, formato sugerido DD/MM/AAAA."
+  },
+  "encabezado_vigencia_hasta": {
+   "tipo": "string",
+   "descripcion": "Encabezado: Vigencia hasta (fecha de fin de la poliza solicitada). Campo de texto libre, formato sugerido DD/MM/AAAA."
+  },
+  "contratante_nombre_razon_social": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Nombres y Apellidos o Razon Social."
+  },
+  "contratante_ruc": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: RUC."
+  },
+  "contratante_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Cedula o Pasaporte."
+  },
+  "contratante_fnac_dia": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Fecha de nacimiento, componente dia. El PDF imprime 3 casilleros separados por '/' (dia / mes / anio); cada uno es UN SOLO campo de texto libre (no digitos individuales, a diferencia del PDF de VUMI)."
+  },
+  "contratante_fnac_mes": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Fecha de nacimiento, componente mes."
+  },
+  "contratante_fnac_anio": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Fecha de nacimiento, componente anio."
+  },
+  "contratante_edad": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Edad."
+  },
+  "contratante_lugar_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Lugar de Nacimiento."
+  },
+  "contratante_provincia_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Provincia (de nacimiento)."
+  },
+  "contratante_genero": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Contratante: Genero. Grupo de 2 casillas de verificacion independientes (F / M), mutuamente excluyentes por convencion (marcar solo una). datos.json debe proveer UNO de los valores semanticos listados (no el estado de exportacion del PDF).",
+   "valores_semanticos": ["f", "m"]
+  },
+  "contratante_estado_civil": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Contratante: Estado Civil. Grupo de 5 casillas de verificacion independientes.",
+   "valores_semanticos": ["soltero", "casado", "divorciado", "viudo", "unido"]
+  },
+  "contratante_profesion_oficio": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Profesion u Oficio."
+  },
+  "contratante_tipo_actividad": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Contratante: Tipo de Actividad. Grupo de 4 casillas de verificacion independientes.",
+   "valores_semanticos": ["comercial_profesional", "estudiante", "gubernamental", "independiente"]
+  },
+  "contratante_residencia_provincia": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Provincia."
+  },
+  "contratante_residencia_distrito": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Distrito."
+  },
+  "contratante_residencia_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Corregimiento."
+  },
+  "contratante_residencia_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Urbanizacion."
+  },
+  "contratante_residencia_calle": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Calle."
+  },
+  "contratante_residencia_via": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Via."
+  },
+  "contratante_residencia_tipo_inmueble": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Contratante, Direccion de residencia: tipo de inmueble. Grupo de 4 casillas de verificacion independientes (Casa / Edificio / Local / C.C.), seguidas de un campo de texto libre para el nombre del edificio/local/C.C. (ver 'contratante_residencia_inmueble_nombre').",
+   "valores_semanticos": ["casa", "edificio", "local", "cc"]
+  },
+  "contratante_residencia_inmueble_nombre": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: nombre del edificio/local/centro comercial asociado a la casilla marcada en 'contratante_residencia_tipo_inmueble'."
+  },
+  "contratante_residencia_piso": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Piso."
+  },
+  "contratante_residencia_apartamento": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Apartamento."
+  },
+  "contratante_residencia_oficina": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Oficina."
+  },
+  "contratante_residencia_apartado_postal": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante, Direccion de residencia: Apartado postal."
+  },
+  "contratante_telefono_celular": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Numero telefonico - Celular. Campo de texto libre unico (no digitos individuales)."
+  },
+  "contratante_telefono_residencial": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Numero telefonico - Residencial."
+  },
+  "contratante_telefono_oficina": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Numero telefonico - Oficina."
+  },
+  "contratante_email": {
+   "tipo": "string",
+   "descripcion": "Datos del Contratante: Correo electronico."
+  },
+  "asegurado_nombre_razon_social": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado (completar solo si es diferente al Contratante): Nombres y Apellidos o Razon Social."
+  },
+  "asegurado_ruc": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: RUC."
+  },
+  "asegurado_cedula_pasaporte": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Cedula o Pasaporte."
+  },
+  "asegurado_fnac_dia": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Fecha de nacimiento, componente dia."
+  },
+  "asegurado_fnac_mes": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Fecha de nacimiento, componente mes."
+  },
+  "asegurado_fnac_anio": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Fecha de nacimiento, componente anio."
+  },
+  "asegurado_edad": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Edad."
+  },
+  "asegurado_lugar_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Lugar de Nacimiento."
+  },
+  "asegurado_provincia_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Provincia (de nacimiento)."
+  },
+  "asegurado_genero": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Propuesto Asegurado: Genero. Grupo de 2 casillas de verificacion independientes.",
+   "valores_semanticos": ["f", "m"]
+  },
+  "asegurado_estado_civil": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Propuesto Asegurado: Estado Civil. Grupo de 5 casillas de verificacion independientes.",
+   "valores_semanticos": ["soltero", "casado", "divorciado", "viudo", "unido"]
+  },
+  "asegurado_profesion_oficio": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Profesion u Oficio."
+  },
+  "asegurado_tipo_actividad": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Propuesto Asegurado: Tipo de Actividad. Grupo de 4 casillas de verificacion independientes.",
+   "valores_semanticos": ["comercial_profesional", "estudiante", "gubernamental", "independiente"]
+  },
+  "asegurado_residencia_provincia": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Provincia."
+  },
+  "asegurado_residencia_distrito": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Distrito."
+  },
+  "asegurado_residencia_corregimiento": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Corregimiento."
+  },
+  "asegurado_residencia_urbanizacion": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Urbanizacion."
+  },
+  "asegurado_residencia_calle": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Calle."
+  },
+  "asegurado_residencia_via": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Via."
+  },
+  "asegurado_residencia_tipo_inmueble": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: tipo de inmueble. Grupo de 4 casillas de verificacion independientes (Casa / Edificio / Local / C.C.), seguidas de un campo de texto libre para el nombre del edificio/local/C.C.",
+   "valores_semanticos": ["casa", "edificio", "local", "cc"]
+  },
+  "asegurado_residencia_inmueble_nombre": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: nombre del edificio/local/centro comercial asociado a la casilla marcada en 'asegurado_residencia_tipo_inmueble'."
+  },
+  "asegurado_residencia_piso": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Piso."
+  },
+  "asegurado_residencia_apartamento": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Apartamento."
+  },
+  "asegurado_residencia_oficina": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Oficina."
+  },
+  "asegurado_residencia_apartado_postal": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado, Direccion de residencia: Apartado postal."
+  },
+  "asegurado_telefono_celular": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Numero telefonico - Celular."
+  },
+  "asegurado_telefono_residencial": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Numero telefonico - Residencial."
+  },
+  "asegurado_telefono_oficina": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Numero telefonico - Oficina."
+  },
+  "asegurado_email": {
+   "tipo": "string",
+   "descripcion": "Datos del Propuesto Asegurado: Correo electronico."
+  },
+  "forma_pago": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Forma de Pago. Grupo de 5 casillas de verificacion independientes.",
+   "valores_semanticos": ["tarjeta_credito", "transferencia_ach", "transferencia_banca_linea", "descuento_planilla", "pago_voluntario"]
+  },
+  "frecuencia_pago": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Frecuencia de pago. Grupo de 4 casillas de verificacion independientes.",
+   "valores_semanticos": ["mensual", "trimestral", "semestral", "anual"]
+  },
+  "vehiculo_marca": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Marca."
+  },
+  "vehiculo_modelo": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Modelo."
+  },
+  "vehiculo_tipo_traccion": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Vehiculo: Tipo de Traccion. Grupo de 2 casillas de verificacion independientes.",
+   "valores_semanticos": ["automatica", "manual"]
+  },
+  "vehiculo_anio": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Anio."
+  },
+  "vehiculo_colores": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Color(es)."
+  },
+  "vehiculo_placa": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Placa del Vehiculo."
+  },
+  "vehiculo_num_pasajeros": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: N de Pasajeros."
+  },
+  "vehiculo_num_motor": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Numero de Motor."
+  },
+  "vehiculo_num_chasis": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: Numero de Chasis."
+  },
+  "vehiculo_uso": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Vehiculo: Uso del Vehiculo. Grupo de 4 casillas de verificacion independientes (Particular / Comercial / Autobuses / Otro). Si se elige 'otro', usar tambien 'vehiculo_uso_otro_texto' para describirlo.",
+   "valores_semanticos": ["particular", "comercial", "autobuses", "otro"]
+  },
+  "vehiculo_uso_otro_texto": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: descripcion libre cuando Uso del Vehiculo = Otro."
+  },
+  "vehiculo_tipo": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Vehiculo: Tipo de Vehiculo. Grupo de 2 casillas de verificacion independientes.",
+   "valores_semanticos": ["turismo", "4x4"]
+  },
+  "vehiculo_grupo": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Vehiculo: Grupo de Vehiculo. Grupo de 2 casillas de verificacion independientes.",
+   "valores_semanticos": ["2_a_4_ton", "4_ton_en_adelante"]
+  },
+  "vehiculo_dispositivos_seguridad": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Datos del Vehiculo: Dispositivos de Seguridad. Grupo de 4 casillas de verificacion independientes (Inmobilizer / Baston / Alarma / Otro). Si se elige 'otro', usar tambien 'vehiculo_dispositivos_seguridad_otro_texto'. NOTA: en la practica el vehiculo puede tener mas de un dispositivo instalado, pero el PDF solo permite representar UNA seleccion por via de este mapping (un solo data_key compartido); si se necesita marcar varios simultaneamente no es posible con la estructura actual sin editar mapping.json.",
+   "valores_semanticos": ["inmobilizer", "baston", "alarma", "otro"]
+  },
+  "vehiculo_dispositivos_seguridad_otro_texto": {
+   "tipo": "string",
+   "descripcion": "Datos del Vehiculo: descripcion libre cuando Dispositivos de Seguridad = Otro."
+  },
+  "cobertura_tipo": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pagina 2, Coberturas Solicitadas (encabezado): Grupo de 3 casillas de verificacion independientes.",
+   "valores_semanticos": ["rc_obligatoria", "rc", "todo_riesgo"]
+  },
+  "cobertura_rc_lesiones_corporales": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Responsabilidad Civil: casilla 'Lesiones Corporales'. Casilla de verificacion independiente (no forma parte de un grupo excluyente). Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "cobertura_rc_lesiones_corporales_suma": {
+   "tipo": "string",
+   "descripcion": "Responsabilidad Civil: Suma Asegurada de 'Lesiones Corporales'."
+  },
+  "cobertura_rc_danos_propiedad_ajena": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Responsabilidad Civil: casilla 'Danos a la Propiedad Ajena'. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "cobertura_rc_danos_propiedad_ajena_suma": {
+   "tipo": "string",
+   "descripcion": "Responsabilidad Civil: Suma Asegurada de 'Danos a la Propiedad Ajena'."
+  },
+  "cobertura_rc_gastos_medicos": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Responsabilidad Civil: casilla 'Gastos Medicos'. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "cobertura_rc_gastos_medicos_suma": {
+   "tipo": "string",
+   "descripcion": "Responsabilidad Civil: Suma Asegurada de 'Gastos Medicos'."
+  },
+  "cobertura_rc_todo_riesgo_automovil": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Responsabilidad Civil: casilla 'Todo Riesgo Automovil'. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "cobertura_rc_todo_riesgo_automovil_suma": {
+   "tipo": "string",
+   "descripcion": "Responsabilidad Civil: Suma Asegurada de 'Todo Riesgo Automovil'."
+  },
+  "apov_num_ocupantes": {
+   "tipo": "string",
+   "descripcion": "Accidentes Personales Ocupantes de Vehiculos (APOV): N de Ocupantes (casillero unico antes de 'Conductor:' y 'Ayudantes:'; ver nota general sobre esta interpretacion)."
+  },
+  "apov_num_conductor": {
+   "tipo": "string",
+   "descripcion": "APOV: N de Ocupantes - Conductor."
+  },
+  "apov_num_ayudantes": {
+   "tipo": "string",
+   "descripcion": "APOV: N de Ocupantes - Ayudantes."
+  },
+  "apov_muerte_conductor_suma": {
+   "tipo": "string",
+   "descripcion": "APOV: Suma Asegurada de 'Muerte Conductor'."
+  },
+  "apov_muerte_ocupante_suma": {
+   "tipo": "string",
+   "descripcion": "APOV: Suma Asegurada de 'Muerte Ocupante'."
+  },
+  "apov_incapacidad_conductor_suma": {
+   "tipo": "string",
+   "descripcion": "APOV: Suma Asegurada de 'Incapacidad Conductor'."
+  },
+  "apov_incapacidad_ocupante_suma": {
+   "tipo": "string",
+   "descripcion": "APOV: Suma Asegurada de 'Incapacidad Ocupante'."
+  },
+  "accesorio_1_incluido": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Accesorios, fila 1: casilla de inclusion. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "accesorio_1_descripcion": {
+   "tipo": "string",
+   "descripcion": "Accesorios, fila 1: descripcion del accesorio."
+  },
+  "accesorio_1_suma": {
+   "tipo": "string",
+   "descripcion": "Accesorios, fila 1: Suma Asegurada."
+  },
+  "accesorio_2_incluido": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Accesorios, fila 2: casilla de inclusion. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "accesorio_2_descripcion": {
+   "tipo": "string",
+   "descripcion": "Accesorios, fila 2: descripcion del accesorio."
+  },
+  "accesorio_2_suma": {
+   "tipo": "string",
+   "descripcion": "Accesorios, fila 2: Suma Asegurada."
+  },
+  "accesorio_3_incluido": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Accesorios, fila 3: casilla de inclusion. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "accesorio_3_descripcion": {
+   "tipo": "string",
+   "descripcion": "Accesorios, fila 3: descripcion del accesorio."
+  },
+  "accesorio_3_suma": {
+   "tipo": "string",
+   "descripcion": "Accesorios, fila 3: Suma Asegurada."
+  },
+  "cobertura_extension_garantias_0km": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Casilla 'Extension de Garantias Vehiculos 0 Km.'. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "cobertura_automedida_mas_7_anios": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Casilla 'Automedida: Vehiculos con mas de 7 anios de Antiguedad'. Usar valor 'si' para marcarla.",
+   "valores_semanticos": ["si"]
+  },
+  "siniestros_anteriores": {
+   "tipo": "enum_checkbox_group",
+   "descripcion": "Pregunta '¿Ha tenido siniestros anteriormente?'. Grupo de 2 casillas de verificacion independientes (Si / No).",
+   "valores_semanticos": ["si", "no"]
+  },
+  "siniestros_anteriores_compania": {
+   "tipo": "string",
+   "descripcion": "Pregunta '¿En que Compania?' (companias donde tuvo siniestros anteriores)."
+  },
+  "conductor_1_nombre": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es) del Vehiculo, fila 1: Nombre completo."
+  },
+  "conductor_1_cedula": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 1: Cedula."
+  },
+  "conductor_1_parentesco": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 1: Parentesco (con el Contratante/Asegurado)."
+  },
+  "conductor_1_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 1: Fecha de Nacimiento."
+  },
+  "conductor_1_porcentaje_uso": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 1: % Uso."
+  },
+  "conductor_2_nombre": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es) del Vehiculo, fila 2: Nombre completo."
+  },
+  "conductor_2_cedula": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 2: Cedula."
+  },
+  "conductor_2_parentesco": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 2: Parentesco."
+  },
+  "conductor_2_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 2: Fecha de Nacimiento."
+  },
+  "conductor_2_porcentaje_uso": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 2: % Uso."
+  },
+  "conductor_3_nombre": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es) del Vehiculo, fila 3: Nombre completo."
+  },
+  "conductor_3_cedula": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 3: Cedula."
+  },
+  "conductor_3_parentesco": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 3: Parentesco."
+  },
+  "conductor_3_fecha_nacimiento": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 3: Fecha de Nacimiento."
+  },
+  "conductor_3_porcentaje_uso": {
+   "tipo": "string",
+   "descripcion": "Conductor(es) Habitual(es), fila 3: % Uso."
+  },
+  "acreedor_1_entidad": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 1: Entidad Acreedora."
+  },
+  "acreedor_1_ruc": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 1: RUC."
+  },
+  "acreedor_1_monto": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 1: Monto."
+  },
+  "acreedor_2_entidad": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 2: Entidad Acreedora."
+  },
+  "acreedor_2_ruc": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 2: RUC."
+  },
+  "acreedor_2_monto": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 2: Monto."
+  },
+  "acreedor_3_entidad": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 3: Entidad Acreedora."
+  },
+  "acreedor_3_ruc": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 3: RUC."
+  },
+  "acreedor_3_monto": {
+   "tipo": "string",
+   "descripcion": "Acreedor Hipotecario, fila 3: Monto."
+  },
+  "firmas_contratante_nombre": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Nombre del Contratante (la Firma en si es una linea manuscrita sin campo AcroForm, ver nota general)."
+  },
+  "firmas_contratante_fecha": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Fecha de la firma del Contratante."
+  },
+  "firmas_asegurado_nombre": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Nombre del Asegurado (la Firma en si es una linea manuscrita sin campo AcroForm)."
+  },
+  "firmas_asegurado_fecha": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Fecha de la firma del Asegurado."
+  },
+  "firmas_productor_nombre": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Nombre del Productor (corredor) (la Firma en si es una linea manuscrita sin campo AcroForm)."
+  },
+  "firmas_productor_codigo": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Codigo del Productor."
+  },
+  "firmas_productor_fecha": {
+   "tipo": "string",
+   "descripcion": "Autorizacion: Fecha de la firma del Productor."
+  }
+ }
+}
