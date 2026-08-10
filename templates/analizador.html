@@ -236,7 +236,7 @@ footer{border-top:1px solid var(--linea);background:#fff;margin-top:70px}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #toast svg{width:16px;height:16px;stroke:#6FE0A8}
 .btn:focus-visible,.btn2:focus-visible,.mrun:focus-visible,.caso-open:focus-visible,.caso-del:focus-visible,details summary:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
-/* ---------- casos recientes (window.storage) ---------- */
+/* ---------- casos recientes (localStorage) ---------- */
 .caso-item{display:flex;gap:8px;align-items:stretch;margin-bottom:8px}
 .caso-item:last-child{margin-bottom:0}
 .caso-open{flex:1;text-align:left;border:1.5px solid var(--linea);background:#FAFCFE;border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer;transition:.15s;min-width:0}
@@ -672,15 +672,15 @@ async function cargarZip(file){
   clearErr();corpus=[];scanned=[];otherFiles=[];corpusChars=0;
   document.getElementById('res').classList.remove('on');
   document.getElementById('scanwarn').style.display='none';
-  if(!/\.zip$/i.test(file.name)){showErr('El archivo debe ser un .zip con el expediente.');return;}
+  if(!/\.zip$/i.test(file.name)){cargando=false;showErr('El archivo debe ser un .zip con el expediente.');return;}
   zipNombre=file.name.replace(/\.zip$/i,'');
-  if(file.size>157286400){showErr('El ZIP pesa más de 150 MB. Quita videos o imágenes muy pesadas del expediente y vuelve a intentar.');return;}
+  if(file.size>157286400){cargando=false;showErr('El ZIP pesa más de 150 MB. Quita videos o imágenes muy pesadas del expediente y vuelve a intentar.');return;}
   progShow('extraccion');progFase(1,'Abriendo el expediente…');prog.target=3;
   try{
     var zip=await JSZip.loadAsync(file);
     var entries=[];
     zip.forEach(function(p,e){if(!e.dir&&!/__MACOSX|\.DS_Store/.test(p))entries.push(e);});
-    if(!entries.length){progStop();showErr('El ZIP está vacío.');return;}
+    if(!entries.length){progStop();cargando=false;showErr('El ZIP está vacío.');return;}
     for(var i=0;i<entries.length;i++){
       var e=entries[i];
       progFase(1,'Leyendo documento '+(i+1)+' de '+entries.length+'…');
@@ -819,6 +819,7 @@ function renderCasos(arr){
   });
 }
 function restaurarCaso(k){
+  huboTruncado=false;corpus=[];scanned=[];ultimoFallo=false;zipNombre=k.nombre||'';
   document.getElementById('resumenTxt').textContent=k.resumen||'';
   if(k.monto){document.getElementById('montoVal').textContent=k.monto;document.getElementById('montoBig').style.display='flex';}
   else document.getElementById('montoBig').style.display='none';
@@ -912,7 +913,7 @@ async function procesarCola(){
   showToast('Siguiente de la cola: '+q.file.name.replace(/\.zip$/i,''));
   document.getElementById('ctx').value=q.ctx||'';
   var ok=await cargarZip(q.file);
-  if(ok){generarTodo();}
+  if(ok){await generarTodo();}
   else{
     showToast('Caso saltado — sin texto legible: '+q.file.name);
     setTimeout(procesarCola,500);
@@ -976,15 +977,13 @@ function buildCorpus(){
 }
 
 async function callClaude(messages,reintento){
-  /* Timeout con Promise.race: el fetch del sandbox de artifacts no soporta la opcion
-     de cancelacion 'signal' (pasarla hace fallar la peticion al instante — el bug del
-     falso 'sin conexion'). La carrera da el mismo anti-cuelgue sin tocar el fetch.
+  /* Timeout con Promise.race en lugar de AbortController para compatibilidad máxima.
      150s: colchon para expedientes gigantes. */
   var resp;
   try{
     var pF=fetch('/api/claude',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:messages})
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:8192,messages:messages})
     }).then(function(r){return {ok:true,resp:r};},function(e){return {ok:false,err:e};});
     var tId;
     var pT=new Promise(function(res){tId=setTimeout(function(){res({timeout:true});},150000);});
@@ -1168,7 +1167,8 @@ goBtn.addEventListener('click',generarTodo);
 document.querySelectorAll('[data-copy]').forEach(function(b){
   b.addEventListener('click',function(){
     if(b.getAttribute('data-copy')==='cartaTxt'&&!confirmarVerif('copiarla'))return;
-    var t=document.getElementById(b.getAttribute('data-copy')).textContent;
+    var el=document.getElementById(b.getAttribute('data-copy'));if(!el)return;
+    var t=el.textContent;
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){showToast('Copiado al portapapeles');}).catch(function(){copiaFallback(t);});}
     else copiaFallback(t);
   });
