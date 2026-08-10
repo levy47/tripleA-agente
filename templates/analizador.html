@@ -757,24 +757,23 @@ function renderInventory(){
   document.getElementById('inv').innerHTML=h;
 }
 
-/* ============ CASOS RECIENTES (persistencia con window.storage, si está disponible) ============ */
+/* ============ CASOS RECIENTES (persistencia con localStorage) ============ */
 var CAS_KEY='analizador:casos', CAS_MAX=30;
-function stOK(){try{return typeof window!=='undefined'&&window.storage&&typeof window.storage.get==='function';}catch(e){return false;}}
+function stOK(){try{localStorage.setItem('__test','1');localStorage.removeItem('__test');return true;}catch(e){return false;}}
 async function leerCasos(){
   if(!stOK())return[];
-  try{var r=await window.storage.get(CAS_KEY);return r&&r.value?JSON.parse(r.value):[];}
-  catch(e){return[];} /* clave inexistente o storage no disponible */
+  try{var r=localStorage.getItem(CAS_KEY);return r?JSON.parse(r):[];}
+  catch(e){return[];}
 }
 async function escribirCasos(arr){
   if(!stOK())return;
-  try{await window.storage.set(CAS_KEY,JSON.stringify(arr.slice(0,CAS_MAX)));}
+  try{localStorage.setItem(CAS_KEY,JSON.stringify(arr.slice(0,CAS_MAX)));}
   catch(e){
     /* si el storage se llena, recortar a los 10 más recientes y reintentar una vez */
-    try{await window.storage.set(CAS_KEY,JSON.stringify(arr.slice(0,10)));}catch(e2){}
+    try{localStorage.setItem(CAS_KEY,JSON.stringify(arr.slice(0,10)));}catch(e2){}
   }
 }
 async function guardarCaso(){
-  if(!stOK())return;
   var carta=document.getElementById('cartaTxt').textContent;
   if(!carta.trim())return;
   var caso={id:Date.now(),nombre:zipNombre||'Expediente',fecha:HOY+', '+new Date().toLocaleTimeString('es-PA',{hour:'2-digit',minute:'2-digit'}),
